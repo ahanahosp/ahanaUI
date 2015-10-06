@@ -55,12 +55,12 @@ app
 
       /**Copy current address to permanent address if checkbox is checked*/
       $scope.copyCurrentAddress = function(){
-        if($scope.data.sameAsCurrentAddress){
-          $scope.data.permanentAddress = $scope.data.address;
-          $scope.data.permanentCountry = $scope.data.country;
-          $scope.data.permanentState = $scope.data.state;
-          $scope.data.permanentCity = $scope.data.city;
-          $scope.data.permanentZip = $scope.data.zip;
+        if($scope.sameAsCurrentAddress){
+          $scope.data.PatientRegistration.permanentAddress = $scope.data.PatientRegistration.address;
+          $scope.data.PatientRegistration.permanentCountry = $scope.data.PatientRegistration.country;
+          $scope.data.PatientRegistration.permanentState = $scope.data.PatientRegistration.state;
+          $scope.data.PatientRegistration.permanentCity = $scope.data.PatientRegistration.city;
+          $scope.data.PatientRegistration.permanentZip = $scope.data.PatientRegistration.zip;
         }
       }
 
