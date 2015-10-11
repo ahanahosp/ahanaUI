@@ -165,8 +165,8 @@ angular.module('app')
                 {
                     name: 'xeditable',
                     files: [
-                        '../bower_components/angular-xeditable/dist/js/xeditable.min.js',
-                        '../bower_components/angular-xeditable/dist/css/xeditable.css'
+                        'bower_components/angular-xeditable/dist/js/xeditable.min.js',
+                        'bower_components/angular-xeditable/dist/css/xeditable.css'
                     ]
                 },
                 {

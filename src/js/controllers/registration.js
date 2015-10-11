@@ -3,7 +3,7 @@
 //TODO need to move in properties file
 
 /*Global path declaration */
-var path="/ahanaServices/services/";
+var path="http://localhost:9090/ahanaServices/services/";
 
 /* Controllers */
 app
@@ -53,36 +53,45 @@ app
     $scope.format = $scope.formats[0];
     $scope.formatDOB = $scope.formats[1];
 
-      /**Copy current address to permanent address if checkbox is checked*/
-      $scope.copyCurrentAddress = function(){
-        if($scope.sameAsCurrentAddress){
-          $scope.data.PatientRegistration.permanentAddress = $scope.data.PatientRegistration.address;
-          $scope.data.PatientRegistration.permanentCountry = $scope.data.PatientRegistration.country;
-          $scope.data.PatientRegistration.permanentState = $scope.data.PatientRegistration.state;
-          $scope.data.PatientRegistration.permanentCity = $scope.data.PatientRegistration.city;
-          $scope.data.PatientRegistration.permanentZip = $scope.data.PatientRegistration.zip;
-        }
+    /**Copy current address to permanent address if checkbox is checked*/
+    $scope.copyCurrentAddress = function(){
+      if($scope.sameAsCurrentAddress && $scope.data && $scope.data.PatientRegistration){
+        $scope.data.PatientRegistration.permanentAddress = $scope.data.PatientRegistration.address;
+        $scope.data.PatientRegistration.permanentCountry = $scope.data.PatientRegistration.country;
+        $scope.data.PatientRegistration.permanentState = $scope.data.PatientRegistration.state;
+        $scope.data.PatientRegistration.permanentCity = $scope.data.PatientRegistration.city;
+        $scope.data.PatientRegistration.permanentZip = $scope.data.PatientRegistration.zip;
       }
+    }
 
-      /**Save Patient Registration data*/
-      $scope.saveRegistration = function(){
-        console.log($scope.registrationForm);
-        if($scope.registrationForm.$valid){
-          $http({
-            url: path+"rest/registration/savePatient",
-            method: "POST",
-            data: $scope.data
-            //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-          }).then(
-              function(){
-                $scope.data = {};
-                $scope.registrationMessage = "Registration saved successfully";
-              },
-              /**Error handling*/
-              function(){
-                $scope.registrationMessage = "Failed registration";
-              }
-          )
-        }
+    $http.get(path+"rest/lookup/loadLookupByName?lookupNames=salutation,country,bloodgroup,category,caretaker,patienttype").then(
+      function(response){
+        $scope.lookup = JSON.parse(response.data);
+        console.log(response);
+      },
+      function(error){
+        console.log(error);
       }
+    )
+
+    /**Save Patient Registration data*/
+    $scope.saveRegistration = function(){
+      if($scope.registrationForm.$valid){
+        $http({
+          url: path+"rest/registration/savePatient",
+          method: "POST",
+          data: $scope.data
+          //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(
+            function(){
+              $scope.data = {};
+              $scope.registrationMessage = "Registration saved successfully";
+            },
+            /**Error handling*/
+            function(){
+              $scope.registrationMessage = "Failed registration";
+            }
+        )
+      }
+    }
   }]);

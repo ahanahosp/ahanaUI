@@ -2,66 +2,42 @@
     <h1 class="m-n h3">Patient Register</h1>
 </div>
 <div class="wrapper-md">
-    <div ng-controller="FormDemoCtrl">
-        <div class="row">
-
-
-        </div>
+    <div ng-controller="RegistrationController">
         <div class="row">
             <div class="col-sm-6">
-                <form name="formValidate" class="form-horizontal form-validation">
+                <form name="registrationForm" class="form-horizontal form-validation">
                     <div class="panel panel-default">
-
                         <div class="panel-body">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Patient ID </label>
-
-                                <div class="col-sm-9">
-                                    <p><b> TMP2015030410 </b></p>
-
-
-                                </div>
-                            </div>
-
-                            <div class="line line-dashed b-b line-lg "></div>
-
-
-                            <div class="form-group">
                                 <label class="col-sm-3 control-label">Name * </label>
-
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" placeholder="First Name">
+                                    <input type="text" ng-model="data.firstName" class="form-control" placeholder="First Name">
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="Last Name">
+                                    <input type="text" ng-model="data.lastName" class="form-control" placeholder="Last Name">
                                 </div>
                             </div>
-
-
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Gender</label>
-
                                 <div class="col-sm-9">
                                     <label class="i-checks ">
-                                        <input type="radio" checked="" value="option2" name="a">
+                                        <input type="radio" checked="" value="M" name="a" ng-model="data.gender" >
                                         <i></i>
                                         Male
                                     </label> &nbsp; &nbsp;
                                     <label class="i-checks">
-                                        <input type="radio" value="option2" name="a">
+                                        <input type="radio" value="F" name="a" ng-model="data.gender" >
                                         <i></i>
                                         Female
                                     </label>
                                     &nbsp; &nbsp;
 
                                     <label class="i-checks">
-                                        <input type="radio" value="option2" name="a">
+                                        <input type="radio" value="O" name="a" ng-model="data.gender" >
                                         <i></i>
                                         Others
                                     </label>
-
-
                                 </div>
                             </div>
                             <div class="line line-dashed b-b line-lg "></div>
@@ -69,7 +45,7 @@
                                 <label class="col-sm-3 control-label">Age * </label>
 
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" placeholder="###">
+                                    <input type="text" class="form-control" placeholder="###" ng-model="data.age" >
                                 </div>
                                 <div class="col-sm-4">
                                     Years
@@ -80,19 +56,57 @@
                                 <label class="col-sm-3 control-label">Mobile No * </label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="##########">
+                                    <input type="text" class="form-control" placeholder="##########" ng-model="data.mobile" >
                                 </div>
 
                             </div>
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Place</label>
+                            <label class="col-lg-3 control-label">Current Address</label>
 
-                                <div class="col-sm-9">
-                                    <select ="" ng-model="f.b" class="
-                                    form-control  ng-pristine ng-invalid ng-invalid- ng-touched">
-                                    <option value="">City / Town / Village</option>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" placeholder="Address" ng-model="data.address">
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Country</label>
+
+                                <div class="col-lg-9">
+                                    <select class="form-control" ng-model="data.country">
+                                        <option value="">Select Country</option>
+                                        <option value="india">India</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">State</label>
+
+                                <div class="col-lg-9">
+                                    <select class="form-control" ng-model="data.state">
+                                        <option value="">Select State</option>
+                                        <option value="TN">Tamilnadu</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">City</label>
+
+                                <div class="col-lg-9">
+                                    <select class="form-control" ng-model="data.city">
+                                        <option value="">Select City</option>
+                                        <option value="Madurai">Madurai</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Zip</label>
+
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" placeholder="Zip" ng-model="data.zip">
                                 </div>
                             </div>
 
@@ -103,62 +117,41 @@
 
                                 <div class="col-sm-9">
                                     <label class="i-checks ">
-                                        <input type="radio" checked="" value="option2" name="a">
+                                        <input type="radio" checked="" value="Normal" name="billing" ng-model="data.billing" >
                                         <i></i>
                                         Normal
                                     </label> &nbsp; &nbsp;
                                     <label class="i-checks">
-                                        <input type="radio" value="option2" name="a">
+                                        <input type="radio" value="Free" name="billing" ng-model="data.billing">
                                         <i></i>
                                         Free
                                     </label>
                                     &nbsp;</div>
                             </div>
-
-
                             <div class="line line-dashed b-b line-lg "></div>
-
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Category</label>
 
                                 <div class="col-sm-9">
                                     <label class="i-checks ">
-                                        <input type="radio" checked="" value="option2" name="a">
+                                        <input type="radio" checked="" value="Standard" name="category" ng-model="data.category" >
                                         <i></i>
                                         Standard
                                     </label> &nbsp; &nbsp;
                                     <label class="i-checks">
-                                        <input type="radio" value="option2" name="a">
+                                        <input type="radio" value="Priority" name="category" ng-model="data.category">
                                         <i></i>
                                         Priority
                                     </label> &nbsp; &nbsp; <label class="i-checks">
-                                    <input type="radio" value="option2" name="a">
+                                    <input type="radio" value="VIP" name="category"  ng-model="data.category">
                                     <i></i>
                                     VIP
                                 </label> &nbsp; &nbsp; </div>
                             </div>
 
-                            <div class="line line-dashed b-b line-lg "></div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Patient Type </label>
-
-                                <div class="col-sm-9">
-                                    <label class="i-checks ">
-                                        <input type="radio" value="option2" name="a">
-                                        <i></i>
-                                        New
-                                    </label> &nbsp; &nbsp;
-                                    <label class="i-checks">
-                                        <input type="radio" value="option2" name="a">
-                                        <i></i>
-                                        Review
-                                    </label>
-                                    &nbsp;</div>
-                            </div>
                         </div>
                         <footer class="panel-footer text-right bg-light lter">
-                            <button class="btn m-b-xs  btn-success ">Register</button>
+                            <button class="btn m-b-xs  btn-success " ng-click="saveRegistration()">Register</button>
                             &nbsp;
                             <button class="btn m-b-xs  btn-default"> Register & Book an appoinment</button>
                             &nbsp;

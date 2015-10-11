@@ -304,16 +304,12 @@ angular.module('app')
                 .state('app.register', {
                     url: '/register',
                     templateUrl: 'tpl/register.html',
-                    controller: 'XeditableCtrl',
                     resolve: {
-                        deps: ['$ocLazyLoad',
-                            function ($ocLazyLoad) {
-                                return $ocLazyLoad.load('xeditable').then(
-                                    function () {
-                                        return $ocLazyLoad.load('js/controllers/xeditable.js');
-                                    }
-                                );
-                            }]
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load('js/controllers/registration.js');
+                            }
+                        ]
                     }
                 })
 
