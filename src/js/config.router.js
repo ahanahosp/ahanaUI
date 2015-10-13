@@ -312,6 +312,17 @@ angular.module('app')
                         ]
                     }
                 })
+                .state('app.createRole', {
+                    url: '/createRole',
+                    templateUrl: 'tpl/createRole.html',
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load('js/controllers/roles.js');
+                            }
+                        ]
+                    }
+                })
 
 
                 .state('app.table.smart', {

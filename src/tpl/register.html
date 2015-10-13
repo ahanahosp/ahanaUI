@@ -9,6 +9,18 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="form-group">
+                                <label class="col-lg-3 control-label">Registration Date</label>
+                                <div class="col-lg-9">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.registrationDate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+										<span class="input-group-btn">
+										<button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i></button>
+										</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label">Name * </label>
                                 <div class="col-sm-5">
                                     <input type="text" ng-model="data.firstName" class="form-control" placeholder="First Name">
@@ -31,8 +43,7 @@
                                         <i></i>
                                         Female
                                     </label>
-                                    &nbsp; &nbsp;
-
+                                             &nbsp; &nbsp;
                                     <label class="i-checks">
                                         <input type="radio" value="O" name="a" ng-model="data.gender" >
                                         <i></i>
@@ -43,7 +54,6 @@
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Age * </label>
-
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control" placeholder="###" ng-model="data.age" >
                                 </div>
@@ -54,16 +64,13 @@
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Mobile No * </label>
-
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" placeholder="##########" ng-model="data.mobile" >
                                 </div>
-
                             </div>
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
-                            <label class="col-lg-3 control-label">Current Address</label>
-
+                                <label class="col-lg-3 control-label">Current Address</label>
                                 <div class="col-lg-9">
                                     <input type="text" class="form-control" placeholder="Address" ng-model="data.address">
                                 </div>
@@ -71,29 +78,24 @@
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Country</label>
-
                                 <div class="col-lg-9">
-                                    <select class="form-control" ng-model="data.country">
+                                    <select class="form-control" ng-model="data.country" ng-options="country.value as country.label for country in countries | orderBy: label" ng-change="updateState()">
                                         <option value="">Select Country</option>
-                                        <option value="india">India</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">State</label>
-
                                 <div class="col-lg-9">
-                                    <select class="form-control" ng-model="data.state">
+                                    <select class="form-control" ng-model="data.state" ng-options="state.value as state.label for state in states | orderBy: label" >
                                         <option value="">Select State</option>
-                                        <option value="TN">Tamilnadu</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">City</label>
-
                                 <div class="col-lg-9">
                                     <select class="form-control" ng-model="data.city">
                                         <option value="">Select City</option>
@@ -104,17 +106,13 @@
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Zip</label>
-
                                 <div class="col-lg-9">
                                     <input type="text" class="form-control" placeholder="Zip" ng-model="data.zip">
                                 </div>
                             </div>
-
                             <div class="line line-dashed b-b line-lg "></div>
-
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Billing</label>
-
                                 <div class="col-sm-9">
                                     <label class="i-checks ">
                                         <input type="radio" checked="" value="Normal" name="billing" ng-model="data.billing" >
@@ -126,12 +124,12 @@
                                         <i></i>
                                         Free
                                     </label>
-                                    &nbsp;</div>
+                                             &nbsp;
+                                </div>
                             </div>
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Category</label>
-
                                 <div class="col-sm-9">
                                     <label class="i-checks ">
                                         <input type="radio" checked="" value="Standard" name="category" ng-model="data.category" >
@@ -146,9 +144,9 @@
                                     <input type="radio" value="VIP" name="category"  ng-model="data.category">
                                     <i></i>
                                     VIP
-                                </label> &nbsp; &nbsp; </div>
+                                </label> &nbsp; &nbsp;
+                                </div>
                             </div>
-
                         </div>
                         <footer class="panel-footer text-right bg-light lter">
                             <button class="btn m-b-xs  btn-success " ng-click="saveRegistration()">Register</button>
@@ -164,105 +162,70 @@
             <div class="col-sm-6">
                 <form name="forma" class="form-horizontal form-validation">
                     <div class="panel panel-default">
-
                         <div class="panel-body">
-
-
-                            <p> <h4><i class="fa fa-exclamation-triangle"></i> One or more particulars matching to
-                            existing patient records! </h4></p>
-
+                            <p>
+                            <h4><i class="fa fa-exclamation-triangle"></i> One or more particulars matching to
+                                                                           existing patient records!
+                            </h4>
+                            </p>
                             <div class="search-patientcont">
-
-
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-2 col-md-2"><img src="img/man-icon.png" alt=""/></div>
-
                                     <div class="col-xs-12 col-sm-5 col-md-5">
-
                                         <div class="row">
                                             <a href="#">Mr. PatIent name</a> (35y) <br/>
-                                            AH12345
-
+                                                                             AH12345
                                             <p class="m-t"> No, 123, Lorem St. <br/>
-                                                Dolorsite main, <br/>
-                                                Madurai 123456 <br/>
-                                                Tamilnadu</p>
-
+                                                            Dolorsite main, <br/>
+                                                            Madurai 123456 <br/>
+                                                            Tamilnadu
+                                            </p>
                                             <p>  <span> <b>Contact No.s</b> <br/>
- +91 1234567890 (Primary)<br/> 
-
-+91 1234567890 (Secondary) </span></p>
-
-
+												+91 1234567890 (Primary)<br/> 
+												+91 1234567890 (Secondary) </span>
+                                            </p>
                                         </div>
-
                                     </div>
-
                                     <div class="col-xs-12 col-sm-5 col-md-5">
                                         Last visited on <span> <b> 23-jan-2015 </b></span> <br/>
                                         Consultation with <span> <b> Dr.Vikram </b> </span>
-
                                         <p class="m-t-xxl ">
                                             <button class="btn m-b-xs w-xs btn-info">BOOK</button>
                                         </p>
-
                                     </div>
-
                                 </div>
-
-
                             </div>
-
-
                             <div class="search-patientcont">
-
-
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-2 col-md-2"><img src="img/man-icon2.png" alt=""/></div>
-
                                     <div class="col-xs-12 col-sm-5 col-md-5">
-
                                         <div class="row">
                                             <a href="#">Mr. PatIent name</a> (35y) <br/>
-                                            AH12345
-
+                                                                             AH12345
                                             <p class="m-t"> No, 123, Lorem St. <br/>
-                                                Dolorsite main, <br/>
-                                                Madurai 123456 <br/>
-                                                Tamilnadu</p>
-
+                                                            Dolorsite main, <br/>
+                                                            Madurai 123456 <br/>
+                                                            Tamilnadu
+                                            </p>
                                             <p>  <span> <b>Contact No.s</b> <br/>
- +91 1234567890 (Primary)<br/> 
-
-+91 1234567890 (Secondary) </span></p>
-
-
+												+91 1234567890 (Primary)<br/> 
+												+91 1234567890 (Secondary) </span>
+                                            </p>
                                         </div>
-
                                     </div>
-
                                     <div class="col-xs-12 col-sm-5 col-md-5">
                                         Last visited on <span> <b> 23-jan-2015 </b></span> <br/>
                                         Consultation with <span> <b> Dr.Vikram </b> </span>
-
                                         <p class="m-t-xxl ">
                                             <button class="btn m-b-xs w-xs btn-info">BOOK</button>
                                         </p>
-
                                     </div>
-
                                 </div>
-
-
                             </div>
-
-
                         </div>
-
                     </div>
                 </form>
             </div>
         </div>
-
     </div>
 </div>

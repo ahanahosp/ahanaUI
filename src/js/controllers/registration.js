@@ -2,96 +2,95 @@
 
 //TODO need to move in properties file
 
-/*Global path declaration */
-var path="http://localhost:9090/ahanaServices/services/";
-
 /* Controllers */
 app
-  // Registration controller
-  .controller('RegistrationController', ['$scope','$http', function($scope, $http) {
-    $scope.today = function() {
-      $scope.dt = new Date();
-    };
-    $scope.today();
+// Registration controller
+    .controller('RegistrationController', ['$scope', '$http', function($scope, $http) {
 
-    $scope.clear = function () {
-      $scope.dt = null;
-    };
+      $scope.today = function() {
+        $scope.dt = new Date();
+      };
+      $scope.today();
 
-    // Disable weekend selection
-    $scope.disabled = function(date, mode) {
-      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-    };
+      $scope.clear = function() {
+        $scope.dt = null;
+      };
 
-    $scope.toggleMin = function() {
-      $scope.minDate = $scope.minDate ? null : new Date();
-    };
-    $scope.toggleMin();
+      // Disable weekend selection
+      $scope.disabled = function(date, mode) {
+        return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
+      };
 
-    $scope.open = function($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
+      $scope.toggleMin = function() {
+        $scope.minDate = $scope.minDate ? null : new Date();
+      };
+      $scope.toggleMin();
 
-      $scope.opened = true;
-    };
+      $scope.open = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
 
-    $scope.openDateOfBirth = function($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
+        $scope.opened = true;
+      };
 
-      $scope.openedDateOfBirth = true;
-    };
+      $scope.openDateOfBirth = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
 
-    $scope.dateOptions = {
-      formatYear: 'yy',
-      startingDay: 1,
-      class: 'datepicker'
-    };
+        $scope.openedDateOfBirth = true;
+      };
 
-    $scope.initDate = new Date('2016-15-20');
-    $scope.formats = ['dd/MM/yyyy hh:mm:ss', 'dd/MM/yyyy'];
-    $scope.format = $scope.formats[0];
-    $scope.formatDOB = $scope.formats[1];
+      $scope.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1,
+        class: 'datepicker'
+      };
 
-    /**Copy current address to permanent address if checkbox is checked*/
-    $scope.copyCurrentAddress = function(){
-      if($scope.sameAsCurrentAddress && $scope.data && $scope.data.PatientRegistration){
-        $scope.data.PatientRegistration.permanentAddress = $scope.data.PatientRegistration.address;
-        $scope.data.PatientRegistration.permanentCountry = $scope.data.PatientRegistration.country;
-        $scope.data.PatientRegistration.permanentState = $scope.data.PatientRegistration.state;
-        $scope.data.PatientRegistration.permanentCity = $scope.data.PatientRegistration.city;
-        $scope.data.PatientRegistration.permanentZip = $scope.data.PatientRegistration.zip;
-      }
-    }
+      $scope.initDate = new Date('2016-15-20');
+      $scope.formats = ['dd/MM/yyyy hh:mm:ss', 'dd/MM/yyyy'];
+      $scope.format = $scope.formats[0];
+      $scope.formatDOB = $scope.formats[1];
 
-    $http.get(path+"rest/lookup/loadLookupByName?lookupNames=salutation,country,bloodgroup,category,caretaker,patienttype").then(
-      function(response){
-        $scope.lookup = JSON.parse(response.data);
-        console.log(response);
-      },
-      function(error){
-        console.log(error);
-      }
-    )
+      $http.get(path + "rest/secure/lookup/loadLookupByName?lookupNames=country").then(
+          function(response) {
+            $scope.countries = response.data.lookupValues.countryDetails;
+          }
+      )
 
-    /**Save Patient Registration data*/
-    $scope.saveRegistration = function(){
-      if($scope.registrationForm.$valid){
-        $http({
-          url: path+"rest/registration/savePatient",
-          method: "POST",
-          data: $scope.data
-          //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }).then(
-            function(){
-              $scope.data = {};
-              $scope.registrationMessage = "Registration saved successfully";
-            },
-            /**Error handling*/
-            function(){
-              $scope.registrationMessage = "Failed registration";
+      $scope.updateState = function(){
+        $http.get(path + "rest/secure/lookup/populateState?countryId="+$scope.data.country).then(
+            function(response) {
+              $scope.states = response.data.stateDetails;
             }
         )
       }
-    }
-  }]);
+
+      $scope.updateCity = function(){
+        $http.get(path + "rest/secure/lookup/populateCity?stateId="+$scope.data.state).then(
+            function(response) {
+              $scope.cities = response.data.cityDetails;
+            }
+        )
+      }
+
+      /**Save Patient Registration data*/
+      $scope.saveRegistration = function() {
+        if ($scope.registrationForm.$valid) {
+          $http({
+            url: path + "rest/secure/registration/savePatient",
+            method: "POST",
+            data: $scope.data
+            //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+          }).then(
+              function() {
+                $scope.data = {};
+                $scope.registrationMessage = "Registration saved successfully";
+              },
+              /**Error handling*/
+              function() {
+                $scope.registrationMessage = "Failed registration";
+              }
+          )
+        }
+      }
+    }]);
