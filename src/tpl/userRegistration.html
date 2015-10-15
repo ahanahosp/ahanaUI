@@ -1,0 +1,190 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n h3">User Registration</h1>
+</div>
+<div class="wrapper-md">
+    <div ng-controller="UserRegistrationController">
+        <div class="row">
+            <div class="col-sm-6">
+                <form name="userRegistrationForm" class="form-horizontal form-validation">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Salutation * </label>
+                                <div class="col-sm-5">
+                                    <input type="text" ng-model="data.salutation" class="form-control" placeholder="Salutation">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Name * </label>
+                                <div class="col-sm-5">
+                                    <input type="text" ng-model="data.firstName" class="form-control" placeholder="First Name">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" ng-model="data.lastName" class="form-control" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">User Name * </label>
+                                <div class="col-sm-5">
+                                    <input type="text" ng-model="data.userId" class="form-control" placeholder="User Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Password * </label>
+                                <div class="col-sm-5">
+                                    <input type="password" ng-model="data.password" class="form-control" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Email Id </label>
+                                <div class="col-sm-5">
+                                    <input type="text" ng-model="data.emailId" class="form-control" placeholder="Email Id">
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Mobile No * </label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" placeholder="##########" ng-model="data.mobileNo" >
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Designation</label>
+                                <div class="col-sm-5">
+                                    <input type="text" ng-model="data.designation" class="form-control" placeholder="Designation">
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Speciality</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control" ng-model="data.speciality" ng-options="speciality.value as speciality.label for speciality in speciality | orderBy: label" >
+                                        <option value="">Select Speciality</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Current Address</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" placeholder="Address" ng-model="data.address">
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Country</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control" ng-model="data.country" ng-options="country.value as country.label for country in countries | orderBy: label" ng-change="updateState()">
+                                        <option value="">Select Country</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">State</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control" ng-model="data.state" ng-options="state.value as state.label for state in states | orderBy: label" >
+                                        <option value="">Select State</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">City</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control" ng-model="data.city">
+                                        <option value="">Select City</option>
+                                        <option value="Madurai">Madurai</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Zip</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" placeholder="Zip" ng-model="data.zip">
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="panel-footer text-right bg-light lter">
+                            <button class="btn m-b-xs  btn-success " ng-click="saveRegistration()">Register</button>
+                            &nbsp;
+                            <button class="btn m-b-xs  btn-default"> Register & Book an appoinment</button>
+                            &nbsp;
+                            <button class="btn m-b-xs  btn-dark"><i class="fa fa-times"></i> Cancel</button>
+                            &nbsp;
+                        </footer>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <form name="forma" class="form-horizontal form-validation">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p>
+                            <h4><i class="fa fa-exclamation-triangle"></i> One or more particulars matching to
+                                                                           existing patient records!
+                            </h4>
+                            </p>
+                            <div class="search-patientcont">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-2 col-md-2"><img src="img/man-icon.png" alt=""/></div>
+                                    <div class="col-xs-12 col-sm-5 col-md-5">
+                                        <div class="row">
+                                            <a href="#">Mr. PatIent name</a> (35y) <br/>
+                                                                             AH12345
+                                            <p class="m-t"> No, 123, Lorem St. <br/>
+                                                            Dolorsite main, <br/>
+                                                            Madurai 123456 <br/>
+                                                            Tamilnadu
+                                            </p>
+                                            <p>  <span> <b>Contact No.s</b> <br/>
+												+91 1234567890 (Primary)<br/> 
+												+91 1234567890 (Secondary) </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-5 col-md-5">
+                                        Last visited on <span> <b> 23-jan-2015 </b></span> <br/>
+                                        Consultation with <span> <b> Dr.Vikram </b> </span>
+                                        <p class="m-t-xxl ">
+                                            <button class="btn m-b-xs w-xs btn-info">BOOK</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="search-patientcont">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-2 col-md-2"><img src="img/man-icon2.png" alt=""/></div>
+                                    <div class="col-xs-12 col-sm-5 col-md-5">
+                                        <div class="row">
+                                            <a href="#">Mr. PatIent name</a> (35y) <br/>
+                                                                             AH12345
+                                            <p class="m-t"> No, 123, Lorem St. <br/>
+                                                            Dolorsite main, <br/>
+                                                            Madurai 123456 <br/>
+                                                            Tamilnadu
+                                            </p>
+                                            <p>  <span> <b>Contact No.s</b> <br/>
+												+91 1234567890 (Primary)<br/> 
+												+91 1234567890 (Secondary) </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-5 col-md-5">
+                                        Last visited on <span> <b> 23-jan-2015 </b></span> <br/>
+                                        Consultation with <span> <b> Dr.Vikram </b> </span>
+                                        <p class="m-t-xxl ">
+                                            <button class="btn m-b-xs w-xs btn-info">BOOK</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

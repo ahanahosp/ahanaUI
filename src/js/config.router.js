@@ -323,7 +323,17 @@ angular.module('app')
                         ]
                     }
                 })
-
+                .state('app.userRegistration', {
+                    url: '/userRegistration',
+                    templateUrl: 'tpl/userRegistration.html',
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load('js/controllers/userRegistration.js');
+                            }
+                        ]
+                    }
+                })
 
                 .state('app.table.smart', {
                     url: '/smart',
