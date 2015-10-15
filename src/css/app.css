@@ -5409,3 +5409,7 @@ a.text-#000000:hover {
 .margin-bottom-20 {
     margin-bottom: 20px;
 }
+
+.ng-table-pager{
+    margin-top: 24px;
+}
