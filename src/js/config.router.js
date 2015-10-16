@@ -491,6 +491,38 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.createSpeciality', {
+          url: '/createSpeciality',
+          templateUrl: 'tpl/create_speciality.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/speciality.js');
+              }
+            ]
+          }
+        })
+        .state ('app.editSpeciality', {
+        url: '/editSpeciality/{oid}',
+        templateUrl: 'tpl/edit_speciality.html',
+        resolve: {
+          deps: [ 'uiLoad',
+            function ( uiLoad ) {
+              return uiLoad.load ('js/controllers/speciality.js');
+            }
+          ]
+        }
+      }).state ('app.speciality', {
+          url: '/speciality',
+          templateUrl: 'tpl/speciality.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/speciality.js');
+              }
+            ]
+          }
+        })
         .state ('app.table.smart', {
           url: '/smart',
           templateUrl: 'tpl/table_smart.html',
