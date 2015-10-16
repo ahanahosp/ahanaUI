@@ -427,6 +427,38 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.createAccountHead', {
+          url: '/createAccountHead',
+          templateUrl: 'tpl/create_accounthead.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/accounthead.js');
+              }
+            ]
+          }
+        })
+        .state ('app.editAccountHead', {
+        url: '/editAccountHead/{oid}',
+        templateUrl: 'tpl/edit_accounthead.html',
+        resolve: {
+          deps: [ 'uiLoad',
+            function ( uiLoad ) {
+              return uiLoad.load ('js/controllers/accounthead.js');
+            }
+          ]
+        }
+      }).state ('app.accountHead', {
+          url: '/accountHead',
+          templateUrl: 'tpl/accounthead.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/accounthead.js');
+              }
+            ]
+          }
+        })
         .state ('app.table.smart', {
           url: '/smart',
           templateUrl: 'tpl/table_smart.html',
