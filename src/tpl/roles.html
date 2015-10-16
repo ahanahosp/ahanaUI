@@ -31,6 +31,12 @@
         <button class=" btn btn-sm btn-grey pull-right" ng-click="$state.go('app.createRole')"> &nbsp; &nbsp; <i class="fa fa-plus"></i> &nbsp; New Role &nbsp; &nbsp; </button>
       </div>
     </div>
+    <div class="wrapper table-responsive" ng-show="errorData">
+      <div ng-repeat="error in errorData.errors" class="text-danger">
+        <i class="fa fa-warning"></i> {{error.longMessage}}
+      </div>
+    </div>
+
     <div class="wrapper table-responsive">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
         <tr ng-repeat="role in $data">
@@ -40,11 +46,10 @@
           <td data-title="'Status'">
             <div class="action-message">{{role.status}}</div>
           </td>
-          <td data-title="'Actions'">
-            <a href="#" ui-sref="app.editRole({oid:role.oid})">
+          <td class="text-right">
+            <a ui-sref="app.editRole({oid:role.oid})">
               <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i>
-            </a>&nbsp;&nbsp;&nbsp;
-            <a href="#"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+            </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteRole(role.oid)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
           </td>
         </tr>
       </table>
