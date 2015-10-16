@@ -1,0 +1,48 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n h3">Edit Ward</h1>
+</div>
+<div class="wrapper-md">
+    <div ng-controller="WardController">
+        <div class="row">
+            <div class="col-sm-12">
+                <form name="wardForm" class="form-horizontal form-validation">
+                    <div class="panel panel-default" ng-init="loadWardDetails()">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Ward Name * </label>
+                                <div class="col-sm-9">
+                                    <input type="text" ng-model="data.wardName" name="wardName" class="form-control" placeholder="Ward Name">
+                                </div>
+                            </div>
+                             <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Floor Name</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control" ng-model="data.floorOid" ng-options="floor.value as floor.label for floor in floors | orderBy: label">
+                                        <option value="">Select Floor</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Status</label>
+                                <div class="col-sm-9">
+                                    <label class="i-checks ">
+                                        <input type="checkbox" checked="" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="data.status" >
+                                        <i></i>
+                                    </label> &nbsp; &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="panel-footer text-right bg-light lter">
+                            <button class="btn m-b-xs  btn-success " ng-click="saveFloor()">Update</button>
+                            &nbsp;
+                            <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.ward')"><i class="fa fa-times"></i> Cancel</button>
+                            &nbsp;
+                        </footer>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
