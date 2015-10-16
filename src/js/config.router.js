@@ -459,6 +459,38 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.createProcedures', {
+          url: '/createProcedures',
+          templateUrl: 'tpl/create_procedures.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/procedures.js');
+              }
+            ]
+          }
+        })
+        .state ('app.editProcedures', {
+        url: '/editProcedures/{oid}',
+        templateUrl: 'tpl/edit_procedures.html',
+        resolve: {
+          deps: [ 'uiLoad',
+            function ( uiLoad ) {
+              return uiLoad.load ('js/controllers/procedures.js');
+            }
+          ]
+        }
+      }).state ('app.procedures', {
+          url: '/procedures',
+          templateUrl: 'tpl/procedures.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/procedures.js');
+              }
+            ]
+          }
+        })
         .state ('app.table.smart', {
           url: '/smart',
           templateUrl: 'tpl/table_smart.html',

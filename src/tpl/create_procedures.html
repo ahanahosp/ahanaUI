@@ -1,0 +1,39 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n h3">Procedures</h1>
+</div>
+<div class="wrapper-md">
+    <div ng-controller="ProceduresController">
+        <div class="row">
+            <div class="col-sm-12">
+                <form name="proceduresForm" class="form-horizontal form-validation">
+                    <div class="panel panel-default" ng-init="data.status='ACT'">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Procedures Name </label>
+                                <div class="col-sm-9">
+                                    <input type="text" ng-model="data.proceduresName" name="proceduresName" class="form-control" placeholder="Procedures Name">
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Status</label>
+                                <div class="col-sm-9">
+                                    <label class="i-checks ">
+                                        <input type="checkbox" checked="" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="data.status" >
+                                        <i></i>
+                                    </label> &nbsp; &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="panel-footer text-right bg-light lter">
+                            <button class="btn m-b-xs  btn-success " ng-click="saveProcedures()">Save</button>
+                            &nbsp;
+                            <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.procedures')"><i class="fa fa-times"></i> Cancel</button>
+                            &nbsp;
+                        </footer>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
