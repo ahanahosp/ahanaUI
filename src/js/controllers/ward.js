@@ -6,13 +6,13 @@
 app
 // Registration controller
   .controller ('WardController', [ '$scope', '$http', 'NgTableParams', '$state', function ( $scope, $http, NgTableParams, $state ) {
-  /* $http.get(path + "rest/secure/common/getFloorValues").then(
+	  $http.get(path + "rest/secure/common/getFloorValues").then(
           function(response) {
             $scope.floors = response.data.floorDetails;
           }
-   )*/
+	  )
 	      
-    $scope.saveFloor = function() {
+    $scope.saveWard = function() {
       if ($scope.wardForm.$valid) {
         $http({
           url: path + "rest/secure/common/createWard",
