@@ -341,6 +341,17 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.organizationModule', {
+          url: '/organizationModule',
+          templateUrl: 'tpl/organization_module.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/organizationModule.js');
+              }
+            ]
+          }
+        })
         .state ('app.createFloor', {
           url: '/createFloor',
           templateUrl: 'tpl/create_floor.html',
