@@ -375,7 +375,7 @@ angular.module ('app')
         })        
         .state ('app.userRegistration', {
           url: '/userRegistration',
-          templateUrl: 'tpl/userRegistration.html',
+        templateUrl: 'tpl/user_registration.html',
           resolve: {
             deps: [ 'uiLoad',
               function ( uiLoad ) {
