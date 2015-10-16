@@ -5419,3 +5419,7 @@ a.text-#000000:hover {
     display: block;
     padding: 15px;
 }
+
+.ng-table th {
+    text-align: left;
+}

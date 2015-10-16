@@ -28,23 +28,26 @@
         <button class=" btn btn-sm btn-grey pull-right" ng-click="$state.go('app.createFloor')"> &nbsp; &nbsp; <i class="fa fa-plus"></i> &nbsp; New Floor &nbsp; &nbsp; </button>
       </div>
     </div>
-    <div class="wrapper table-responsive">
+    <div class="wrapper table-responsive" ng-show="errorData">
+      <div ng-repeat="error in errorData.errors" class="text-danger">
+        <i class="fa fa-warning"></i> {{error.longMessage}}
+      </div>
+    </div>
+    <div class="wrapper table-responsive" ng-show="!errorData">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
         <tr ng-repeat="floor in $data">
-          <td data-title="'Floor Name'">
+          <td data-title="'Floor Name'" class="text-left">
             {{floor.floorName}}
           </td>
-          <td data-title="'Floor Code'">
+          <td data-title="'Floor Code'" class="text-left">
             {{floor.floorCode}}
           </td>
-          <td data-title="'Status'">
+          <td data-title="'Status'" class="text-left">
             <div class="action-message">{{floor.status}}</div>
           </td>
-          <td data-title="'Actions'">
-            <a href="#" ui-sref="app.editFloor({oid:floor.oid})">
-              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i>
-            </a>&nbsp;&nbsp;&nbsp;
-            <a href="#"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+          <td class="text-right">
+            <a ui-sref="app.editFloor({oid:floor.oid})">
+              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteFloor(floor.oid)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
           </td>
         </tr>
       </table>

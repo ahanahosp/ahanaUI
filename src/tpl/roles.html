@@ -37,13 +37,13 @@
       </div>
     </div>
 
-    <div class="wrapper table-responsive">
+    <div class="wrapper table-responsive" ng-show="!errorData">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
         <tr ng-repeat="role in $data">
-          <td data-title="'Role Name'">
+          <td data-title="'Role Name'" class="text-left">
             {{role.name}}
           </td>
-          <td data-title="'Status'">
+          <td data-title="'Status'" class="text-left">
             <div class="action-message">{{role.status}}</div>
           </td>
           <td class="text-right">

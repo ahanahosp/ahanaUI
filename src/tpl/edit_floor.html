@@ -3,6 +3,11 @@
 </div>
 <div class="wrapper-md">
     <div ng-controller="FloorController">
+        <div class="wrapper table-responsive" ng-show="errorData">
+            <div ng-repeat="error in errorData.errors" class="text-danger">
+                <i class="fa fa-warning"></i> {{error.longMessage}}
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <form name="floorForm" class="form-horizontal form-validation">
