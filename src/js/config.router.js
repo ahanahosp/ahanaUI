@@ -523,6 +523,38 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.createRoomType', {
+          url: '/createRoomType',
+          templateUrl: 'tpl/create_roomtype.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/roomtype.js');
+              }
+            ]
+          }
+        })
+        .state ('app.editRoomType', {
+        url: '/editRoomType/{oid}',
+        templateUrl: 'tpl/edit_roomtype.html',
+        resolve: {
+          deps: [ 'uiLoad',
+            function ( uiLoad ) {
+              return uiLoad.load ('js/controllers/roomtype.js');
+            }
+          ]
+        }
+      }).state ('app.roomType', {
+          url: '/roomType',
+          templateUrl: 'tpl/roomtype.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/roomtype.js');
+              }
+            ]
+          }
+        })
         .state ('app.table.smart', {
           url: '/smart',
           templateUrl: 'tpl/table_smart.html',

@@ -1,17 +1,17 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n h3">Speciality</h1>
+    <h1 class="m-n h3">RoomType</h1>
 </div>
 <div class="wrapper-md">
-    <div ng-controller="SpecialityController">
+    <div ng-controller="RoomTypeController">
         <div class="row">
             <div class="col-sm-12">
-                <form name="specialityForm" class="form-horizontal form-validation">
+                <form name="roomTypeForm" class="form-horizontal form-validation">
                     <div class="panel panel-default" ng-init="data.status='ACT'">
                         <div class="panel-body">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Speciality Name *</label>
+                                <label class="col-sm-3 control-label">Room Name *</label>
                                 <div class="col-sm-9">
-                                    <input type="text" ng-model="data.specialityName" name="specialityName" class="form-control" placeholder="Speciality Name">
+                                    <input type="text" ng-model="data.roomName" name="roomName" class="form-control" placeholder="Room Name">
                                 </div>
                             </div>
                             <div class="line line-dashed b-b line-lg "></div>
@@ -26,9 +26,9 @@
                             </div>
                         </div>
                         <footer class="panel-footer text-right bg-light lter">
-                            <button class="btn m-b-xs  btn-success " ng-click="saveSpeciality()">Save</button>
+                            <button class="btn m-b-xs  btn-success " ng-click="saveRoomType()">Save</button>
                             &nbsp;
-                            <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.speciality')"><i class="fa fa-times"></i> Cancel</button>
+                            <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.roomType')"><i class="fa fa-times"></i> Cancel</button>
                             &nbsp;
                         </footer>
                     </div>
