@@ -1,0 +1,53 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n h3">View Floor</h1>
+</div>
+
+<div class="wrapper-md" ng-controller="FloorController" ng-init="loadFloorList()">
+  <div class="panel panel-default">
+    <div class="row wrapper">
+      <div class="col-sm-5 m-b-xs">
+
+        <button class="btn btn-sm btn-grey" ng-click="loadFloorList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
+
+        <div class="btn-group" dropdown is-open="status.isopen">
+          <button type="button" class=" btn btn-sm btn-grey" dropdown-toggle ng-disabled="disabled">
+            More &nbsp;&nbsp;<span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href>Action</a></li>
+            <li><a href>Another action</a></li>
+            <li><a href>Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href>Separated link</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-2 pull-right">
+        <button class=" btn btn-sm btn-grey pull-right" ng-click="$state.go('app.createFloor')"> &nbsp; &nbsp; <i class="fa fa-plus"></i> &nbsp; New Floor &nbsp; &nbsp; </button>
+      </div>
+    </div>
+    <div class="wrapper table-responsive">
+      <table ng-table="tableParams" class="table table-striped b-t b-light">
+        <tr ng-repeat="floor in $data">
+          <td data-title="'Floor Name'">
+            {{floor.floorName}}
+          </td>
+          <td data-title="'Floor Code'">
+            {{floor.floorCode}}
+          </td>
+          <td data-title="'Status'">
+            <div class="action-message">{{floor.status}}</div>
+          </td>
+          <td data-title="'Actions'">
+            <a href="#" ui-sref="app.editFloor({oid:floor.oid})">
+              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i>
+            </a>&nbsp;&nbsp;&nbsp;
+            <a href="#"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

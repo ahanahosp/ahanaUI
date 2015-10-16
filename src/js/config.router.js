@@ -341,6 +341,38 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.createFloor', {
+          url: '/createFloor',
+          templateUrl: 'tpl/create_floor.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/floor.js');
+              }
+            ]
+          }
+        })
+        .state ('app.editFloor', {
+        url: '/editFloor/{oid}',
+        templateUrl: 'tpl/edit_floor.html',
+        resolve: {
+          deps: [ 'uiLoad',
+            function ( uiLoad ) {
+              return uiLoad.load ('js/controllers/floor.js');
+            }
+          ]
+        }
+      }).state ('app.floor', {
+          url: '/floor',
+          templateUrl: 'tpl/floor.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/floor.js');
+              }
+            ]
+          }
+        })        
         .state ('app.userRegistration', {
           url: '/userRegistration',
           templateUrl: 'tpl/userRegistration.html',
