@@ -372,7 +372,39 @@ angular.module ('app')
               }
             ]
           }
-        })        
+        }) 
+        .state ('app.createWard', {
+          url: '/createWard',
+          templateUrl: 'tpl/create_ward.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/ward.js');
+              }
+            ]
+          }
+        })
+        .state ('app.editWard', {
+        url: '/editWard/{oid}',
+        templateUrl: 'tpl/edit_ward.html',
+        resolve: {
+          deps: [ 'uiLoad',
+            function ( uiLoad ) {
+              return uiLoad.load ('js/controllers/ward.js');
+            }
+          ]
+        }
+      }).state ('app.ward', {
+          url: '/ward',
+          templateUrl: 'tpl/ward.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/ward.js');
+              }
+            ]
+          }
+        })
         .state ('app.userRegistration', {
           url: '/userRegistration',
         templateUrl: 'tpl/user_registration.html',
