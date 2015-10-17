@@ -87,7 +87,6 @@ app
             url: path + "rest/secure/user/createUser",
             method: "POST",
             data: $scope.data
-            //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
           }).then(
               function() {
                 $scope.data = {};
@@ -100,4 +99,72 @@ app
           )
         }
       }
+      
+      $scope.loadUserRegistrationList = function () {
+    	    $scope.errorData = "";
+    	    $http ({
+    	      url: path + "rest/secure/user/getUser?index=0&noOfRecords=10",
+    	      method: "GET"
+    	    }).then (
+    	      function ( response ) {
+    	        var data;
+    	        if ( response.data.Status === 'Ok' ) {
+    	          data = response.data.userDetails;
+    	        }
+    	        else {
+    	          data = []
+    	          $scope.errorData = response.data;
+    	        }
+    	        $scope.tableParams = new NgTableParams ({ count: 5 }, { counts: [ 5, 10, 25 ], dataset: data });
+    	      }
+    	    )
+    	  }
+    	  $scope.loadUserRegistrationDetails = function () {
+    	    $scope.errorData = "";
+    	    $http ({
+    	      url: path + "rest/secure/user/getUserByOid?oid=" + $state.params.oid,
+    	      method: "GET"
+    	    }).then (
+    	      function ( response ) {
+    	        if ( response.data.Status === 'Ok' ) {
+    	          $scope.data = response.data.userProfile;
+    	        }
+    	        else {
+    	          $scope.errorData = response.data;
+    	        }
+    	      }
+    	    )
+    	  }
+    	  $scope.deleteUserRegistration = function ( oid ) {
+    	    $scope.errorData = "";
+    	    var modalOptions = {
+    	      closeButtonText: 'Cancel',
+    	      actionButtonText: 'Delete',
+    	      headerText: 'Delete User?',
+    	      bodyText: 'Are you sure you want to delete this user?'
+    	    };
+    	    modalService.showModal ({}, modalOptions).then (function ( result ) {
+    	      $http ({
+    	        url: path + "rest/secure/user/deleteUser",
+    	        method: "POST",
+    	        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    	        transformRequest: function ( obj ) {
+    	          var str = [];
+    	          for ( var p in obj )
+    	            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[ p ]));
+    	          return str.join ("&");
+    	        },
+    	        data: { oid: oid }
+    	      }).then (
+    	        function ( response ) {
+    	          if ( response.data.Status === 'Ok' ) {
+    	            $scope.loadUserRegistrationList ();
+    	          }
+    	          else {
+    	            $scope.errorData = response.data;
+    	          }
+    	        }
+    	      )
+    	    });
+    	 };
     }]);

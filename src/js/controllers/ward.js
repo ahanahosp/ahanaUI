@@ -1,7 +1,5 @@
 'use strict';
 
-//TODO need to move in properties file
-
 /* Controllers */
 app
 // Registration controller

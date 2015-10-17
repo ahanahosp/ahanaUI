@@ -416,9 +416,30 @@ angular.module ('app')
             ]
           }
         })
-        .state ('app.userRegistration', {
+        .state ('app.createUserRegistration', {
+          url: '/createUserRegistration',
+        templateUrl: 'tpl/create_userregistration.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/userRegistration.js');
+              }
+            ]
+          }
+        })
+        .state ('app.editUserRegistration', {
+        url: '/editUserRegistration/{oid}',
+        templateUrl: 'tpl/edit_userregistration.html',
+        resolve: {
+          deps: [ 'uiLoad',
+            function ( uiLoad ) {
+              return uiLoad.load ('js/controllers/userRegistration.js');
+            }
+          ]
+        }
+      }).state ('app.userRegistration', {
           url: '/userRegistration',
-        templateUrl: 'tpl/user_registration.html',
+          templateUrl: 'tpl/userregistration.html',
           resolve: {
             deps: [ 'uiLoad',
               function ( uiLoad ) {
@@ -555,6 +576,39 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.createRoom', {
+          url: '/createRoom',
+          templateUrl: 'tpl/create_room.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/room.js');
+              }
+            ]
+          }
+        })
+        .state ('app.editRoom', {
+        url: '/editRoom/{oid}',
+        templateUrl: 'tpl/edit_room.html',
+        resolve: {
+          deps: [ 'uiLoad',
+            function ( uiLoad ) {
+              return uiLoad.load ('js/controllers/room.js');
+            }
+          ]
+        }
+      }).state ('app.room', {
+          url: '/room',
+          templateUrl: 'tpl/room.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/room.js');
+              }
+            ]
+          }
+        })
+        
         .state ('app.table.smart', {
           url: '/smart',
           templateUrl: 'tpl/table_smart.html',

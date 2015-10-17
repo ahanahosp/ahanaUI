@@ -1,0 +1,62 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n h3">Bed Details</h1>
+</div>
+
+<div class="wrapper-md" ng-controller="RoomController" ng-init="loadRoomList()">
+  <div class="panel panel-default">
+    <div class="row wrapper">
+      <div class="col-sm-5 m-b-xs">
+
+        <button class="btn btn-sm btn-grey" ng-click="loadRoomList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
+
+        <div class="btn-group" dropdown is-open="status.isopen">
+          <button type="button" class=" btn btn-sm btn-grey" dropdown-toggle ng-disabled="disabled">
+            More &nbsp;&nbsp;<span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href>Action</a></li>
+            <li><a href>Another action</a></li>
+            <li><a href>Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href>Separated link</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-2 pull-right">
+        <button class=" btn btn-sm btn-grey pull-right" ng-click="$state.go('app.createRoom')"> &nbsp; &nbsp; <i class="fa fa-plus"></i> &nbsp; New Room &nbsp; &nbsp; </button>
+      </div>
+    </div>
+    <div class="wrapper table-responsive" ng-show="errorData">
+      <div ng-repeat="error in errorData.errors" class="text-danger">
+        <i class="fa fa-warning"></i> {{error.longMessage}}
+      </div>
+    </div>
+    <div class="wrapper table-responsive" ng-show="!errorData">
+      <table ng-table="tableParams" class="table table-striped b-t b-light">
+        <tr ng-repeat="room in $data">
+          <td data-title="'Ward Name'" class="text-left">
+            {{room.wardName}}
+          </td>
+          <td data-title="'Bed No'" class="text-left">
+            {{room.bedName}}
+          </td>
+          <td data-title="'Occupancy Status'" class="text-left">
+            {{room.occupancy}}
+          </td>
+          <td data-title="'Maintenance Status'" class="text-left">
+            {{room.maintenance}}
+          </td>
+          <td data-title="'Status'" class="text-left">
+            <div class="action-message">{{room.status}}</div>
+          </td>
+          <td class="text-right">
+            <a ui-sref="app.editRoom({oid:room.oid})">
+              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteRoom(room.oid)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

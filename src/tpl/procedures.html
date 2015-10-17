@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n h3">Procedures</h1>
+  <h1 class="m-n h3">Procedures Details</h1>
 </div>
 
 <div class="wrapper-md" ng-controller="ProceduresController" ng-init="loadProceduresList()">
@@ -25,13 +25,13 @@
       <div class="col-sm-4">
       </div>
       <div class="col-sm-2 pull-right">
-        <button class=" btn btn-sm btn-grey pull-right" ng-click="$state.go('app.createProcedures')"> &nbsp; &nbsp; <i class="fa fa-plus"></i> &nbsp; New Account Head &nbsp; &nbsp; </button>
+        <button class=" btn btn-sm btn-grey pull-right" ng-click="$state.go('app.createProcedures')"> &nbsp; &nbsp; <i class="fa fa-plus"></i> &nbsp; New Procedures &nbsp; &nbsp; </button>
       </div>
     </div>
     <div class="wrapper table-responsive">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
         <tr ng-repeat="procedures in $data">
-          <td data-title="'Category'">
+          <td data-title="'Procedures'">
             {{procedures.proceduresName}}
           </td>
           <td data-title="'Status'">

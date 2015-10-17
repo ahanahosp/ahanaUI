@@ -63,14 +63,19 @@
                             </div>
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Care Provider</label>
-                                <div class="col-sm-9">
+	                            <label class="col-sm-3 control-label">Care Provider</label>
+	                            <div class="col-sm-1">
                                     <label class="i-checks ">
                                         <input type="checkbox" checked="" ng-true-value="'Yes'" ng-false-value="'No'" name="status" ng-model="data.careProvider" >
                                         <i></i>
                                     </label> &nbsp; &nbsp;
                                 </div>
-                            </div>
+	                            <div class="col-lg-5">
+	                                <select class="form-control" ng-model="data.speciality" ng-options="speciality.value as speciality.label for speciality in specialityValues | orderBy: label" >
+	                                	<option value="">Select Speciality</option>
+	                            	</select>
+	                         	</div>
+                           	</div>
                         </div>
                     </div>
                 </form>
@@ -79,14 +84,6 @@
                 <form name="forma" class="form-horizontal form-validation">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                        	<div class="form-group">
-	                            <label class="col-lg-3 control-label">Speciality</label>
-	                            <div class="col-lg-7">
-	                                    <select class="form-control" ng-model="data.speciality" ng-options="speciality.value as speciality.label for speciality in specialityValues | orderBy: label" >
-	                                        <option value="">Select Speciality</option>
-	                                    </select>
-	                                </div>
-                           	</div>
 							<div class="form-group">
                                 <label class="col-lg-3 control-label">Activation Date</label>
                                 <div class="col-lg-5">
