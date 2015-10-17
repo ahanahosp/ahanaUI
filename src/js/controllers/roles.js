@@ -80,6 +80,7 @@ app.controller ('RolesController', [ '$scope', '$http', 'NgTableParams', '$filte
   });
   // watch for data checkboxes
   $scope.$watch ('checkboxes.items', function ( values ) {
+    $scope.roleSelectedItems = [];
     if ( !$scope.roles ) {
       return;
     }
