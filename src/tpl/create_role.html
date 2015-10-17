@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <form name="roleForm" class="form-horizontal form-validation">
-                    <div class="panel panel-default" ng-init="data.roleStatus='ACT'">
+                    <div class="panel panel-default" ng-init="data.status='ACT'">
                         <div class="panel-body">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Name * </label>
@@ -24,7 +24,7 @@
                                 <label class="col-sm-3 control-label">Status</label>
                                 <div class="col-sm-9">
                                     <label class="i-checks ">
-                                        <input type="checkbox" checked="" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="data.roleStatus" >
+                                        <input type="checkbox" checked="" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="data.status" >
                                         <i></i>
                                     </label> &nbsp; &nbsp;
                                 </div>
