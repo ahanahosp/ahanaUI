@@ -1,7 +1,7 @@
 'use strict';
 /* Controllers */
-app.controller ('RolesController', [ '$scope', '$http', 'NgTableParams', '$state', 'modalService', function ( $scope, $http, NgTableParams, $state, modalService ) {
-  $scope.saveRoles = function () {
+app.controller ('RolesController', [ '$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ( $scope, $http, NgTableParams, $filter, $state, modalService, $rootScope ) {
+  $scope.saveRoles = function ( mode ) {
     $scope.errorData = "";
     if ( $scope.roleForm.$valid ) {
       $http ({
@@ -11,7 +11,12 @@ app.controller ('RolesController', [ '$scope', '$http', 'NgTableParams', '$state
       }).then (
         function ( response ) {
           if ( response.data.Status === 'Ok' ) {
-            $scope.data = {};
+            if ( mode === 'edit' ) {
+              $state.go ('app.roles');
+            }
+            else {
+              $scope.data = {};
+            }
           }
           else {
             $scope.errorData = response.data;
@@ -20,6 +25,10 @@ app.controller ('RolesController', [ '$scope', '$http', 'NgTableParams', '$state
       )
     }
   };
+  $scope.reset = function () {
+    $scope.data = {};
+  }
+
   $scope.loadRolesList = function () {
     $scope.errorData = "";
     $http ({
@@ -35,10 +44,62 @@ app.controller ('RolesController', [ '$scope', '$http', 'NgTableParams', '$state
           data = [];
           $scope.errorData = response.data;
         }
-        $scope.tableParams = new NgTableParams ({ count: 5 }, { counts: [ 5, 10, 25 ], dataset: data });
+        $scope.tableParams = new NgTableParams ({
+          page: 1,            // show first page
+          count: 25,           // count per page
+          counts: [ 10, 25, 50, 100 ]
+        }, {
+          total: data.length, // length of data
+          getData: function ( $defer, params ) {
+            // use build-in angular filter
+            var orderedData = params.sorting () ?
+              $filter ('orderBy') (data, params.orderBy ()) :
+              data;
+            orderedData = params.filter () ?
+              $filter ('filter') (orderedData, params.filter ()) :
+              orderedData;
+            params.total (orderedData.length); // set total for recalc pagination
+            $defer.resolve ($scope.roles = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+          }
+        });
       }
     )
   };
+  $scope.checkboxes = { 'checked': false, items: {} };
+  $scope.roleSelectedItems = [];
+  // watch for check all checkbox
+  $scope.$watch ('checkboxes.checked', function ( value ) {
+    if ( $scope.checkboxes.checked === false ) {
+      $scope.roleSelectedItems = [];
+    }
+    angular.forEach ($scope.roles, function ( item ) {
+      if ( angular.isDefined (item.oid) ) {
+        $scope.checkboxes.items[ item.oid ] = value;
+      }
+    });
+  });
+  // watch for data checkboxes
+  $scope.$watch ('checkboxes.items', function ( values ) {
+    if ( !$scope.roles ) {
+      return;
+    }
+    var checked = 0, unchecked = 0,
+      total = $scope.roles.length;
+    angular.forEach ($scope.roles, function ( item ) {
+      if ( $scope.checkboxes.items[ item.oid ] ) {
+        $scope.roleSelectedItems.push (item);
+      }
+      checked += ($scope.checkboxes.items[ item.oid ]) || 0;
+      unchecked += (!$scope.checkboxes.items[ item.oid ]) || 0;
+    });
+    if ( (unchecked == 0) || (checked == 0) ) {
+      $scope.checkboxes.checked = (checked == total);
+    }
+    $scope.roleSelected = checked;
+    // grayed checkbox
+    // angular.element(document.getElementById("select_all")).prop("indeterminate", (checked != 0 && unchecked != 0));
+  }, true);
+
   $scope.loadRoleDetails = function () {
     $scope.errorData = "";
     $http ({
@@ -55,13 +116,50 @@ app.controller ('RolesController', [ '$scope', '$http', 'NgTableParams', '$state
       }
     )
   };
-  $scope.deleteRole = function ( oid ) {
+  $scope.deleteMultipleRoles = function () {
+  };
+  $scope.editMultipleRoles = function () {
+    $scope.errorData = "";
+    var modalDefaults = {
+      templateUrl: 'tpl/edit_multiple_role.html'
+    };
+    var modalOptions = {
+      closeButtonText: 'Cancel',
+      actionButtonText: 'Update',
+      headerText: 'Edit Multiple Roles',
+      roleSelectedItems: $scope.roleSelectedItems
+    };
+    modalService.showModal (modalDefaults, modalOptions).then (function ( result ) {
+      $http ({
+        url: path + "rest/secure/user/deleteRole",
+        method: "POST",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        transformRequest: function ( obj ) {
+          var str = [];
+          for ( var p in obj )
+            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[ p ]));
+          return str.join ("&");
+        },
+        data: { oid: oid }
+      }).then (
+        function ( response ) {
+          if ( response.data.Status === 'Ok' ) {
+            $scope.loadRolesList ();
+          }
+          else {
+            $scope.errorData = response.data;
+          }
+        }
+      )
+    });
+  };
+  $scope.deleteRole = function ( oid, name ) {
     $scope.errorData = "";
     var modalOptions = {
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
       headerText: 'Delete Role?',
-      bodyText: 'Are you sure you want to delete this role?'
+      bodyText: 'Are you sure you want to delete this role - ' + name + '?'
     };
     modalService.showModal ({}, modalOptions).then (function ( result ) {
       $http ({

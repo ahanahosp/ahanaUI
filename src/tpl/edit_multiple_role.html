@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body">
+  <div class="wrapper table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+      <td class="text-left">
+        Name
+      </td>
+      <td class="text-left">
+        Status
+      </td>
+      </thead>
+      <tbody>
+      <tr ng-repeat="role in modalOptions.roleSelectedItems track by role.oid">
+        <td class="text-left">
+          <input type="text" ng-model="role.name" name="roleName" class="form-control" placeholder="Role Name">
+        </td>
+        <td class="text-left">
+          <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="role.status"> <i></i> </label>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+  <button class="btn btn-primary" data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+</div>

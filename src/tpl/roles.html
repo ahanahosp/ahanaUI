@@ -1,34 +1,21 @@
 <div class="bg-light lter b-b wrapper-md">
   <h1 class="m-n h3">Roles</h1>
 </div>
-
 <div class="wrapper-md" ng-controller="RolesController" ng-init="loadRolesList()">
   <div class="panel panel-default">
-    <!--<div class="panel-heading">
-      Responsive Table
-    </div>-->
     <div class="row wrapper">
-      <div class="col-sm-5 m-b-xs">
-
+      <div class="col-sm-8 m-b-xs">
         <button class="btn btn-sm btn-grey" ng-click="loadRolesList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
-
-        <div class="btn-group" dropdown is-open="status.isopen">
-          <button type="button" class=" btn btn-sm btn-grey" dropdown-toggle ng-disabled="disabled">
-            More &nbsp;&nbsp;<span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href>Action</a></li>
-            <li><a href>Another action</a></li>
-            <li><a href>Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href>Separated link</a></li>
-          </ul>
-        </div>
+        &nbsp; &nbsp;
+        <span ng-show="roleSelected > 1">
+          <button class="btn btn-sm btn-grey" ng-click="editMultipleRoles()"><i class="fa fa-pencil"></i> &nbsp; Edit</button> &nbsp; &nbsp;
+          <button class="btn btn-sm btn-grey" ng-click="deleteMultipleRoles()"><i class="fa fa-trash"></i> &nbsp; Delete</button>
+        </span>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-2">
       </div>
       <div class="col-sm-2 pull-right">
-        <button class=" btn btn-sm btn-grey pull-right" ng-click="$state.go('app.createRole')"> &nbsp; &nbsp; <i class="fa fa-plus"></i> &nbsp; New Role &nbsp; &nbsp; </button>
+        <button class=" btn btn-sm btn-grey pull-right" ng-click="$state.go('app.createRole')"><i class="fa fa-plus"></i> &nbsp; New Role</button>
       </div>
     </div>
     <div class="wrapper table-responsive" ng-show="errorData">
@@ -36,23 +23,27 @@
         <i class="fa fa-warning"></i> {{error.longMessage}}
       </div>
     </div>
-
     <div class="wrapper table-responsive" ng-show="!errorData">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
-        <tr ng-repeat="role in $data">
+        <tr ng-repeat="role in $data track by role.oid">
+          <td class="text-left" header="'ng-table/headers/checkbox.html'">
+            <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[role.oid]" /> <i></i> </label>
+          </td>
           <td data-title="'Role Name'" class="text-left">
             {{role.name}}
           </td>
           <td data-title="'Status'" class="text-left">
-            <div class="action-message">{{role.status}}</div>
+            <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="role.status"> <i></i> </label>
           </td>
           <td class="text-right">
             <a ui-sref="app.editRole({oid:role.oid})">
-              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i>
-            </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteRole(role.oid)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteRole(role.oid, role.name)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
           </td>
         </tr>
       </table>
     </div>
   </div>
 </div>
+<script type="text/ng-template" id="ng-table/headers/checkbox.html">
+  <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox" value="" /> <i></i> </label>
+</script>

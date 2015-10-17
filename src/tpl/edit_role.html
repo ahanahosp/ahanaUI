@@ -23,15 +23,14 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Status</label>
                                 <div class="col-sm-9">
-                                    <label class="i-checks ">
-                                        <input type="checkbox" checked="" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="data.status" >
+                                    <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="data.status">
                                         <i></i>
                                     </label> &nbsp; &nbsp;
                                 </div>
                             </div>
                         </div>
                         <footer class="panel-footer text-right bg-light lter">
-                            <button class="btn m-b-xs  btn-success " ng-click="saveRoles()">Save</button>
+                            <button class="btn m-b-xs  btn-success " ng-click="saveRoles('edit')">Save</button>
                             &nbsp;
                             <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.roles')"><i class="fa fa-times"></i> Cancel</button>
                             &nbsp;
