@@ -1,0 +1,68 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n h3">Edit Room Charge Item</h1>
+</div>
+<div class="wrapper-md">
+    <div ng-controller="RoomChargeItemController">
+        <div class="wrapper table-responsive" ng-show="errorData">
+            <div ng-repeat="error in errorData.errors" class="text-danger">
+                <i class="fa fa-warning"></i> {{error.longMessage}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <form name="roomChargeItemForm" class="form-horizontal form-validation">
+                    <div class="panel panel-default" ng-init="loadRoomChargeItemDetails()">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Item * </label>
+                                <div class="col-sm-9">
+                                    <input type="text" ng-model="data.item" name="item" class="form-control" placeholder="Item">
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Code * </label>
+                                <div class="col-sm-9">
+                                    <input type="text" ng-model="data.code" name="code" class="form-control" placeholder="Code">
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Description </label>
+                                <div class="col-sm-9">
+                                    <input type="text" ng-model="data.description" name="description" class="form-control" placeholder="Description">
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Category *</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control" ng-model="data.categoryOid" ng-options="category.value as category.label for category in categorys | orderBy: label">
+                                        <option value="">Select Category</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Status</label>
+                                <div class="col-sm-9">
+                                    <label class="i-checks ">
+                                        <input type="checkbox" checked="" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="data.status" >
+                                        <i></i>
+                                    </label> &nbsp; &nbsp;
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <footer class="panel-footer text-right bg-light lter">
+                            <button class="btn m-b-xs  btn-success " ng-click="saveRoomChargeItem()">Update</button>
+                            &nbsp;
+                            <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.roomChargeItem')"><i class="fa fa-times"></i> Cancel</button>
+                            &nbsp;
+                        </footer>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n h3">Room Type</h1>
+  <h1 class="m-n h3">Bed Type Details</h1>
 </div>
 
 <div class="wrapper-md" ng-controller="RoomTypeController" ng-init="loadRoomTypeList()">
@@ -31,7 +31,7 @@
     <div class="wrapper table-responsive">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
         <tr ng-repeat="roomType in $data">
-          <td data-title="'Category'">
+          <td data-title="'Bed Type'">
             {{roomType.roomName}}
           </td>
           <td data-title="'Status'">

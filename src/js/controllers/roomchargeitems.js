@@ -1,19 +1,19 @@
 'use strict';
 
 /* Controllers */
-app.controller ('RoomController', [ '$scope', '$http', 'NgTableParams', '$state', 'modalService', function ( $scope, $http, NgTableParams, $state, modalService ) {
+app.controller ('RoomChargeItemController', [ '$scope', '$http', 'NgTableParams', '$state', 'modalService', function ( $scope, $http, NgTableParams, $state, modalService ) {
   
-	$http.get(path + "rest/secure/common/getWardValues").then(
+	$http.get(path + "rest/secure/common/getCategoryValues").then(
 	    function(response) {
-	        $scope.wards = response.data.wardDetails;
+	        $scope.categorys = response.data.categoryDetails;
 	    }
 	)
 	
-	$scope.saveRoom = function () {
+	$scope.saveRoomChargeItem = function () {
     $scope.errorData = "";
     if ( $scope.roomForm.$valid ) {
       $http({
-        url: path + "rest/secure/common/createRoom",
+        url: path + "rest/secure/common/createRoomChargeItem",
         method: "POST",
         data: $scope.data
       }).then(
@@ -28,16 +28,16 @@ app.controller ('RoomController', [ '$scope', '$http', 'NgTableParams', '$state'
       )
     }
   }
-  $scope.loadRoomList = function () {
+  $scope.loadRoomChargeItemList = function () {
     $scope.errorData = "";
     $http ({
-      url: path + "rest/secure/common/getAllRooms",
+      url: path + "rest/secure/common/getAllRoomChargeItem",
       method: "GET"
     }).then (
       function ( response ) {
         var data;
         if ( response.data.Status === 'Ok' ) {
-          data = response.data.roomDetails;
+          data = response.data.roomChargeItemDetails;
         }else {
           data = []
           $scope.errorData = response.data;
@@ -46,15 +46,15 @@ app.controller ('RoomController', [ '$scope', '$http', 'NgTableParams', '$state'
       }
     )
   }
-  $scope.loadRoomDetails = function () {
+  $scope.loadRoomChargeItemDetails = function () {
     $scope.errorData = "";
     $http ({
-      url: path + "rest/secure/common/getRoomByOid?oid=" + $state.params.oid,
+      url: path + "rest/secure/common/getRoomChargeItemByOid?oid=" + $state.params.oid,
       method: "GET"
     }).then (
       function ( response ) {
         if ( response.data.Status === 'Ok' ) {
-          $scope.data = response.data.room;
+          $scope.data = response.data.roomChargeItem;
         } else {
           $scope.errorData = response.data;
         }
@@ -71,7 +71,7 @@ app.controller ('RoomController', [ '$scope', '$http', 'NgTableParams', '$state'
     };
     modalService.showModal ({}, modalOptions).then (function ( result ) {
       $http ({
-        url: path + "rest/secure/common/deleteRoom",
+        url: path + "rest/secure/common/deleteRoomChargeItem",
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         transformRequest: function ( obj ) {
