@@ -705,6 +705,38 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.createAlertType', {
+          url: '/createAlertType',
+          templateUrl: 'tpl/create_alerttype.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/alerttype.js');
+              }
+            ]
+          }
+        })
+        .state ('app.editAlertType', {
+        url: '/editAlertType/{oid}',
+        templateUrl: 'tpl/edit_alerttype.html',
+        resolve: {
+          deps: [ 'uiLoad',
+            function ( uiLoad ) {
+              return uiLoad.load ('js/controllers/alerttype.js');
+            }
+          ]
+        }
+      }).state ('app.alertType', {
+          url: '/alertType',
+          templateUrl: 'tpl/alerttype.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/alerttype.js');
+              }
+            ]
+          }
+        }) 
         
         .state ('app.table.smart', {
           url: '/smart',

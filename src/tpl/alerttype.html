@@ -1,0 +1,48 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n h3">ALERT TYPE</h1>
+</div>
+
+<div class="wrapper-md" ng-controller="AlertTypeController" ng-init="loadAlertTypeList()">
+  <div class="panel panel-default">
+    <div class="row wrapper">
+      <div class="col-sm-8 m-b-xs">
+
+        <button class="btn btn-sm btn-grey" ng-click="loadAlertTypeList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
+        &nbsp; &nbsp;
+        <span ng-show="alertTypeSelected > 1">
+          <button class="btn btn-sm btn-grey" ng-click="editMultipleAlertType()"><i class="fa fa-pencil"></i> &nbsp; Edit</button> &nbsp; &nbsp;
+          <button class="btn btn-sm btn-grey" ng-click="deleteMultipleAlertType()"><i class="fa fa-trash"></i> &nbsp; Delete</button>
+        </span>
+      </div>
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-2 pull-right">
+        <button class=" btn btn-sm btn-info pull-right" ng-click="$state.go('app.createAlertType')"><i class="fa fa-plus"></i> &nbsp; New AlertType</button>
+      </div>
+    </div>
+    <div class="wrapper table-responsive" ng-show="errorData">
+      <div ng-repeat="error in errorData.errors" class="text-danger">
+        <i class="fa fa-warning"></i> {{error.longMessage}}
+      </div>
+    </div>
+    <div class="wrapper table-responsive" ng-show="!errorData">
+      <table ng-table="tableParams" class="table table-striped b-t b-light">
+        <tr ng-repeat="alertType in $data">
+          <td class="text-left" header="'ng-table/headers/checkbox.html'">
+            <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[alertType.oid]" /> <i></i> </label>
+          </td>
+          <td data-title="'Alert Name'" class="text-left" sortable="'alertName'">
+            {{alertType.alertName}}
+          </td>
+          <td data-title="'Status'" class="text-left" sortable="'status'">
+            <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="alertType.status"> <i></i> </label>
+          </td>
+          <td class="text-right">
+            <a ui-sref="app.editAlertType({oid:alertType.oid})">
+              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteAlertType(alertType.oid)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
