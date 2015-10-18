@@ -641,6 +641,38 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.createRoomCharges', {
+          url: '/createRoomCharges',
+          templateUrl: 'tpl/create_roomcharges.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/roomcharges.js');
+              }
+            ]
+          }
+        })
+        .state ('app.editRoomCharges', {
+        url: '/editRoomCharges/{oid}',
+        templateUrl: 'tpl/edit_roomcharges.html',
+        resolve: {
+          deps: [ 'uiLoad',
+            function ( uiLoad ) {
+              return uiLoad.load ('js/controllers/roomcharges.js');
+            }
+          ]
+        }
+      }).state ('app.roomCharges', {
+          url: '/roomCharges',
+          templateUrl: 'tpl/roomcharges.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/roomcharges.js');
+              }
+            ]
+          }
+        })
         .state ('app.table.smart', {
           url: '/smart',
           templateUrl: 'tpl/table_smart.html',
