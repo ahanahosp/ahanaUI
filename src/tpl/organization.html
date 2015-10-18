@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n h3">Organization</h1>
+    <h1 class="m-n h3">ORGANIZATION</h1>
 </div>
 <div class="wrapper-md">
     <div ng-controller="OrganizationController">
@@ -16,26 +16,81 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Organization Name * </label>
                                 <div class="col-sm-9">
-                                    <input type="text" ng-model="data.organizationName" name="organizationName" class="form-control" placeholder="Role Name">
+                                    {{data.organizationName}}
                                 </div>
                             </div>
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Status</label>
+                                <label class="col-sm-3 control-label">Address</label>
                                 <div class="col-sm-9">
-                                    <label class="i-checks ">
-                                        <input type="checkbox" checked="" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="data.status" >
-                                        <i></i>
-                                    </label> &nbsp; &nbsp;
+                                    {{data.address}}
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">City</label>
+
+                                <div class="col-sm-9">
+                                    {{data.city}}
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">State</label>
+
+                                <div class="col-sm-9">
+                                    {{data.state}}
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Country</label>
+
+                                <div class="col-sm-9">
+                                    {{data.country}}
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Contact #1</label>
+
+                                <div class="col-sm-9">
+                                    {{data.contact}}
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Contact #2</label>
+
+                                <div class="col-sm-9">
+                                    {{data.contact}}
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Mobile</label>
+
+                                <div class="col-sm-9">
+                                    {{data.mobile}}
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Fax</label>
+
+                                <div class="col-sm-9">
+                                    {{data.fax}}
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Email</label>
+
+                                <div class="col-sm-9">
+                                    {{data.email}}
                                 </div>
                             </div>
                         </div>
-                        <footer class="panel-footer text-right bg-light lter">
-                            <button class="btn m-b-xs  btn-success " ng-click="saveRoles()">Save</button>
-                            &nbsp;
-                            <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.roles')"><i class="fa fa-times"></i> Cancel</button>
-                            &nbsp;
-                        </footer>
                     </div>
                 </form>
             </div>
