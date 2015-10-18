@@ -5,7 +5,7 @@ app.controller ('RoomChargesController', [ '$scope', '$http', 'NgTableParams', '
   
 	$http.get(path + "rest/secure/common/getRoomTypesValues").then(
 	    function(response) {
-	        $scope.rommTypes = response.data.roomTypesDetails;
+	        $scope.roomTypes = response.data.roomTypesDetails;
 	    }
 	)
 	
@@ -15,7 +15,7 @@ app.controller ('RoomChargesController', [ '$scope', '$http', 'NgTableParams', '
 	    }
 	)
 	
-	$scope.saveRoomChargeItem = function () {
+	$scope.saveRoomCharges = function () {
     $scope.errorData = "";
     if ( $scope.roomChargesForm.$valid ) {
       $http({

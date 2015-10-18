@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n h3">Room Charges</h1>
+    <h1 class="m-n h3">Room Type Details</h1>
 </div>
 <div class="wrapper-md">
     <div ng-controller="RoomChargesController">
@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Bed Type *</label>
                                 <div class="col-lg-9">
-                                    <select class="form-control" ng-model="data.roomTypeOid" ng-options="rommType.value as rommType.label for rommType in rommTypes | orderBy: label">
+                                    <select class="form-control" ng-model="data.roomTypeOid" ng-options="roomType.value as roomType.label for roomType in roomTypes | orderBy: label">
                                         <option value="">Select Category</option>
                                     </select>
                                 </div>

@@ -37,13 +37,13 @@
       <table ng-table="tableParams" class="table table-striped b-t b-light">
         <tr ng-repeat="roomCharges in $data">
           <td data-title="'Item'" class="text-left">
-            {{roomCharges.roomName}}
+            {{roomCharges.item}}
           </td>
           <td data-title="'Charge'" class="text-left">
             {{roomCharges.charge}}
           </td>
           <td data-title="'Bed Type'" class="text-left">
-            {{roomCharges.bedType}}
+            {{roomCharges.roomName}}
           </td>
           <td data-title="'Status'" class="text-left">
             <div class="action-message">{{roomCharges.status}}</div>

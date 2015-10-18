@@ -12,7 +12,7 @@ app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams'
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
-              $state.go ('app.roommaintenance');
+              $state.go ('app.roomMaintenance');
             }
             else{
               $scope.data = {};
