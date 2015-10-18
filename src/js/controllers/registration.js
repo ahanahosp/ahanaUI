@@ -28,6 +28,7 @@ app.controller ('RegistrationController', ['$scope', '$http', function ($scope, 
   }
   /**Save Patient Registration data*/
   $scope.saveRegistration = function (){
+    $scope.errorData = "";
     if ($scope.registrationForm.$valid){
       $http ({
         url: path + "rest/secure/registration/savePatient",
