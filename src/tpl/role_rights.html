@@ -1,0 +1,55 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n h3">ASSIGN ROLE RIGHTS</h1>
+</div>
+<div class="wrapper-md">
+  <div ng-controller="RolesRightsController">
+    <div class="wrapper table-responsive" ng-show="errorData">
+      <div ng-repeat="error in errorData.errors" class="text-danger">
+        <i class="fa fa-warning"></i> {{error.longMessage}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <form name="roleRightsForm" class="form-horizontal form-validation">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Health Organization </label>
+
+                <div class="col-sm-9">
+                  {{organization.organizationName}}
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Role * </label>
+
+                <div class="col-sm-9">
+                  <select class="form-control" ng-model="data.roleOid" ng-options="role.oid as role.name for role in roles | orderBy: name">
+                    <option value="">Select Role</option>
+                  </select>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Access Rights</label>
+
+                <div class="col-sm-9">
+                  <div ng-repeat="module in modules track by module.oid">
+                    <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="data.modules[$index][module.oid]"> <i></i> </label> {{module.moduleName}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <footer class="panel-footer text-right bg-light lter">
+              <button class="btn m-b-xs  btn-success " ng-click="saveRoleRights()">Assign</button>
+              &nbsp;
+              <button class="btn m-b-xs  btn-dark"><i class="fa fa-times"></i> Cancel</button>
+              &nbsp;
+            </footer>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

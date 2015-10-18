@@ -744,6 +744,16 @@ angular.module ('app')
             }
           ]
         }
+      }).state ('app.roleRights', {
+        url: '/roleRights',
+        templateUrl: 'tpl/role_rights.html',
+        resolve: {
+          deps: ['uiLoad',
+            function (uiLoad){
+              return uiLoad.load ('js/controllers/roleRights.js');
+            }
+          ]
+        }
       })
         .state ('app.table.smart', {
         url: '/smart',
