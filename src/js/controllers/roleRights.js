@@ -41,25 +41,37 @@ app.controller ('RolesRightsController', ['$scope', '$http', 'NgTableParams', '$
       }
     }
   )
-  $scope.saveRolesRights = function (){
+  $scope.saveRoleRights = function (){
     $scope.errorData = "";
-    var roleRightsData = $scope.data;
-    console.log (roleRightsData.modules);
-    for (var module in roleRightsData.modules){
-      console.log (module);
+    var selectedRoles = [];
+    angular.forEach ($scope.data.modules, function (value, key){
+        angular.forEach (value, function (invalue, inkey){
+          if (invalue === 'ACT'){
+            selectedRoles.push (inkey);
+          }
+        });
+      }
+    );
+    var data = {
+      'roleOid': $scope.data.roleOid,
+      'organizationOid': $scope.data.organizationOid,
+      'moduleOids': selectedRoles
+    };
+    if ($scope.roleRightsForm.$valid){
+      $http ({
+        url: path + "/rest/secure/user/saveRoleRights",
+        method: "POST",
+        data: data
+      }).then (
+        function (response){
+          if (response.data.Status === 'Ok'){
+            $scope.data = {};
+          }
+          else{
+            $scope.errorData = response.data;
+          }
+        }
+      )
     }
-    /*if ($scope.roleRightsForm.$valid){
-     $http ({
-     url: path + "/rest/secure/user/saveRoleRights",
-     method: "POST",
-     data: roleRightsData
-     }).then (
-     function (response){
-     if (response.data.Status === 'Ok'){
-     $scope.data = {};
-     }
-     }
-     )
-     }*/
   };
 }]);
