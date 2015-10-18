@@ -754,6 +754,17 @@ angular.module ('app')
             }
           ]
         }
+      })       
+	 .state ('app.userRole', {
+        url: '/userRole',
+        templateUrl: 'tpl/userroles.html',
+        resolve: {
+          deps: ['uiLoad',
+            function (uiLoad){
+              return uiLoad.load ('js/controllers/userroles.js');
+            }
+          ]
+        }
       })
         .state ('app.table.smart', {
         url: '/smart',
