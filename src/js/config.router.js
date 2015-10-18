@@ -673,6 +673,39 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.createRoomMaintenance', {
+          url: '/createRoomMaintenance',
+          templateUrl: 'tpl/create_roommaintenance.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/roommaintenance.js');
+              }
+            ]
+          }
+        })
+        .state ('app.editRoomMaintenance', {
+        url: '/editRoomMaintenance/{oid}',
+        templateUrl: 'tpl/edit_roommaintenance.html',
+        resolve: {
+          deps: [ 'uiLoad',
+            function ( uiLoad ) {
+              return uiLoad.load ('js/controllers/roommaintenance.js');
+            }
+          ]
+        }
+      }).state ('app.roomMaintenance', {
+          url: '/roomMaintenance',
+          templateUrl: 'tpl/roommaintenance.html',
+          resolve: {
+            deps: [ 'uiLoad',
+              function ( uiLoad ) {
+                return uiLoad.load ('js/controllers/roommaintenance.js');
+              }
+            ]
+          }
+        })
+        
         .state ('app.table.smart', {
           url: '/smart',
           templateUrl: 'tpl/table_smart.html',
