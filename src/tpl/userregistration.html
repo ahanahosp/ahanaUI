@@ -8,7 +8,7 @@
       <div class="col-sm-8 m-b-xs">
         <button class="btn btn-sm btn-grey" ng-click="loadUserRegistrationList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
         &nbsp; &nbsp;
-        <span ng-show="roleSelected > 1">
+        <span ng-show="userSelected > 1">
           <button class="btn btn-sm btn-grey"><i class="fa fa-pencil"></i> &nbsp; Edit</button> &nbsp; &nbsp;
           <button class="btn btn-sm btn-grey"><i class="fa fa-trash"></i> &nbsp; Delete</button>
         </span>
@@ -28,7 +28,7 @@
       <table ng-table="tableParams" class="table table-striped b-t b-light">
         <tr ng-repeat="userRegistration in $data">
           <td class="text-left" header="'ng-table/headers/checkbox.html'">
-            <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[role.oid]" /> <i></i> </label>
+            <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[userRegistration.oid]" /> <i></i> </label>
           </td>
           <td data-title="'Title'" class="text-left">
             {{userRegistration.salutation}}

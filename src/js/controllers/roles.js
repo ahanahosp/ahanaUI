@@ -27,7 +27,7 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
   };
   $scope.reset = function (){
     $scope.data = {};
-  }
+  };
   $scope.loadRolesList = function (){
     $scope.errorData = "";
     $http ({

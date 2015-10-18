@@ -1,8 +1,13 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n h3">Edit Room Type</h1>
+    <h1 class="m-n h3">EDIT ROOM TYPE</h1>
 </div>
 <div class="wrapper-md">
     <div ng-controller="RoomTypeController">
+        <div class="wrapper table-responsive" ng-show="errorData">
+            <div ng-repeat="error in errorData.errors" class="text-danger">
+                <i class="fa fa-warning"></i> {{error.longMessage}}
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <form name="roomTypeForm" class="form-horizontal form-validation">
@@ -26,7 +31,7 @@
                             </div>
                         </div>
                         <footer class="panel-footer text-right bg-light lter">
-                            <button class="btn m-b-xs  btn-success " ng-click="saveRoomType()">Update</button>
+                            <button class="btn m-b-xs  btn-success " ng-click="saveRoomType('edit')">Update</button>
                             &nbsp;
                             <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.roomType')"><i class="fa fa-times"></i> Cancel</button>
                             &nbsp;
