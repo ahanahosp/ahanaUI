@@ -1,169 +1,181 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n h3">Edit User</h1>
+  <h1 class="m-n h3">EDIT USER</h1>
 </div>
 <div class="wrapper-md">
-    <div ng-controller="UserRegistrationController">
-        <div class="wrapper table-responsive" ng-show="errorData">
-            <div ng-repeat="error in errorData.errors" class="text-danger">
-                <i class="fa fa-warning"></i> {{error.longMessage}}
+  <div ng-controller="UserRegistrationController">
+    <div class="wrapper table-responsive" ng-show="errorData">
+      <div ng-repeat="error in errorData.errors" class="text-danger">
+        <i class="fa fa-warning"></i> {{error.longMessage}}
+      </div>
+    </div>
+    <div class="row" ng-init="loadUserRegistrationDetails()">
+      <form name="userRegistrationForm" class="form-horizontal form-validation">
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Salutation *</label>
+
+                <div class="col-lg-9">
+                  <select class="form-control" ng-model="data.salutation" ng-options="salutation.value as salutation.label for salutation in salutations | orderBy: label">
+                    <option value="">Select Salutation</option>
+                  </select>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Name * </label>
+
+                <div class="col-sm-5">
+                  <input type="text" ng-model="data.firstName" class="form-control" placeholder="First Name">
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" ng-model="data.lastName" class="form-control" placeholder="Last Name">
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">User Name * </label>
+
+                <div class="col-sm-9">
+                  <input type="text" ng-model="data.userId" class="form-control" placeholder="User Name">
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Password * </label>
+
+                <div class="col-sm-9">
+                  <input type="password" ng-model="data.password" class="form-control" placeholder="Password">
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Email Id </label>
+
+                <div class="col-sm-9">
+                  <input type="text" ng-model="data.emailId" class="form-control" placeholder="Email Id">
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Mobile No * </label>
+
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="mobile" placeholder="##########" ng-model="data.mobileNo">
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Designation</label>
+
+                <div class="col-sm-9">
+                  <input type="text" ng-model="data.designation" name="designation" class="form-control" placeholder="Designation">
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Care Provider</label>
+
+                <div class="col-sm-1">
+                  <label class="i-checks "> <input type="checkbox" checked="" ng-true-value="'Yes'" ng-false-value="'No'" name="careProvider" ng-model="data.careProvider"> <i></i> </label> &nbsp; &nbsp;
+                </div>
+                <div class="col-lg-8">
+                  <select class="form-control" name="careProviderName" ng-model="data.speciality" ng-options="speciality.value as speciality.label for speciality in specialityValues | orderBy: label">
+                    <option value="">Select Speciality</option>
+                  </select>
+                </div>
+              </div>
             </div>
-        </div>
-        <div class="row">
-        	<div class="col-sm-12">
-            <form name="userRegistrationForm" class="form-horizontal form-validation">
-                <div class="panel panel-default" ng-init="loadUserRegistrationDetails()">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">Salutation *</label>
-                                <div class="col-lg-5">
-                                    <select class="form-control" ng-model="data.salutation" ng-options="salutation.value as salutation.label for salutation in salutations | orderBy: label">
-                                        <option value="">Select Salutation</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Name * </label>
-                                <div class="col-sm-5">
-                                    <input type="text" ng-model="data.firstName" class="form-control" placeholder="First Name">
-                                </div>
-                                <div class="col-sm-4">
-                                    <input type="text" ng-model="data.lastName" class="form-control" placeholder="Last Name">
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">User Name * </label>
-                                <div class="col-sm-7">
-                                    <input type="text" ng-model="data.userId" class="form-control" placeholder="User Name">
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Password * </label>
-                                <div class="col-sm-7">
-                                    <input type="password" ng-model="data.password" class="form-control" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Email Id </label>
-                                <div class="col-sm-7">
-                                    <input type="text" ng-model="data.emailId" class="form-control" placeholder="Email Id">
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Mobile No * </label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" placeholder="##########" ng-model="data.mobileNo" >
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">Designation</label>
-                                <div class="col-sm-7">
-                                    <input type="text" ng-model="data.designation" class="form-control" placeholder="Designation">
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-	                            <label class="col-sm-3 control-label">Care Provider</label>
-	                            <div class="col-sm-1">
-                                    <label class="i-checks ">
-                                        <input type="checkbox" checked="" ng-true-value="'Yes'" ng-false-value="'No'" name="status" ng-model="data.careProvider" >
-                                        <i></i>
-                                    </label> &nbsp; &nbsp;
-                                </div>
-	                            <div class="col-lg-5">
-	                                <select class="form-control" ng-model="data.speciality" ng-options="speciality.value as speciality.label for speciality in specialityValues | orderBy: label" >
-	                                	<option value="">Select Speciality</option>
-	                            	</select>
-	                         	</div>
-                           	</div>
-                        </div>
-                    </div>
-            </div>
-            <div class="col-sm-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-							<div class="form-group">
-                                <label class="col-lg-3 control-label">Activation Date</label>
-                                <div class="col-lg-5">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.activationDate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-										<span class="input-group-btn">
-										<button type="button" class="btn btn-default" ng-click="open($event)">
-                                            <i class="glyphicon glyphicon-calendar"></i></button>
-										</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">Inactivation Date</label>
-                                <div class="col-lg-5">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.inactivationDate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-										<span class="input-group-btn">
-										<button type="button" class="btn btn-default" ng-click="open($event)">
-                                            <i class="glyphicon glyphicon-calendar"></i></button>
-										</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">Current Address</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" placeholder="Address" ng-model="data.address">
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">Country</label>
-                                <div class="col-lg-7">
-                                    <select class="form-control" ng-model="data.country" ng-options="country.value as country.label for country in countries | orderBy: label" ng-change="updateState()">
-                                        <option value="">Select Country</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">State</label>
-                                <div class="col-lg-7">
-                                    <select class="form-control" ng-model="data.state" ng-options="state.value as state.label for state in states | orderBy: label" >
-                                        <option value="">Select State</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">City</label>
-                                <div class="col-lg-7">
-                                    <select class="form-control" ng-model="data.city">
-                                        <option value="">Select City</option>
-                                        <option value="Madurai">Madurai</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">Zip</label>
-                                <div class="col-lg-3">
-                                    <input type="text" class="form-control" placeholder="Zip" ng-model="data.zip">
-                                </div>
-                            </div>
-                   		</div> 
-                    </div>
-            	</div>
-            </form>
-            <footer class="panel-footer text-right bg-light lter">
-                <button class="btn m-b-xs  btn-success " ng-click="saveRegistration()">Save</button>&nbsp;
-                <button class="btn m-b-xs  btn-dark"><i class="fa fa-times"></i>Cancel</button>&nbsp;
-            </footer>
           </div>
         </div>
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Activation Date</label>
+
+                <div class="col-lg-9">
+                  <div class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.activationDate" is-open="openedActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+										<span class="input-group-btn">
+										<button type="button" class="btn btn-default" ng-click="openActivationDate($event)">
+                      <i class="glyphicon glyphicon-calendar"></i></button>
+										</span>
+                  </div>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Inactivation Date</label>
+
+                <div class="col-lg-9">
+                  <div class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.inactivationDate" is-open="openedInActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+										<span class="input-group-btn">
+										<button type="button" class="btn btn-default" ng-click="openInActivationDate($event)">
+                      <i class="glyphicon glyphicon-calendar"></i></button>
+										</span>
+                  </div>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Current Address</label>
+
+                <div class="col-lg-9">
+                  <input type="text" class="form-control" placeholder="Address" ng-model="data.address">
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Country</label>
+
+                <div class="col-lg-9">
+                  <select class="form-control" ng-model="data.country" ng-options="country.value as country.label for country in countries | orderBy: label" ng-change="updateState()">
+                    <option value="">Select Country</option>
+                  </select>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label">State</label>
+
+                <div class="col-lg-9">
+                  <select class="form-control" ng-model="data.state" ng-options="state.value as state.label for state in states | orderBy: label">
+                    <option value="">Select State</option>
+                  </select>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label">City</label>
+
+                <div class="col-lg-9">
+                  <select class="form-control" ng-model="data.city">
+                    <option value="">Select City</option>
+                    <option value="Madurai">Madurai</option>
+                  </select>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Zip</label>
+
+                <div class="col-lg-9">
+                  <input type="text" class="form-control" placeholder="Zip" ng-model="data.zip">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
+    <footer class="panel-footer text-right bg-light lter">
+      <button class="btn m-b-xs  btn-success " ng-click="saveRegistration('edit')">Update</button>
+      &nbsp;
+      <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.userRegistration')"><i class="fa fa-times"></i>Cancel</button>
+      &nbsp;
+    </footer>
+  </div>
 </div>

@@ -16,7 +16,7 @@
       <div class="col-sm-2">
       </div>
       <div class="col-sm-2 pull-right">
-        <button class=" btn btn-sm btn-info pull-right" ng-click="$state.go('app.createUserRegistration')"><i class="fa fa-plus"></i> &nbsp; New User Registration</button>
+        <button class=" btn btn-sm btn-info pull-right" ng-click="$state.go('app.createUserRegistration')"><i class="fa fa-plus"></i> &nbsp; New User</button>
       </div>
     </div>
     <div class="wrapper table-responsive" ng-show="errorData">
@@ -49,10 +49,10 @@
             {{userRegistration.speciality}}
           </td>
           <td data-title="'Activation Date'" class="text-left">
-            {{userRegistration.activationDate}}
+            {{userRegistration.activationDate | date : 'dd-MM-yyyy'}}
           </td>
           <td data-title="'Inactivation Date'" class="text-left">
-            {{userRegistration.inActivationDate}}
+            {{userRegistration.inActivationDate | date :'dd-MM-yyyy'}}
           </td>
           <td class="text-right">
             <a ui-sref="app.editUserRegistration({oid:userRegistration.oid})"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteUserRegistration(userRegistration.oid)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
