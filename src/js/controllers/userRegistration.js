@@ -18,13 +18,13 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
     class: 'datepicker'
   };
   $scope.formats = ['dd/MM/yyyy hh:mm:ss', 'dd/MM/yyyy'];
-  $scope.format = $scope.formats[0];
-  $scope.formatDOB = $scope.formats[1];
+  $scope.format = $scope.formats[1];
+
   $http.get (path + "rest/secure/common/getSpecialityValues").then (
     function (response){
       $scope.specialityValues = response.data.specialityDetails;
     }
-  )
+  );
   $http.get (path + "rest/secure/lookup/loadLookupByName?lookupNames=country,salutation").then (
     function (response){
       $scope.countries = response.data.lookupValues.countryDetails;

@@ -1,58 +1,48 @@
 'use strict';
-
 //TODO need to move in properties file
-
 /* Controllers */
-app
-// Registration controller
-    .controller('RegistrationController', ['$scope', '$http', function($scope, $http) {
-
-      $scope.open = function($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-
-        $scope.opened = true;
-      };
-
-      $http.get(path + "rest/secure/lookup/loadLookupByName?lookupNames=country").then(
-          function(response) {
-            $scope.countries = response.data.lookupValues.countryDetails;
+app.controller ('RegistrationController', ['$scope', '$http', function ($scope, $http){
+  $scope.open = function ($event){
+    $event.preventDefault ();
+    $event.stopPropagation ();
+    $scope.opened = true;
+  };
+  $http.get (path + "rest/secure/lookup/loadLookupByName?lookupNames=country").then (
+    function (response){
+      $scope.countries = response.data.lookupValues.countryDetails;
+    }
+  )
+  $scope.updateState = function (){
+    $http.get (path + "rest/secure/lookup/populateState?countryId=" + $scope.data.country).then (
+      function (response){
+        $scope.states = response.data.stateDetails;
+      }
+    )
+  }
+  $scope.updateCity = function (){
+    $http.get (path + "rest/secure/lookup/populateCity?stateId=" + $scope.data.state).then (
+      function (response){
+        $scope.cities = response.data.cityDetails;
+      }
+    )
+  }
+  /**Save Patient Registration data*/
+  $scope.saveRegistration = function (){
+    if ($scope.registrationForm.$valid){
+      $http ({
+        url: path + "rest/secure/registration/savePatient",
+        method: "POST",
+        data: $scope.data
+      }).then (
+        function (response){
+          if (response.data.Status === 'Ok'){
+            $scope.data = {};
           }
-      )
-
-      $scope.updateState = function(){
-        $http.get(path + "rest/secure/lookup/populateState?countryId="+$scope.data.country).then(
-            function(response) {
-              $scope.states = response.data.stateDetails;
-            }
-        )
-      }
-
-      $scope.updateCity = function(){
-        $http.get(path + "rest/secure/lookup/populateCity?stateId="+$scope.data.state).then(
-            function(response) {
-              $scope.cities = response.data.cityDetails;
-            }
-        )
-      }
-
-      /**Save Patient Registration data*/
-      $scope.saveRegistration = function() {
-        if ($scope.registrationForm.$valid) {
-          $http({
-            url: path + "rest/secure/registration/savePatient",
-            method: "POST",
-            data: $scope.data
-          }).then(
-              function() {
-                $scope.data = {};
-                $scope.registrationMessage = "Registration saved successfully";
-              },
-              /**Error handling*/
-              function() {
-                $scope.registrationMessage = "Failed registration";
-              }
-          )
+          else{
+            $scope.errorData = response.data;
+          }
         }
-      }
-    }]);
+      )
+    }
+  }
+}]);
