@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body">
+  <div class="wrapper table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+      <td class="text-left">
+        Ward Name
+      </td>
+      <td class="text-left">
+        Floor Name
+      </td>
+      <td class="text-left">
+        Status
+      </td>
+      </thead>
+      <tbody>
+      <tr ng-repeat="ward in modalOptions.wardSelectedItems track by ward.oid">
+        <td class="text-left">
+          <input type="text" ng-model="ward.wardName" name="wardName" class="form-control" placeholder="Ward Name">
+        </td>
+        <td class="text-left">
+          <select class="form-control" ng-model="ward.floorOid" ng-options="floor.value as floor.label for floor in modalOptions.floors | orderBy: label">
+            <option value="">Select Floor</option>
+          </select>
+        </td>
+        <td class="text-left">
+          <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="ward.status"> <i></i> </label>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+  <button class="btn btn-primary" data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+</div>

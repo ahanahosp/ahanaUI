@@ -1,8 +1,13 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n h3">Edit Ward</h1>
+    <h1 class="m-n h3">EDIT WARD</h1>
 </div>
 <div class="wrapper-md">
     <div ng-controller="WardController">
+        <div class="wrapper table-responsive" ng-show="errorData">
+            <div ng-repeat="error in errorData.errors" class="text-danger">
+                <i class="fa fa-warning"></i> {{error.longMessage}}
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <form name="wardForm" class="form-horizontal form-validation">
@@ -35,7 +40,7 @@
                             </div>
                         </div>
                         <footer class="panel-footer text-right bg-light lter">
-                            <button class="btn m-b-xs  btn-success " ng-click="saveWard()">Update</button>
+                            <button class="btn m-b-xs  btn-success " ng-click="saveWard('edit')">Update</button>
                             &nbsp;
                             <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.ward')"><i class="fa fa-times"></i> Cancel</button>
                             &nbsp;

@@ -1,8 +1,13 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n h3">Ward</h1>
+    <h1 class="m-n h3">NEW WARD</h1>
 </div>
 <div class="wrapper-md">
     <div ng-controller="WardController">
+        <div class="wrapper table-responsive" ng-show="errorData">
+            <div ng-repeat="error in errorData.errors" class="text-danger">
+                <i class="fa fa-warning"></i> {{error.longMessage}}
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <form name="wardForm" class="form-horizontal form-validation">
