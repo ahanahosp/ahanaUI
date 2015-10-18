@@ -1,6 +1,6 @@
-<!-- list --><a href class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded"> <i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-fw"></i> </a>
+<!-- list --><!--<a href class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded"> <i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-fw"></i> </a>-->
 
-<ul class="nav">
+<!--<ul class="nav" ng-show="app.settings.menu != 'configuration'">
   <li><a ui-sref="app.registration"> <img src="img/icon1.png" alt="" /> <br /> Registration </a></li>
   <li><a href="#"> <img src="img/icon1.png" alt="" /> <br /> Details </a></li>
   <li><a href="#"> <img src="img/icon2.png" alt="" /> <br /> Timeline </a></li>
@@ -11,4 +11,67 @@
   <li><a href="#"> <img src="img/icon7.png" alt="" /> <br /> Procedures </a></li>
   <li><a href="#"> <img src="img/icon8.png" alt="" /> <br /> prescriptions </a></li>
   <li><a href="#"> <img src="img/icon9.png" alt="" /> <br /> alerts </a></li>
+</ul>--><!-- / list -->
+
+<!-- list -->
+<ul class="nav" ng-show="app.settings.menu == 'configuration'">
+  <li>
+    <a href class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-plus text"></i>
+        <i class="fa fa-fw fa-minus text-active"></i>
+      </span> <i class="fa fa-institution"></i> <span class="font-bold">Organization Module</span> </a>
+    <ul class="nav nav-sub dk">
+      <li><a ui-sref="app.organizationModule">Organization</a></li>
+      <li><a ui-sref="app.roles">Roles</a></li>
+      <li><a ui-sref="app.userRegistration">User Registration</a></li>
+      <li><a ui-sref="app.userRegistration">Role Rights</a></li>
+      <li><a ui-sref="app.userRegistration">User roles</a></li>
+      <li><a ui-sref="app.userRegistration">Login</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-plus text"></i>
+        <i class="fa fa-fw fa-minus text-active"></i>
+      </span> <i class="fa fa-cubes"></i> <span class="font-bold">Rooms Module</span> </a>
+    <ul class="nav nav-sub dk">
+      <li><a ui-sref="app.room">Room</a></li>
+      <li><a ui-sref="app.floor">Floor</a></li>
+      <li><a ui-sref="app.ward">Ward</a></li>
+      <li><a ui-sref="app.roomType">Room Types</a></li>
+      <li><a ui-sref="app.roomBedType">Room And Bed Types</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-plus text"></i>
+        <i class="fa fa-fw fa-minus text-active"></i>
+      </span> <i class="fa fa-suitcase"></i> <span class="font-bold">Charges Module</span> </a>
+    <ul class="nav nav-sub dk">
+      <li><a ui-sref="app.roomChargeItems">Room Charge Items</a></li>
+      <li><a ui-sref="app.roomCharges">Room Charges</a></li>
+      <li><a ui-sref="app.roomCharges">Config Room Charge</a></li>
+      <li><a ui-sref="app.accountHead">Category Item For Charge</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-plus text"></i>
+        <i class="fa fa-fw fa-minus text-active"></i>
+      </span> <i class="fa fa-wrench"></i> <span class="font-bold">Masters module</span> </a>
+    <ul class="nav nav-sub dk">
+      <li><a ui-sref="app.procedures">Procedures</a></li>
+      <li><a ui-sref="app.speciality">Speciality</a></li>
+      <li><a ui-sref="app.alertType">Alert Type</a></li>
+      <li><a ui-sref="app.doctorsSchedule">Doctors Schedule</a></li>
+      <li><a ui-sref="app.country">Country</a></li>
+      <li><a ui-sref="app.state">State</a></li>
+      <li><a ui-sref="app.city">City</a></li>
+      <li><a ui-sref="app.patientCategory">Patients Category</a></li>
+    </ul>
+  </li>
 </ul><!-- / list -->

@@ -771,7 +771,7 @@ body {
 .app-content-body {
     float: left;
     width: 100%;
-    padding-bottom: 50px;
+    /*padding-bottom: 50px;*/
 }
 
 .app-footer {
@@ -923,9 +923,9 @@ body {
         margin-left: 125px;
     }
 
-    .app-aside {
+    /*.app-aside {
         width: 125px;
-    }
+    }*/
 
     .app-aside-right {
         position: absolute;
@@ -1262,7 +1262,7 @@ html {
 }
 
 .navi ul.nav li li a {
-    padding-left: 55px;
+    /*padding-left: 25px;*/
 }
 
 .navi ul.nav li li ul {
@@ -1293,12 +1293,11 @@ html {
 .navi ul.nav li a > i {
     position: relative;
     float: left;
-    width: 40px;
     margin: -10px -10px;
     margin-right: 5px;
     overflow: hidden;
     line-height: 40px;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .navi ul.nav li a > i:before {
@@ -5302,10 +5301,9 @@ a.text-#000000:hover {
     text-transform: uppercase;
 }
 
-.navi ul.nav li {
+.nav ul.nav li {
     display: block;
     position: relative;
-    text-align: center;
     text-transform: uppercase;
 }
 
@@ -5422,4 +5420,8 @@ a.text-#000000:hover {
 
 .ng-table th {
     text-align: left;
+}
+
+.aside-wrap {
+    min-height: 700px;
 }
