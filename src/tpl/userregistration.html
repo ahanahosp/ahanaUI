@@ -1,31 +1,22 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n h3">User Registration</h1>
+  <h1 class="m-n h3">USER REGISTRATION</h1>
 </div>
 
 <div class="wrapper-md" ng-controller="UserRegistrationController" ng-init="loadUserRegistrationList()">
   <div class="panel panel-default">
     <div class="row wrapper">
-      <div class="col-sm-5 m-b-xs">
-
+      <div class="col-sm-8 m-b-xs">
         <button class="btn btn-sm btn-grey" ng-click="loadUserRegistrationList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
-
-        <div class="btn-group" dropdown is-open="status.isopen">
-          <button type="button" class=" btn btn-sm btn-grey" dropdown-toggle ng-disabled="disabled">
-            More &nbsp;&nbsp;<span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href>Action</a></li>
-            <li><a href>Another action</a></li>
-            <li><a href>Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href>Separated link</a></li>
-          </ul>
-        </div>
+        &nbsp; &nbsp;
+        <span ng-show="roleSelected > 1">
+          <button class="btn btn-sm btn-grey"><i class="fa fa-pencil"></i> &nbsp; Edit</button> &nbsp; &nbsp;
+          <button class="btn btn-sm btn-grey"><i class="fa fa-trash"></i> &nbsp; Delete</button>
+        </span>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-2">
       </div>
       <div class="col-sm-2 pull-right">
-        <button class=" btn btn-sm btn-grey pull-right" ng-click="$state.go('app.createUserRegistration')"> &nbsp; &nbsp; <i class="fa fa-plus"></i> &nbsp; New User Registration &nbsp; &nbsp; </button>
+        <button class=" btn btn-sm btn-info pull-right" ng-click="$state.go('app.createUserRegistration')"><i class="fa fa-plus"></i> &nbsp; New User Registration</button>
       </div>
     </div>
     <div class="wrapper table-responsive" ng-show="errorData">
@@ -36,6 +27,9 @@
     <div class="wrapper table-responsive" ng-show="!errorData">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
         <tr ng-repeat="userRegistration in $data">
+          <td class="text-left" header="'ng-table/headers/checkbox.html'">
+            <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[role.oid]" /> <i></i> </label>
+          </td>
           <td data-title="'Title'" class="text-left">
             {{userRegistration.salutation}}
           </td>
@@ -61,8 +55,7 @@
             {{userRegistration.inActivationDate}}
           </td>
           <td class="text-right">
-            <a ui-sref="app.editUserRegistration({oid:userRegistration.oid})">
-              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteUserRegistration(userRegistration.oid)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+            <a ui-sref="app.editUserRegistration({oid:userRegistration.oid})"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteUserRegistration(userRegistration.oid)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
           </td>
         </tr>
       </table>
