@@ -5425,3 +5425,9 @@ a.text-#000000:hover {
 .aside-wrap {
     min-height: 700px;
 }
+
+.btn-info {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}

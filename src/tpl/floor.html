@@ -1,31 +1,23 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n h3">View Floor</h1>
+  <h1 class="m-n h3">Floor Details</h1>
 </div>
 
 <div class="wrapper-md" ng-controller="FloorController" ng-init="loadFloorList()">
   <div class="panel panel-default">
     <div class="row wrapper">
-      <div class="col-sm-5 m-b-xs">
+      <div class="col-sm-8 m-b-xs">
 
         <button class="btn btn-sm btn-grey" ng-click="loadFloorList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
-
-        <div class="btn-group" dropdown is-open="status.isopen">
-          <button type="button" class=" btn btn-sm btn-grey" dropdown-toggle ng-disabled="disabled">
-            More &nbsp;&nbsp;<span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href>Action</a></li>
-            <li><a href>Another action</a></li>
-            <li><a href>Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href>Separated link</a></li>
-          </ul>
-        </div>
+        &nbsp; &nbsp;
+        <span ng-show="floorSelected > 1">
+          <button class="btn btn-sm btn-grey" ng-click="editMultipleFloors()"><i class="fa fa-pencil"></i> &nbsp; Edit</button> &nbsp; &nbsp;
+          <button class="btn btn-sm btn-grey" ng-click="deleteMultipleFloors()"><i class="fa fa-trash"></i> &nbsp; Delete</button>
+        </span>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-2">
       </div>
       <div class="col-sm-2 pull-right">
-        <button class=" btn btn-sm btn-grey pull-right" ng-click="$state.go('app.createFloor')"> &nbsp; &nbsp; <i class="fa fa-plus"></i> &nbsp; New Floor &nbsp; &nbsp; </button>
+        <button class=" btn btn-sm btn-info pull-right" ng-click="$state.go('app.createFloor')"><i class="fa fa-plus"></i> &nbsp; New Floor</button>
       </div>
     </div>
     <div class="wrapper table-responsive" ng-show="errorData">
@@ -36,14 +28,17 @@
     <div class="wrapper table-responsive" ng-show="!errorData">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
         <tr ng-repeat="floor in $data">
-          <td data-title="'Floor Name'" class="text-left">
+          <td class="text-left" header="'ng-table/headers/checkbox.html'">
+            <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[floor.oid]" /> <i></i> </label>
+          </td>
+          <td data-title="'Floor Name'" class="text-left" sortable="'floorName'">
             {{floor.floorName}}
           </td>
-          <td data-title="'Floor Code'" class="text-left">
+          <td data-title="'Floor Code'" class="text-left" sortable="'floorCode'">
             {{floor.floorCode}}
           </td>
-          <td data-title="'Status'" class="text-left">
-            <div class="action-message">{{floor.status}}</div>
+          <td data-title="'Status'" class="text-left" sortable="'status'">
+            <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="floor.status"> <i></i> </label>
           </td>
           <td class="text-right">
             <a ui-sref="app.editFloor({oid:floor.oid})">
