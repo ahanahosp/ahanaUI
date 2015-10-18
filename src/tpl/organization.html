@@ -1,99 +1,104 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n h3">ORGANIZATION</h1>
+  <h1 class="m-n h3">ORGANIZATION</h1>
 </div>
 <div class="wrapper-md">
-    <div ng-controller="OrganizationController">
-        <div class="wrapper table-responsive" ng-show="errorData">
-            <div ng-repeat="error in errorData.errors" class="text-danger">
-                <i class="fa fa-warning"></i> {{error.longMessage}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <form name="organizationForm" class="form-horizontal form-validation">
-                    <div class="panel panel-default" ng-init="loadOrganizationDetails()">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Organization Name * </label>
-                                <div class="col-sm-9">
-                                    {{data.organizationName}}
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Address</label>
-                                <div class="col-sm-9">
-                                    {{data.address}}
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">City</label>
-
-                                <div class="col-sm-9">
-                                    {{data.city}}
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">State</label>
-
-                                <div class="col-sm-9">
-                                    {{data.state}}
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Country</label>
-
-                                <div class="col-sm-9">
-                                    {{data.country}}
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Contact #1</label>
-
-                                <div class="col-sm-9">
-                                    {{data.contact}}
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Contact #2</label>
-
-                                <div class="col-sm-9">
-                                    {{data.contact}}
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Mobile</label>
-
-                                <div class="col-sm-9">
-                                    {{data.mobile}}
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Fax</label>
-
-                                <div class="col-sm-9">
-                                    {{data.fax}}
-                                </div>
-                            </div>
-                            <div class="line line-dashed b-b line-lg "></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Email</label>
-
-                                <div class="col-sm-9">
-                                    {{data.email}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+  <div ng-controller="OrganizationController">
+    <div class="wrapper table-responsive" ng-show="errorData">
+      <div ng-repeat="error in errorData.errors" class="text-danger">
+        <i class="fa fa-warning"></i> {{error.longMessage}}
+      </div>
     </div>
+    <div class="row clearfix">
+      <div class="col-sm-6">
+        <div class="panel panel-default" ng-init="loadOrganizationDetails()">
+          <div class="panel-body">
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Name * </label>
+
+              <div class="col-sm-9">
+                {{data.organizationName}}
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg "></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Address</label>
+
+              <div class="col-sm-9">
+                {{data.address}}
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg "></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">City</label>
+
+              <div class="col-sm-9">
+                {{data.city}}
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg "></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">State</label>
+
+              <div class="col-sm-9">
+                {{data.state}}
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg "></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Country</label>
+
+              <div class="col-sm-9">
+                {{data.country}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-default" ng-init="loadOrganizationDetails()">
+          <div class="panel-body">
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Contact #1</label>
+
+              <div class="col-sm-9">
+                {{data.contact}}
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg "></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Contact #2</label>
+
+              <div class="col-sm-9">
+                {{data.contact}}
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg "></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Mobile</label>
+
+              <div class="col-sm-9">
+                {{data.mobile}}
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg "></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Fax</label>
+
+              <div class="col-sm-9">
+                {{data.fax}}
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg "></div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Email</label>
+
+              <div class="col-sm-9">
+                {{data.email}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
