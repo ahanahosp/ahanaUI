@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n h3">Edit Room</h1>
+    <h1 class="m-n h3">EDIT ROOM</h1>
 </div>
 <div class="wrapper-md">
     <div ng-controller="RoomController">
@@ -14,20 +14,37 @@
                     <div class="panel panel-default" ng-init="loadRoomDetails()">
                         <div class="panel-body">
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">Ward *</label>
+                                <label class="col-lg-3 control-label">Ward Name *</label>
                                 <div class="col-lg-9">
                                     <select class="form-control" ng-model="data.wardOid" ng-options="ward.value as ward.label for ward in wards | orderBy: label">
                                         <option value="">Select Ward</option>
                                     </select>
                                 </div>
                             </div>
+                            <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Bed Name * </label>
+                                <label class="col-sm-3 control-label">BED Name * </label>
+
                                 <div class="col-sm-9">
-                                    <input type="text" ng-model="data.bedName" name="bedName" class="form-control" placeholder="Bed Name">
+                                    <input type="text" ng-model="data.bedName" name="bedName" class="form-control" placeholder="BED Name">
                                 </div>
                             </div>
                             <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Occupancy Status * </label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" ng-model="data.occupancyStatus" name="roomName" class="form-control" placeholder="Occupancy Status">
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg "></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Maintenance Status * </label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" ng-model="data.maintenanceStatus" name="roomName" class="form-control" placeholder="Maintenance Status">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Status</label>
                                 <div class="col-sm-9">
@@ -39,7 +56,7 @@
                             </div>
                         </div>
                         <footer class="panel-footer text-right bg-light lter">
-                            <button class="btn m-b-xs  btn-success " ng-click="saveRoom()">Update</button>
+                            <button class="btn m-b-xs  btn-success " ng-click="saveRoom('edit')">Update</button>
                             &nbsp;
                             <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.room')"><i class="fa fa-times"></i> Cancel</button>
                             &nbsp;

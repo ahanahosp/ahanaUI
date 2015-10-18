@@ -1,0 +1,51 @@
+<div class="modal-header">
+  <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body">
+  <div class="wrapper table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+      <td class="text-left">
+        Ward Name
+      </td>
+      <td class="text-left">
+        BED Name
+      </td>
+      <td class="text-left">
+        Occupancy Status
+      </td>
+      <td class="text-left">
+        Maintenance Status
+      </td>
+      <td class="text-left">
+        Status
+      </td>
+      </thead>
+      <tbody>
+      <tr ng-repeat="room in modalOptions.roomSelectedItems track by room.oid">
+        <td class="text-left">
+          <select class="form-control" name="wardName" ng-model="room.wardOid" ng-options="ward.value as ward.label for ward in modalOptions.wards | orderBy: label">
+            <option value="">Select Ward</option>
+          </select>
+        </td>
+        <td class="text-left">
+          <input type="text" ng-model="room.bedName" name="bedName" class="form-control" placeholder="BED Name">
+        </td>
+        <td class="text-left">
+          <input type="text" ng-model="room.occupancy" name="occupancy" class="form-control" placeholder="Occupancy Status">
+        </td>
+        <td class="text-left">
+          <input type="text" ng-model="room.maintenance" name="maintenance" class="form-control" placeholder="Maintenance Status">
+        </td>
+        <td class="text-left">
+          <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="room.status"> <i></i> </label>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+  <button class="btn btn-primary" data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+</div>
