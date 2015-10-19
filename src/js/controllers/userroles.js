@@ -31,7 +31,39 @@ app
             }
           }
         )
-      };    
+      }; 
+      
+      $scope.saveUserRole = function (){
+    	  $scope.errorData = "";
+    	  var selectedRoles = [];
+    	  angular.forEach ($scope.data.roleDetails, function (value, key){
+    		  angular.forEach (value, function (invalue, inkey){
+	    	      if (invalue === 'ACT'){
+	    	    	  selectedRoles.push (inkey);
+	    	      }
+    		  });
+    	  }
+    	 );
+    	 var data = {
+    			 'userOid': $scope.data.userOid,
+    			 'roleOids': selectedRoles
+    	    };
+    	    if ($scope.userRoleForm.$valid){
+    	      $http ({
+    	        url: path + "/rest/secure/user/createUserRole",
+    	        method: "POST",
+    	        data: data
+    	      }).then (
+    	        function (response){
+    	          if (response.data.Status === 'Ok'){
+    	            $scope.data = {};
+    	          } else{
+    	            $scope.errorData = response.data;
+    	          }
+    	        }
+    	      )
+    	    }
+    	  };
  }]);
 
 (function() {
