@@ -8,8 +8,7 @@ app.controller ('RoomChargeItemController', [ '$scope', '$http', 'NgTableParams'
 	        $scope.categorys = response.data.categoryDetails;
 	    }
 	)
-	
-	$scope.saveRoomChargeItem = function () {
+  $scope.saveRoomChargeItem = function (mode){
     $scope.errorData = "";
     if ( $scope.roomChargeItemForm.$valid ) {
       $http({
@@ -18,10 +17,16 @@ app.controller ('RoomChargeItemController', [ '$scope', '$http', 'NgTableParams'
         data: $scope.data
       }).then(
         function ( response ) {
-          if ( response.data.Status === 'Ok' ) {
-            $scope.data = {};
+          if (response.data.Status === 'Ok'){
+            if (mode === 'edit'){
+              $state.go ('app.roomchargeitems');
+            }
+            else{
+              $scope.successMessage = "Room charge items saved successfully";
+              $scope.data = {};
+            }
           }
-          else {
+          else{
             $scope.errorData = response.data;
           }
         }

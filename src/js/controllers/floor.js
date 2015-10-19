@@ -3,6 +3,7 @@
 app.controller ('FloorController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
   $scope.saveFloor = function (mode){
     $scope.errorData = "";
+    $scope.successMessage = "";
     if ($scope.floorForm.$valid){
       $http ({
         url: path + "rest/secure/common/createFloor",
@@ -15,6 +16,7 @@ app.controller ('FloorController', ['$scope', '$http', 'NgTableParams', '$filter
               $state.go ('app.floor');
             }
             else{
+              $scope.successMessage = "Floor saved successfully";
               $scope.data = {};
             }
           }

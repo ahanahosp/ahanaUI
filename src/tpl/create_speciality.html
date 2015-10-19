@@ -3,6 +3,16 @@
 </div>
 <div class="wrapper-md">
     <div ng-controller="SpecialityController">
+        <div class="wrapper table-responsive" ng-show="successMessage">
+            <div class="text-success">
+                <i class="fa fa-info-circle"></i> {{successMessage}}
+            </div>
+        </div>
+        <div class="wrapper table-responsive" ng-show="errorData">
+            <div ng-repeat="error in errorData.errors" class="text-danger">
+                <i class="fa fa-warning"></i> {{error.longMessage}}
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <form name="specialityForm" class="form-horizontal form-validation">

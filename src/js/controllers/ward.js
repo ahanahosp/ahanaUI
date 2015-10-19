@@ -7,6 +7,8 @@ app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter'
     }
   )
   $scope.saveWard = function (mode){
+    $scope.errorData = "";
+    $scope.successMessage = "";
     if ($scope.wardForm.$valid){
       $http ({
         url: path + "rest/secure/common/createWard",
@@ -19,6 +21,7 @@ app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter'
               $state.go ('app.ward');
             }
             else{
+              $scope.successMessage = "Ward saved successfully";
               $scope.data = {};
             }
           }

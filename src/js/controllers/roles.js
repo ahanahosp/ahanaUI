@@ -3,6 +3,7 @@
 app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
   $scope.saveRoles = function (mode){
     $scope.errorData = "";
+    $scope.successMessage = "";
     if ($scope.roleForm.$valid){
       $http ({
         url: path + "rest/secure/user/createRole",
@@ -15,6 +16,7 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
               $state.go ('app.roles');
             }
             else{
+              $scope.successMessage = "Roles saved successfully";
               $scope.data = {};
             }
           }

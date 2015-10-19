@@ -2,6 +2,8 @@
 /* Controllers */
 app.controller ('RoomTypeController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
   $scope.saveRoomType = function (mode){
+    $scope.errorData = "";
+    $scope.successMessage = "";
     if ($scope.roomTypeForm.$valid){
       $http ({
         url: path + "rest/secure/common/createRoomType",
@@ -14,6 +16,7 @@ app.controller ('RoomTypeController', ['$scope', '$http', 'NgTableParams', '$fil
               $state.go ('app.roomType');
             }
             else{
+              $scope.successMessage = "Room type saved successfully";
               $scope.data = {};
             }
           }

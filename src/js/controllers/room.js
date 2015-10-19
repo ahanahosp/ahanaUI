@@ -8,6 +8,7 @@ app.controller ('RoomController', ['$scope', '$http', 'NgTableParams', '$filter'
   );
   $scope.saveRoom = function (mode){
     $scope.errorData = "";
+    $scope.successMessage = "";
     if ($scope.roomForm.$valid){
       $http ({
         url: path + "rest/secure/common/createRoom",
@@ -20,6 +21,7 @@ app.controller ('RoomController', ['$scope', '$http', 'NgTableParams', '$filter'
               $state.go ('app.room');
             }
             else{
+              $scope.successMessage = "Room saved successfully";
               $scope.data = {};
             }
           }

@@ -14,20 +14,26 @@ app.controller ('RoomChargesController', [ '$scope', '$http', 'NgTableParams', '
 	        $scope.roomChargeItems = response.data.roomChargeItemDetails;
 	    }
 	)
-	
-	$scope.saveRoomCharges = function () {
+  $scope.saveRoomCharges = function (mode){
     $scope.errorData = "";
+    $scope.successMessage = "";
     if ( $scope.roomChargesForm.$valid ) {
       $http({
         url: path + "rest/secure/common/createRoomCharge",
         method: "POST",
         data: $scope.data
       }).then(
-        function ( response ) {
-          if ( response.data.Status === 'Ok' ) {
-            $scope.data = {};
+        function (response){
+          if (response.data.Status === 'Ok'){
+            if (mode === 'edit'){
+              $state.go ('app.roomcharges');
+            }
+            else{
+              $scope.successMessage = "Room charges saved successfully";
+              $scope.data = {};
+            }
           }
-          else {
+          else{
             $scope.errorData = response.data;
           }
         }

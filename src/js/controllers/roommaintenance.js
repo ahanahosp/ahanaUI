@@ -3,6 +3,7 @@
 app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
   $scope.saveRoomMaintenance = function (mode){
     $scope.errorData = "";
+    $scope.successMessage = "";
     if ($scope.roomMaintenanceForm.$valid){
       $http ({
         url: path + "rest/secure/common/createRoomMaintenance",
@@ -15,6 +16,7 @@ app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams'
               $state.go ('app.roomMaintenance');
             }
             else{
+              $scope.successMessage = "Room maintenance saved successfully";
               $scope.data = {};
             }
           }
