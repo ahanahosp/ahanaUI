@@ -27,6 +27,14 @@ app.controller ('RolesRightsController', ['$scope', '$http', 'NgTableParams', '$
       }
     }
   );
+  $scope.getSavedRights = function (){
+    $http.get (path + "rest/secure/user/getSavedRightsByRoleOid?roleOid="+ $scope.data.roleOid).then (
+      function (response){
+        $scope.modules = response.data.rightsDetails;
+      }
+    )
+  }
+  
   $http ({
     url: path + "rest/secure/common/getDefaultOrganization",
     method: "GET"

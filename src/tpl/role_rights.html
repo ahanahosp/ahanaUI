@@ -25,7 +25,7 @@
                 <label class="col-sm-3 control-label">Role * </label>
 
                 <div class="col-sm-9">
-                  <select class="form-control" ng-model="data.roleOid" ng-options="role.oid as role.name for role in roles | orderBy: name">
+                  <select class="form-control" ng-model="data.roleOid" ng-options="role.oid as role.name for role in roles | orderBy: name" ng-change="getSavedRights()">
                     <option value="">Select Role</option>
                   </select>
                 </div>

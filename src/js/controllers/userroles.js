@@ -15,6 +15,13 @@ app
 			$scope.roleDetails = response.data.roleDetails;
 		}
 	)
+	$scope.getSavedRoles = function (){
+	    $http.get (path + "rest/secure/user/getSavedRolesByUserOid?userOid="+ $scope.data.userOid).then (
+	      function (response){
+	        $scope.roleDetails = response.data.userRoleDetails;
+	      }
+	    )
+	  }
 			  
 	$scope.loadOrganizationDetails = function () {
 		$scope.errorData = "";

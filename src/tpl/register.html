@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">State</label>
                                 <div class="col-lg-9">
-                                    <select class="form-control" ng-model="data.state" ng-options="state.value as state.label for state in states | orderBy: label" >
+                                    <select class="form-control" ng-model="data.state" ng-options="state.value as state.label for state in states | orderBy: label" ng-change="updateCity()">
                                         <option value="">Select State</option>
                                     </select>
                                 </div>
@@ -95,11 +95,10 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">City</label>
                                 <div class="col-lg-9">
-                                    <select class="form-control" ng-model="data.city">
-                                        <option value="">Select City</option>
-                                        <option value="Madurai">Madurai</option>
-                                    </select>
-                                </div>
+				                  <select class="form-control" ng-model="data.city" ng-options="city.value as city.label for city in cities | orderBy: label">
+				                    <option value="">Select City</option>
+				                  </select>
+				                </div>
                             </div>
                             <div class="line line-dashed b-b line-lg "></div>
                             <div class="form-group">
