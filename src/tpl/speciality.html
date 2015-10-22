@@ -1,47 +1,42 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n h3">Speciality Details</h1>
+  <h1 class="m-n h3">SPECIALITY DETAILS</h1>
 </div>
-
 <div class="wrapper-md" ng-controller="SpecialityController" ng-init="loadSpecialityList()">
   <div class="panel panel-default">
     <div class="row wrapper">
-      <div class="col-sm-5 m-b-xs">
-
+      <div class="col-sm-8 m-b-xs">
         <button class="btn btn-sm btn-grey" ng-click="loadSpecialityList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
-
-        <div class="btn-group" dropdown is-open="status.isopen">
-          <button type="button" class=" btn btn-sm btn-grey" dropdown-toggle ng-disabled="disabled">
-            More &nbsp;&nbsp;<span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href>Action</a></li>
-            <li><a href>Another action</a></li>
-            <li><a href>Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href>Separated link</a></li>
-          </ul>
-        </div>
+        &nbsp; &nbsp;
+        <span ng-show="specialitySelected > 1">
+          <button class="btn btn-sm btn-grey" ng-click="editMultipleSpeciality()"><i class="fa fa-pencil"></i> &nbsp; Edit</button> &nbsp; &nbsp;
+          <button class="btn btn-sm btn-grey" ng-click="deleteMultipleSpeciality()"><i class="fa fa-trash"></i> &nbsp; Delete</button>
+        </span>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-2">
       </div>
       <div class="col-sm-2 pull-right">
-        <button class=" btn btn-sm btn-grey pull-right" ng-click="$state.go('app.createSpeciality')"> &nbsp; &nbsp; <i class="fa fa-plus"></i> &nbsp; New Speciality &nbsp; &nbsp; </button>
+        <button class=" btn btn-sm btn-info pull-right" ng-click="$state.go('app.createSpeciality')"><i class="fa fa-plus"></i> &nbsp; New Speciality</button>
       </div>
     </div>
-    <div class="wrapper table-responsive">
+    <div class="wrapper table-responsive" ng-show="errorData">
+      <div ng-repeat="error in errorData.errors" class="text-danger">
+        <i class="fa fa-warning"></i> {{error.longMessage}}
+      </div>
+    </div>
+    <div class="wrapper table-responsive" ng-show="!errorData">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
-        <tr ng-repeat="speciality in $data">
-          <td data-title="'Speciality'">
+        <tr ng-repeat="speciality in $data track by speciality.oid">
+          <td class="text-left" header="'ng-table/headers/checkbox.html'">
+            <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[speciality.oid]" /> <i></i> </label>
+          </td>
+          <td data-title="'Speciality Name'" class="text-left" sortable="'name'">
             {{speciality.specialityName}}
           </td>
-          <td data-title="'Status'">
-            <div class="action-message">{{speciality.status}}</div>
+          <td data-title="'Status'" class="text-left" sortable="'status'">
+            <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="speciality.status"> <i></i> </label>
           </td>
-          <td data-title="'Actions'">
-            <a href="#" ui-sref="app.editSpeciality({oid:speciality.oid})">
-              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i>
-            </a>&nbsp;&nbsp;&nbsp;
-            <a href="#"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+          <td class="text-right">
+            <a ui-sref="app.editSpeciality({oid:speciality.oid})"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteSpeciality(speciality.oid, speciality.specialityName)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
           </td>
         </tr>
       </table>
