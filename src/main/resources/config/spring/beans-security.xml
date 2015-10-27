@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"   
+ 		xmlns:sec="http://www.springframework.org/schema/security"  
+  	 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+  	 	xmlns:util="http://www.springframework.org/schema/util"
+     	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+    	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+    	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+          
+    <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
+	 
+	<alias name="filterChainProxy" alias="springSecurityFilterChain"/>
+	
+	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+		<sec:filter-chain-map request-matcher="ant">
+ 			<sec:filter-chain pattern="/services/rest/secure/**" filters="httpSessionContextIntegrationFilterWithASCFalse,
+ 					exceptionTranslationFilter"/>
+ 			<!-- <sec:filter-chain pattern="/services/secure/**" filters="httpSessionContextIntegrationFilterWithASCFalse,
+ 					exceptionTranslationFilter,
+ 					ahanaSecurityFilter,
+ 					filterInvocationInterceptor"/> -->
+		</sec:filter-chain-map>
+	</bean>
+	
+	<bean id="ahanaSecurityFilter" class="com.ahana.api.system.security.filters.AhanaSecurityFilter"/>
+	
+	<bean id="filterInvocationInterceptor" class="com.ahana.api.system.security.filters.AhanaFilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="accessDecisionManager" ref="accessDecisionManager" />
+	</bean>
+	
+	<bean id="httpSessionContextIntegrationFilterWithASCFalse" class="org.springframework.security.web.context.SecurityContextPersistenceFilter" >
+		<constructor-arg name="repo" ref="securityContextRepository"/>
+	</bean>
+
+	<bean id="securityContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository">
+		<property name="allowSessionCreation" value="false" />
+	</bean>
+	
+	<bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+		<constructor-arg name="providers" index="0">
+			<list>
+	            <ref bean="daoAuthenticationProvider"/>
+	            <ref bean="rememberMeAuthenticationProvider"/>
+	            <ref bean="anonymousAuthenticationProvider"/>
+	        </list>
+		</constructor-arg>
+   	</bean>
+   	
+   	<bean id="daoAuthenticationProvider" class="com.ahana.api.system.security.filters.AhanaDaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDao"/>
+		<property name="hideUserNotFoundExceptions" value="true"/>
+		<property name="passwordEncoder" ref="passwordEncoder"/>
+	</bean>
+	
+	<bean id="passwordEncoder" class="com.ahana.api.system.security.util.StringEncoder"/>
+   	
+   	<bean id="rememberMeAuthenticationProvider" class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+   		<constructor-arg name="key" value="ahana" index="0" type="java.lang.String"/>
+	</bean>
+	
+	<bean id="anonymousAuthenticationProvider" class="org.springframework.security.authentication.AnonymousAuthenticationProvider">
+		<constructor-arg name="key" value="anonymous" index="0" type="java.lang.String"/>
+	</bean>
+	
+	<bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
+		<constructor-arg name="authenticationEntryPoint" ref="authenticationEntryPoint" index="0"/>
+		<property name="accessDeniedHandler">
+		    <bean class="org.springframework.security.web.access.AccessDeniedHandlerImpl"/>
+	    </property>
+	</bean>
+	
+	<bean id="authenticationEntryPoint"	class="org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint">
+		<property name="realmName">
+			<value>Restricted resources</value>
+		</property>
+	</bean>
+	
+	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
+		<property name="rolePrefix" value=""/>
+	</bean>
+	
+	<bean id="webExpressionVoter" class="org.springframework.security.web.access.expression.WebExpressionVoter"/>
+	
+	<bean id="authenticationVoter" class="org.springframework.security.access.vote.AuthenticatedVoter" />
+	
+	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+		<property name="allowIfAllAbstainDecisions" value="false"/>
+		<constructor-arg name="decisionVoters" index="0" type="java.util.List">
+			<list>
+				<ref bean="roleVoter" />
+				<ref bean="authenticationVoter"/>
+				<ref bean="webExpressionVoter"/>
+			</list>
+		</constructor-arg>
+	</bean>
+</beans>
