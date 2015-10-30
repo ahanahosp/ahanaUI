@@ -61,7 +61,7 @@ You can also load external libs (not angular):
 ```js
 $ocLazyLoad.load([{
 	name: 'TestModule',
-	files: ['testModule.js', 'bower_components/bootstrap/dist/js/bootstrap.js']
+	files: ['testModule.js', 'views/bower_components/bootstrap/dist/js/bootstrap.js']
 },{
     name: 'AnotherModule',
     files: ['anotherModule.js']
@@ -71,21 +71,21 @@ $ocLazyLoad.load([{
 If you don't load angular files at all, you don't need to define the module name:
 ```js
 $ocLazyLoad.load([{
-	files: ['bower_components/bootstrap/dist/js/bootstrap.js']
+	files: ['views/bower_components/bootstrap/dist/js/bootstrap.js']
 }]);
 ```
 
 In fact, if you don't load an angular module, why bother with an object having a single `files` property? You can just pass the urls.
 Single file:
 ```js
-$ocLazyLoad.load('bower_components/bootstrap/dist/js/bootstrap.js');
+$ocLazyLoad.load('views/bower_components/bootstrap/dist/js/bootstrap.js');
 ```
 
 You can also load css and template files:
 ```js
 $ocLazyLoad.load([
-	'bower_components/bootstrap/dist/js/bootstrap.js',
-	'bower_components/bootstrap/dist/css/bootstrap.css',
+	'views/bower_components/bootstrap/dist/js/bootstrap.js',
+	'views/bower_components/bootstrap/dist/css/bootstrap.css',
 	'partials/template1.html'
 ]);
 ```
@@ -113,7 +113,7 @@ For example, these are equivalent:
 ```js
 $ocLazyLoad.load([{
 	name: 'TestModule',
-	files: ['testModule.js', 'bower_components/bootstrap/dist/js/bootstrap.js'],
+	files: ['testModule.js', 'views/bower_components/bootstrap/dist/js/bootstrap.js'],
 	cache: false
 },{
     name: 'AnotherModule',
@@ -125,7 +125,7 @@ And
 ```js
 $ocLazyLoad.load([{
 	name: 'TestModule',
-	files: ['testModule.js', 'bower_components/bootstrap/dist/js/bootstrap.js']
+	files: ['testModule.js', 'views/bower_components/bootstrap/dist/js/bootstrap.js']
 },{
     name: 'AnotherModule',
     files: ['anotherModule.js']
@@ -148,7 +148,7 @@ The parameter `cache: false` works for all native loaders (**all requests are ca
 $ocLazyLoad.load({
 	name: 'TestModule',
 	cache: false,
-	files: ['testModule.js', 'bower_components/bootstrap/dist/js/bootstrap.js']
+	files: ['testModule.js', 'views/bower_components/bootstrap/dist/js/bootstrap.js']
 });
 ```
 
@@ -157,7 +157,7 @@ By default, if you reload a module, the config block won't be invoked again (bec
 $ocLazyLoad.load({
 	name: 'TestModule',
 	reconfig: true,
-	files: ['testModule.js', 'bower_components/bootstrap/dist/js/bootstrap.js']
+	files: ['testModule.js', 'views/bower_components/bootstrap/dist/js/bootstrap.js']
 });
 ```
 
@@ -166,7 +166,7 @@ The same problem might happen with run blocks, use `rerun: true` to rerun the ru
 $ocLazyLoad.load({
 	name: 'TestModule',
 	rerun: true,
-	files: ['testModule.js', 'bower_components/bootstrap/dist/js/bootstrap.js']
+	files: ['testModule.js', 'views/bower_components/bootstrap/dist/js/bootstrap.js']
 });
 ```
 
@@ -187,7 +187,7 @@ The files, by default, will be inserted before the last child of the `head` elem
 $ocLazyLoad.load({
 	name: 'TestModule',
 	insertBefore: '#load_css_before',
-	files: ['bower_components/bootstrap/dist/css/bootstrap.css']
+	files: ['views/bower_components/bootstrap/dist/css/bootstrap.css']
 });
 ```
 

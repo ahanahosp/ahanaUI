@@ -9,7 +9,7 @@
       "home": "(021) 1234 8755",
       "work": "(021) 9000 9877",
       "notes": "",
-      "avatar": "img/a3.jpg"
+      "avatar": "views/img/a3.jpg"
     },
     {
       "group" : "Coworkers",
@@ -20,7 +20,7 @@
       "home": "(021) 9876 9485",
       "work": "(021) 2130 3049",
       "notes": "",
-      "avatar": "img/a0.jpg"
+      "avatar": "views/img/a0.jpg"
     },
     {
        "group" : "Family",
@@ -31,7 +31,7 @@
       "home": "(021) 1234 8755",
       "work": "(021) 9000 9877",
       "notes": "",
-      "avatar": "img/a1.jpg"
+      "avatar": "views/img/a1.jpg"
     },
     {
       "group" : "Friends",
@@ -42,7 +42,7 @@
       "home": "(021) 1234 8755",
       "work": "(021) 9000 9877",
       "notes": "",
-      "avatar": "img/a2.jpg"
+      "avatar": "views/img/a2.jpg"
     },
     {
       "group" : "Friends",
@@ -53,7 +53,7 @@
       "home": "(021) 1234 8755",
       "work": "(021) 9000 9877",
       "notes": "",
-      "avatar": "img/a4.jpg"
+      "avatar": "views/img/a4.jpg"
     },
     {
       "group" : "Group",
@@ -64,7 +64,7 @@
       "home": "(021) 1234 8755",
       "work": "(021) 9000 9877",
       "notes": "",
-      "avatar": "img/a5.jpg"
+      "avatar": "views/img/a5.jpg"
     },
     {
       "group" : "Friends",
@@ -75,7 +75,7 @@
       "home": "(021) 1234 8755",
       "work": "(021) 9000 9877",
       "notes": "",
-      "avatar": "img/a6.jpg"
+      "avatar": "views/img/a6.jpg"
     },
     {
       "group" : "Group",
@@ -86,7 +86,7 @@
       "home": "(021) 1234 8755",
       "work": "(021) 9000 9877",
       "notes": "",
-      "avatar": "img/a7.jpg"
+      "avatar": "views/img/a7.jpg"
     },
     {
       "group" : "Group",
@@ -97,7 +97,7 @@
       "home": "(021) 1234 8755",
       "work": "(021) 9000 9877",
       "notes": "",
-      "avatar": "img/a8.jpg"
+      "avatar": "views/img/a8.jpg"
     },
     {
       "group" : "Partners",
@@ -108,7 +108,7 @@
       "home": "(021) 1234 8755",
       "work": "(021) 9000 9877",
       "notes": "",
-      "avatar": "img/a9.jpg"
+      "avatar": "views/img/a9.jpg"
     },
     {
       "group" : "Partners",
@@ -119,7 +119,7 @@
       "home": "(021) 1234 8755",
       "work": "(021) 9000 9877",
       "notes": "",
-      "avatar": "img/a8.jpg"
+      "avatar": "views/img/a8.jpg"
     },
     {
       "group" : "Family",
@@ -130,7 +130,7 @@
       "home": "(021) 1234 8755",
       "work": "(021) 9000 9877",
       "notes": "",
-      "avatar": "img/a8.jpg"
+      "avatar": "views/img/a8.jpg"
     },
     {
       "group" : "Coworkers",
@@ -141,7 +141,7 @@
       "home": "(021) 1234 8755",
       "work": "(021) 9000 9877",
       "notes": "",
-      "avatar": "img/a8.jpg"
+      "avatar": "views/img/a8.jpg"
     }
   ]
 }

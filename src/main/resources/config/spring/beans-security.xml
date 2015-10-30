@@ -9,25 +9,21 @@
           
     <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
 	 
-	<alias name="filterChainProxy" alias="springSecurityFilterChain"/>
+	<!--<alias name="filterChainProxy" alias="springSecurityFilterChain"/>
 	
-	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+	 <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
 		<sec:filter-chain-map request-matcher="ant">
  			<sec:filter-chain pattern="/services/rest/secure/**" filters="httpSessionContextIntegrationFilterWithASCFalse,
  					exceptionTranslationFilter"/>
- 			<!-- <sec:filter-chain pattern="/services/secure/**" filters="httpSessionContextIntegrationFilterWithASCFalse,
- 					exceptionTranslationFilter,
- 					ahanaSecurityFilter,
- 					filterInvocationInterceptor"/> -->
 		</sec:filter-chain-map>
 	</bean>
 	
-	<bean id="ahanaSecurityFilter" class="com.ahana.api.system.security.filters.AhanaSecurityFilter"/>
+	<bean id="ahanaSecurityFilter" class="com.ahana.api.system.security.filters.AhanaSecurityFilter"/> 
 	
 	<bean id="filterInvocationInterceptor" class="com.ahana.api.system.security.filters.AhanaFilterSecurityInterceptor">
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="accessDecisionManager" ref="accessDecisionManager" />
-	</bean>
+	</bean> 
 	
 	<bean id="httpSessionContextIntegrationFilterWithASCFalse" class="org.springframework.security.web.context.SecurityContextPersistenceFilter" >
 		<constructor-arg name="repo" ref="securityContextRepository"/>
@@ -93,5 +89,5 @@
 				<ref bean="webExpressionVoter"/>
 			</list>
 		</constructor-arg>
-	</bean>
+	</bean>-->
 </beans>

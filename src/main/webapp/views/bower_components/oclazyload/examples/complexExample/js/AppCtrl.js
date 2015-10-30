@@ -14,15 +14,15 @@ angular.module('app').controller('AppCtrl', function($scope, $ocLazyLoad) {
   $scope.loadBootstrap = function() {
     // use events to know when the files are loaded
     var unbind = $scope.$on('ocLazyLoad.fileLoaded', function(e, file) {
-      if(file === 'bower_components/bootstrap/dist/css/bootstrap.css') {
+      if(file === 'views/bower_components/bootstrap/dist/css/bootstrap.css') {
         $scope.bootstrapLoaded = true;
         unbind();
       }
     });
     // we could use .then here instead of events
     $ocLazyLoad.load([
-      'bower_components/bootstrap/dist/js/bootstrap.js',
-      'bower_components/bootstrap/dist/css/bootstrap.css'
+      'views/bower_components/bootstrap/dist/js/bootstrap.js',
+      'views/bower_components/bootstrap/dist/css/bootstrap.css'
     ]);
   };
 });

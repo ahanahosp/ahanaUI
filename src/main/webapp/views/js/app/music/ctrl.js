@@ -7,7 +7,7 @@ app.controller('MusicCtrl',
       {
         title: "1. Lentement",
         artist:"Miaow",
-        poster: "img/b0.jpg",
+        poster: "views/img/b0.jpg",
         sources: [
           {src: $sce.trustAsResourceUrl("http://flatfull.com/themes/assets/musics/Miaow-03-Lentement.mp3"), type: "audio/mpeg"},
           {src: $sce.trustAsResourceUrl("http://flatfull.com/themes/assets/musics/Miaow-03-Lentement.ogg"), type: "audio/ogg"}
@@ -16,7 +16,7 @@ app.controller('MusicCtrl',
       {
         title: "2. Bubble",
         artist:"Miaow",
-        poster: "img/b1.jpg",
+        poster: "views/img/b1.jpg",
         sources: [
           {src: $sce.trustAsResourceUrl("http://flatfull.com/themes/assets/musics/Miaow-07-Bubble.mp3"), type: "audio/mpeg"},
           {src: $sce.trustAsResourceUrl("http://flatfull.com/themes/assets/musics/Miaow-07-Bubble.ogg"), type: "audio/ogg"}
@@ -25,7 +25,7 @@ app.controller('MusicCtrl',
       {
         title: "3. Partir",
         artist:"Miaow",
-        poster: "img/b2.jpg",
+        poster: "views/img/b2.jpg",
         sources: [
           {src: $sce.trustAsResourceUrl("http://flatfull.com/themes/assets/musics/Miaow-09-Partir.mp3"), type: "audio/mpeg"},
           {src: $sce.trustAsResourceUrl("http://flatfull.com/themes/assets/musics/Miaow-09-Partir.ogg"), type: "audio/ogg"}
@@ -122,7 +122,7 @@ app.controller('MusicCtrl',
           autoHide: true,
           autoHideTime: 5000
         },
-        poster: "img/c1.jpg"
+        poster: "views/img/c1.jpg"
       }
     };
 

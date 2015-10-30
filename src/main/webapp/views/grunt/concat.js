@@ -34,8 +34,8 @@ module.exports = {
     },
     html: {
         src: [
-            'bower_components/jquery/dist/jquery.min.js',
-            'bower_components/bootstrap/dist/js/bootstrap.js',
+            'views/bower_components/jquery/dist/jquery.min.js',
+            'views/bower_components/bootstrap/dist/js/bootstrap.js',
             'html/js/*.js'
         ],
         dest: 'html/js/app.src.js'

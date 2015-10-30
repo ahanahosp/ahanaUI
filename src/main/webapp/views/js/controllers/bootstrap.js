@@ -63,7 +63,7 @@ app.controller('CarouselDemoCtrl', ['$scope', function ($scope) {
     var slides = $scope.slides = [];
     $scope.addSlide = function () {
         slides.push({
-            image: 'img/c' + slides.length + '.jpg',
+            image: 'views/img/c' + slides.length + '.jpg',
             text: ['Carousel text #0', 'Carousel text #1', 'Carousel text #2', 'Carousel text #3'][slides.length % 4]
         });
     };

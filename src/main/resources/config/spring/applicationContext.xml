@@ -10,6 +10,6 @@
 
 	<context:annotation-config/>
 	
-	<bean id="placeholderConfig" class="com.ahana.api.system.security.common.AhanaPropertyPlaceholderConfigurer"/>
+	<!-- <bean id="placeholderConfig" class="com.ahana.api.system.security.common.AhanaPropertyPlaceholderConfigurer"/> -->
 	<import resource="classpath:config/spring/beans-security.xml"/>
   </beans>
