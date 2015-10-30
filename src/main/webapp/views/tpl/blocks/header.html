@@ -1,0 +1,99 @@
+<!-- navbar header -->
+
+<div class="visible-xs navbar-header {{app.settings.navbarHeaderColor}}">
+  <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+    <i class="glyphicon glyphicon-cog"></i>
+  </button>
+  <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll-to="app">
+    <i class="glyphicon glyphicon-align-justify"></i>
+  </button>
+
+  <a href="#" class="navbar-brand text-lt">
+    <!--  <i class="fa fa-btc"></i>
+      <img src="img/logo.png" alt="." class="hide">-->
+    <span class="hidden-folded m-l-xs">{{app.name}}</span> </a>
+
+</div><!-- / navbar header -->
+
+<!-- navbar collapse -->
+<div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
+  <!-- search form -->
+  <form class="navbar-form navbar-form-sm navbar-left shift" ui-shift="prependTo" target=".navbar-collapse" role="search" ng-controller="TypeaheadDemoCtrl">
+    <div class="form-group">
+      <div class="input-group">
+        <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control input-sm bg-light no-border rounded padder" placeholder="Search ...">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-sm bg-light rounded"><i class="fa fa-search"></i></button>
+          </span>
+      </div>
+    </div>
+  </form>
+  <!-- / search form -->
+  <div class="navbar-header">
+    <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+      <i class="glyphicon glyphicon-cog"></i>
+    </button>
+    <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll-to="app">
+      <i class="glyphicon glyphicon-align-justify"></i>
+    </button>
+
+    <a href="#/" class="navbar-brand text-lt"> <img src="views/img/logo.png" alt="." class="hide"> <span class="hidden-folded m-l-xs">{{app.name}}</span> </a>
+
+  </div>
+
+  <!-- link and dropdown -->
+  <ul class="nav navbar-nav hidden-sm">
+
+    <li><a href="#"> My Works </a></li>
+    <li ng-class="{'active':app.settings.menu=='ip'}"><a ui-sref="app.inpatient" ng-click="app.settings.menu = 'ip'"> In-Patient </a></li>
+    <li ng-class="{'active':app.settings.menu=='op'}"><a ui-sref="app.outpatient" ng-click="app.settings.menu = 'op'"> Out-Patients </a></li>
+    <li ng-class="{'active':app.settings.menu=='pharmacy'}"><a href="#" ng-click="app.settings.menu = 'pharmacy'">Pharmacy </a></li>
+    <li ng-class="{'active':app.settings.menu=='configuration'}"><a ng-click="app.settings.menu = 'configuration'"> Configuration </a></li>
+    <!--<li>
+      <div class="btn-group" dropdown is-open="status.isopen">
+        <a dropdown-toggle> Configuration &nbsp;&nbsp;<span class="caret"></span> </a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a ui-sref="app.register">Register</a></li>
+          <li class="divider"></li>
+          <li><a ui-sref="app.organizationModule">Organization Module</a></li>
+          <li><a ui-sref="app.roles">Roles</a></li>
+          <li><a ui-sref="app.floor">Floor</a></li>
+          <li><a ui-sref="app.ward">Ward</a></li>
+          <li><a ui-sref="app.accountHead">Category Item For Charge</a></li>
+          <li><a ui-sref="app.procedures">Procedures</a></li>
+          <li><a ui-sref="app.speciality">Speciality</a></li>
+          <li><a ui-sref="app.room">Room</a></li>
+          <li><a ui-sref="app.roomType">Room Types</a></li>
+          <li><a ui-sref="app.roomChargeItems">Room Charge Items</a></li>
+          <li><a ui-sref="app.roomCharges">Room Charges</a></li>
+          <li><a ui-sref="app.roomMaintenance">Room Maintenance</a></li>
+          <li class="divider"></li>
+          <li><a ui-sref="app.userRegistration">User Registration</a></li>
+        </ul>
+      </div>
+    </li>-->
+
+  </ul>
+  <!-- / link and dropdown -->
+
+  <!-- nabar right -->
+  <ul class="nav navbar-nav navbar-right">
+
+    <li class="hidden-xs">
+      <a href="#" class="sb-toggle-right"> <i class="fa fa-bars"></i> </a>
+    </li>
+
+  </ul>
+  <!-- / navbar right -->
+
+</div><!-- / navbar collapse -->
+
+<script>
+  (function ( $ ) {
+    $ (document).ready (function () {
+      $.slidebars ({
+        scrollLock: true
+      });
+    });
+  }) (jQuery);
+</script>
