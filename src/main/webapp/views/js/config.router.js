@@ -20,7 +20,7 @@ angular.module ('app')
         .state ('app', {
         abstract: true,
         url: '/app',
-        templateUrl: 'tpl/app.html'
+        templateUrl: 'views/tpl/app.html'
       })
         .state ('app.dashboard-v1', {
         url: '/dashboard-v1',
@@ -28,27 +28,27 @@ angular.module ('app')
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
-              return $ocLazyLoad.load (['js/controllers/chart.js']);
+              return $ocLazyLoad.load (['views/js/controllers/chart.js']);
             }]
         }
       })
         .state ('app.registration', {
         url: '/registration',
-        templateUrl: 'tpl/registration.html',
+        templateUrl: 'views/tpl/registration.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
-              return $ocLazyLoad.load (['js/controllers/registration.js']);
+              return $ocLazyLoad.load (['views/js/controllers/registration.js']);
             }]
         }
       })
         .state ('app.dashboard-v2', {
         url: '/dashboard-v2',
-        templateUrl: 'tpl/app_dashboard_v2.html',
+        templateUrl: 'views/tpl/app_dashboard_v2.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
-              return $ocLazyLoad.load (['js/controllers/chart.js']);
+              return $ocLazyLoad.load (['views/js/controllers/chart.js']);
             }]
         }
       })
@@ -58,55 +58,55 @@ angular.module ('app')
       })
         .state ('app.ui.buttons', {
         url: '/buttons',
-        templateUrl: 'tpl/ui_buttons.html'
+        templateUrl: 'views/tpl/ui_buttons.html'
       })
         .state ('app.ui.icons', {
         url: '/icons',
-        templateUrl: 'tpl/ui_icons.html'
+        templateUrl: 'views/tpl/ui_icons.html'
       })
         .state ('app.ui.grid', {
         url: '/grid',
-        templateUrl: 'tpl/ui_grid.html'
+        templateUrl: 'views/tpl/ui_grid.html'
       })
         .state ('app.ui.widgets', {
         url: '/widgets',
-        templateUrl: 'tpl/ui_widgets.html'
+        templateUrl: 'views/tpl/ui_widgets.html'
       })
         .state ('app.ui.bootstrap', {
         url: '/bootstrap',
-        templateUrl: 'tpl/ui_bootstrap.html'
+        templateUrl: 'views/tpl/ui_bootstrap.html'
       })
         .state ('app.ui.sortable', {
         url: '/sortable',
-        templateUrl: 'tpl/ui_sortable.html'
+        templateUrl: 'views/tpl/ui_sortable.html'
       })
         .state ('app.ui.scroll', {
         url: '/scroll',
-        templateUrl: 'tpl/ui_scroll.html',
+        templateUrl: 'views/tpl/ui_scroll.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/scroll.js');
+              return uiLoad.load ('views/js/controllers/scroll.js');
             }]
         }
       })
         .state ('app.ui.portlet', {
         url: '/portlet',
-        templateUrl: 'tpl/ui_portlet.html'
+        templateUrl: 'views/tpl/ui_portlet.html'
       })
         .state ('app.ui.timeline', {
         url: '/timeline',
-        templateUrl: 'tpl/ui_timeline.html'
+        templateUrl: 'views/tpl/ui_timeline.html'
       })
         .state ('app.ui.tree', {
         url: '/tree',
-        templateUrl: 'tpl/ui_tree.html',
+        templateUrl: 'views/tpl/ui_tree.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('angularBootstrapNavTree').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/tree.js');
+                  return $ocLazyLoad.load ('views/js/controllers/tree.js');
                 }
               );
             }
@@ -115,13 +115,13 @@ angular.module ('app')
       })
         .state ('app.ui.toaster', {
         url: '/toaster',
-        templateUrl: 'tpl/ui_toaster.html',
+        templateUrl: 'views/tpl/ui_toaster.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('toaster').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/toaster.js');
+                  return $ocLazyLoad.load ('views/js/controllers/toaster.js');
                 }
               );
             }]
@@ -129,24 +129,24 @@ angular.module ('app')
       })
         .state ('app.ui.jvectormap', {
         url: '/jvectormap',
-        templateUrl: 'tpl/ui_jvectormap.html',
+        templateUrl: 'views/tpl/ui_jvectormap.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
-              return $ocLazyLoad.load ('js/controllers/vectormap.js');
+              return $ocLazyLoad.load ('views/js/controllers/vectormap.js');
             }]
         }
       })
         .state ('app.ui.googlemap', {
         url: '/googlemap',
-        templateUrl: 'tpl/ui_googlemap.html',
+        templateUrl: 'views/tpl/ui_googlemap.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
               return uiLoad.load ([
-                'js/app/map/load-google-maps.js',
-                'js/app/map/ui-map.js',
-                'js/app/map/map.js']).then (
+                'views/js/app/map/load-google-maps.js',
+                'views/js/app/map/ui-map.js',
+                'views/js/app/map/map.js']).then (
                 function (){
                   return loadGoogleMaps ();
                 }
@@ -156,11 +156,11 @@ angular.module ('app')
       })
         .state ('app.chart', {
         url: '/chart',
-        templateUrl: 'tpl/ui_chart.html',
+        templateUrl: 'views/tpl/ui_chart.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/chart.js');
+              return uiLoad.load ('views/js/controllers/chart.js');
             }]
         }
       })
@@ -171,25 +171,25 @@ angular.module ('app')
       })
         .state ('app.table.static', {
         url: '/static',
-        templateUrl: 'tpl/table_static.html'
+        templateUrl: 'views/tpl/table_static.html'
       })
         .state ('app.table.datatable', {
         url: '/datatable',
-        templateUrl: 'tpl/table_datatable.html'
+        templateUrl: 'views/tpl/table_datatable.html'
       })
         .state ('app.table.footable', {
         url: '/footable',
-        templateUrl: 'tpl/table_footable.html'
+        templateUrl: 'views/tpl/table_footable.html'
       })
         .state ('app.table.grid', {
         url: '/grid',
-        templateUrl: 'tpl/table_grid.html',
+        templateUrl: 'views/tpl/table_grid.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('ngGrid').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/grid.js');
+                  return $ocLazyLoad.load ('views/js/controllers/grid.js');
                 }
               );
             }]
@@ -197,13 +197,13 @@ angular.module ('app')
       })
         .state ('app.table.uigrid', {
         url: '/uigrid',
-        templateUrl: 'tpl/table_uigrid.html',
+        templateUrl: 'views/tpl/table_uigrid.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('ui.grid').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/uigrid.js');
+                  return $ocLazyLoad.load ('views/js/controllers/uigrid.js');
                 }
               );
             }]
@@ -211,14 +211,14 @@ angular.module ('app')
       })
         .state ('app.table.editable', {
         url: '/editable',
-        templateUrl: 'tpl/table_editable.html',
+        templateUrl: 'views/tpl/table_editable.html',
         controller: 'XeditableCtrl',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/xeditable.js');
+                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -226,14 +226,14 @@ angular.module ('app')
       })
         .state ('app.inpatient', {
         url: '/inpatient',
-        templateUrl: 'tpl/inpatient.html',
+        templateUrl: 'views/tpl/inpatient.html',
         controller: 'XeditableCtrl',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/xeditable.js');
+                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -241,14 +241,14 @@ angular.module ('app')
       })
         .state ('app.outpatient', {
         url: '/outpatient',
-        templateUrl: 'tpl/outpatient.html',
+        templateUrl: 'views/tpl/outpatient.html',
         controller: 'XeditableCtrl',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/xeditable.js');
+                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -256,14 +256,14 @@ angular.module ('app')
       })
         .state ('app.inpatient-new', {
         url: '/inpatient-new',
-        templateUrl: 'tpl/inpatient-new.html',
+        templateUrl: 'views/tpl/inpatient-new.html',
         controller: 'XeditableCtrl',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/xeditable.js');
+                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -271,14 +271,14 @@ angular.module ('app')
       })
         .state ('app.outpatient-new', {
         url: '/outpatient-new',
-        templateUrl: 'tpl/outpatient-new.html',
+        templateUrl: 'views/tpl/outpatient-new.html',
         controller: 'XeditableCtrl',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/xeditable.js');
+                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -286,14 +286,14 @@ angular.module ('app')
       })
         .state ('app.dummy', {
         url: '/dummy',
-        templateUrl: 'tpl/dummy.html',
+        templateUrl: 'views/tpl/dummy.html',
         controller: 'XeditableCtrl',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/xeditable.js');
+                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -301,480 +301,480 @@ angular.module ('app')
       })
         .state ('app.register', {
         url: '/register',
-        templateUrl: 'tpl/register.html',
+        templateUrl: 'views/tpl/register.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/registration.js');
+              return uiLoad.load ('views/js/controllers/registration.js');
             }
           ]
         }
       }).state ('app.createRole', {
         url: '/createRole',
-        templateUrl: 'tpl/create_role.html',
+        templateUrl: 'views/tpl/create_role.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roles.js');
+              return uiLoad.load ('views/js/controllers/roles.js');
             }
           ]
         }
       })
         .state ('app.editRole', {
         url: '/editRole/{oid}',
-        templateUrl: 'tpl/edit_role.html',
+        templateUrl: 'views/tpl/edit_role.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roles.js');
+              return uiLoad.load ('views/js/controllers/roles.js');
             }
           ]
         }
       }).state ('app.roles', {
         url: '/roles',
-        templateUrl: 'tpl/roles.html',
+        templateUrl: 'views/tpl/roles.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roles.js');
+              return uiLoad.load ('views/js/controllers/roles.js');
             }
           ]
         }
       }).state ('app.organization', {
         url: '/organization',
-        templateUrl: 'tpl/organization.html',
+        templateUrl: 'views/tpl/organization.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/organization.js');
+              return uiLoad.load ('views/js/controllers/organization.js');
             }
           ]
         }
       }).state ('app.organizationModule', {
         url: '/organizationModule',
-        templateUrl: 'tpl/organization_module.html',
+        templateUrl: 'views/tpl/organization_module.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/organizationModule.js');
+              return uiLoad.load ('views/js/controllers/organizationModule.js');
             }
           ]
         }
       })
         .state ('app.createFloor', {
         url: '/createFloor',
-        templateUrl: 'tpl/create_floor.html',
+        templateUrl: 'views/tpl/create_floor.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/floor.js');
+              return uiLoad.load ('views/js/controllers/floor.js');
             }
           ]
         }
       })
         .state ('app.editFloor', {
         url: '/editFloor/{oid}',
-        templateUrl: 'tpl/edit_floor.html',
+        templateUrl: 'views/tpl/edit_floor.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/floor.js');
+              return uiLoad.load ('views/js/controllers/floor.js');
             }
           ]
         }
       }).state ('app.floor', {
         url: '/floor',
-        templateUrl: 'tpl/floor.html',
+        templateUrl: 'views/tpl/floor.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/floor.js');
+              return uiLoad.load ('views/js/controllers/floor.js');
             }
           ]
         }
       })
         .state ('app.createWard', {
         url: '/createWard',
-        templateUrl: 'tpl/create_ward.html',
+        templateUrl: 'views/tpl/create_ward.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/ward.js');
+              return uiLoad.load ('views/js/controllers/ward.js');
             }
           ]
         }
       })
         .state ('app.editWard', {
         url: '/editWard/{oid}',
-        templateUrl: 'tpl/edit_ward.html',
+        templateUrl: 'views/tpl/edit_ward.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/ward.js');
+              return uiLoad.load ('views/js/controllers/ward.js');
             }
           ]
         }
       }).state ('app.ward', {
         url: '/ward',
-        templateUrl: 'tpl/ward.html',
+        templateUrl: 'views/tpl/ward.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/ward.js');
+              return uiLoad.load ('views/js/controllers/ward.js');
             }
           ]
         }
       })
         .state ('app.createUserRegistration', {
         url: '/createUserRegistration',
-        templateUrl: 'tpl/create_userregistration.html',
+        templateUrl: 'views/tpl/create_userregistration.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/userRegistration.js');
+              return uiLoad.load ('views/js/controllers/userRegistration.js');
             }
           ]
         }
       })
         .state ('app.editUserRegistration', {
         url: '/editUserRegistration/{oid}',
-        templateUrl: 'tpl/edit_userregistration.html',
+        templateUrl: 'views/tpl/edit_userregistration.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/userRegistration.js');
+              return uiLoad.load ('views/js/controllers/userRegistration.js');
             }
           ]
         }
       }).state ('app.userRegistration', {
         url: '/userRegistration',
-        templateUrl: 'tpl/userregistration.html',
+        templateUrl: 'views/tpl/userregistration.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/userRegistration.js');
+              return uiLoad.load ('views/js/controllers/userRegistration.js');
             }
           ]
         }
       })
         .state ('app.createAccountHead', {
         url: '/createAccountHead',
-        templateUrl: 'tpl/create_accounthead.html',
+        templateUrl: 'views/tpl/create_accounthead.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/accounthead.js');
+              return uiLoad.load ('views/js/controllers/accounthead.js');
             }
           ]
         }
       })
         .state ('app.editAccountHead', {
         url: '/editAccountHead/{oid}',
-        templateUrl: 'tpl/edit_accounthead.html',
+        templateUrl: 'views/tpl/edit_accounthead.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/accounthead.js');
+              return uiLoad.load ('views/js/controllers/accounthead.js');
             }
           ]
         }
       }).state ('app.accountHead', {
         url: '/accountHead',
-        templateUrl: 'tpl/accounthead.html',
+        templateUrl: 'views/tpl/accounthead.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/accounthead.js');
+              return uiLoad.load ('views/js/controllers/accounthead.js');
             }
           ]
         }
       })
         .state ('app.createProcedures', {
         url: '/createProcedures',
-        templateUrl: 'tpl/create_procedures.html',
+        templateUrl: 'views/tpl/create_procedures.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/procedures.js');
+              return uiLoad.load ('views/js/controllers/procedures.js');
             }
           ]
         }
       })
         .state ('app.editProcedures', {
         url: '/editProcedures/{oid}',
-        templateUrl: 'tpl/edit_procedures.html',
+        templateUrl: 'views/tpl/edit_procedures.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/procedures.js');
+              return uiLoad.load ('views/js/controllers/procedures.js');
             }
           ]
         }
       }).state ('app.procedures', {
         url: '/procedures',
-        templateUrl: 'tpl/procedures.html',
+        templateUrl: 'views/tpl/procedures.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/procedures.js');
+              return uiLoad.load ('views/js/controllers/procedures.js');
             }
           ]
         }
       })
         .state ('app.createSpeciality', {
         url: '/createSpeciality',
-        templateUrl: 'tpl/create_speciality.html',
+        templateUrl: 'views/tpl/create_speciality.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/speciality.js');
+              return uiLoad.load ('views/js/controllers/speciality.js');
             }
           ]
         }
       })
         .state ('app.editSpeciality', {
         url: '/editSpeciality/{oid}',
-        templateUrl: 'tpl/edit_speciality.html',
+        templateUrl: 'views/tpl/edit_speciality.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/speciality.js');
+              return uiLoad.load ('views/js/controllers/speciality.js');
             }
           ]
         }
       }).state ('app.speciality', {
         url: '/speciality',
-        templateUrl: 'tpl/speciality.html',
+        templateUrl: 'views/tpl/speciality.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/speciality.js');
+              return uiLoad.load ('views/js/controllers/speciality.js');
             }
           ]
         }
       })
         .state ('app.createRoomType', {
         url: '/createRoomType',
-        templateUrl: 'tpl/create_roomtype.html',
+        templateUrl: 'views/tpl/create_roomtype.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roomtype.js');
+              return uiLoad.load ('views/js/controllers/roomtype.js');
             }
           ]
         }
       })
         .state ('app.editRoomType', {
         url: '/editRoomType/{oid}',
-        templateUrl: 'tpl/edit_roomtype.html',
+        templateUrl: 'views/tpl/edit_roomtype.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roomtype.js');
+              return uiLoad.load ('views/js/controllers/roomtype.js');
             }
           ]
         }
       }).state ('app.roomType', {
         url: '/roomType',
-        templateUrl: 'tpl/roomtype.html',
+        templateUrl: 'views/tpl/roomtype.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roomtype.js');
+              return uiLoad.load ('views/js/controllers/roomtype.js');
             }
           ]
         }
       })
         .state ('app.createRoom', {
         url: '/createRoom',
-        templateUrl: 'tpl/create_room.html',
+        templateUrl: 'views/tpl/create_room.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/room.js');
+              return uiLoad.load ('views/js/controllers/room.js');
             }
           ]
         }
       })
         .state ('app.editRoom', {
         url: '/editRoom/{oid}',
-        templateUrl: 'tpl/edit_room.html',
+        templateUrl: 'views/tpl/edit_room.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/room.js');
+              return uiLoad.load ('views/js/controllers/room.js');
             }
           ]
         }
       }).state ('app.room', {
         url: '/room',
-        templateUrl: 'tpl/room.html',
+        templateUrl: 'views/tpl/room.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/room.js');
+              return uiLoad.load ('views/js/controllers/room.js');
             }
           ]
         }
       })
         .state ('app.createRoomChargeItems', {
         url: '/createRoomChargeItems',
-        templateUrl: 'tpl/create_roomchargeitem.html',
+        templateUrl: 'views/tpl/create_roomchargeitem.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roomchargeitems.js');
+              return uiLoad.load ('views/js/controllers/roomchargeitems.js');
             }
           ]
         }
       })
         .state ('app.editRoomChargeItems', {
         url: '/editRoomChargeItems/{oid}',
-        templateUrl: 'tpl/edit_roomchargeitem.html',
+        templateUrl: 'views/tpl/edit_roomchargeitem.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roomchargeitems.js');
+              return uiLoad.load ('views/js/controllers/roomchargeitems.js');
             }
           ]
         }
       }).state ('app.roomChargeItems', {
         url: '/roomChargeItems',
-        templateUrl: 'tpl/roomchargeitems.html',
+        templateUrl: 'views/tpl/roomchargeitems.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roomchargeitems.js');
+              return uiLoad.load ('views/js/controllers/roomchargeitems.js');
             }
           ]
         }
       })
         .state ('app.createRoomCharges', {
         url: '/createRoomCharges',
-        templateUrl: 'tpl/create_roomcharges.html',
+        templateUrl: 'views/tpl/create_roomcharges.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roomcharges.js');
+              return uiLoad.load ('views/js/controllers/roomcharges.js');
             }
           ]
         }
       })
         .state ('app.editRoomCharges', {
         url: '/editRoomCharges/{oid}',
-        templateUrl: 'tpl/edit_roomcharges.html',
+        templateUrl: 'views/tpl/edit_roomcharges.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roomcharges.js');
+              return uiLoad.load ('views/js/controllers/roomcharges.js');
             }
           ]
         }
       }).state ('app.roomCharges', {
         url: '/roomCharges',
-        templateUrl: 'tpl/roomcharges.html',
+        templateUrl: 'views/tpl/roomcharges.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roomcharges.js');
+              return uiLoad.load ('views/js/controllers/roomcharges.js');
             }
           ]
         }
       })
         .state ('app.createRoomMaintenance', {
         url: '/createRoomMaintenance',
-        templateUrl: 'tpl/create_roommaintenance.html',
+        templateUrl: 'views/tpl/create_roommaintenance.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roommaintenance.js');
+              return uiLoad.load ('views/js/controllers/roommaintenance.js');
             }
           ]
         }
       })
         .state ('app.editRoomMaintenance', {
         url: '/editRoomMaintenance/{oid}',
-        templateUrl: 'tpl/edit_roommaintenance.html',
+        templateUrl: 'views/tpl/edit_roommaintenance.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roommaintenance.js');
+              return uiLoad.load ('views/js/controllers/roommaintenance.js');
             }
           ]
         }
       }).state ('app.roomMaintenance', {
         url: '/roomMaintenance',
-        templateUrl: 'tpl/roommaintenance.html',
+        templateUrl: 'views/tpl/roommaintenance.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roommaintenance.js');
+              return uiLoad.load ('views/js/controllers/roommaintenance.js');
             }
           ]
         }
       })
         .state ('app.createAlertType', {
         url: '/createAlertType',
-        templateUrl: 'tpl/create_alerttype.html',
+        templateUrl: 'views/tpl/create_alerttype.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/alerttype.js');
+              return uiLoad.load ('views/js/controllers/alerttype.js');
             }
           ]
         }
       })
         .state ('app.editAlertType', {
         url: '/editAlertType/{oid}',
-        templateUrl: 'tpl/edit_alerttype.html',
+        templateUrl: 'views/tpl/edit_alerttype.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/alerttype.js');
+              return uiLoad.load ('views/js/controllers/alerttype.js');
             }
           ]
         }
       }).state ('app.alertType', {
         url: '/alertType',
-        templateUrl: 'tpl/alerttype.html',
+        templateUrl: 'views/tpl/alerttype.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/alerttype.js');
+              return uiLoad.load ('views/js/controllers/alerttype.js');
             }
           ]
         }
       }).state ('app.roleRights', {
         url: '/roleRights',
-        templateUrl: 'tpl/role_rights.html',
+        templateUrl: 'views/tpl/role_rights.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/roleRights.js');
+              return uiLoad.load ('views/js/controllers/roleRights.js');
             }
           ]
         }
       })       
 	 .state ('app.userRole', {
         url: '/userRole',
-        templateUrl: 'tpl/userroles.html',
+        templateUrl: 'views/tpl/userroles.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/userroles.js');
+              return uiLoad.load ('views/js/controllers/userroles.js');
             }
           ]
         }
       })
         .state ('app.table.smart', {
         url: '/smart',
-        templateUrl: 'tpl/table_smart.html',
+        templateUrl: 'views/tpl/table_smart.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('smart-table').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/table.js');
+                  return $ocLazyLoad.load ('views/js/controllers/table.js');
                 }
               );
             }]
@@ -787,20 +787,20 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('js/controllers/form.js');
+              return uiLoad.load ('views/js/controllers/form.js');
             }]
         }
       })
         .state ('app.form.components', {
         url: '/components',
-        templateUrl: 'tpl/form_components.html',
+        templateUrl: 'views/tpl/form_components.html',
         resolve: {
           deps: ['uiLoad', '$ocLazyLoad',
             function (uiLoad, $ocLazyLoad){
               return uiLoad.load (JQ_CONFIG.daterangepicker)
                 .then (
                 function (){
-                  return uiLoad.load ('js/controllers/form.components.js');
+                  return uiLoad.load ('views/js/controllers/form.components.js');
                 }
               ).then (
                 function (){
@@ -813,25 +813,25 @@ angular.module ('app')
       })
         .state ('app.form.elements', {
         url: '/elements',
-        templateUrl: 'tpl/form_elements.html'
+        templateUrl: 'views/tpl/form_elements.html'
       })
         .state ('app.form.validation', {
         url: '/validation',
-        templateUrl: 'tpl/form_validation.html'
+        templateUrl: 'views/tpl/form_validation.html'
       })
         .state ('app.form.wizard', {
         url: '/wizard',
-        templateUrl: 'tpl/form_wizard.html'
+        templateUrl: 'views/tpl/form_wizard.html'
       })
         .state ('app.form.fileupload', {
         url: '/fileupload',
-        templateUrl: 'tpl/form_fileupload.html',
+        templateUrl: 'views/tpl/form_fileupload.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('angularFileUpload').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/file-upload.js');
+                  return $ocLazyLoad.load ('views/js/controllers/file-upload.js');
                 }
               );
             }]
@@ -839,13 +839,13 @@ angular.module ('app')
       })
         .state ('app.form.imagecrop', {
         url: '/imagecrop',
-        templateUrl: 'tpl/form_imagecrop.html',
+        templateUrl: 'views/tpl/form_imagecrop.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('ngImgCrop').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/imgcrop.js');
+                  return $ocLazyLoad.load ('views/js/controllers/imgcrop.js');
                 }
               );
             }]
@@ -853,14 +853,14 @@ angular.module ('app')
       })
         .state ('app.form.select', {
         url: '/select',
-        templateUrl: 'tpl/form_select.html',
+        templateUrl: 'views/tpl/form_select.html',
         controller: 'SelectCtrl',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('ui.select').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/select.js');
+                  return $ocLazyLoad.load ('views/js/controllers/select.js');
                 }
               );
             }]
@@ -868,14 +868,14 @@ angular.module ('app')
       })
         .state ('app.form.slider', {
         url: '/slider',
-        templateUrl: 'tpl/form_slider.html',
+        templateUrl: 'views/tpl/form_slider.html',
         controller: 'SliderCtrl',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('vr.directives.slider').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/slider.js');
+                  return $ocLazyLoad.load ('views/js/controllers/slider.js');
                 }
               );
             }]
@@ -883,14 +883,14 @@ angular.module ('app')
       })
         .state ('app.form.editor', {
         url: '/editor',
-        templateUrl: 'tpl/form_editor.html',
+        templateUrl: 'views/tpl/form_editor.html',
         controller: 'EditorCtrl',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('textAngular').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/editor.js');
+                  return $ocLazyLoad.load ('views/js/controllers/editor.js');
                 }
               );
             }]
@@ -898,14 +898,14 @@ angular.module ('app')
       })
         .state ('app.form.xeditable', {
         url: '/xeditable',
-        templateUrl: 'tpl/form_xeditable.html',
+        templateUrl: 'views/tpl/form_xeditable.html',
         controller: 'XeditableCtrl',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('js/controllers/xeditable.js');
+                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -918,32 +918,32 @@ angular.module ('app')
       })
         .state ('app.page.profile', {
         url: '/profile',
-        templateUrl: 'tpl/page_profile.html'
+        templateUrl: 'views/tpl/page_profile.html'
       })
         .state ('app.page.post', {
         url: '/post',
-        templateUrl: 'tpl/page_post.html'
+        templateUrl: 'views/tpl/page_post.html'
       })
         .state ('app.page.search', {
         url: '/search',
-        templateUrl: 'tpl/page_search.html'
+        templateUrl: 'views/tpl/page_search.html'
       })
         .state ('app.page.invoice', {
         url: '/invoice',
-        templateUrl: 'tpl/page_invoice.html'
+        templateUrl: 'views/tpl/page_invoice.html'
       })
         .state ('app.page.price', {
         url: '/price',
-        templateUrl: 'tpl/page_price.html'
+        templateUrl: 'views/tpl/page_price.html'
       })
         .state ('app.docs', {
         url: '/docs',
-        templateUrl: 'tpl/docs.html'
+        templateUrl: 'views/tpl/docs.html'
       })
         // others
         .state ('lockme', {
         url: '/lockme',
-        templateUrl: 'tpl/page_lockme.html'
+        templateUrl: 'views/tpl/page_lockme.html'
       })
         .state ('access', {
         url: '/access',
@@ -951,42 +951,42 @@ angular.module ('app')
       })
         .state ('access.signin', {
         url: '/signin',
-        templateUrl: 'tpl/page_signin.html',
+        templateUrl: 'views/tpl/page_signin.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load (['js/controllers/signin.js']);
+              return uiLoad.load (['views/js/controllers/signin.js']);
             }]
         }
       })
         .state ('access.signup', {
         url: '/signup',
-        templateUrl: 'tpl/page_signup.html',
+        templateUrl: 'views/tpl/page_signup.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load (['js/controllers/signup.js']);
+              return uiLoad.load (['views/js/controllers/signup.js']);
             }]
         }
       })
         .state ('access.forgotpwd', {
         url: '/forgotpwd',
-        templateUrl: 'tpl/page_forgotpwd.html'
+        templateUrl: 'views/tpl/page_forgotpwd.html'
       })
         .state ('access.404', {
         url: '/404',
-        templateUrl: 'tpl/page_404.html'
+        templateUrl: 'views/tpl/page_404.html'
       })
         // fullCalendar
         .state ('app.calendar', {
         url: '/calendar',
-        templateUrl: 'tpl/app_calendar.html',
+        templateUrl: 'views/tpl/app_calendar.html',
         // use resolve to load other dependences
         resolve: {
           deps: ['$ocLazyLoad', 'uiLoad',
             function ($ocLazyLoad, uiLoad){
               return uiLoad.load (
-                JQ_CONFIG.fullcalendar.concat ('js/app/calendar/calendar.js')
+                JQ_CONFIG.fullcalendar.concat ('views/js/app/calendar/calendar.js')
               ).then (
                 function (){
                   return $ocLazyLoad.load ('ui.calendar');
@@ -999,48 +999,48 @@ angular.module ('app')
         .state ('app.mail', {
         abstract: true,
         url: '/mail',
-        templateUrl: 'tpl/mail.html',
+        templateUrl: 'views/tpl/mail.html',
         // use resolve to load other dependences
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load (['js/app/mail/mail.js',
-                'js/app/mail/mail-service.js',
+              return uiLoad.load (['views/js/app/mail/mail.js',
+                'views/js/app/mail/mail-service.js',
                 JQ_CONFIG.moment]);
             }]
         }
       })
         .state ('app.mail.list', {
         url: '/inbox/{fold}',
-        templateUrl: 'tpl/mail.list.html'
+        templateUrl: 'views/tpl/mail.list.html'
       })
         .state ('app.mail.detail', {
         url: '/{mailId:[0-9]{1,4}}',
-        templateUrl: 'tpl/mail.detail.html'
+        templateUrl: 'views/tpl/mail.detail.html'
       })
         .state ('app.mail.compose', {
         url: '/compose',
-        templateUrl: 'tpl/mail.new.html'
+        templateUrl: 'views/tpl/mail.new.html'
       })
         .state ('layout', {
         abstract: true,
         url: '/layout',
-        templateUrl: 'tpl/layout.html'
+        templateUrl: 'views/tpl/layout.html'
       })
         .state ('layout.fullwidth', {
         url: '/fullwidth',
         views: {
           '': {
-            templateUrl: 'tpl/layout_fullwidth.html'
+            templateUrl: 'views/tpl/layout_fullwidth.html'
           },
           'footer': {
-            templateUrl: 'tpl/layout_footer_fullwidth.html'
+            templateUrl: 'views/tpl/layout_footer_fullwidth.html'
           }
         },
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load (['js/controllers/vectormap.js']);
+              return uiLoad.load (['views/js/controllers/vectormap.js']);
             }]
         }
       })
@@ -1048,10 +1048,10 @@ angular.module ('app')
         url: '/mobile',
         views: {
           '': {
-            templateUrl: 'tpl/layout_mobile.html'
+            templateUrl: 'views/tpl/layout_mobile.html'
           },
           'footer': {
-            templateUrl: 'tpl/layout_footer_mobile.html'
+            templateUrl: 'views/tpl/layout_footer_mobile.html'
           }
         }
       })
@@ -1059,57 +1059,57 @@ angular.module ('app')
         url: '/app',
         views: {
           '': {
-            templateUrl: 'tpl/layout_app.html'
+            templateUrl: 'views/tpl/layout_app.html'
           },
           'footer': {
-            templateUrl: 'tpl/layout_footer_fullwidth.html'
+            templateUrl: 'views/tpl/layout_footer_fullwidth.html'
           }
         },
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load (['js/controllers/tab.js']);
+              return uiLoad.load (['views/js/controllers/tab.js']);
             }]
         }
       })
         .state ('apps', {
         abstract: true,
         url: '/apps',
-        templateUrl: 'tpl/layout.html'
+        templateUrl: 'views/tpl/layout.html'
       })
         .state ('apps.note', {
         url: '/note',
-        templateUrl: 'tpl/apps_note.html',
+        templateUrl: 'views/tpl/apps_note.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load (['js/app/note/note.js',
+              return uiLoad.load (['views/js/app/note/note.js',
                 JQ_CONFIG.moment]);
             }]
         }
       })
         .state ('apps.contact', {
         url: '/contact',
-        templateUrl: 'tpl/apps_contact.html',
+        templateUrl: 'views/tpl/apps_contact.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load (['js/app/contact/contact.js']);
+              return uiLoad.load (['views/js/app/contact/contact.js']);
             }]
         }
       })
         .state ('app.weather', {
         url: '/weather',
-        templateUrl: 'tpl/apps_weather.html',
+        templateUrl: 'views/tpl/apps_weather.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
               return $ocLazyLoad.load (
                 {
                   name: 'angular-skycons',
-                  files: ['js/app/weather/skycons.js',
-                    'js/app/weather/angular-skycons.js',
-                    'js/app/weather/ctrl.js',
+                  files: ['views/js/app/weather/skycons.js',
+                    'views/js/app/weather/angular-skycons.js',
+                    'views/js/app/weather/ctrl.js',
                     JQ_CONFIG.moment]
                 }
               );
@@ -1118,11 +1118,11 @@ angular.module ('app')
       })
         .state ('app.todo', {
         url: '/todo',
-        templateUrl: 'tpl/apps_todo.html',
+        templateUrl: 'views/tpl/apps_todo.html',
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load (['js/app/todo/todo.js',
+              return uiLoad.load (['views/js/app/todo/todo.js',
                 JQ_CONFIG.moment]);
             }]
         }
@@ -1132,7 +1132,7 @@ angular.module ('app')
       })
         .state ('music', {
         url: '/music',
-        templateUrl: 'tpl/music.html',
+        templateUrl: 'views/tpl/music.html',
         controller: 'MusicCtrl',
         resolve: {
           deps: ['$ocLazyLoad',
@@ -1143,35 +1143,35 @@ angular.module ('app')
                 'com.2fdevs.videogular.plugins.overlayplay',
                 'com.2fdevs.videogular.plugins.poster',
                 'com.2fdevs.videogular.plugins.buffering',
-                'js/app/music/ctrl.js',
-                'js/app/music/theme.css'
+                'views/js/app/music/ctrl.js',
+                'views/js/app/music/theme.css'
               ]);
             }]
         }
       })
         .state ('music.home', {
         url: '/home',
-        templateUrl: 'tpl/music.home.html'
+        templateUrl: 'views/tpl/music.home.html'
       })
         .state ('music.genres', {
         url: '/genres',
-        templateUrl: 'tpl/music.genres.html'
+        templateUrl: 'views/tpl/music.genres.html'
       })
         .state ('music.detail', {
         url: '/detail',
-        templateUrl: 'tpl/music.detail.html'
+        templateUrl: 'views/tpl/music.detail.html'
       })
         .state ('music.mtv', {
         url: '/mtv',
-        templateUrl: 'tpl/music.mtv.html'
+        templateUrl: 'views/tpl/music.mtv.html'
       })
         .state ('music.mtvdetail', {
         url: '/mtvdetail',
-        templateUrl: 'tpl/music.mtv.detail.html'
+        templateUrl: 'views/tpl/music.mtv.detail.html'
       })
         .state ('music.playlist', {
         url: '/playlist/{fold}',
-        templateUrl: 'tpl/music.playlist.html'
+        templateUrl: 'views/tpl/music.playlist.html'
       })
     }
   ]

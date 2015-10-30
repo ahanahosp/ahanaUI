@@ -165,13 +165,13 @@ v 1.1.3
    added: "tpl/layout_app.html"
    changed: changed: "css/less/app.layout.less", add "app-content-full" class; 
 	"uiNav" directive in "js/directives.js". "js/app.js" to config "layout" router. 
-	"tpl/blocks/nav.html" to add layout nav items
+	"views/tpl/blocks/nav.html" to add layout nav items
 
 3: add full width layout
-   added: "tpl/layout.html", "tpl/layout_fullwidth.html", "tpl/layout_footer_fullwidth.html"
+   added: "views/tpl/layout.html", "tpl/layout_fullwidth.html", "tpl/layout_footer_fullwidth.html"
 
 4: add mobile layout
-   added: "tpl/layout_mobile.html", "tpl/layout_footer_mobile.html"
+   added: "views/tpl/layout_mobile.html", "tpl/layout_footer_mobile.html"
 
 5: add off screen nav "pull-right" option
    changed: "css/less/app.nav.offscreen.less"
