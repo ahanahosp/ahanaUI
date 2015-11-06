@@ -125,7 +125,7 @@ app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter'
   $scope.editMultipleWards = function (){
     $scope.errorData = "";
     var modalDefaults = {
-      templateUrl: 'tpl/edit_multiple_ward.html'
+      templateUrl: 'views/tpl/edit_multiple_ward.html'
     };
     var modalOptions = {
       closeButtonText: 'Cancel',
