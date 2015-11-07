@@ -15,7 +15,7 @@ angular.module ('app')
   ['$stateProvider', '$urlRouterProvider', 'JQ_CONFIG',
     function ($stateProvider, $urlRouterProvider, JQ_CONFIG){
       $urlRouterProvider
-        .otherwise ('/app/inpatient');
+        .otherwise (redirectState);
       $stateProvider
         .state ('app', {
         abstract: true,
@@ -949,6 +949,16 @@ angular.module ('app')
         url: '/access',
         template: '<div ui-view class="fade-in-right-big smooth"></div>'
       })
+        .state ('access.login', {
+          url: '/signin',
+          templateUrl: 'views/ahanaLogin.jsp',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (['views/js/controllers/signin.js']);
+              }]
+          }
+        })
         .state ('access.signin', {
         url: '/signin',
         templateUrl: 'views/tpl/page_signin.html',
