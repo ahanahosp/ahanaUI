@@ -60,7 +60,7 @@
 		    	</div>
 		      	<div class="list-group list-group-sm">
 			        <div class="list-group-item">
-			          <input type="email" placeholder="Email" class="form-control no-border" ng-model="user.email"  required id="j_username" name="j_username" autofocus="autofocus" value="selva@gmail.com" maxlength="50" title="Email" tabindex="1" autocomplete="off"/>
+			          <input type="text" placeholder="Email" class="form-control no-border" ng-model="user.email"  required id="j_username" name="j_username" autofocus="autofocus" value="selva@gmail.com" maxlength="50" title="Email" tabindex="1" autocomplete="off"/>
 			        </div>
 			        <div class="list-group-item">
 			           <input type="password" placeholder="Password" class="form-control no-border" ng-model="user.password" required id="password" name="j_password" maxlength="50" title="password" value="test123" tabindex="2" autocomplete="off"/>

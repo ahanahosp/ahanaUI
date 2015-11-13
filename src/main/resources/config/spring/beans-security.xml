@@ -95,8 +95,7 @@
 		<property name="accessDecisionManager" ref="accessDecisionManager"/>
 		<property name="securityMetadataSource">
     		<sec:filter-security-metadata-source use-expressions="true" lowercase-comparisons="true">
-      			<sec:intercept-url pattern="/services/rest/secure/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
-      			<sec:intercept-url pattern="/services/rest/**" access="hasAnyRole('ROLE_ANONYMOUS')"/>
+      			<sec:intercept-url pattern="/services/rest/**" access="isFullyAuthenticated()"/>
       			<sec:intercept-url pattern="/**/*.css" access="hasAnyRole('ROLE_ANONYMOUS')"/>
 	            <sec:intercept-url pattern="/**/*.pdf" access="hasAnyRole('ROLE_ANONYMOUS')"/>
 	            <sec:intercept-url pattern="/**/*.js" access="hasAnyRole('ROLE_ANONYMOUS')"/>
@@ -104,7 +103,7 @@
 	            <sec:intercept-url pattern="/**/*.gif" access="hasAnyRole('ROLE_ANONYMOUS')"/>
 	            <sec:intercept-url pattern="/**/*.png" access="hasAnyRole('ROLE_ANONYMOUS')"/>
 	            <sec:intercept-url pattern="/**/*.xml" access="hasAnyRole('ROLE_ANONYMOUS')"/>
-				<sec:intercept-url pattern="/j_spring_security_logout*" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_ADMIN','ROLE_USER')"/>
+				<sec:intercept-url pattern="/j_spring_security_logout*" access="isFullyAuthenticated()"/>
 				<sec:intercept-url pattern="/j_spring_security_check*" access="hasAnyRole('ROLE_ANONYMOUS')"/>
 				<sec:intercept-url pattern="/ahanaLogin.jsp*" access="hasAnyRole('ROLE_ANONYMOUS')"/>
 				<sec:intercept-url pattern="/ahanaShowLoginPage.jsp*" access="hasAnyRole('ROLE_ANONYMOUS')"/>
