@@ -24,7 +24,7 @@ angular.module ('app')
       })
         .state ('app.dashboard-v1', {
         url: '/dashboard-v1',
-        templateUrl: 'tpl/app_dashboard_v1.html',
+        templateUrl: 'views/tpl/app_dashboard_v1.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
@@ -950,7 +950,7 @@ angular.module ('app')
         template: '<div ui-view class="fade-in-right-big smooth"></div>'
       })
         .state ('access.login', {
-          url: '/signin',
+        url: '/login',
           templateUrl: 'views/ahanaLogin.jsp',
           resolve: {
             deps: ['uiLoad',

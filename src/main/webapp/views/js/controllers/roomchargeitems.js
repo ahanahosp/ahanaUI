@@ -127,7 +127,7 @@ app.controller ('RoomChargeItemController', ['$scope', '$http', 'NgTableParams',
   $scope.editMultipleRoomChargeItems = function (){
     $scope.errorData = "";
     var modalDefaults = {
-      templateUrl: 'tpl/edit_multiple_room_charge_item.html'
+      templateUrl: 'views/tpl/edit_multiple_room_charge_item.html'
     };
     var modalOptions = {
       closeButtonText: 'Cancel',

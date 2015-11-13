@@ -120,7 +120,7 @@ app.controller ('AlertTypeController', ['$scope', '$http', 'NgTableParams', '$fi
   $scope.editMultipleAlertType = function (){
     $scope.errorData = "";
     var modalDefaults = {
-      templateUrl: 'tpl/edit_multiple_alerttype.html'
+      templateUrl: 'views/tpl/edit_multiple_alerttype.html'
     };
     var modalOptions = {
       closeButtonText: 'Cancel',
