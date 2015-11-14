@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-<%@ page import="java.util.*, java.io.*, java.security.*" %>
+<%@page import="com.ahana.commons.system.domain.user.UserProfile" %>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@page import="org.springframework.security.core.Authentication" %>
+<%@page import="org.springframework.security.core.context.SecurityContext" %>
 
 <!DOCTYPE html>
 <html lang="en" data-ng-app="app">
@@ -21,12 +24,23 @@
     <script>
         var redirectState = "/access/login";
         <%
-            HttpSession httpSession = request.getSession(false);
-
-            if(httpSession != null && httpSession.getAttribute("userProfile")!=null){
+            response.setHeader("Cache-Control", "no-cache");
+            response.setHeader("Cache-Control", "no-store");
+            response.setHeader("Pragma", "no-cache");
+            response.setDateHeader("Expires", 0);
+            SecurityContext securityContext = SecurityContextHolder.getContext();
+            Authentication authentication = securityContext.getAuthentication();
+            if(authentication != null){
+                try{
+                    UserProfile userProfile = (UserProfile) authentication.getPrincipal();
         %>
         redirectState = "/app/inpatient-new";
-        <% } %>
+        <%
+                }catch(Exception e){
+                }
+            }else{
+            }
+        %>
         var path = "/ahanaServices/services/";
     </script>
 </head>

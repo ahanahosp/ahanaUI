@@ -7,7 +7,7 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', function ($
   $scope.login = function (){
     $scope.authError = null;
     // Try to login
-    $http.post('api/login', {email: $scope.user.email, password: $scope.user.password})
+    $http.post ('j_spring_security_check', {j_username: $scope.user.j_username, j_password: $scope.user.j_password})
       .then(function (response){
         if (!response.data.user){
           $scope.authError = 'Email or Password not right';
