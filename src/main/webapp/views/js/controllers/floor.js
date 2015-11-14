@@ -122,7 +122,7 @@ app.controller ('FloorController', ['$scope', '$http', 'NgTableParams', '$filter
   $scope.editMultipleFloors = function (){
     $scope.errorData = "";
     var modalDefaults = {
-      templateUrl: 'tpl/edit_multiple_floor.html'
+      templateUrl: 'views/tpl/edit_multiple_floor.html'
     };
     var modalOptions = {
       closeButtonText: 'Cancel',

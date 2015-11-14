@@ -15,7 +15,7 @@ angular.module ('app')
   ['$stateProvider', '$urlRouterProvider', 'JQ_CONFIG',
     function ($stateProvider, $urlRouterProvider, JQ_CONFIG){
       $urlRouterProvider
-        .otherwise ('/app/inpatient');
+        .otherwise (redirectState);
       $stateProvider
         .state ('app', {
         abstract: true,
@@ -24,7 +24,7 @@ angular.module ('app')
       })
         .state ('app.dashboard-v1', {
         url: '/dashboard-v1',
-        templateUrl: 'tpl/app_dashboard_v1.html',
+        templateUrl: 'views/tpl/app_dashboard_v1.html',
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
@@ -949,6 +949,16 @@ angular.module ('app')
         url: '/access',
         template: '<div ui-view class="fade-in-right-big smooth"></div>'
       })
+        .state ('access.login', {
+        url: '/login',
+          templateUrl: 'views/ahanaLogin.jsp',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (['views/js/controllers/signin.js']);
+              }]
+          }
+        })
         .state ('access.signin', {
         url: '/signin',
         templateUrl: 'views/tpl/page_signin.html',
