@@ -14,7 +14,6 @@ public class LoginServicesImpl {
 
 	@RequestMapping(value = "/showLogin" ,method = RequestMethod.GET)
 	public final String showLogin(final HttpServletRequest request) {
-		System.out.print("Inside showLogin ######################3");
 		HttpSession oldSession = request.getSession(false);
 		if (oldSession != null ) {
 			oldSession.invalidate();
