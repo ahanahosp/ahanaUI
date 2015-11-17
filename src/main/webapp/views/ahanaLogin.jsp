@@ -27,7 +27,8 @@
                     <input type="password" placeholder="Password" name="j_password" class="form-control no-border" ng-model="user.j_password" required>
                 </div>
             </div>
-            <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled='form.$invalid'>Log in
+            <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled='form.$invalid'>
+                Log in
             </button>
             <div class="text-center m-t m-b"><a ui-sref="access.forgotpwd">Forgot password?</a></div>
             <div class="line line-dashed"></div>
