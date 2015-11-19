@@ -35,12 +35,15 @@
                     UserProfile userProfile = (UserProfile) authentication.getPrincipal();
         %>
         redirectState = "/app/inpatient-new";
+
         <%
                 }catch(Exception e){
                 }
-            }else{
             }
         %>
+        var contextPath = "<%=request.getContextPath()%>/"
+        var basePath = "<%=request.getContextPath()%>/app/"
+
         var path = "/ahanaServices/services/";
     </script>
 </head>
