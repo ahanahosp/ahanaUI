@@ -86,7 +86,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/scroll.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/scroll.js');
             }]
         }
       })
@@ -106,7 +106,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('angularBootstrapNavTree').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/tree.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/tree.js');
                 }
               );
             }
@@ -121,7 +121,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('toaster').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/toaster.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/toaster.js');
                 }
               );
             }]
@@ -133,7 +133,7 @@ angular.module ('app')
         resolve: {
           deps: ['$ocLazyLoad',
             function ($ocLazyLoad){
-              return $ocLazyLoad.load ('views/js/controllers/vectormap.js');
+              return $ocLazyLoad.load (contextPath + 'views/js/controllers/vectormap.js');
             }]
         }
       })
@@ -160,7 +160,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/chart.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/chart.js');
             }]
         }
       })
@@ -189,7 +189,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('ngGrid').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/grid.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/grid.js');
                 }
               );
             }]
@@ -203,7 +203,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('ui.grid').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/uigrid.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/uigrid.js');
                 }
               );
             }]
@@ -218,7 +218,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -233,7 +233,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -248,7 +248,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -263,7 +263,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -278,7 +278,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -293,7 +293,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -305,7 +305,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/registration.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/registration.js');
             }
           ]
         }
@@ -315,7 +315,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roles.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roles.js');
             }
           ]
         }
@@ -326,7 +326,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roles.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roles.js');
             }
           ]
         }
@@ -336,7 +336,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roles.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roles.js');
             }
           ]
         }
@@ -346,7 +346,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/organization.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/organization.js');
             }
           ]
         }
@@ -356,7 +356,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/organizationModule.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/organizationModule.js');
             }
           ]
         }
@@ -367,7 +367,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/floor.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/floor.js');
             }
           ]
         }
@@ -378,7 +378,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/floor.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/floor.js');
             }
           ]
         }
@@ -388,7 +388,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/floor.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/floor.js');
             }
           ]
         }
@@ -399,7 +399,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/ward.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/ward.js');
             }
           ]
         }
@@ -410,7 +410,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/ward.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/ward.js');
             }
           ]
         }
@@ -420,7 +420,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/ward.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/ward.js');
             }
           ]
         }
@@ -431,7 +431,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/userRegistration.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/userRegistration.js');
             }
           ]
         }
@@ -442,7 +442,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/userRegistration.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/userRegistration.js');
             }
           ]
         }
@@ -452,7 +452,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/userRegistration.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/userRegistration.js');
             }
           ]
         }
@@ -463,7 +463,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/accounthead.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/accounthead.js');
             }
           ]
         }
@@ -474,7 +474,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/accounthead.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/accounthead.js');
             }
           ]
         }
@@ -484,7 +484,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/accounthead.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/accounthead.js');
             }
           ]
         }
@@ -495,7 +495,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/procedures.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/procedures.js');
             }
           ]
         }
@@ -506,7 +506,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/procedures.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/procedures.js');
             }
           ]
         }
@@ -516,7 +516,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/procedures.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/procedures.js');
             }
           ]
         }
@@ -527,7 +527,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/speciality.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/speciality.js');
             }
           ]
         }
@@ -538,7 +538,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/speciality.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/speciality.js');
             }
           ]
         }
@@ -548,7 +548,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/speciality.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/speciality.js');
             }
           ]
         }
@@ -559,7 +559,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roomtype.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roomtype.js');
             }
           ]
         }
@@ -570,7 +570,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roomtype.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roomtype.js');
             }
           ]
         }
@@ -580,7 +580,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roomtype.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roomtype.js');
             }
           ]
         }
@@ -591,7 +591,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/room.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/room.js');
             }
           ]
         }
@@ -602,7 +602,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/room.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/room.js');
             }
           ]
         }
@@ -612,7 +612,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/room.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/room.js');
             }
           ]
         }
@@ -623,7 +623,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roomchargeitems.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roomchargeitems.js');
             }
           ]
         }
@@ -634,7 +634,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roomchargeitems.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roomchargeitems.js');
             }
           ]
         }
@@ -644,7 +644,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roomchargeitems.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roomchargeitems.js');
             }
           ]
         }
@@ -655,7 +655,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roomcharges.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roomcharges.js');
             }
           ]
         }
@@ -666,7 +666,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roomcharges.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roomcharges.js');
             }
           ]
         }
@@ -676,7 +676,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roomcharges.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roomcharges.js');
             }
           ]
         }
@@ -687,7 +687,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roommaintenance.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roommaintenance.js');
             }
           ]
         }
@@ -698,7 +698,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roommaintenance.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roommaintenance.js');
             }
           ]
         }
@@ -708,7 +708,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roommaintenance.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roommaintenance.js');
             }
           ]
         }
@@ -719,7 +719,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/alerttype.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/alerttype.js');
             }
           ]
         }
@@ -730,7 +730,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/alerttype.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/alerttype.js');
             }
           ]
         }
@@ -740,7 +740,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/alerttype.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/alerttype.js');
             }
           ]
         }
@@ -750,7 +750,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/roleRights.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/roleRights.js');
             }
           ]
         }
@@ -761,7 +761,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/userroles.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/userroles.js');
             }
           ]
         }
@@ -774,7 +774,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('smart-table').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/table.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/table.js');
                 }
               );
             }]
@@ -787,7 +787,7 @@ angular.module ('app')
         resolve: {
           deps: ['uiLoad',
             function (uiLoad){
-              return uiLoad.load ('views/js/controllers/form.js');
+              return uiLoad.load (contextPath + 'views/js/controllers/form.js');
             }]
         }
       })
@@ -800,7 +800,7 @@ angular.module ('app')
               return uiLoad.load (JQ_CONFIG.daterangepicker)
                 .then (
                 function (){
-                  return uiLoad.load ('views/js/controllers/form.components.js');
+                  return uiLoad.load (contextPath + 'views/js/controllers/form.components.js');
                 }
               ).then (
                 function (){
@@ -831,7 +831,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('angularFileUpload').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/file-upload.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/file-upload.js');
                 }
               );
             }]
@@ -845,7 +845,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('ngImgCrop').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/imgcrop.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/imgcrop.js');
                 }
               );
             }]
@@ -860,7 +860,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('ui.select').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/select.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/select.js');
                 }
               );
             }]
@@ -875,7 +875,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('vr.directives.slider').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/slider.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/slider.js');
                 }
               );
             }]
@@ -890,7 +890,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('textAngular').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/editor.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/editor.js');
                 }
               );
             }]
@@ -905,7 +905,7 @@ angular.module ('app')
             function ($ocLazyLoad){
               return $ocLazyLoad.load ('xeditable').then (
                 function (){
-                  return $ocLazyLoad.load ('views/js/controllers/xeditable.js');
+                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/xeditable.js');
                 }
               );
             }]
@@ -996,7 +996,7 @@ angular.module ('app')
           deps: ['$ocLazyLoad', 'uiLoad',
             function ($ocLazyLoad, uiLoad){
               return uiLoad.load (
-                JQ_CONFIG.fullcalendar.concat ('views/js/app/calendar/calendar.js')
+                JQ_CONFIG.fullcalendar.concat (contextPath + 'views/js/app/calendar/calendar.js')
               ).then (
                 function (){
                   return $ocLazyLoad.load ('ui.calendar');
