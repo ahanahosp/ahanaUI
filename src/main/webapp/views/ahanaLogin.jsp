@@ -33,7 +33,7 @@
             <div class="text-center m-t m-b"><a ui-sref="access.forgotpwd">Forgot password?</a></div>
         </form>
     </div>
-    <div class="text-center" ng-include="'views/tpl/blocks/page_footer.html'">
+    <div class="text-center" ng-include="'/tpl/blocks/page_footer.html'">
         {% include 'blocks/page_footer.html' %}
     </div>
 </div>

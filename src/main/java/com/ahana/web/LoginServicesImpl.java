@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/services/rest")
 public class LoginServicesImpl {
-
+	
 	@RequestMapping(value = "/showLogin" ,method = RequestMethod.GET)
 	public final String showLogin(final HttpServletRequest request) {
 		HttpSession oldSession = request.getSession(false);

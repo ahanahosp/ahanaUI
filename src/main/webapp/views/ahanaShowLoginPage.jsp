@@ -18,11 +18,11 @@
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/services/rest/secure/doPostLogin");
 			dispatcher.forward(request,response);
 		}catch(Exception e){
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/services/rest/showLogin");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/ahanaLogin.jsp");
 			dispatcher.forward(request,response);
 		}
 	}else{
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/services/rest/showLogin");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/ahanaLogin.jsp");
 		dispatcher.forward(request,response);
 	}
 %>
