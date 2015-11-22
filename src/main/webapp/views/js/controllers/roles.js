@@ -14,6 +14,10 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
+              $scope.successMessage = "Roles saved successfully";
+              $timeout (function (){
+                $state.go ('app.roles');
+              }, 1000);
               $state.go ('app.roles');
             }
             else{
@@ -21,7 +25,7 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
               $scope.data = {};
               $timeout (function (){
                 $state.go ('app.roles');
-              }, 500);
+              }, 1000);
             }
           }
           else{
