@@ -122,7 +122,7 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
   $scope.editMultipleRoles = function (){
     $scope.errorData = "";
     var modalDefaults = {
-      templateUrl: 'views/tpl/edit_multiple_role.html'
+      templateUrl: contextPath + 'views/tpl/edit_multiple_role.html'
     };
     var modalOptions = {
       closeButtonText: 'Cancel',

@@ -120,7 +120,7 @@ app.controller ('RoomTypeController', ['$scope', '$http', 'NgTableParams', '$fil
   $scope.editMultipleRoomTypes = function (){
     $scope.errorData = "";
     var modalDefaults = {
-      templateUrl: 'views/tpl/edit_multiple_room_type.html'
+      templateUrl: contextPath + 'views/tpl/edit_multiple_room_type.html'
     };
     var modalOptions = {
       closeButtonText: 'Cancel',

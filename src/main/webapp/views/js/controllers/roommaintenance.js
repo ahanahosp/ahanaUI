@@ -122,7 +122,7 @@ app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams'
   $scope.editMultipleRoomMaintenance = function (){
     $scope.errorData = "";
     var modalDefaults = {
-      templateUrl: 'views/tpl/edit_multiple_roommaintenance.html'
+      templateUrl: contextPath + 'views/tpl/edit_multiple_roommaintenance.html'
     };
     var modalOptions = {
       closeButtonText: 'Cancel',
