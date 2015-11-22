@@ -122,7 +122,7 @@ app.controller ('SpecialityController', ['$scope', '$http', 'NgTableParams', '$f
   $scope.editMultipleSpeciality = function (){
     $scope.errorData = "";
     var modalDefaults = {
-      templateUrl: 'views/tpl/edit_multiple_speciality.html'
+      templateUrl: contextPath + 'views/tpl/edit_multiple_speciality.html'
     };
     var modalOptions = {
       closeButtonText: 'Cancel',

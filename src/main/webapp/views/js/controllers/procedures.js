@@ -122,7 +122,7 @@ app.controller ('ProceduresController', ['$scope', '$http', 'NgTableParams', '$f
   $scope.editMultipleProcedures = function (){
     $scope.errorData = "";
     var modalDefaults = {
-      templateUrl: 'views/tpl/edit_multiple_procedures.html'
+      templateUrl: contextPath + 'views/tpl/edit_multiple_procedures.html'
     };
     var modalOptions = {
       closeButtonText: 'Cancel',

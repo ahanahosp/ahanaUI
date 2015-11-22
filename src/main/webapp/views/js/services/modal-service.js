@@ -4,7 +4,7 @@ app.service ('modalService', [ '$modal',
       backdrop: true,
       keyboard: true,
       modalFade: true,
-      templateUrl: 'views/tpl/blocks/modal.html'
+      templateUrl: contextPath + 'views/tpl/blocks/modal.html'
     };
     var modalOptions = {
       closeButtonText: 'Close',
