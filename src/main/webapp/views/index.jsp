@@ -43,7 +43,7 @@
                 }
             }
         %>
-        var path = "/ahanaServices/services/";
+        var path = contextPath+"services/";
     </script>
 </head>
 <body ng-controller="AppCtrl">
