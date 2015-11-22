@@ -12,4 +12,5 @@
 	
 	<bean id="placeholderConfig" class="com.ahana.commons.system.security.common.AhanaPropertyPlaceholderConfigurer"/>
 	<import resource="classpath:config/spring/beans-security.xml"/>
+	<import resource="classpath:config/spring/beans-remoting.xml"/>
   </beans>
