@@ -15,7 +15,7 @@
       <tbody>
       <tr ng-repeat="roomType in modalOptions.roomTypeSelectedItems track by roomType.oid">
         <td class="text-left">
-          <input type="text" ng-model="roomType.roomName" name="roomTypeName" class="form-control" placeholder="Room Type Name">
+          <input type="text" ng-model="roomType.roomName" maxlength="100" name="roomTypeName" class="form-control" placeholder="Room Type Name">
         </td>
         <td class="text-left">
           <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="roomType.status"> <i></i> </label>

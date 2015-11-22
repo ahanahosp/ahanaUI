@@ -18,10 +18,10 @@
       <tbody>
       <tr ng-repeat="floor in modalOptions.floorSelectedItems track by floor.oid">
         <td class="text-left">
-          <input type="text" ng-model="floor.floorName" name="floorName" class="form-control" placeholder="Floor Name">
+          <input type="text" ng-model="floor.floorName" maxlength="100" name="floorName" class="form-control" placeholder="Floor Name">
         </td>
         <td class="text-left">
-          <input type="text" ng-model="floor.floorCode" name="floorCode" class="form-control" placeholder="Floor Code">
+          <input type="text" ng-model="floor.floorCode" maxlength="10" name="floorCode" class="form-control" placeholder="Floor Code">
         </td>
         <td class="text-left">
           <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="floor.status"> <i></i> </label>

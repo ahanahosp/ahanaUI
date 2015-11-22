@@ -15,7 +15,7 @@
       <tbody>
       <tr ng-repeat="roomMaintenance in modalOptions.roomMaintenanceSelectedItems track by roomMaintenance.oid">
         <td class="text-left">
-          <input type="text" ng-model="roomMaintenance.maintenanceName" name="maintenanceName" class="form-control" placeholder="Maintenance Name">
+          <input type="text" ng-model="roomMaintenance.maintenanceName" maxlength="100" name="maintenanceName" class="form-control" placeholder="Maintenance Name">
         </td>
         <td class="text-left">
           <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="roomMaintenance.status"> <i></i> </label>

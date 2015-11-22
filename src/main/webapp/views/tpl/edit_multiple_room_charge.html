@@ -26,7 +26,7 @@
           </select>
         </td>
         <td class="text-left">
-          <input type="text" ng-model="roomCharge.charge" name="charge" class="form-control" placeholder="Charge">
+          <input type="text" ng-model="roomCharge.charge" maxlength="10" name="charge" class="form-control" placeholder="Charge">
         </td>
         <td class="text-left">
           <select class="form-control" ng-model="roomCharge.roomTypeOid" ng-options="roomType.value as roomType.label for roomType in modalOptions.roomTypes | orderBy: label">

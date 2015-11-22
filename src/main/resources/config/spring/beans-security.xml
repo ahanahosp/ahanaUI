@@ -38,7 +38,6 @@
 	<bean id="securityContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository"/>
 	
 	<bean id="authenticationProcessingFilter" class="com.ahana.commons.system.security.filters.AhanaAuthenticationProcessingFilter">
-	    <property name="authenticationManager" ref="authenticationManager"/>
 	    <property name="authenticationSuccessHandler" ref="authenticationSuccessHandler"/>
 	    <property name="filterProcessesUrls">
 	        <list value-type="java.lang.String">
@@ -76,9 +75,7 @@
 		</constructor-arg>
    	</bean>
    	
-   	<bean id="remoteAuthenticationProvider"	class="com.ahana.commons.system.security.filters.AhanaRemoteAuthenticationProvider">
-		<property name="ahanaRemoteAuthenticationManager" ref="ahanaRemoteAuthenticationManager" />
-	</bean>
+   	<bean id="remoteAuthenticationProvider"	class="com.ahana.commons.system.security.filters.AhanaRemoteAuthenticationProvider"/>
 
 	<bean id="ahanaRemoteAuthenticationManager" class="com.ahana.commons.system.security.filters.AhanaInvokerFactoryBean">
 		<property name="serviceUrl">

@@ -32,10 +32,10 @@
                 <label class="col-sm-3 control-label">Name * </label>
 
                 <div class="col-sm-5">
-                  <input type="text" ng-model="data.firstName" class="form-control" placeholder="First Name">
+                  <input type="text" ng-model="data.firstName" maxlength="50" class="form-control" placeholder="First Name">
                 </div>
                 <div class="col-sm-4">
-                  <input type="text" ng-model="data.lastName" class="form-control" placeholder="Last Name">
+                  <input type="text" ng-model="data.lastName" maxlength="50" class="form-control" placeholder="Last Name">
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg "></div>
@@ -43,15 +43,14 @@
                 <label class="col-sm-3 control-label">User Name * </label>
 
                 <div class="col-sm-9">
-                  <input type="text" ng-model="data.userId" class="form-control" placeholder="User Name">
+                  <input type="text" ng-model="data.userId" maxlength="100" class="form-control" placeholder="User Name">
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg "></div>
-              <div class="form-group">
+              <div class="form-group" ng-class="{'ng-hide':data.id!=null}">
                 <label class="col-sm-3 control-label">Password * </label>
-
                 <div class="col-sm-9">
-                  <input type="password" ng-model="data.password" class="form-control" placeholder="Password">
+                  <input type="password" ng-model="data.password" maxlength="50" class="form-control" placeholder="Password">
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg "></div>
@@ -59,7 +58,7 @@
                 <label class="col-sm-3 control-label">Email Id </label>
 
                 <div class="col-sm-9">
-                  <input type="text" ng-model="data.emailId" class="form-control" placeholder="Email Id">
+                  <input type="text" ng-model="data.emailId" maxlength="100" class="form-control" placeholder="Email Id">
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg "></div>
@@ -67,7 +66,7 @@
                 <label class="col-sm-3 control-label">Mobile No * </label>
 
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="mobile" placeholder="##########" ng-model="data.mobileNo">
+                  <input type="text" class="form-control" name="mobile" maxlength="10" placeholder="##########" ng-model="data.mobileNo">
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg "></div>
@@ -75,7 +74,7 @@
                 <label class="col-lg-3 control-label">Designation</label>
 
                 <div class="col-sm-9">
-                  <input type="text" ng-model="data.designation" name="designation" class="form-control" placeholder="Designation">
+                  <input type="text" ng-model="data.designation" name="designation" maxlength="50" class="form-control" placeholder="Designation">
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg "></div>
@@ -129,7 +128,7 @@
                 <label class="col-lg-3 control-label">Current Address</label>
 
                 <div class="col-lg-9">
-                  <input type="text" class="form-control" placeholder="Address" ng-model="data.address">
+                  <input type="text" class="form-control" placeholder="Address" maxlength="100" ng-model="data.address">
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg "></div>
@@ -137,7 +136,7 @@
                 <label class="col-lg-3 control-label">Country</label>
 
                 <div class="col-lg-9">
-                  <select class="form-control" ng-model="data.country" ng-options="country.value as country.label for country in countries | orderBy: label" ng-change="updateState()">
+                  <select class="form-control" ng-model="data.country"  ng-options="country.value as country.label for country in countries | orderBy: label" ng-change="updateState()">
                     <option value="">Select Country</option>
                   </select>
                 </div>
@@ -166,7 +165,7 @@
                 <label class="col-lg-3 control-label">Zip</label>
 
                 <div class="col-lg-9">
-                  <input type="text" class="form-control" placeholder="Zip" ng-model="data.zip">
+                  <input type="text" class="form-control" placeholder="Zip" maxlength="8" ng-model="data.zip">
                 </div>
               </div>
             </div>
