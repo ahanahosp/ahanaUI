@@ -9,7 +9,7 @@ angular.module('app')
             var isIE = !!navigator.userAgent.match(/MSIE/i);
             isIE && angular.element($window.document.body).addClass('ie');
             isSmartDevice($window) && angular.element($window.document.body).addClass('smart');
-
+            $scope.contextPath = contextPath;
             // config
             $scope.app = {
                 name: 'Ahana Hospitals',
