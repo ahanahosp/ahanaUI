@@ -72,18 +72,3 @@ app
     	    }
     	  };
  }]);
-
-(function() {
-  "use strict";
-
-  app.factory("UserRoleServices", ["$resource", function($resource) {
-    return $resource("https://api.github.com/repos/:username/:repo/issues", {
-      state: "open"
-    }, {
-      query: {
-        method: "GET",
-        isArray: true
-      }
-    });
-  }]);
-})();
