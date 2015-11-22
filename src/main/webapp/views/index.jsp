@@ -1,8 +1,10 @@
+<%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@page import="com.ahana.commons.system.domain.user.UserProfile" %>
 <%@page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@page import="org.springframework.security.core.Authentication" %>
 <%@page import="org.springframework.security.core.context.SecurityContext" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en" data-ng-app="app">
@@ -26,6 +28,7 @@
         var basePath = "<%=request.getContextPath()%>/app/";
         var redirectState = "/access/login";
         <%
+        	String userName=null;
             response.setHeader("Cache-Control", "no-cache");
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
@@ -34,69 +37,61 @@
             Authentication authentication = securityContext.getAuthentication();
             if(authentication != null){
                 try{
-                    UserProfile userProfile = (UserProfile) authentication.getPrincipal();
-        %>
-        redirectState = "/app/inpatient-new";
-
-        <%
-                }catch(Exception e){
-                }
+                	if(authentication.getPrincipal() instanceof UserProfile){
+                    	UserProfile userProfile = (UserProfile) authentication.getPrincipal();
+                    	userName=StringUtils.isBlank(userProfile.getSalutation())?"Mr":userProfile.getSalutation();
+                    	String name =userProfile.getFirstName()+" "+userProfile.getLastName();
+                    	name=StringUtils.isBlank(name)?"System User":name;
+                    	userName=userName+"."+name;
+				        %>
+				        	redirectState = "/app/inpatient-new";
+				        <%
+                	}else{
+                		%>
+	            			redirectState = "/ahanaShowLogin.jsp";
+	            		<%
+                	}
+	            }catch(Exception e){
+	            	%>
+	            		redirectState = "/ahanaShowLogin.jsp";
+	            	<%
+	            }
             }
         %>
         var path = contextPath+"services/";
     </script>
 </head>
 <body ng-controller="AppCtrl">
-
 <div id="sb-site">
-
     <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view></div>
-
 </div>
-
 <div class="sb-slidebar sb-right">
     <!-- Your right Slidebar content. -->
-
     <div class="thumb-bg">
-
         <a class="sb-close" href="#"> <img src="img/close.png" alt=""></a>
         <h4> Menu</h4>
-
         <div class="clearfix"></div>
-
         <h2> Ahana Hospitals </h2>
-
         <img src="img/user-thumb.jpg" alt="" class="thumb-img">
-
-        <p><a href="#"> <i class="fa fa-sign-out"></i> Logout </a></p>
-
+        <p><a href="<%=request.getContextPath()%>/services/rest/logout"> <i class="fa fa-sign-out"></i>Logout </a></p>
     </div>
-
     <div class="doctor-name">
-        <b> Dr.vikhram </b> <br />
-
-        Ramasubramanian
-
+        <b> <%=userName %> </b> <br />
     </div>
-
 </div>
 
 <!-- jQuery -->
 <script src="<%=request.getContextPath()%>/views/bower_components/jquery/dist/jquery.min.js"></script>
-
 <!-- Angular -->
 <script src="<%=request.getContextPath()%>/views/bower_components/angular/angular.js"></script>
-
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-animate/angular-animate.js"></script>
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-resource/angular-resource.js"></script>
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-touch/angular-touch.js"></script>
-
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="<%=request.getContextPath()%>/views/bower_components/ngstorage/ngStorage.js"></script>
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-ui-utils/ui-utils.js"></script>
-
 <!-- bootstrap -->
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <!-- lazyload -->
@@ -107,7 +102,6 @@
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
 <script src="<%=request.getContextPath()%>/views/bower_components/ng-table/ng-table.min.js"></script>
-
 <!-- App -->
 <script src="<%=request.getContextPath()%>/views/js/app.js"></script>
 <script src="<%=request.getContextPath()%>/views/js/config.js"></script>
