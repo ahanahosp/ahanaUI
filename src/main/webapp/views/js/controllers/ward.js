@@ -18,11 +18,17 @@ app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter'
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
-              $state.go ('app.ward');
+              $scope.successMessage = "Ward updated successfully";
+              $timeout (function (){
+                $state.go ('app.ward');
+              }, 1000);
             }
             else{
               $scope.successMessage = "Ward saved successfully";
               $scope.data = {};
+              $timeout (function (){
+                $state.go ('app.ward');
+              }, 1000);
             }
           }
           else{
@@ -65,6 +71,8 @@ app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter'
               orderedData;
             params.total (orderedData.length); // set total for recalc pagination
             $defer.resolve ($scope.wards = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+            $scope.checkboxes = {'checked': false, items: {}};
+            $scope.wardSelectedItems = [];
           }
         });
       }
