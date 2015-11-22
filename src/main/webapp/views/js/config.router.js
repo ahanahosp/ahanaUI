@@ -1179,10 +1179,6 @@ angular.module ('app')
         url: '/mtvdetail',
         templateUrl: contextPath + 'views/tpl/music.mtv.detail.html'
       })
-        .state ('music.playlist', {
-        url: '/playlist/{fold}',
-        templateUrl: contextPath + 'views/tpl/music.playlist.html
-      })
     }
   ]
 );
