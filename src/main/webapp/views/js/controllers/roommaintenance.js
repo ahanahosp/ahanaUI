@@ -1,6 +1,6 @@
 'use strict';
 /* Controllers */
-app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
+app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $scope.saveRoomMaintenance = function (mode){
     $scope.errorData = "";
     $scope.successMessage = "";
@@ -13,11 +13,17 @@ app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams'
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
-              $state.go ('app.roomMaintenance');
+              $scope.successMessage = "Room maintenance updated successfully";
+              $timeout (function (){
+                $state.go ('app.roomMaintenance');
+              }, 1000);
             }
             else{
               $scope.successMessage = "Room maintenance saved successfully";
               $scope.data = {};
+              $timeout (function (){
+                $state.go ('app.roomMaintenance');
+              }, 1000);
             }
           }
           else{
@@ -60,6 +66,8 @@ app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams'
               orderedData;
             params.total (orderedData.length); // set total for recalc pagination
             $defer.resolve ($scope.roomMaintenance = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+            $scope.checkboxes = {'checked': false, items: {}};
+            $scope.roomMaintenanceSelectedItems = [];
           }
         });
       }

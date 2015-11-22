@@ -1,7 +1,7 @@
 'use strict';
 //TODO need to move in properties file
 /* Controllers */
-app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
+app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $scope.openActivationDate = function ($event){
     $event.preventDefault ();
     $event.stopPropagation ();

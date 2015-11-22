@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n h3">BED TYPE DETAILS</h1>
+  <h1 class="m-n h3">ROOM TYPE DETAILS</h1>
 </div>
 
 <div class="wrapper-md" ng-controller="RoomTypeController" ng-init="loadRoomTypeList()">
@@ -8,7 +8,7 @@
       <div class="col-sm-8 m-b-xs">
         <button class="btn btn-sm btn-grey" ng-click="loadRoomTypeList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
         &nbsp; &nbsp;
-        <span ng-show="roomTypeSelected > 1">
+        <span ng-show="roomTypeSelected > 0">
           <button class="btn btn-sm btn-grey" ng-click="editMultipleRoomTypes()"><i class="fa fa-pencil"></i> &nbsp; Edit</button> &nbsp; &nbsp;
           <button class="btn btn-sm btn-grey" ng-click="deleteMultipleRoomTypes()"><i class="fa fa-trash"></i> &nbsp; Delete</button>
         </span>

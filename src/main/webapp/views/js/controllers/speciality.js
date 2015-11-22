@@ -1,6 +1,6 @@
 'use strict';
 /* Controllers */
-app.controller ('SpecialityController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
+app.controller ('SpecialityController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $scope.saveSpeciality = function (mode){
     $scope.errorData = "";
     $scope.successMessage = "";
@@ -13,11 +13,17 @@ app.controller ('SpecialityController', ['$scope', '$http', 'NgTableParams', '$f
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
-              $state.go ('app.speciality');
+              $scope.successMessage = "Speciality updated successfully";
+              $timeout (function (){
+                $state.go ('app.speciality')
+              }, 1000);
             }
             else{
               $scope.successMessage = "Speciality saved successfully";
               $scope.data = {};
+              $timeout (function (){
+                $state.go ('app.speciality')
+              }, 1000);
             }
           }
           else{

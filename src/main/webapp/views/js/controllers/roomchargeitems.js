@@ -1,6 +1,6 @@
 'use strict';
 /* Controllers */
-app.controller ('RoomChargeItemController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
+app.controller ('RoomChargeItemController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $http.get (path + "rest/secure/common/getCategoryValues").then (
     function (response){
       $scope.categories = response.data.categoryDetails;
@@ -18,11 +18,17 @@ app.controller ('RoomChargeItemController', ['$scope', '$http', 'NgTableParams',
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
-              $state.go ('app.roomChargeItems');
+              $scope.successMessage = "Room charge items updated successfully";
+              $timeout (function (){
+                $state.go ('app.roomChargeItems');
+              }, 1000);
             }
             else{
               $scope.successMessage = "Room charge items saved successfully";
               $scope.data = {};
+              $timeout (function (){
+                $state.go ('app.roomChargeItems');
+              }, 1000);
             }
           }
           else{
@@ -66,6 +72,8 @@ app.controller ('RoomChargeItemController', ['$scope', '$http', 'NgTableParams',
               orderedData;
             params.total (orderedData.length); // set total for recalc pagination
             $defer.resolve ($scope.roomChargeItems = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+            $scope.checkboxes = {'checked': false, items: {}};
+            $scope.roomChargeItemSelectedItems = [];
           }
         });
       }

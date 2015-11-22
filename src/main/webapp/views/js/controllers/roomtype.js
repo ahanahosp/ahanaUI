@@ -1,6 +1,6 @@
 'use strict';
 /* Controllers */
-app.controller ('RoomTypeController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
+app.controller ('RoomTypeController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $scope.saveRoomType = function (mode){
     $scope.errorData = "";
     $scope.successMessage = "";
@@ -13,11 +13,17 @@ app.controller ('RoomTypeController', ['$scope', '$http', 'NgTableParams', '$fil
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
-              $state.go ('app.roomType');
+              $scope.successMessage = "Room type updated successfully";
+              $timeout (function (){
+                $state.go ('app.roomType')
+              }, 1000);
             }
             else{
               $scope.successMessage = "Room type saved successfully";
               $scope.data = {};
+              $timeout (function (){
+                $state.go ('app.roomType')
+              }, 1000);
             }
           }
           else{
@@ -60,6 +66,8 @@ app.controller ('RoomTypeController', ['$scope', '$http', 'NgTableParams', '$fil
               orderedData;
             params.total (orderedData.length); // set total for recalc pagination
             $defer.resolve ($scope.roomTypes = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+            $scope.checkboxes = {'checked': false, items: {}};
+            $scope.roomTypeSelectedItems = [];
           }
         });
       }

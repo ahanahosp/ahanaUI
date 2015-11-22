@@ -44,7 +44,7 @@
                     	name=StringUtils.isBlank(name)?"System User":name;
                     	userName=userName+"."+name;
 				        %>
-				        	redirectState = "/app/inpatient-new";
+        redirectState = "/app/inpatient";
 				        <%
                 	}else{
                 		%>

@@ -1,6 +1,8 @@
 'use strict';
 /* Controllers */
-app.controller ('ProceduresController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
+app.controller ('ProceduresController',
+  ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout',
+    function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $scope.saveProcedures = function (mode){
     $scope.errorData = "";
     $scope.successMessage = "";
@@ -13,11 +15,17 @@ app.controller ('ProceduresController', ['$scope', '$http', 'NgTableParams', '$f
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
-              $state.go ('app.procedures');
+              $scope.successMessage = "Procedures updated successfully";
+              $timeout (function (){
+                $state.go ('app.procedures');
+              }, 1000);
             }
             else{
               $scope.successMessage = "Procedures saved successfully";
               $scope.data = {};
+              $timeout (function (){
+                $state.go ('app.procedures');
+              }, 1000);
             }
           }
           else{
@@ -61,6 +69,8 @@ app.controller ('ProceduresController', ['$scope', '$http', 'NgTableParams', '$f
               orderedData;
             params.total (orderedData.length); // set total for recalc pagination
             $defer.resolve ($scope.procedures = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+            $scope.checkboxes = {'checked': false, items: {}};
+            $scope.procedureSelectedItems = [];
           }
         });
       }

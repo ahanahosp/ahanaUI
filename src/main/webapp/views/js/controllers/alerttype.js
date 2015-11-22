@@ -1,6 +1,6 @@
 'use strict';
 /* Controllers */
-app.controller ('AlertTypeController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
+app.controller ('AlertTypeController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $scope.saveAlertType = function (mode){
     $scope.errorData = "";
     if ($scope.alertTypeForm.$valid){
@@ -12,10 +12,18 @@ app.controller ('AlertTypeController', ['$scope', '$http', 'NgTableParams', '$fi
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
-              $state.go ('app.alertType');
+              $scope.successMessage = "Alert type updated successfully";
+              $scope.data = {};
+              $timeout (function (){
+                $state.go ('app.alertType');
+              }, 1000);
             }
             else{
+              $scope.successMessage = "Alert type saved successfully";
               $scope.data = {};
+              $timeout (function (){
+                $state.go ('app.alertType');
+              }, 1000);
             }
           }
           else{
@@ -59,6 +67,8 @@ app.controller ('AlertTypeController', ['$scope', '$http', 'NgTableParams', '$fi
               orderedData;
             params.total (orderedData.length); // set total for recalc pagination
             $defer.resolve ($scope.alertType = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+            $scope.checkboxes = {'checked': false, items: {}};
+            $scope.alertTypeSelectedItems = [];
           }
         });
       }

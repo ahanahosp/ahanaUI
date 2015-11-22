@@ -225,7 +225,7 @@ angular.module ('app')
         }
       })
         .state ('app.inpatient', {
-        url: '/inpatient',
+        url: '/inpatient-new',
         templateUrl: contextPath + 'views/tpl/inpatient.html',
         controller: 'XeditableCtrl',
         resolve: {
@@ -240,38 +240,8 @@ angular.module ('app')
         }
       })
         .state ('app.outpatient', {
-        url: '/outpatient',
-        templateUrl: contextPath + 'views/tpl/outpatient.html',
-        controller: 'XeditableCtrl',
-        resolve: {
-          deps: ['$ocLazyLoad',
-            function ($ocLazyLoad){
-              return $ocLazyLoad.load ('xeditable').then (
-                function (){
-                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/xeditable.js');
-                }
-              );
-            }]
-        }
-      })
-        .state ('app.inpatient-new', {
-        url: '/inpatient-new',
-        templateUrl: contextPath + 'views/tpl/inpatient-new.html',
-        controller: 'XeditableCtrl',
-        resolve: {
-          deps: ['$ocLazyLoad',
-            function ($ocLazyLoad){
-              return $ocLazyLoad.load ('xeditable').then (
-                function (){
-                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/xeditable.js');
-                }
-              );
-            }]
-        }
-      })
-        .state ('app.outpatient-new', {
         url: '/outpatient-new',
-        templateUrl: contextPath + 'views/tpl/outpatient-new.html',
+        templateUrl: contextPath + 'views/tpl/outpatient.html',
         controller: 'XeditableCtrl',
         resolve: {
           deps: ['$ocLazyLoad',

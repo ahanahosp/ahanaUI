@@ -1,6 +1,6 @@
 'use strict';
 /* Controllers */
-app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
+app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $http.get (path + "rest/secure/common/getFloorValues").then (
     function (response){
       $scope.floors = response.data.floorDetails;

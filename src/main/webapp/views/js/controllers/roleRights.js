@@ -1,6 +1,6 @@
 'use strict';
 /* Controllers */
-app.controller ('RolesRightsController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
+app.controller ('RolesRightsController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $http ({
     url: path + "rest/secure/user/getActiveRoles",
     method: "GET"

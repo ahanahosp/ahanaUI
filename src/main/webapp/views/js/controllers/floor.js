@@ -1,6 +1,8 @@
 'use strict';
 /* Controllers */
-app.controller ('FloorController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
+app.controller ('FloorController',
+  ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout',
+    function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $scope.saveFloor = function (mode){
     $scope.errorData = "";
     $scope.successMessage = "";
@@ -13,11 +15,17 @@ app.controller ('FloorController', ['$scope', '$http', 'NgTableParams', '$filter
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
-              $state.go ('app.floor');
+              $scope.successMessage = "Floor updated successfully";
+              $timeout (function (){
+                $state.go ('app.floor');
+              }, 1000);
             }
             else{
               $scope.successMessage = "Floor saved successfully";
               $scope.data = {};
+              $timeout (function (){
+                $state.go ('app.floor');
+              }, 1000);
             }
           }
           else{
@@ -61,6 +69,8 @@ app.controller ('FloorController', ['$scope', '$http', 'NgTableParams', '$filter
               orderedData;
             params.total (orderedData.length); // set total for recalc pagination
             $defer.resolve ($scope.floors = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+            $scope.checkboxes = {'checked': false, items: {}};
+            $scope.floorSelectedItems = [];
           }
         });
       }

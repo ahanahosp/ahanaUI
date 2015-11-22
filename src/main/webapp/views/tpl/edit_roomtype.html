@@ -3,6 +3,11 @@
 </div>
 <div class="wrapper-md">
     <div ng-controller="RoomTypeController">
+        <div class="wrapper table-responsive" ng-show="successMessage">
+            <div class="text-success">
+                <i class="fa fa-info-circle"></i> {{successMessage}}
+            </div>
+        </div>
         <div class="wrapper table-responsive" ng-show="errorData">
             <div ng-repeat="error in errorData.errors" class="text-danger">
                 <i class="fa fa-warning"></i> {{error.longMessage}}

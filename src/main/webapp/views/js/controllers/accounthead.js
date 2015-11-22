@@ -1,7 +1,7 @@
 'use strict';
 //TODO need to move in properties file
 /* Controllers */
-app.controller ('AccountHeadController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
+app.controller ('AccountHeadController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $scope.saveAccountHead = function (){
     if ($scope.accountHeadForm.$valid){
       $http ({

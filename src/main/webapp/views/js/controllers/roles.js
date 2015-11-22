@@ -14,7 +14,7 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
-              $scope.successMessage = "Roles saved successfully";
+              $scope.successMessage = "Roles updated successfully";
               $timeout (function (){
                 $state.go ('app.roles');
               }, 1000);
