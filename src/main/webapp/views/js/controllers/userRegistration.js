@@ -57,10 +57,17 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
-              $state.go ('app.users');
+              $scope.successMessage = "User updated successfully";
+              $timeout (function (){
+                $state.go ('app.users');
+              }, 1000);
             }
             else{
+              $scope.successMessage = "User saved successfully";
               $scope.data = {};
+              $timeout (function (){
+                $state.go ('app.users');
+              }, 1000);
             }
           }
           else{
