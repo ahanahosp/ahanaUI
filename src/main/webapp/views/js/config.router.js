@@ -225,7 +225,7 @@ angular.module ('app')
         }
       })
         .state ('app.inpatient', {
-        url: '/inpatient-new',
+        url: '/inpatient',
         templateUrl: contextPath + 'views/tpl/inpatient.html',
         controller: 'XeditableCtrl',
         resolve: {
@@ -240,7 +240,7 @@ angular.module ('app')
         }
       })
         .state ('app.outpatient', {
-        url: '/outpatient-new',
+        url: '/outpatient',
         templateUrl: contextPath + 'views/tpl/outpatient.html',
         controller: 'XeditableCtrl',
         resolve: {
