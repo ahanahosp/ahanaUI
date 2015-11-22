@@ -18,7 +18,6 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
               $timeout (function (){
                 $state.go ('app.roles');
               }, 1000);
-              $state.go ('app.roles');
             }
             else{
               $scope.successMessage = "Roles saved successfully";
