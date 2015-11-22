@@ -21,4 +21,15 @@ public class LoginServicesImpl {
 		SecurityContextHolder.clearContext();
 		return "ahanaLogin";
 	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public final String logout(final HttpServletRequest request) {
+		HttpSession oldSession = request.getSession(false);
+		if (oldSession != null ) {
+			oldSession.invalidate();
+		}
+		SecurityContextHolder.clearContext();
+		return "ahanaShowLogin";
+	}
+
 }

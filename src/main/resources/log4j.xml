@@ -11,27 +11,27 @@
 	</appender>
 	
 	<logger name="org.springframework.core">
-		<level value="ERROR" />
+		<level value="DEBUG" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="ERROR" />
+		<level value="DEBUG" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="ERROR" />
+		<level value="DEBUG" />
 	</logger>
 
 	<logger name="org.springframework.http">
-		<level value="ERROR" />
+		<level value="DEBUG" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="ERROR" />
+		<level value="DEBUG" />
 	</logger>
 	
 	<logger name="org.springframework.security">
-		<level value="ERROR" />
+		<level value="DEBUG" />
 	</logger>
 
 	<root>
