@@ -1,6 +1,7 @@
 'use strict';
 /* Controllers */
-app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope){
+app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout',
+  function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $scope.saveRoles = function (mode){
     $scope.errorData = "";
     $scope.successMessage = "";
@@ -18,6 +19,9 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
             else{
               $scope.successMessage = "Roles saved successfully";
               $scope.data = {};
+              $timeout (function (){
+                $state.go ('app.roles');
+              }, 500);
             }
           }
           else{
@@ -61,6 +65,8 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
               orderedData;
             params.total (orderedData.length); // set total for recalc pagination
             $defer.resolve ($scope.roles = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+            $scope.checkboxes = {'checked': false, items: {}};
+            $scope.roleSelectedItems = [];
           }
         });
       }
