@@ -9,47 +9,116 @@
           
     <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
 	 
-	<!--<alias name="filterChainProxy" alias="springSecurityFilterChain"/>
+	<alias name="filterChainProxy" alias="springSecurityFilterChain"/>
 	
-	 <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
 		<sec:filter-chain-map request-matcher="ant">
- 			<sec:filter-chain pattern="/services/rest/secure/**" filters="httpSessionContextIntegrationFilterWithASCFalse,
- 					exceptionTranslationFilter"/>
+ 			<sec:filter-chain pattern="/**" filters="httpSessionContextIntegrationFilter,
+ 					logoutFilter,
+ 					authenticationProcessingFilter,
+ 					securityContextHolderAwareRequestFilter,
+ 					exceptionTranslationFilter,
+ 					filterInvocationInterceptor"/>
 		</sec:filter-chain-map>
 	</bean>
 	
-	<bean id="ahanaSecurityFilter" class="com.ahana.api.system.security.filters.AhanaSecurityFilter"/> 
+	<bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+	    <constructor-arg value="/views/ahanaShowLoginPage.jsp"/>
+	    <constructor-arg>
+	        <list>
+	            <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+	        </list>
+		</constructor-arg>
+	</bean>
 	
-	<bean id="filterInvocationInterceptor" class="com.ahana.api.system.security.filters.AhanaFilterSecurityInterceptor">
-		<property name="authenticationManager" ref="authenticationManager" />
-		<property name="accessDecisionManager" ref="accessDecisionManager" />
-	</bean> 
-	
-	<bean id="httpSessionContextIntegrationFilterWithASCFalse" class="org.springframework.security.web.context.SecurityContextPersistenceFilter" >
+	<bean id="httpSessionContextIntegrationFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter" >
 		<constructor-arg name="repo" ref="securityContextRepository"/>
 	</bean>
 
-	<bean id="securityContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository">
-		<property name="allowSessionCreation" value="false" />
+	<bean id="securityContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository"/>
+	
+	<bean id="authenticationProcessingFilter" class="com.ahana.commons.system.security.filters.AhanaAuthenticationProcessingFilter">
+	    <property name="authenticationManager" ref="authenticationManager"/>
+	    <property name="authenticationSuccessHandler" ref="authenticationSuccessHandler"/>
+	    <property name="filterProcessesUrls">
+	        <list value-type="java.lang.String">
+	            <value>/j_spring_security_check</value>
+	        </list>
+        </property>
+        <property name="authenticationFailureHandler" ref="authenticationFailureHandler"/>
 	</bean>
+	
+	<bean id="authenticationSuccessHandler"  class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler" >
+		<property name ="defaultTargetUrl" value="/views/index.jsp"/>
+	</bean>
+	
+	<bean id="authenticationFailureHandler" class="com.ahana.commons.system.security.filters.AhanaFailureHandler">
+	    <property name="exceptionMappings">
+	        <props>
+       			<prop key="com.ahana.commons.system.security.exception.AhanaBadCredentialsException">/views/ahanaLogin.jsp?error=invalidPassword</prop>
+       			<prop key="org.springframework.security.authentication.LockedException">/views/ahanaLogin.jsp?error=accountLocked</prop>
+       			<prop key="org.springframework.security.authentication.DisabledException">/views/ahanaLogin.jsp?error=accountDisabled</prop>
+       			<prop key="org.springframework.security.authentication.AccountExpiredException">/views/ahanaLogin.jsp?error=userAccountNotActivated</prop>
+       			<prop key="org.springframework.security.authentication.CredentialsExpiredException">/views/ahanaResetPassword.jsp?error=accountLocked</prop>
+       			<prop key="org.springframework.security.authentication.AuthenticationServiceException">/views/ahanaLogin.jsp?error=serviceNotAvailable</prop>
+       			<prop key="com.ahana.commons.system.security.exception.AhanaBusinessException">/views/ahanaLogin.jsp?error=userAccountNotActivated</prop>
+     		</props>
+		</property>
+	</bean>	
 	
 	<bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
 		<constructor-arg name="providers" index="0">
 			<list>
-	            <ref bean="daoAuthenticationProvider"/>
+	            <ref bean="remoteAuthenticationProvider"/>
 	            <ref bean="rememberMeAuthenticationProvider"/>
 	            <ref bean="anonymousAuthenticationProvider"/>
 	        </list>
 		</constructor-arg>
    	</bean>
    	
-   	<bean id="daoAuthenticationProvider" class="com.ahana.api.system.security.filters.AhanaDaoAuthenticationProvider">
-		<property name="userDetailsService" ref="userDao"/>
-		<property name="hideUserNotFoundExceptions" value="true"/>
-		<property name="passwordEncoder" ref="passwordEncoder"/>
+   	<bean id="remoteAuthenticationProvider"	class="com.ahana.commons.system.security.filters.AhanaRemoteAuthenticationProvider">
+		<property name="ahanaRemoteAuthenticationManager" ref="ahanaRemoteAuthenticationManager" />
+	</bean>
+
+	<bean id="ahanaRemoteAuthenticationManager" class="com.ahana.commons.system.security.filters.AhanaInvokerFactoryBean">
+		<property name="serviceUrl">
+			<value>http://AHANASERVICES_IP/AHANASERVICES_READENDPOINT/RemoteAuthenticationManager</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.ahana.commons.system.security.filters.AhanaRemoteAuthenticationManager</value>
+		</property>
 	</bean>
 	
-	<bean id="passwordEncoder" class="com.ahana.api.system.security.util.StringEncoder"/>
+	<bean id="filterInvocationInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="accessDecisionManager" ref="accessDecisionManager"/>
+		<property name="securityMetadataSource">
+    		<sec:filter-security-metadata-source use-expressions="true" lowercase-comparisons="true">
+       			<sec:intercept-url pattern="/services/rest/secure/**" access="isFullyAuthenticated()"/>
+      			<!-- <sec:intercept-url pattern="/**/*.css" access="hasAnyRole('ROLE_ANONYMOUS')"/>
+	            <sec:intercept-url pattern="/**/*.pdf" access="hasAnyRole('ROLE_ANONYMOUS')"/>
+	            <sec:intercept-url pattern="/**/*.js" access="hasAnyRole('ROLE_ANONYMOUS')"/>
+	            <sec:intercept-url pattern="/**/*.jpg" access="hasAnyRole('ROLE_ANONYMOUS')"/>
+	            <sec:intercept-url pattern="/**/*.gif" access="hasAnyRole('ROLE_ANONYMOUS')"/>
+	            <sec:intercept-url pattern="/**/*.png" access="hasAnyRole('ROLE_ANONYMOUS')"/>
+	            <sec:intercept-url pattern="/**/*.xml" access="hasAnyRole('ROLE_ANONYMOUS')"/> -->
+	            <sec:intercept-url pattern="/services/rest/**"/>
+				<sec:intercept-url pattern="/j_spring_security_check*"/>
+				<sec:intercept-url pattern="/views/ahanaLogin.jsp*"/>
+				<sec:intercept-url pattern="/views/ahanaShowLoginPage.jsp*"/>
+				<sec:intercept-url pattern="/j_spring_security_logout*" access="isFullyAuthenticated()"/>
+				<sec:intercept-url pattern="/views/index.jsp*" access="isFullyAuthenticated()"/>
+				<sec:intercept-url pattern="/views/tpl/inpatient-new.html*" access="isFullyAuthenticated()"/>
+				<sec:intercept-url pattern="/**"/>
+    		</sec:filter-security-metadata-source>
+  		</property>
+	</bean>
+	
+	<bean id="securityContextHolderAwareRequestFilter" class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter"/>
+	
+	<bean id="anonymousProcessingFilter" class="org.springframework.security.web.authentication.AnonymousAuthenticationFilter">
+	   	<constructor-arg type="java.lang.String" index="0" name="key" value="anonymous"/>
+    </bean>
    	
    	<bean id="rememberMeAuthenticationProvider" class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
    		<constructor-arg name="key" value="ahana" index="0" type="java.lang.String"/>
@@ -66,10 +135,8 @@
 	    </property>
 	</bean>
 	
-	<bean id="authenticationEntryPoint"	class="org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint">
-		<property name="realmName">
-			<value>Restricted resources</value>
-		</property>
+	<bean id="authenticationEntryPoint"	class="com.ahana.commons.system.security.filters.AhanaAuthenticationEntryPoint">
+		<constructor-arg name="loginFormUrl" value="/views/ahanaShowLoginPage.jsp"/>
 	</bean>
 	
 	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
@@ -89,5 +156,5 @@
 				<ref bean="webExpressionVoter"/>
 			</list>
 		</constructor-arg>
-	</bean>-->
+	</bean>
 </beans>

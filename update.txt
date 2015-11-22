@@ -140,13 +140,13 @@ v 1.2.0
    added: 'ocLazyLoad' from https://github.com/ocombe/ocLazyLoad
            'ng-grid' from http://angular-ui.github.io/ng-grid/
            use ocLazyLoad to lazy load the ng-grid modules
-           'tpl/table_grid.html'
+           'views/tpl/table_grid.html'
            'js/modules/ng-grid/'
    changed: 'js/app.js' to config the ocLazyLoad. and add ngGrid state.
 
 4: add toaster
    added: 'js/modules/toaster' from https://github.com/jirikavi/AngularJS-Toaster
-          'tpl/ui_toaster.html'
+          'views/tpl/ui_toaster.html'
    changed: 'js/app.js' add ui.toaster state
 
 5: fix sub menu when using ".bg-white"

@@ -10,8 +10,8 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/config/spring/applicationContext.xml</param-value>
 	</context-param>
-
-	<!-- <filter>
+	
+	<filter>
     	<filter-name>springSecurityFilterChain</filter-name>
     	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     	<init-param>
@@ -23,7 +23,7 @@
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
+	</filter-mapping>
 	
 	<filter>
         <filter-name>encoding-filter</filter-name>
@@ -45,21 +45,25 @@
 	
 	<servlet>
 		<servlet-name>ahana</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
+		<servlet-class>com.ahana.commons.system.security.filters.AhanaDispatcherServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>ahana</servlet-name>
 		<url-pattern>/ahana/*</url-pattern>
 	</servlet-mapping>
-
+	
+	<servlet-mapping>
+		<servlet-name>ahana</servlet-name>
+		<url-pattern>/services/rest/secure/*</url-pattern>
+	</servlet-mapping>
+	
 	<session-config>
     	<session-timeout>30</session-timeout>
    	</session-config>
    	
    	<welcome-file-list>
-   		<welcome-file>/views/index.html</welcome-file>
+		<welcome-file>/views/index.jsp</welcome-file>
    	</welcome-file-list>
 
 </web-app>
