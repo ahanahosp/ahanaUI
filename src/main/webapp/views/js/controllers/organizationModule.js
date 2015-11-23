@@ -72,5 +72,20 @@ app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$fi
     // angular.element(document.getElementById("select_all")).prop("indeterminate", (checked != 0 && unchecked != 0));
   }, true);
   $scope.updateModuleStatus = function (model, deactivate){
+    var selectedModules = $scope.moduleSelected.join (",");
+    $http ({
+      url: path + "rest/secure/common/updateModuleStatus",
+      method: "POST",
+      data: selectedModules
+    }).then (
+      function (response){
+        if (response.data.Status === 'Ok'){
+          loadOrgModuleList ();
+        }
+        else{
+          $scope.errorData = response.data;
+        }
+      }
+    );
   }
 }]);

@@ -47,6 +47,7 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
   }
   /**Save Patient Registration data*/
   $scope.saveRegistration = function (mode){
+    $scope.successMessage = "";
     $scope.errorData = "";
     if ($scope.userRegistrationForm.$valid){
       $http ({
