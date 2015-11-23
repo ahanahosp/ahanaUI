@@ -51,6 +51,7 @@ app.controller ('RolesRightsController', ['$scope', '$http', 'NgTableParams', '$
   )
   $scope.saveRoleRights = function (){
     $scope.errorData = "";
+    $scope.successMessage = "";
     var selectedRoles = [];
     angular.forEach ($scope.data.modules, function (value, key){
         angular.forEach (value, function (invalue, inkey){

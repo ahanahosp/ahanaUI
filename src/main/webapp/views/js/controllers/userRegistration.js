@@ -2,6 +2,8 @@
 //TODO need to move in properties file
 /* Controllers */
 app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
+  $scope.formats = ['dd/MM/yyyy hh:mm:ss', 'dd/MM/yyyy'];
+
   $scope.openActivationDate = function ($event){
     $event.preventDefault ();
     $event.stopPropagation ();
@@ -12,15 +14,17 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
     $event.stopPropagation ();
     $scope.openedInActivationDate = true;
   };
-  $scope.activationDate = $filter ('date') (new Date (), $scope.formats[1]);
-  $scope.inactivationDate = $filter ('date') (new Date (), $scope.formats[1]);
+  if (angular.isUndefined ($scope.data)){
+    $scope.data = {};
+  }
+  $scope.data.activationDate = $filter ('date') (new Date (), $scope.formats[1]);
+  $scope.data.inactivationDate = $filter ('date') (new Date (), $scope.formats[1]);
 
   $scope.dateOptions = {
     formatYear: 'yy',
     startingDay: 1,
     class: 'datepicker'
   };
-  $scope.formats = ['dd/MM/yyyy hh:mm:ss', 'dd/MM/yyyy'];
   $scope.format = $scope.formats[1];
 
   $http.get (path + "rest/secure/common/getSpecialityValues").then (

@@ -3,6 +3,7 @@
 app.controller ('AlertTypeController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $scope.saveAlertType = function (mode){
     $scope.errorData = "";
+    $scope.successMessage = "";
     if ($scope.alertTypeForm.$valid){
       $http ({
         url: path + "rest/secure/config/createAlertTypes",
@@ -13,7 +14,6 @@ app.controller ('AlertTypeController', ['$scope', '$http', 'NgTableParams', '$fi
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
               $scope.successMessage = "Alert type updated successfully";
-              $scope.data = {};
               $timeout (function (){
                 $state.go ('app.alertType');
               }, 1000);
