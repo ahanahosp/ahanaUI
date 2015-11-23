@@ -12,6 +12,9 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
     $event.stopPropagation ();
     $scope.openedInActivationDate = true;
   };
+  $scope.activationDate = $filter (new Date (), $scope.formats[1]);
+  $scope.inactivationDate = $filter (new Date (), $scope.formats[1]);
+
   $scope.dateOptions = {
     formatYear: 'yy',
     startingDay: 1,
