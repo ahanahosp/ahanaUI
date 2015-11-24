@@ -3,6 +3,11 @@
 </div>
 <div class="wrapper-md">
   <div ng-controller="UserRoleController">
+    <div class="wrapper table-responsive" ng-show="successMessage">
+      <div class="text-success">
+        <i class="fa fa-info-circle"></i> {{successMessage}}
+      </div>
+    </div>
     <div class="wrapper table-responsive" ng-show="errorData">
       <div ng-repeat="error in errorData.errors" class="text-danger">
         <i class="fa fa-warning"></i> {{error.longMessage}}
@@ -10,35 +15,36 @@
     </div>
     <div class="row clearfix">
       <div class="col-sm-12">
-      <form name="userRoleForm" class="form-horizontal form-validation">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="form-group">
-              <label class="col-sm-3 control-label">User Name * </label>
-              	<div class="col-lg-9">
-                  <select class="form-control" ng-model="data.userOid" ng-options="user.value as user.label for user in userDetails | orderBy: label"  ng-change="getSavedRoles()">
+        <form name="userRoleForm" class="form-horizontal form-validation">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">User Name * </label>
+
+                <div class="col-lg-9">
+                  <select class="form-control" ng-model="data.userOid" ng-options="user.value as user.label for user in userDetails | orderBy: label" ng-change="getSavedRoles()">
                     <option value="">Select User</option>
                   </select>
-             	</div>
-            </div>
-            <div class="line line-dashed b-b line-lg "></div>
-            <div class="form-group">
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
                 <label class="col-sm-3 control-label">Roles *</label>
 
                 <div class="col-sm-9">
                   <div ng-repeat="roles in roleDetails track by roles.oid">
-                    <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="data.roleDetails[$index][roles.oid]"> <i></i> </label> {{roles.name}}
+                    <label class="i-checks "><input type="checkbox" ng-checked="selectedRoles.containsObjectWithProperty('oid', roles.oid)" name="status" ng-click="toggleSelection(roles)" /> <i></i> </label> {{roles.name}}
                   </div>
                 </div>
-          	</div>
-          	<footer class="panel-footer text-right bg-light lter">
-              <button class="btn m-b-xs  btn-success " ng-click="saveUserRole()">Assign</button>
-              &nbsp;
-              <button class="btn m-b-xs  btn-dark"><i class="fa fa-times"></i> Cancel</button>
-              &nbsp;
-            </footer>
+              </div>
+              <footer class="panel-footer text-right bg-light lter">
+                <button class="btn m-b-xs  btn-success " ng-click="saveUserRole()">Assign</button>
+                &nbsp;
+                <button class="btn m-b-xs  btn-dark"><i class="fa fa-times"></i> Cancel</button>
+                &nbsp;
+              </footer>
+            </div>
           </div>
-        </div>
         </form>
       </div>
     </div>

@@ -117,6 +117,7 @@ app.controller ('RolesRightsController', ['$scope', '$http', 'NgTableParams', '$
         function (response){
           if (response.data.Status === 'Ok'){
             $scope.successMessage = "Role rights saved successfully";
+            $scope.data = {};
             $timeout (function (){
               $state.reload ();
             }, 1000);
