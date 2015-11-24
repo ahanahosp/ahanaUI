@@ -30,7 +30,6 @@
               <div class="line line-dashed b-b line-lg "></div>
               <div class="form-group">
                 <label class="col-sm-3 control-label">Roles *</label>
-
                 <div class="col-sm-9">
                   <div ng-repeat="roles in roleDetails track by roles.oid">
                     <label class="i-checks "><input type="checkbox" ng-checked="selectedRoles.containsObjectWithProperty('oid', roles.oid)" name="status" ng-click="toggleSelection(roles)" /> <i></i> </label> {{roles.name}}
