@@ -3,6 +3,11 @@
 </div>
 <div class="wrapper-md">
   <div ng-controller="RolesRightsController">
+    <div class="wrapper table-responsive" ng-show="successMessage">
+      <div class="text-success">
+        <i class="fa fa-info-circle"></i> {{successMessage}}
+      </div>
+    </div>
     <div class="wrapper table-responsive" ng-show="errorData">
       <div ng-repeat="error in errorData.errors" class="text-danger">
         <i class="fa fa-warning"></i> {{error.longMessage}}
@@ -36,7 +41,7 @@
 
                 <div class="col-sm-9">
                   <div ng-repeat="module in modules track by module.oid">
-                    <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="data.modules[$index][module.oid]"> <i></i> </label> {{module.moduleName}}
+                    <label class="i-checks "><input type="checkbox" ng-checked="selectedModules.containsObjectWithProperty('oid', module.oid)" name="status" ng-click="toggleSelection(module)" /> <i></i> </label> {{module.moduleName}}
                   </div>
                 </div>
               </div>
