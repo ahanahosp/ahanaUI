@@ -2,8 +2,7 @@
 //TODO need to move in properties file
 /* Controllers */
 app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
-  $scope.formats = ['dd/MM/yyyy hh:mm:ss', 'dd/MM/yyyy'];
-
+  $scope.formats = ['yyyy-MM-dd HH:mm:ss', 'yyyy-MM-dd'];
   $scope.openActivationDate = function ($event){
     $event.preventDefault ();
     $event.stopPropagation ();
