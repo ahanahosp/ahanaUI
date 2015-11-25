@@ -118,7 +118,7 @@ app.controller ('RolesRightsController', ['$scope', '$http', 'NgTableParams', '$
           if (response.data.Status === 'Ok'){
             $scope.successMessage = "Role rights saved successfully";
             $scope.selectedModules = [];
-            $scope.data = {};
+            $scope.data = {organizationOid: $scope.organization.oid};
           }
           else{
             $scope.errorData = response.data;
@@ -130,6 +130,6 @@ app.controller ('RolesRightsController', ['$scope', '$http', 'NgTableParams', '$
   $scope.reset = function (){
     $scope.errorData = "";
     $scope.selectedModules = [];
-    $scope.data = {};
+    $scope.data = {organizationOid: $scope.organization.oid};
   }
 }]);
