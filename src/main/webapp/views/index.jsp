@@ -83,24 +83,24 @@
 <!-- jQuery -->
 <script src="<%=request.getContextPath()%>/views/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Angular -->
-<script src="<%=request.getContextPath()%>/views/bower_components/angular/angular.js"></script>
-<script src="<%=request.getContextPath()%>/views/bower_components/angular-animate/angular-animate.js"></script>
-<script src="<%=request.getContextPath()%>/views/bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="<%=request.getContextPath()%>/views/bower_components/angular-resource/angular-resource.js"></script>
-<script src="<%=request.getContextPath()%>/views/bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="<%=request.getContextPath()%>/views/bower_components/angular-touch/angular-touch.js"></script>
-<script src="<%=request.getContextPath()%>/views/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="<%=request.getContextPath()%>/views/bower_components/ngstorage/ngStorage.js"></script>
-<script src="<%=request.getContextPath()%>/views/bower_components/angular-ui-utils/ui-utils.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular/angular.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular-touch/angular-touch.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/ngstorage/ngStorage.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular-ui-utils/ui-utils.min.js"></script>
 <!-- bootstrap -->
-<script src="<%=request.getContextPath()%>/views/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <!-- lazyload -->
-<script src="<%=request.getContextPath()%>/views/bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
 <!-- translate -->
-<script src="<%=request.getContextPath()%>/views/bower_components/angular-translate/angular-translate.js"></script>
-<script src="<%=request.getContextPath()%>/views/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-<script src="<%=request.getContextPath()%>/views/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
-<script src="<%=request.getContextPath()%>/views/bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular-translate/angular-translate.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/bower_components/angular-translate-storage-local/angular-translate-storage-local.min.js"></script>
 <script src="<%=request.getContextPath()%>/views/bower_components/ng-table/ng-table.min.js"></script>
 <!-- App -->
 <script src="<%=request.getContextPath()%>/views/js/app.js"></script>
