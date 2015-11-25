@@ -117,4 +117,8 @@ app
         )
     }
   };
+  $scope.reset = function (){
+    $scope.selectedRoles = [];
+    $scope.data = {};
+  }
 }]);

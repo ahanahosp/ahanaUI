@@ -59,7 +59,7 @@ app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$fi
       total = $scope.modules.length;
     angular.forEach ($scope.modules, function (item){
       if ($scope.checkboxes.items[item.oid]){
-        $scope.moduleSelectedItems.push (item);
+        $scope.moduleSelectedItems.push (item.oid);
       }
       checked += ($scope.checkboxes.items[item.oid]) || 0;
       unchecked += (!$scope.checkboxes.items[item.oid]) || 0;
@@ -71,16 +71,18 @@ app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$fi
     // grayed checkbox
     // angular.element(document.getElementById("select_all")).prop("indeterminate", (checked != 0 && unchecked != 0));
   }, true);
+
   $scope.updateModuleStatus = function (model, deactivate){
-    var selectedModules = $scope.moduleSelected.join (",");
+    $scope.errorData = "";
+    var selectedModules = $scope.moduleSelectedItems.join (",");
     $http ({
-      url: path + "rest/secure/common/updateModuleStatus",
+      url: path + "rest/secure/common/deactivateOrganizationModule",
       method: "POST",
-      data: selectedModules
+      data: {"oids": selectedModules}
     }).then (
       function (response){
         if (response.data.Status === 'Ok'){
-          loadOrgModuleList ();
+          $scope.loadOrgModuleList ();
         }
         else{
           $scope.errorData = response.data;
