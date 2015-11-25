@@ -118,6 +118,7 @@ app
     }
   };
   $scope.reset = function (){
+    $scope.errorData = "";
     $scope.selectedRoles = [];
     $scope.data = {};
   }

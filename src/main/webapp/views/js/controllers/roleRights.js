@@ -130,6 +130,7 @@ app.controller ('RolesRightsController', ['$scope', '$http', 'NgTableParams', '$
     }
   };
   $scope.reset = function (){
+    $scope.errorData = "";
     $scope.selectedModules = [];
     $scope.data = {};
   }
