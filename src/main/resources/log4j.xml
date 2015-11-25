@@ -9,6 +9,9 @@
 			<param name="ConversionPattern" value="%d{HH:mm:ss} [%t] %c{1} - %m%n" />
 		</layout>
 	</appender>
+	<logger name="com.ahana">
+		<level value="DEBUG" />
+	</logger>
 	
 	<logger name="org.springframework.core">
 		<level value="DEBUG" />
