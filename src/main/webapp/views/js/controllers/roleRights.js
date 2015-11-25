@@ -58,6 +58,8 @@ app.controller ('RolesRightsController', ['$scope', '$http', 'NgTableParams', '$
     }
   );
   $scope.getSavedRights = function (){
+    $scope.errorData = "";
+    $scope.successMessage = "";
     $http.get (path + "rest/secure/user/getSavedRightsByRoleOid?roleOid=" + $scope.data.roleOid).then (
       function (response){
         if (response.data.Status === 'Ok'){

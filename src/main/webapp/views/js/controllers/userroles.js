@@ -45,6 +45,8 @@ app
     }
   )
   $scope.getSavedRoles = function (){
+    $scope.errorData = "";
+    $scope.successMessage = "";
     $http.get (path + "rest/secure/user/getSavedRolesByUserOid?userOid=" + $scope.data.userOid).then (
       function (response){
         if (response.data.Status === 'Ok'){
