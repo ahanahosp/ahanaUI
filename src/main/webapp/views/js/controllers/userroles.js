@@ -87,6 +87,7 @@ app
   };
   $scope.saveUserRole = function (){
     $scope.errorData = "";
+    $scope.successMessage = "";
     var selectedUserRoles = [];
     angular.forEach ($scope.selectedRoles, function (value, key){
         selectedUserRoles.push (value.oid);
@@ -105,10 +106,8 @@ app
           function (response){
             if (response.data.Status === 'Ok'){
               $scope.successMessage = "User roles saved successfully";
+              $scope.selectedRoles = [];
               $scope.data = {};
-              $timeout (function (){
-                $state.reload ();
-              }, 1000);
             }
             else{
               $scope.errorData = response.data;
