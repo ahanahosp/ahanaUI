@@ -33,7 +33,7 @@ Array.prototype.containsObjectWithProperty = function (propertyName, propertyVal
 /* Controllers */
 app
 // Registration controller
-  .controller ('UserRoleController', ['$scope', '$http', 'NgTableParams', '$state', function ($scope, $http, NgTableParams, $state){
+  .controller ('UserRoleController', ['$scope', '$http', 'NgTableParams', '$state', '$timeout', function ($scope, $http, NgTableParams, $state, $timeout){
   $http.get (path + "rest/secure/user/getAllUserOidAndName").then (
     function (response){
       $scope.userDetails = response.data.userDetails;
