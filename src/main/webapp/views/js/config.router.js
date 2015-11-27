@@ -735,7 +735,38 @@ angular.module ('app')
             }
           ]
         }
-      })
+      }).state ('app.createAlliedCharges', {
+          url: '/createAlliedCharges',
+          templateUrl: contextPath + 'views/tpl/create_alliedcharges.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/alliedcharges.js');
+              }
+            ]
+          }
+        })
+          .state ('app.editAlliedCharges', {
+          url: '/editAlliedCharges/{oid}',
+          templateUrl: contextPath + 'views/tpl/edit_alliedcharges.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/alliedcharges.js');
+              }
+            ]
+          }
+        }).state ('app.alliedCharges', {
+          url: '/alliedCharges',
+          templateUrl: contextPath + 'views/tpl/alliedcharges.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/alliedcharges.js');
+              }
+            ]
+          }
+        })
         .state ('app.table.smart', {
         url: '/smart',
         templateUrl: contextPath + 'views/tpl/table_smart.html',
