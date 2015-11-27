@@ -19,7 +19,7 @@ public class LoginServicesImpl {
 			oldSession.invalidate();
 		}
 		SecurityContextHolder.clearContext();
-		return "/ahanaLogin";
+		return "ahanaLogin";
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -29,7 +29,7 @@ public class LoginServicesImpl {
 			oldSession.invalidate();
 		}
 		SecurityContextHolder.clearContext();
-		return "/ahanaShowLoginPage";
+		return "ahanaShowLoginPage";
 	}
 
 }
