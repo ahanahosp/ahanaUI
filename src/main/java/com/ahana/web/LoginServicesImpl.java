@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/services/rest")
+@RequestMapping("/local")
 public class LoginServicesImpl {
 	
 	@RequestMapping(value = "/showLogin" ,method = RequestMethod.GET)
@@ -19,7 +19,7 @@ public class LoginServicesImpl {
 			oldSession.invalidate();
 		}
 		SecurityContextHolder.clearContext();
-		return "ahanaLogin";
+		return "/ahanaLogin";
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -29,7 +29,7 @@ public class LoginServicesImpl {
 			oldSession.invalidate();
 		}
 		SecurityContextHolder.clearContext();
-		return "ahanaShowLogin";
+		return "/ahanaShowLoginPage";
 	}
 
 }

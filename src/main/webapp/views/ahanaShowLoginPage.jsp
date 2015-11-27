@@ -15,14 +15,14 @@
 	if(authentication != null){
 		try{
 			UserProfile userProfile = (UserProfile) authentication.getPrincipal(); 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/services/rest/secure/doPostLogin");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/services/rest/local/secure/doPostLogin");
 			dispatcher.forward(request,response);
 		}catch(Exception e){
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/ahanaLogin.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/services/rest/local/showLogin");
 			dispatcher.forward(request,response);
 		}
 	}else{
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/ahanaLogin.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/services/rest/local/showLogin");
 		dispatcher.forward(request,response);
 	}
 %>

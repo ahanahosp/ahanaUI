@@ -73,7 +73,7 @@
         <div class="clearfix"></div>
         <h2> Ahana Hospitals </h2>
         <img src="img/user-thumb.jpg" alt="" class="thumb-img">
-        <p><a href="<%=request.getContextPath()%>/services/rest/logout"> <i class="fa fa-sign-out"></i>Logout </a></p>
+        <p><a href="<%=request.getContextPath()%>/services/rest/local/logout"> <i class="fa fa-sign-out"></i>Logout </a></p>
     </div>
     <div class="doctor-name">
         <b> <%=userName %> </b> <br />

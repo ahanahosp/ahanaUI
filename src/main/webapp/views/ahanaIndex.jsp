@@ -16,7 +16,7 @@
 %>
 <script language="JavaScript">
 	history.forward();
-	window.top.location.href = "<%=request.getContextPath()%>/services/rest/secure/doPostLogin";
+	window.top.location.href = "<%=request.getContextPath()%>/services/rest/local/secure/doPostLogin";
 </script>
 </body>
 </html>

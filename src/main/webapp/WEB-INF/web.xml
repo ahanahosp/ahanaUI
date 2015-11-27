@@ -55,7 +55,7 @@
 	
 	<servlet-mapping>
 		<servlet-name>ahana</servlet-name>
-		<url-pattern>/services/rest/secure/*</url-pattern>
+		<url-pattern>/services/rest/*</url-pattern>
 	</servlet-mapping>
 	
 	<session-config>

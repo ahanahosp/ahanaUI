@@ -92,7 +92,7 @@
 		<property name="securityMetadataSource">
     		<sec:filter-security-metadata-source use-expressions="true" lowercase-comparisons="true">
        			<sec:intercept-url pattern="/services/rest/secure/**" access="isFullyAuthenticated()"/>
-				<sec:intercept-url pattern="/services/rest/logout*" access="isFullyAuthenticated()"/>
+				<sec:intercept-url pattern="/logout*" access="isFullyAuthenticated()"/>
 				<sec:intercept-url pattern="/views/index.jsp*" access="isFullyAuthenticated()"/>
 				<sec:intercept-url pattern="/views/tpl/inpatient-new.html*" access="isFullyAuthenticated()"/>
 				<sec:intercept-url pattern="/**"/>

@@ -147,7 +147,7 @@
                 <label class="col-lg-4 control-label">State</label>
 
                 <div class="col-lg-8">
-                  <select class="form-control" ng-model="data.state" ng-options="state.value as state.label for state in states | orderBy: label">
+                  <select class="form-control" ng-model="data.state" ng-options="state.value as state.label for state in states | orderBy: label" ng-change="updateCity()">
                     <option value="">Select State</option>
                   </select>
                 </div>
