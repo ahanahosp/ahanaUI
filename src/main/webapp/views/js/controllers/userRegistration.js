@@ -37,17 +37,24 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
       $scope.salutations = response.data.lookupValues.salutationDetails;
     }
   )
-  $scope.updateState = function (){
+  $scope.updateState = function (mode){
     $http.get (path + "rest/secure/lookup/populateState?countryId=" + $scope.data.country).then (
       function (response){
         $scope.states = response.data.stateDetails;
+        if (angular.isUndefined (mode)){
+          $scope.data.state = undefined;
+          $scope.data.city = undefined;
+        }
       }
     )
   }
-  $scope.updateCity = function (){
+  $scope.updateCity = function (mode){
     $http.get (path + "rest/secure/lookup/populateCity?stateId=" + $scope.data.state).then (
       function (response){
         $scope.cities = response.data.cityDetails;
+        if (angular.isUndefined (mode)){
+          $scope.data.city = undefined;
+        }
       }
     )
   }
@@ -167,6 +174,8 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
       function (response){
         if (response.data.Status === 'Ok'){
           $scope.data = response.data.userProfile;
+          $scope.updateState ('edit');
+          $scope.updateCity ('edit');
         }
         else{
           $scope.errorData = response.data;
