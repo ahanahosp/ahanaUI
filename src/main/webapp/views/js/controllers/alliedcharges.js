@@ -171,7 +171,7 @@ app.controller ('AlliedChargesController', ['$scope', '$http', 'NgTableParams', 
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({
-        url: path + "rest/secure/user/deleteAlliedCharges",
+        url: path + "rest/secure/config/deleteAlliedCharges",
         method: "POST",
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         transformRequest: function (obj){
