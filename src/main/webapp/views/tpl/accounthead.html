@@ -37,7 +37,7 @@
             {{accountHead.description}}
           </td>
           <td data-title="'Status'" class="text-left" sortable="'status'">
-            <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'InACT'" name="status" ng-model="accountHead.status"> <i></i> </label>
+            <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="accountHead.status"> <i></i> </label>
           </td>
           <td class="text-right">
             <a ui-sref="app.editAccountHead({oid:accountHead.oid})"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteAccountHead(accountHead.oid, accountHead.name)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
