@@ -767,6 +767,38 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.createPatientCategory', {
+          url: '/createPatientCategory',
+          templateUrl: contextPath + 'views/tpl/create_patientcategory.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/patientcategory.js');
+              }
+            ]
+          }
+        })
+          .state ('app.editPatientCategory', {
+          url: '/editPatientCategory/{oid}',
+          templateUrl: contextPath + 'views/tpl/edit_patientcategory.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/patientcategory.js');
+              }
+            ]
+          }
+        }).state ('app.patientCategory', {
+          url: '/patientCategory',
+          templateUrl: contextPath + 'views/tpl/patientcategory.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/patientcategory.js');
+              }
+            ]
+          }
+        })
         .state ('app.table.smart', {
         url: '/smart',
         templateUrl: contextPath + 'views/tpl/table_smart.html',
