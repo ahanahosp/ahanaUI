@@ -129,39 +129,45 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
   $scope.deleteMultipleRoles = function (){
   };
   $scope.editMultipleRoles = function (){
-    $scope.errorData = "";
-    var modalDefaults = {
-      templateUrl: contextPath + 'views/tpl/edit_multiple_role.html'
-    };
+    $scope.modalErrorData = "";
+    $scope.modalSuccessMessage = "";
     var modalOptions = {
       closeButtonText: 'Cancel',
       actionButtonText: 'Update',
       headerText: 'Edit Multiple Roles',
       roleSelectedItems: $scope.roleSelectedItems
     };
-    modalService.showModal (modalDefaults, modalOptions).then (function (result){
-      $http ({
-        url: path + "rest/secure/user/deleteRole",
-        method: "POST",
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        transformRequest: function (obj){
-          var str = [];
-          for (var p in obj)
-            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
-          return str.join ("&");
-        },
-        data: {oid: oid}
-      }).then (
-        function (response){
-          if (response.data.Status === 'Ok'){
-            $scope.loadRolesList ();
-          }
-          else{
-            $scope.errorData = response.data;
-          }
-        }
-      )
-    });
+
+    var modalDefaults = {
+      templateUrl: contextPath + 'views/tpl/edit_multiple_role.html',
+      controller: function ($scope, $modalInstance){
+        $scope.modalOptions = modalOptions;
+        $scope.saveMultipleRoles = function (){
+          $http ({
+            url: path + "rest/secure/config/createOrUpdateMultipleConfig",
+            method: "POST",
+            data: $scope.modalOptions.roleSelectedItems
+          }).then (
+            function (response){
+              if (response.data.Status === 'Ok'){
+                $scope.modalSuccessMessage = "Roles updated successfully";
+                $timeout (function (){
+                  $scope.loadRolesList ();
+                  $modalInstance.close (response);
+                }, 1000);
+              }
+              else{
+                $scope.modalErrorData = response.data;
+              }
+            }
+          )
+        };
+        $scope.close = function (result){
+          $modalInstance.dismiss ('cancel');
+        };
+      }
+    };
+    modalService.showModal (modalDefaults, modalOptions);
   };
   $scope.deleteRole = function (oid, name){
     $scope.errorData = "";

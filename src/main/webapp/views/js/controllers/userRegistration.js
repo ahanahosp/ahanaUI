@@ -52,14 +52,14 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
             if (mode === 'edit'){
               $scope.successMessage = "User updated successfully";
               $timeout (function (){
-                $state.go ('app.users');
+                $state.go ('app.userRegistration');
               }, 1000);
             }
             else{
               $scope.successMessage = "User saved successfully";
               $scope.data = {};
               $timeout (function (){
-                $state.go ('app.users');
+                $state.go ('app.userRegistration');
               }, 1000);
             }
           }
