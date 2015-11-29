@@ -1,6 +1,6 @@
+<%@page import="com.ahana.commons.system.domain.user.UserProfileView"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-<%@page import="com.ahana.commons.system.domain.user.UserProfile" %>
 <%@page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@page import="org.springframework.security.core.Authentication" %>
 <%@page import="org.springframework.security.core.context.SecurityContext" %>
@@ -37,8 +37,8 @@
             Authentication authentication = securityContext.getAuthentication();
             if(authentication != null){
                 try{
-                	if(authentication.getPrincipal() instanceof UserProfile){
-                    	UserProfile userProfile = (UserProfile) authentication.getPrincipal();
+                	if(authentication.getPrincipal() instanceof UserProfileView){
+                		UserProfileView userProfile = (UserProfileView) authentication.getPrincipal();
                     	userName=StringUtils.isBlank(userProfile.getSalutation())?"Mr":userProfile.getSalutation();
                     	String name =userProfile.getFirstName()+" "+userProfile.getLastName();
                     	name=StringUtils.isBlank(name)?"System User":name;

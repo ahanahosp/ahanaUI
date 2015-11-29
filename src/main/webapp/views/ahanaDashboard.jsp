@@ -1,4 +1,4 @@
-<%@page import="com.ahana.commons.system.domain.user.UserProfile"%>
+<%@page import="com.ahana.commons.system.domain.user.UserProfileView"%>
 <%@page import="org.springframework.security.core.Authentication"%>
 <%@page import="org.springframework.security.core.context.SecurityContext"%>
 <%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
@@ -17,7 +17,7 @@
 	response.setDateHeader("Expires", 0);
 	SecurityContext securityContext = SecurityContextHolder.getContext();
 	Authentication authentication = securityContext.getAuthentication();
-	if(authentication != null && authentication.getPrincipal() instanceof UserProfile){
+	if(authentication != null && authentication.getPrincipal() instanceof UserProfileView){
 %>
 	<script language="JavaScript">
 		history.forward();

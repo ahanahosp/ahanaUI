@@ -1,0 +1,152 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n h3">CHARGES DETAILS</h1>
+</div>
+<div class="wrapper-md">
+  <div ng-controller="ChargesForCategoryController">
+    <div class="wrapper table-responsive" ng-show="successMessage">
+      <div class="text-success">
+        <i class="fa fa-info-circle"></i> {{successMessage}}
+      </div>
+    </div>
+    <div class="wrapper table-responsive" ng-show="errorData">
+      <div ng-repeat="error in errorData.errors" class="text-danger">
+        <i class="fa fa-warning"></i> {{error.longMessage}}
+      </div>
+    </div>
+    <div class="row" ng-init="loadChargesForCategoryDetails()">
+      <form name="chargesForCategoryForm" class="form-horizontal form-validation">
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-lg-4 control-label">Category *</label>
+                <div class="col-lg-8">
+                  <select class="form-control" ng-model="data.category" ng-options="category.value as category.label for category in categories | orderBy: label" ng-change="updateSubCategory()">
+                    <option value="">Select Category</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Code/Name * </label>
+                <div class="col-lg-8">
+                  <select class="form-control" ng-model="data.subCategoryOid" ng-options="subCategory.value as subCategory.label for subCategory in subCategories | orderBy: label">
+                    <option value="">Select </option>
+                  </select>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg "></div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Default </label>
+                <div class="col-sm-8">
+                  <input type="text" ng-model="data.defaultValue" maxlength="50" class="form-control" placeholder="Default">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Free </label>
+                <div class="col-sm-8">
+                  <input type="text" ng-model="data.free" maxlength="50" class="form-control" placeholder="Free">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Standard-Default </label>
+                <div class="col-sm-8">
+                  <input type="text" ng-model="data.standardDefault" maxlength="100" class="form-control" placeholder="Standard-Default">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Priority </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="priority" maxlength="10" placeholder="Priority" ng-model="data.priority">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 control-label">Priority-Free</label>
+                <div class="col-sm-8">
+                	<input type="text" ng-model="data.priorityFree" name="priorityFree" maxlength="50" class="form-control" placeholder="Priority-Free">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 control-label">VIP</label>
+                <div class="col-sm-8">
+                	<input type="text" ng-model="data.vip" name="vip" maxlength="50" class="form-control" placeholder="VIP">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 control-label">VIP-Free</label>
+                <div class="col-sm-8">
+                	<input type="text" ng-model="data.vipFree" name="vipFree" maxlength="50" class="form-control" placeholder="VIP-Free">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              	<div class="form-group">
+                	<label class="col-lg-4 control-label">AC</label>
+                	<div class="col-sm-8">
+                		<input type="text" ng-model="data.ac" name="ac" maxlength="50" class="form-control" placeholder="AC">
+                	</div>
+              	</div>
+              	<div class="form-group">
+                	<label class="col-lg-4 control-label">AC-Small</label>
+                	<div class="col-sm-8">
+                		<input type="text" ng-model="data.acSmall" name="acSmall" maxlength="50" class="form-control" placeholder="AC-Small">
+                	</div>
+              	</div>
+              	<div class="form-group">
+                	<label class="col-lg-4 control-label">Deluxe</label>
+                	<div class="col-sm-8">
+                		<input type="text" ng-model="data.deluxe" name="deluxe" maxlength="50" class="form-control" placeholder="Delux">
+                	</div>
+              	</div>
+              	<div class="form-group">
+                	<label class="col-lg-4 control-label">Economy Non AC</label>
+                	<div class="col-sm-8">
+                		<input type="text" ng-model="data.ecnomyNonAc" name="ecnomyNonAc" maxlength="50" class="form-control" placeholder="VIP">
+                	</div>
+              	</div>
+              	<div class="form-group">
+                	<label class="col-lg-4 control-label">Non AC</label>
+                	<div class="col-sm-8">
+                		<input type="text" ng-model="data.nonAc" name="nonAc" maxlength="50" class="form-control" placeholder="Non AC">
+                	</div>
+              	</div>
+              	<div class="form-group">
+                	<label class="col-lg-4 control-label">Non AC Small</label>
+                	<div class="col-sm-8">
+                		<input type="text" ng-model="data.nonAcSmall" name="nonAcSmall" maxlength="50" class="form-control" placeholder="Non AC Small">
+                	</div>
+              	</div>
+              	<div class="form-group">
+                	<label class="col-lg-4 control-label">Semi Economy Non AC</label>
+                	<div class="col-sm-8">
+                		<input type="text" ng-model="data.semiEconomyNonAc" name="semiEconomyNonAc" maxlength="50" class="form-control" placeholder="Semi Economy Non AC">
+                	</div>
+              	</div>
+              	<div class="form-group">
+                	<label class="col-lg-4 control-label">Special Care Room</label>
+                	<div class="col-sm-8">
+                		<input type="text" ng-model="data.specialCareRoom" name="specialCareRoom" maxlength="50" class="form-control" placeholder="Special Care Room">
+                	</div>
+              	</div>
+              	<div class="form-group">
+                	<label class="col-lg-4 control-label">Suite</label>
+                	<div class="col-sm-8">
+                		<input type="text" ng-model="data.suite" name="suite" maxlength="50" class="form-control" placeholder="Suite">
+                	</div>
+              	</div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <footer class="panel-footer text-right bg-light lter">
+      <button class="btn m-b-xs  btn-success " ng-click="saveChargesForCategory()">Update</button>
+      &nbsp;
+      <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.chargesForCategory')"><i class="fa fa-times"></i>Cancel</button>
+      &nbsp;
+    </footer>
+  </div>
+</div>

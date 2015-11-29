@@ -1,0 +1,44 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n h3">CHARGE FIXING LIST</h1>
+</div>
+<div class="wrapper-md" ng-controller="ChargesForCategoryController" ng-init="loadChargesForCategoryList()">
+  <div class="panel panel-default">
+    <div class="row wrapper">
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-2 pull-right">
+        <button class=" btn btn-sm btn-info pull-right" ng-click="$state.go('app.createChargesForCategory')"><i class="fa fa-plus"></i> &nbsp; New ChargesForCategory</button>
+      </div>
+    </div>
+    <div class="wrapper table-responsive" ng-show="errorData">
+      <div ng-repeat="error in errorData.errors" class="text-danger">
+        <i class="fa fa-warning"></i> {{error.longMessage}}
+      </div>
+    </div>
+    <div class="wrapper table-responsive" ng-show="!errorData">
+      <table ng-table="tableParams" class="table table-striped b-t b-light">
+        <tr ng-repeat="chargesForCategory in $data track by chargesForCategory.oid">
+          <td class="text-left" header="'ng-table/headers/checkbox.html'">
+            <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[chargesForCategory.oid]" /> <i></i> </label>
+          </td>
+          <td data-title="'Sub Category Name'" class="text-left" sortable="'name'">
+            {{chargesForCategory.subCategoryName}}
+          </td>
+          <td data-title="'Amount'" class="text-right">
+            {{chargesForCategory.amount}}
+          </td>
+          <td data-title="'OP/IP'" class="text-right" class="text-left">
+            {{chargesForCategory.opOrIp}}
+          </td>
+          <td data-title="'Type'" class="text-right" class="text-left">
+            {{chargesForCategory.type}}
+          </td>
+          <td class="text-right">
+            <a ui-sref="app.editChargesForCategory({oid:chargesForCategory.oid})">
+              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteChargesForCategory(chargesForCategory.oid, chargesForCategory.name)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

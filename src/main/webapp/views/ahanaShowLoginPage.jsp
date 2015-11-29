@@ -1,4 +1,4 @@
-<%@page import="com.ahana.commons.system.domain.user.UserProfile"%>
+<%@page import="com.ahana.commons.system.domain.user.UserProfileView"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" errorPage="vinCubeErrorPage.jsp" pageEncoding="UTF-8"%>
 <%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@page import="org.springframework.security.core.Authentication"%>
@@ -14,7 +14,7 @@
 	Authentication authentication = securityContext.getAuthentication();
 	if(authentication != null){
 		try{
-			UserProfile userProfile = (UserProfile) authentication.getPrincipal(); 
+			UserProfileView userProfile = (UserProfileView) authentication.getPrincipal(); 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/services/rest/local/secure/doPostLogin");
 			dispatcher.forward(request,response);
 		}catch(Exception e){

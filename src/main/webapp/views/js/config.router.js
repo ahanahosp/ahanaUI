@@ -799,6 +799,70 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.createChargesForCategory', {
+          url: '/createChargesForCategory',
+          templateUrl: contextPath + 'views/tpl/create_chargesforcategory.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/chargesforcategory.js');
+              }
+            ]
+          }
+        })
+          .state ('app.editChargesForCategory', {
+          url: '/editChargesForCategory/{oid}',
+          templateUrl: contextPath + 'views/tpl/edit_chargesforcategory.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/chargesforcategory.js');
+              }
+            ]
+          }
+        }).state ('app.chargesForCategory', {
+          url: '/chargesForCategory',
+          templateUrl: contextPath + 'views/tpl/chargesforcategory.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/chargesforcategory.js');
+              }
+            ]
+          }
+        })
+        .state ('app.createLogin', {
+          url: '/createLogin',
+          templateUrl: contextPath + 'views/tpl/create_login.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/login.js');
+              }
+            ]
+          }
+        })
+          .state ('app.editLogin', {
+          url: '/editLogin/{oid}',
+          templateUrl: contextPath + 'views/tpl/edit_login.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/login.js');
+              }
+            ]
+          }
+        }).state ('app.login', {
+          url: '/login',
+          templateUrl: contextPath + 'views/tpl/login.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/login.js');
+              }
+            ]
+          }
+        })
         .state ('app.table.smart', {
         url: '/smart',
         templateUrl: contextPath + 'views/tpl/table_smart.html',

@@ -34,10 +34,7 @@
             {{userRegistration.salutation}}
           </td>
           <td data-title="'Employee Name'" class="text-left">
-            {{userRegistration.firstName}} {{userRegistration.lastName}}
-          </td>
-          <td data-title="'User Name'" class="text-left">
-            {{userRegistration.userName}}
+            {{userRegistration.fullName}}
           </td>
           <td data-title="'Designation'" class="text-left">
             {{userRegistration.designation}}
@@ -45,14 +42,14 @@
           <td data-title="'Mobile No'" class="text-left">
             {{userRegistration.mobileNo}}
           </td>
+          <td data-title="'Email Id'" class="text-left">
+            {{userRegistration.emailId}}
+          </td>
           <td data-title="'Speciality'" class="text-left">
             {{userRegistration.speciality}}
           </td>
-          <td data-title="'Activation Date'" class="text-left">
-            {{userRegistration.activationDate | date : 'dd-MM-yyyy'}}
-          </td>
-          <td data-title="'Inactivation Date'" class="text-left">
-            {{userRegistration.inActivationDate | date :'dd-MM-yyyy'}}
+          <td data-title="'Status'" class="text-left" sortable="'status'">
+            <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'INACT'" name="userStatus" ng-model="userRegistration.userStatus"> <i></i> </label>
           </td>
           <td class="text-right">
             <a ui-sref="app.editUserRegistration({oid:userRegistration.oid})"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteUserRegistration(userRegistration.oid)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>

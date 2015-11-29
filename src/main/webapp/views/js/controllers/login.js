@@ -1,65 +1,58 @@
 'use strict';
-//TODO need to move in properties file
 /* Controllers */
-app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
+app.controller ('LoginController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
+  $scope.formats = ['yyyy-MM-dd HH:mm:ss', 'yyyy-MM-dd'];
+  $scope.openActivationDate = function ($event){
+    $event.preventDefault ();
+    $event.stopPropagation ();
+    $scope.openedActivationDate = true;
+  };
+  $scope.openInActivationDate = function ($event){
+    $event.preventDefault ();
+    $event.stopPropagation ();
+    $scope.openedInActivationDate = true;
+  };
   if (angular.isUndefined ($scope.data)){
     $scope.data = {};
   }
-  $http.get (path + "rest/secure/common/getSpecialityValues").then (
+  $scope.data.activationDate = $filter ('date') (new Date (), $scope.formats[1]);
+  $scope.data.inactivationDate = $filter ('date') (new Date (), $scope.formats[1]);
+
+  $scope.dateOptions = {
+    formatYear: 'yy',
+    startingDay: 1,
+    class: 'datepicker'
+  };
+  $scope.format = $scope.formats[1];
+
+  $http.get (path + "rest/secure/user/getActiveUsers").then (
     function (response){
-      $scope.specialityValues = response.data.specialityDetails;
+      $scope.userDetails = response.data.userDetails;
     }
   );
-  $http.get (path + "rest/secure/lookup/loadLookupByName?lookupNames=country,salutation").then (
-    function (response){
-      $scope.countries = response.data.lookupValues.countryDetails;
-      $scope.salutations = response.data.lookupValues.salutationDetails;
-    }
-  )
-  $scope.updateState = function (mode){
-    $http.get (path + "rest/secure/lookup/populateState?countryId=" + $scope.data.country).then (
-      function (response){
-        $scope.states = response.data.stateDetails;
-        if (angular.isUndefined (mode)){
-          $scope.data.state = undefined;
-          $scope.data.city = undefined;
-        }
-      }
-    )
-  }
-  $scope.updateCity = function (mode){
-    $http.get (path + "rest/secure/lookup/populateCity?stateId=" + $scope.data.state).then (
-      function (response){
-        $scope.cities = response.data.cityDetails;
-        if (angular.isUndefined (mode)){
-          $scope.data.city = undefined;
-        }
-      }
-    )
-  }
   /**Save Patient Registration data*/
-  $scope.saveRegistration = function (mode){
+  $scope.saveLogin = function (mode){
     $scope.successMessage = "";
     $scope.errorData = "";
-    if ($scope.userRegistrationForm.$valid){
+    if ($scope.loginForm.$valid){
       $http ({
-        url: path + "rest/secure/user/createUser",
+        url: path + "rest/secure/user/createLogin",
         method: "POST",
         data: $scope.data
       }).then (
         function (response){
           if (response.data.Status === 'Ok'){
             if (mode === 'edit'){
-              $scope.successMessage = "User updated successfully";
+              $scope.successMessage = "Login updated successfully";
               $timeout (function (){
-                $state.go ('app.users');
+                $state.go ('app.login');
               }, 1000);
             }
             else{
-              $scope.successMessage = "User saved successfully";
+              $scope.successMessage = "Login saved successfully";
               $scope.data = {};
               $timeout (function (){
-                $state.go ('app.users');
+                $state.go ('app.login');
               }, 1000);
             }
           }
@@ -73,16 +66,16 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
   $scope.reset = function (){
     $scope.data = {};
   }
-  $scope.loadUserRegistrationList = function (){
+  $scope.loadLoginList = function (){
     $scope.errorData = "";
     $http ({
-      url: path + "rest/secure/user/getUser?index=0&noOfRecords=10",
+      url: path + "rest/secure/user/getAllLogin?index=0&noOfRecords=10",
       method: "GET"
     }).then (
       function (response){
         var data;
         if (response.data.Status === 'Ok'){
-          data = response.data.userDetails;
+          data = response.data.loginDetails;
         }
         else{
           data = []
@@ -103,20 +96,20 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
               $filter ('filter') (orderedData, params.filter ()) :
               orderedData;
             params.total (orderedData.length); // set total for recalc pagination
-            $defer.resolve ($scope.users = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+            $defer.resolve ($scope.login = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
           }
         });
       }
     )
   };
   $scope.checkboxes = {'checked': false, items: {}};
-  $scope.userSelectedItems = [];
+  $scope.loginSelectedItems = [];
   // watch for check all checkbox
   $scope.$watch ('checkboxes.checked', function (value){
     if ($scope.checkboxes.checked === false){
-      $scope.userSelectedItems = [];
+      $scope.loginSelectedItems = [];
     }
-    angular.forEach ($scope.users, function (item){
+    angular.forEach ($scope.login, function (item){
       if (angular.isDefined (item.oid)){
         $scope.checkboxes.items[item.oid] = value;
       }
@@ -124,15 +117,15 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
   });
   // watch for data checkboxes
   $scope.$watch ('checkboxes.items', function (values){
-    $scope.userSelectedItems = [];
-    if (!$scope.users){
+    $scope.loginSelectedItems = [];
+    if (!$scope.login){
       return;
     }
     var checked = 0, unchecked = 0,
-      total = $scope.users.length;
-    angular.forEach ($scope.users, function (item){
+      total = $scope.login.length;
+    angular.forEach ($scope.login, function (item){
       if ($scope.checkboxes.items[item.oid]){
-        $scope.userSelectedItems.push (item);
+        $scope.loginSelectedItems.push (item);
       }
       checked += ($scope.checkboxes.items[item.oid]) || 0;
       unchecked += (!$scope.checkboxes.items[item.oid]) || 0;
@@ -140,19 +133,17 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
     if ((unchecked == 0) || (checked == 0)){
       $scope.checkboxes.checked = (checked == total);
     }
-    $scope.userSelected = checked;
-    // grayed checkbox
-    // angular.element(document.getElementById("select_all")).prop("indeterminate", (checked != 0 && unchecked != 0));
+    $scope.loginSelected = checked;
   }, true);
-  $scope.loadUserRegistrationDetails = function (){
+  $scope.loadLoginDetails = function (){
     $scope.errorData = "";
     $http ({
-      url: path + "rest/secure/user/getUserByOid?oid=" + $state.params.oid,
+      url: path + "rest/secure/user/getLoginByOid?oid=" + $state.params.oid,
       method: "GET"
     }).then (
       function (response){
         if (response.data.Status === 'Ok'){
-          $scope.data = response.data.userProfile;
+          $scope.data = response.data.login;
           $scope.updateState ('edit');
           $scope.updateCity ('edit');
         }
@@ -162,17 +153,17 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
       }
     )
   }
-  $scope.deleteUserRegistration = function (oid){
+  $scope.deleteLogin = function (oid){
     $scope.errorData = "";
     var modalOptions = {
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
-      headerText: 'Delete User?',
-      bodyText: 'Are you sure you want to delete this user?'
+      headerText: 'Delete Login?',
+      bodyText: 'Are you sure you want to delete this login?'
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({
-        url: path + "rest/secure/user/deleteUser",
+        url: path + "rest/secure/user/deleteLogin",
         method: "POST",
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         transformRequest: function (obj){
@@ -185,7 +176,7 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
       }).then (
         function (response){
           if (response.data.Status === 'Ok'){
-            $scope.loadUserRegistrationList ();
+            $scope.loadLoginList ();
           }
           else{
             $scope.errorData = response.data;
