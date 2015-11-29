@@ -135,7 +135,8 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
       closeButtonText: 'Cancel',
       actionButtonText: 'Update',
       headerText: 'Edit Multiple Roles',
-      roleSelectedItems: $scope.roleSelectedItems
+      roleSelectedItems: $scope.roleSelectedItems,
+      loadRolesList: $scope.loadRolesList
     };
 
     var modalDefaults = {

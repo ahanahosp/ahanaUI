@@ -78,6 +78,13 @@ app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$fi
     $http ({
       url: path + "rest/secure/common/deactivateOrganizationModule",
       method: "POST",
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      transformRequest: function (obj){
+        var str = [];
+        for (var p in obj)
+          str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
+        return str.join ("&");
+      },
       data: {"oids": selectedModules}
     }).then (
       function (response){
