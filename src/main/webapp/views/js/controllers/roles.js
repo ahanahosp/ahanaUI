@@ -146,7 +146,7 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
           $http ({
             url: path + "rest/secure/config/createOrUpdateMultipleConfig",
             method: "POST",
-            data: {"ahanaVOs": $scope.modalOptions.roleSelectedItems}
+            data: {"roles": $scope.modalOptions.roleSelectedItems}
           }).then (
             function (response){
               if (response.data.Status === 'Ok'){
