@@ -10,10 +10,9 @@ app.controller ('LoginController', ['$scope', '$http', 'NgTableParams', '$filter
   var activationDate = new Date ();
   activationDate.setDate (activationDate.getDate () + 1);
   var inactivationDate = new Date ();
-  inactivationDate.setDate (inactivationDate.getYear () + 1);
+  inactivationDate.setFullYear (inactivationDate.getFullYear () + 1, inactivationDate.getMonth (), inactivationDate.getDate ());
   $scope.activationMinDate = $filter ('date') (activationDate, $scope.formats[2]);
   $scope.inactivationMinDate = $filter ('date') (inactivationDate, $scope.formats[2]);
-
   $scope.openInActivationDate = function ($event){
     $event.preventDefault ();
     $event.stopPropagation ();
@@ -24,20 +23,17 @@ app.controller ('LoginController', ['$scope', '$http', 'NgTableParams', '$filter
   }
   $scope.data.activationDate = $filter ('date') (activationDate, $scope.formats[1]);
   $scope.data.inactivationDate = $filter ('date') (activationDate, $scope.formats[1]);
-
   $scope.dateOptions = {
     formatYear: 'yy',
     startingDay: 1,
     class: 'datepicker'
   };
   $scope.format = $scope.formats[1];
-
   $http.get (path + "rest/secure/user/getActiveUsers").then (
     function (response){
       $scope.userDetails = response.data.userDetails;
     }
   );
-
   $scope.saveLogin = function (mode){
     $scope.successMessage = "";
     $scope.errorData = "";
@@ -142,6 +138,7 @@ app.controller ('LoginController', ['$scope', '$http', 'NgTableParams', '$filter
     }
     $scope.loginSelected = checked;
   }, true);
+
   $scope.loadLoginDetails = function (){
     $scope.errorData = "";
     $http ({
@@ -190,19 +187,22 @@ app.controller ('LoginController', ['$scope', '$http', 'NgTableParams', '$filter
       )
     });
   };
-  
-  	$scope.prePopulateLoginDetails = function (){
-	  $scope.errorData = "";
-	  $http ({
-		  url: path + "rest/secure/user/getLoginByOid?oid=" + $state.params.oid,
-	      method: "GET"
-	  }).then (function (response){
-	        if (response.data.Status === 'Ok'){
-	          $scope.data = response.data.login;
-	        }else{
-	          $scope.errorData = response.data;
-	        }
-	      }
-	    )
-	  }
+  $scope.prePopulateLoginDetails = function (){
+    $scope.errorData = "";
+    $http ({
+      url: path + "rest/secure/user/getLoginByOid?oid=" + $scope.data.userOid,
+      method: "GET"
+    }).then (function (response){
+        if (response.data.Status === 'Ok'){
+          $scope.data = response.data.login;
+        }
+        else{
+          $scope.data = {};
+          $scope.data.activationDate = $filter ('date') (activationDate, $scope.formats[1]);
+          $scope.data.inactivationDate = $filter ('date') (activationDate, $scope.formats[1]);
+          $scope.errorData = response.data;
+        }
+      }
+    )
+  }
 }]);
