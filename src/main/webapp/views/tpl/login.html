@@ -26,9 +26,6 @@
     <div class="wrapper table-responsive" ng-show="!errorData">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
         <tr ng-repeat="login in $data">
-          <!--<td class="text-left" header="'ng-table/headers/checkbox.html'">
-            <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[login.userOid]" /> <i></i> </label>
-          </td>-->
           <td data-title="'Employee Name'" class="text-left">
             {{login.firstName}} {{login.lastName}} 
           </td>
