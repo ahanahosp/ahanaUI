@@ -19,8 +19,8 @@
           <div class="panel panel-default" ng-init="loadLoginDetails()">
             <div class="panel-body">
             	<div class="form-group">
-	                <label class="col-lg-4 control-label">User *</label>
-	                <div class="col-lg-8">
+	                <label class="col-sm-3 control-label">User *</label>
+	                <div class="col-sm-6">
 	                  <select class="form-control" ng-model="data.userOid" ng-options="userDetail.value as userDetail.label for userDetail in userDetails | orderBy: label">
 	                    <option value="">Select User</option>
 	                  </select>
@@ -28,29 +28,29 @@
               	</div>
               	<div class="line line-dashed b-b line-lg "></div>
               	<div class="form-group">
-                	<label class="col-sm-4 control-label">User Name * </label>
-	                <div class="col-sm-8">
+                	<label class="col-sm-3 control-label">User Name * </label>
+	                <div class="col-sm-6">
     	              <input type="text" ng-model="data.userId" maxlength="100" class="form-control" placeholder="User Name">
         	        </div>
             	</div>
               	<div class="line line-dashed b-b line-lg "></div>
               	<div class="form-group" ng-class="{'ng-hide':data.id!=null}">
-                	<label class="col-sm-4 control-label">Password * </label>
-                	<div class="col-sm-8">
+                	<label class="col-sm-3 control-label">Password * </label>
+                	<div class="col-sm-6">
                   		<input type="password" ng-model="data.password" maxlength="50" class="form-control" placeholder="Password">
                 	</div>
               	</div>
               	<div class="line line-dashed b-b line-lg "></div>
               	<div class="form-group">
                 	<label class="col-sm-3 control-label">Status</label>
-                	<div class="col-sm-9">
+                	<div class="col-sm-2">
                   		<label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="data.status"> <i></i> </label> &nbsp; &nbsp;
                 	</div>
               	</div>
               	<div class="line line-dashed b-b line-lg "></div>
               	<div class="form-group">
-                	<label class="col-lg-4 control-label">Activation Date</label>
-                	<div class="col-lg-8">
+                	<label class="col-sm-3 control-label">Activation Date</label>
+                	<div class="col-sm-4">
                   		<div class="input-group">
                     		<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.activationDate" is-open="openedActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 							<span class="input-group-btn">
@@ -63,8 +63,8 @@
               	</div>
               <div class="line line-dashed b-b line-lg "></div>
               <div class="form-group">
-                <label class="col-lg-4 control-label">Inactivation Date</label>
-                <div class="col-lg-8">
+                <label class="col-sm-3 control-label">Inactivation Date</label>
+                <div class="col-sm-4">
                   <div class="input-group">
                     <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.inactivationDate" is-open="openedInActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 										<span class="input-group-btn">
