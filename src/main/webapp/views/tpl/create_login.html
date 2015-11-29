@@ -52,7 +52,7 @@
                 	<label class="col-sm-3 control-label">Activation Date</label>
                 	<div class="col-sm-4">
                   		<div class="input-group">
-                    		<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.activationDate" is-open="openedActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+												<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.activationDate" min-date="activationMinDate" is-open="openedActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-default" ng-click="openActivationDate($event)">
                       				<i class="glyphicon glyphicon-calendar"></i>
@@ -66,7 +66,7 @@
                 <label class="col-sm-3 control-label">Inactivation Date</label>
                 <div class="col-sm-4">
                   <div class="input-group">
-                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.inactivationDate" is-open="openedInActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+										<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.inactivationDate" min-date="inactivationMinDate" is-open="openedInActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 										<span class="input-group-btn">
 										<button type="button" class="btn btn-default" ng-click="openInActivationDate($event)">
                       <i class="glyphicon glyphicon-calendar"></i></button>
