@@ -141,7 +141,7 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
 
     var modalDefaults = {
       templateUrl: contextPath + 'views/tpl/edit_multiple_role.html',
-      controller: function ($scope, $modalInstance){
+      controller: function ($scope, $modalInstance, $state){
         $scope.modalOptions = modalOptions;
         $scope.saveMultipleRoles = function (){
           $http ({
@@ -153,8 +153,8 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
               if (response.data.Status === 'Ok'){
                 $scope.modalSuccessMessage = "Roles updated successfully";
                 $timeout (function (){
-                  $scope.loadRolesList ();
                   $modalInstance.close (response);
+                  $state.go ('app.roles', {}, {reload: true});
                 }, 1000);
               }
               else{
