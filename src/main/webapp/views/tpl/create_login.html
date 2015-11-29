@@ -21,7 +21,7 @@
             	<div class="form-group">
 	                <label class="col-sm-3 control-label">User *</label>
 	                <div class="col-sm-6">
-	                  <select class="form-control" ng-model="data.userOid" ng-options="userDetail.value as userDetail.label for userDetail in userDetails | orderBy: label">
+	                  <select class="form-control" ng-model="data.userOid" ng-options="userDetail.value as userDetail.label for userDetail in userDetails | orderBy: label" ng-change="prePopulateLoginDetails()">
 	                    <option value="">Select User</option>
 	                  </select>
 	                </div>

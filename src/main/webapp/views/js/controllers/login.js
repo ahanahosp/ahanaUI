@@ -30,7 +30,7 @@ app.controller ('LoginController', ['$scope', '$http', 'NgTableParams', '$filter
       $scope.userDetails = response.data.userDetails;
     }
   );
-  /**Save Patient Registration data*/
+
   $scope.saveLogin = function (mode){
     $scope.successMessage = "";
     $scope.errorData = "";
@@ -144,8 +144,6 @@ app.controller ('LoginController', ['$scope', '$http', 'NgTableParams', '$filter
       function (response){
         if (response.data.Status === 'Ok'){
           $scope.data = response.data.login;
-          $scope.updateState ('edit');
-          $scope.updateCity ('edit');
         }
         else{
           $scope.errorData = response.data;
@@ -185,4 +183,19 @@ app.controller ('LoginController', ['$scope', '$http', 'NgTableParams', '$filter
       )
     });
   };
+  
+  	$scope.prePopulateLoginDetails = function (){
+	  $scope.errorData = "";
+	  $http ({
+		  url: path + "rest/secure/user/getLoginByOid?oid=" + $state.params.oid,
+	      method: "GET"
+	  }).then (function (response){
+	        if (response.data.Status === 'Ok'){
+	          $scope.data = response.data.login;
+	        }else{
+	          $scope.errorData = response.data;
+	        }
+	      }
+	    )
+	  }
 }]);
