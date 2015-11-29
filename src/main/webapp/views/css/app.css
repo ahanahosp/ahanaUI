@@ -5432,3 +5432,7 @@ a.text-#000000:hover {
     font-weight: bold;
     text-transform: uppercase;
 }
+
+.input-sm {
+    font-size: 14px;
+}
