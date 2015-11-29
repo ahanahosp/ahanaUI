@@ -197,10 +197,9 @@ app.controller ('LoginController', ['$scope', '$http', 'NgTableParams', '$filter
           $scope.data = response.data.login;
         }
         else{
-          $scope.data = {};
-          $scope.data.activationDate = $filter ('date') (activationDate, $scope.formats[1]);
           $scope.data.inactivationDate = $filter ('date') (activationDate, $scope.formats[1]);
-          $scope.errorData = response.data;
+          $scope.data.password = undefined;
+          $scope.data.userId = undefined;
         }
       }
     )
