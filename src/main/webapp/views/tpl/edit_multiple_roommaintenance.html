@@ -2,6 +2,16 @@
   <h3>{{modalOptions.headerText}}</h3>
 </div>
 <div class="modal-body">
+  <div class="wrapper table-responsive" ng-show="modalSuccessMessage">
+    <div class="text-success">
+      <i class="fa fa-info-circle"></i> {{modalSuccessMessage}}
+    </div>
+  </div>
+  <div class="wrapper table-responsive" ng-show="modalErrorData">
+    <div ng-repeat="error in modalErrorData.errors" class="text-danger">
+      <i class="fa fa-warning"></i> {{error.longMessage}}
+    </div>
+  </div>
   <div class="wrapper table-responsive">
     <table class="table table-striped b-t b-light">
       <thead>
@@ -26,6 +36,6 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
-  <button class="btn btn-primary" data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+  <button type="button" class="btn" data-ng-click="close()">{{modalOptions.closeButtonText}}</button>
+  <button class="btn btn-primary" data-ng-click="saveMultipleRoomMaintenance()">{{modalOptions.actionButtonText}}</button>
 </div>

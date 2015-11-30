@@ -170,29 +170,7 @@ app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter'
       wardSelectedItems: $scope.wardSelectedItems,
       floors: $scope.floors
     };
-    modalService.showModal (modalDefaults, modalOptions).then (function (result){
-      $http ({
-        url: path + "rest/secure/user/deleteWard",
-        method: "POST",
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        transformRequest: function (obj){
-          var str = [];
-          for (var p in obj)
-            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
-          return str.join ("&");
-        },
-        data: {oid: oid}
-      }).then (
-        function (response){
-          if (response.data.Status === 'Ok'){
-            $scope.loadWardList ();
-          }
-          else{
-            $scope.errorData = response.data;
-          }
-        }
-      )
-    });
+    modalService.showModal (modalDefaults, modalOptions);
   };
   $scope.deleteWard = function (oid, name){
     $scope.errorData = "";

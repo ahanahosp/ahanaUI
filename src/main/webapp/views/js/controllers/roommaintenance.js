@@ -130,7 +130,35 @@ app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams'
   $scope.editMultipleRoomMaintenance = function (){
     $scope.errorData = "";
     var modalDefaults = {
-      templateUrl: contextPath + 'views/tpl/edit_multiple_roommaintenance.html'
+      templateUrl: contextPath + 'views/tpl/edit_multiple_roommaintenance.html',
+      controller: function ($scope, $modalInstance, $state){
+        $scope.modalOptions = modalOptions;
+        $scope.saveMultipleRoomMaintenance = function (){
+          $scope.modalSuccessMessage = "";
+          $scope.modalErrorData = "";
+          $http ({
+            url: path + "rest/secure/config/createOrUpdateMultipleRoomMaintenance",
+            method: "POST",
+            data: {"roomMaintenance": $scope.modalOptions.roomMaintenanceSelectedItems}
+          }).then (
+            function (response){
+              if (response.data.Status === 'Ok'){
+                $scope.modalSuccessMessage = "Room maintenance updated successfully";
+                $timeout (function (){
+                  $modalInstance.close (response);
+                  $state.go ('app.roomMaintenance', {}, {reload: true});
+                }, 1000);
+              }
+              else{
+                $scope.modalErrorData = response.data;
+              }
+            }
+          )
+        };
+        $scope.close = function (result){
+          $modalInstance.dismiss ('cancel');
+        };
+      }
     };
     var modalOptions = {
       closeButtonText: 'Cancel',
@@ -138,29 +166,7 @@ app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams'
       headerText: 'Edit Multiple Room Maintenance',
       roomMaintenanceSelectedItems: $scope.roomMaintenanceSelectedItems
     };
-    modalService.showModal (modalDefaults, modalOptions).then (function (result){
-      $http ({
-        url: path + "rest/secure/common/deleteRoomMaintenance",
-        method: "POST",
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        transformRequest: function (obj){
-          var str = [];
-          for (var p in obj)
-            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
-          return str.join ("&");
-        },
-        data: {oid: oid}
-      }).then (
-        function (response){
-          if (response.data.Status === 'Ok'){
-            $scope.loadRoomMaintenanceList();
-          }
-          else{
-            $scope.errorData = response.data;
-          }
-        }
-      )
-    });
+    modalService.showModal (modalDefaults, modalOptions);
   };
   $scope.deleteRoomMaintenance = function (oid, name){
     $scope.errorData = "";

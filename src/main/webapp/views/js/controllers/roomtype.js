@@ -164,29 +164,7 @@ app.controller ('RoomTypeController', ['$scope', '$http', 'NgTableParams', '$fil
       headerText: 'Edit Multiple Room Types',
       roomTypeSelectedItems: $scope.roomTypeSelectedItems
     };
-    modalService.showModal (modalDefaults, modalOptions).then (function (result){
-      $http ({
-        url: path + "rest/secure/common/deleteRoomType",
-        method: "POST",
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        transformRequest: function (obj){
-          var str = [];
-          for (var p in obj)
-            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
-          return str.join ("&");
-        },
-        data: {oid: oid}
-      }).then (
-        function (response){
-          if (response.data.Status === 'Ok'){
-            $scope.loadRoomTypesList ();
-          }
-          else{
-            $scope.errorData = response.data;
-          }
-        }
-      )
-    });
+    modalService.showModal (modalDefaults, modalOptions);
   };
   $scope.deleteRoomType = function (oid, name){
     $scope.errorData = "";
