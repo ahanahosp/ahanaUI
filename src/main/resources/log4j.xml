@@ -10,31 +10,31 @@
 		</layout>
 	</appender>
 	<logger name="com.ahana">
-		<level value="DEBUG" />
+		<level value="ERROR" />
 	</logger>
 	
 	<logger name="org.springframework.core">
-		<level value="DEBUG" />
+		<level value="ERROR" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="DEBUG" />
+		<level value="ERROR" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="DEBUG" />
+		<level value="ERROR" />
 	</logger>
 
 	<logger name="org.springframework.http">
-		<level value="DEBUG" />
+		<level value="ERROR" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="DEBUG" />
+		<level value="ERROR" />
 	</logger>
 	
 	<logger name="org.springframework.security">
-		<level value="DEBUG" />
+		<level value="ERROR" />
 	</logger>
 
 	<root>
