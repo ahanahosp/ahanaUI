@@ -136,6 +136,7 @@ app.controller ('RoomController',
   };
   $scope.editMultipleRooms = function (){
     $scope.errorData = "";
+    $scope.modalSuccessMessage = "";
     var modalDefaults = {
       templateUrl: contextPath + 'views/tpl/edit_multiple_room.html',
       controller: function ($scope, $modalInstance, $state){

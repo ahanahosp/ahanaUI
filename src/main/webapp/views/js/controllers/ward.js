@@ -132,6 +132,7 @@ app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter'
   };
   $scope.editMultipleWards = function (){
     $scope.errorData = "";
+    $scope.modalSuccessMessage = "";
     var modalDefaults = {
       templateUrl: contextPath + 'views/tpl/edit_multiple_ward.html',
       controller: function ($scope, $modalInstance, $state){

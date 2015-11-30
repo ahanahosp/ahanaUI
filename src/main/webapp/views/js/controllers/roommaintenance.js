@@ -129,6 +129,7 @@ app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams'
   };
   $scope.editMultipleRoomMaintenance = function (){
     $scope.errorData = "";
+    $scope.modalSuccessMessage = "";
     var modalDefaults = {
       templateUrl: contextPath + 'views/tpl/edit_multiple_roommaintenance.html',
       controller: function ($scope, $modalInstance, $state){

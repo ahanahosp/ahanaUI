@@ -127,6 +127,7 @@ app.controller ('RoomTypeController', ['$scope', '$http', 'NgTableParams', '$fil
   };
   $scope.editMultipleRoomTypes = function (){
     $scope.errorData = "";
+    $scope.modalSuccessMessage = "";
     var modalDefaults = {
       templateUrl: contextPath + 'views/tpl/edit_multiple_room_type.html',
       controller: function ($scope, $modalInstance, $state){
