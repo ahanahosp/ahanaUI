@@ -24,8 +24,9 @@
       <tbody>
       <tr ng-repeat="room in modalOptions.roomSelectedItems track by room.oid">
         <td class="text-left">
-          <select class="form-control" name="wardName" ng-model="room.wardOid" ng-options="ward.value as ward.label for ward in modalOptions.wards | orderBy: label">
+          <select class="form-control" name="wardName" ng-model="room.wardOid">
             <option value="">Select Ward</option>
+            <option ng-repeat="ward in modalOptions.wards | orderBy: ward.label" ng-selected="ward.value === room.wardOid" value="{{ward.value}}">{{ward.label}}</option>
           </select>
         </td>
         <td class="text-left">
@@ -46,6 +47,6 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
-  <button class="btn btn-primary" data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+  <button type="button" class="btn" data-ng-click="close()">{{modalOptions.closeButtonText}}</button>
+  <button class="btn btn-primary" data-ng-click="saveMultipleRoom()">{{modalOptions.actionButtonText}}</button>
 </div>

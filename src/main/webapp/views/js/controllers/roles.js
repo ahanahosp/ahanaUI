@@ -144,6 +144,8 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
       controller: function ($scope, $modalInstance, $state){
         $scope.modalOptions = modalOptions;
         $scope.saveMultipleRoles = function (){
+          $scope.modalSuccessMessage = "";
+          $scope.modalErrorData = "";
           $http ({
             url: path + "rest/secure/config/createOrUpdateMultipleConfig",
             method: "POST",

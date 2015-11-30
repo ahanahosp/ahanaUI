@@ -128,7 +128,35 @@ app.controller ('RoomTypeController', ['$scope', '$http', 'NgTableParams', '$fil
   $scope.editMultipleRoomTypes = function (){
     $scope.errorData = "";
     var modalDefaults = {
-      templateUrl: contextPath + 'views/tpl/edit_multiple_room_type.html'
+      templateUrl: contextPath + 'views/tpl/edit_multiple_room_type.html',
+      controller: function ($scope, $modalInstance, $state){
+        $scope.modalOptions = modalOptions;
+        $scope.saveMultipleRoomType = function (){
+          $scope.modalSuccessMessage = "";
+          $scope.modalErrorData = "";
+          $http ({
+            url: path + "rest/secure/config/createOrUpdateMultipleRoomType",
+            method: "POST",
+            data: {"roomType": $scope.modalOptions.roomTypeSelectedItems}
+          }).then (
+            function (response){
+              if (response.data.Status === 'Ok'){
+                $scope.modalSuccessMessage = "Room type updated successfully";
+                $timeout (function (){
+                  $modalInstance.close (response);
+                  $state.go ('app.roomType', {}, {reload: true});
+                }, 1000);
+              }
+              else{
+                $scope.modalErrorData = response.data;
+              }
+            }
+          )
+        };
+        $scope.close = function (result){
+          $modalInstance.dismiss ('cancel');
+        };
+      }
     };
     var modalOptions = {
       closeButtonText: 'Cancel',

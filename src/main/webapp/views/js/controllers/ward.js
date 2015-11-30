@@ -133,7 +133,35 @@ app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter'
   $scope.editMultipleWards = function (){
     $scope.errorData = "";
     var modalDefaults = {
-      templateUrl: contextPath + 'views/tpl/edit_multiple_ward.html'
+      templateUrl: contextPath + 'views/tpl/edit_multiple_ward.html',
+      controller: function ($scope, $modalInstance, $state){
+        $scope.modalOptions = modalOptions;
+        $scope.saveMultipleWard = function (){
+          $scope.modalSuccessMessage = "";
+          $scope.modalErrorData = "";
+          $http ({
+            url: path + "rest/secure/config/createOrUpdateMultipleWard",
+            method: "POST",
+            data: {"ward": $scope.modalOptions.wardSelectedItems}
+          }).then (
+            function (response){
+              if (response.data.Status === 'Ok'){
+                $scope.modalSuccessMessage = "Ward updated successfully";
+                $timeout (function (){
+                  $modalInstance.close (response);
+                  $state.go ('app.ward', {}, {reload: true});
+                }, 1000);
+              }
+              else{
+                $scope.modalErrorData = response.data;
+              }
+            }
+          )
+        };
+        $scope.close = function (result){
+          $modalInstance.dismiss ('cancel');
+        };
+      }
     };
     var modalOptions = {
       closeButtonText: 'Cancel',
