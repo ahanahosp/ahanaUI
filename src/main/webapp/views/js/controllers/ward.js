@@ -138,12 +138,19 @@ app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter'
       controller: function ($scope, $modalInstance, $state){
         $scope.modalOptions = modalOptions;
         $scope.saveMultipleWard = function (){
+
+          //delete floorName from list
+          var wardSelectedItems = $scope.modalOptions.wardSelectedItems;
+          angular.forEach (wardSelectedItems, function (value, key){
+            delete value.floorName;
+          });
+
           $scope.modalSuccessMessage = "";
           $scope.modalErrorData = "";
           $http ({
             url: path + "rest/secure/config/createOrUpdateMultipleConfig",
             method: "POST",
-            data: {"wards": $scope.modalOptions.wardSelectedItems,"source":"wards"}
+            data: {"wards": wardSelectedItems, "source": "wards"}
           }).then (
             function (response){
               if (response.data.Status === 'Ok'){
