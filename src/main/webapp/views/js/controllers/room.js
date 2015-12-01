@@ -147,6 +147,13 @@ app.controller ('RoomController',
       controller: function ($scope, $modalInstance, $state){
         $scope.modalOptions = modalOptions;
         $scope.saveMultipleRoom = function (){
+          //delete floorName from list
+          var roomSelectedItems = $scope.modalOptions.roomSelectedItems;
+          angular.forEach (roomSelectedItems, function (value, key){
+            delete value.wardName;
+            delete value.maintenanceName;
+          });
+
           $scope.modalSuccessMessage = "";
           $scope.modalErrorData = "";
           $http ({
@@ -178,7 +185,8 @@ app.controller ('RoomController',
       actionButtonText: 'Update',
       headerText: 'Edit Multiple Rooms',
       roomSelectedItems: $scope.roomSelectedItems,
-      wards: $scope.wards
+      wards: $scope.wards,
+      maintenances: $scope.maintenances
     };
     modalService.showModal (modalDefaults, modalOptions);
   };

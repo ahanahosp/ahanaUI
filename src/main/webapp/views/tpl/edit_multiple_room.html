@@ -50,7 +50,6 @@
             	<option value="">Select Maintenance</option>
             	<option ng-repeat="maintenance in modalOptions.maintenances | orderBy: maintenance.label" ng-selected="maintenance.value === room.maintenanceOid" value="{{maintenance.value}}">{{maintenance.label}}</option>
           	</select>
-          <input type="text" ng-model="room.maintenance" name="maintenance" class="form-control" placeholder="Maintenance Status">
         </td>
         <td class="text-left">
           <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="room.status"> <i></i> </label>
