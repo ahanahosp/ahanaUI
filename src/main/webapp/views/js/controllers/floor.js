@@ -140,9 +140,9 @@ app.controller ('FloorController',
           $scope.modalSuccessMessage = "";
           $scope.modalErrorData = "";
           $http ({
-            url: path + "rest/secure/config/createOrUpdateMultipleFloor",
+            url: path + "rest/secure/config/createOrUpdateMultipleConfig",
             method: "POST",
-            data: {"floor": $scope.modalOptions.floorSelectedItems}
+            data: {"floors": $scope.modalOptions.floorSelectedItems,"source":"floors"}
           }).then (
             function (response){
               if (response.data.Status === 'Ok'){

@@ -136,9 +136,9 @@ app.controller ('RoomTypeController', ['$scope', '$http', 'NgTableParams', '$fil
           $scope.modalSuccessMessage = "";
           $scope.modalErrorData = "";
           $http ({
-            url: path + "rest/secure/config/createOrUpdateMultipleRoomType",
+            url: path + "rest/secure/config/createOrUpdateMultipleConfig",
             method: "POST",
-            data: {"roomType": $scope.modalOptions.roomTypeSelectedItems}
+            data: {"roomTypes": $scope.modalOptions.roomTypeSelectedItems,"source":"roomTypes"}
           }).then (
             function (response){
               if (response.data.Status === 'Ok'){
