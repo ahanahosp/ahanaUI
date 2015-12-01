@@ -34,7 +34,7 @@
       <tbody>
       <tr ng-repeat="room in modalOptions.roomSelectedItems track by room.oid">
         <td class="text-left">
-          <select class="form-control" name="wardName" ng-model="room.wardOid">
+          <select class="form-control" name="wardOid" ng-model="room.wardOid">
             <option value="">Select Ward</option>
             <option ng-repeat="ward in modalOptions.wards | orderBy: ward.label" ng-selected="ward.value === room.wardOid" value="{{ward.value}}">{{ward.label}}</option>
           </select>
@@ -46,6 +46,10 @@
           <input type="text" ng-model="room.occupancy" maxlength="50" name="occupancy" class="form-control" placeholder="Occupancy Status">
         </td>
         <td class="text-left">
+        	<select class="form-control" name="maintenanceOid" ng-model="room.maintenanceOid">
+            	<option value="">Select Maintenance</option>
+            	<option ng-repeat="maintenance in modalOptions.maintenances | orderBy: maintenance.label" ng-selected="maintenance.value === room.maintenanceOid" value="{{maintenance.value}}">{{maintenance.label}}</option>
+          	</select>
           <input type="text" ng-model="room.maintenance" name="maintenance" class="form-control" placeholder="Maintenance Status">
         </td>
         <td class="text-left">

@@ -8,6 +8,11 @@ app.controller ('RoomController',
       $scope.wards = response.data.wardDetails;
     }
   );
+  $http.get (path + "rest/secure/common/getMaintenancesValues").then (
+	function (response){
+	   $scope.maintenances = response.data.maintenanceDetails;
+	}
+  );
   $scope.saveRoom = function (mode){
     $scope.errorData = "";
     $scope.successMessage = "";
@@ -145,9 +150,9 @@ app.controller ('RoomController',
           $scope.modalSuccessMessage = "";
           $scope.modalErrorData = "";
           $http ({
-            url: path + "rest/secure/config/createOrUpdateMultipleRoom",
+            url: path + "rest/secure/config/createOrUpdateMultipleConfig",
             method: "POST",
-            data: {"room": $scope.modalOptions.roomSelectedItems}
+            data: {"rooms": $scope.modalOptions.roomSelectedItems,"source":"roomTypes"}
           }).then (
             function (response){
               if (response.data.Status === 'Ok'){

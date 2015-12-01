@@ -141,9 +141,9 @@ app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter'
           $scope.modalSuccessMessage = "";
           $scope.modalErrorData = "";
           $http ({
-            url: path + "rest/secure/config/createOrUpdateMultipleWard",
+            url: path + "rest/secure/config/createOrUpdateMultipleConfig",
             method: "POST",
-            data: {"ward": $scope.modalOptions.wardSelectedItems}
+            data: {"wards": $scope.modalOptions.wardSelectedItems,"source":"wards"}
           }).then (
             function (response){
               if (response.data.Status === 'Ok'){

@@ -138,9 +138,9 @@ app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams'
           $scope.modalSuccessMessage = "";
           $scope.modalErrorData = "";
           $http ({
-            url: path + "rest/secure/config/createOrUpdateMultipleRoomMaintenance",
+            url: path + "rest/secure/config/createOrUpdateMultipleConfig",
             method: "POST",
-            data: {"roomMaintenance": $scope.modalOptions.roomMaintenanceSelectedItems}
+            data: {"roomMaintenanceDetails": $scope.modalOptions.roomMaintenanceSelectedItems,"source":"roomMaintenanceDetails"}
           }).then (
             function (response){
               if (response.data.Status === 'Ok'){
