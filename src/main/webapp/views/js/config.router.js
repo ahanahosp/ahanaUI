@@ -863,6 +863,17 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.doctorSchedule', {
+          url: '/doctorSchedule',
+          templateUrl: contextPath + 'views/tpl/doctorschedule.html',
+          resolve: {
+            deps: ['uiLoad',
+              function (uiLoad){
+                return uiLoad.load (contextPath + 'views/js/controllers/doctorschedule.js');
+              }
+            ]
+          }
+        })
         .state ('app.table.smart', {
         url: '/smart',
         templateUrl: contextPath + 'views/tpl/table_smart.html',
