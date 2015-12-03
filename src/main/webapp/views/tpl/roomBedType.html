@@ -1,0 +1,52 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n h3">ROOM BED TYPE DETAILS</h1>
+</div>
+<div class="wrapper-md" ng-controller="RoomBedTypesController" ng-init="loadRoomBedTypesList()">
+  <div class="panel panel-default">
+    <div class="row wrapper">
+      <div class="col-sm-8 m-b-xs">
+        <button class="btn btn-sm btn-grey" ng-click="loadRoomBedTypesList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
+        &nbsp; &nbsp;
+        <span ng-show="roomBedTypeSelected > 0">
+          <button class="btn btn-sm btn-grey" ng-click="editMultipleRoomBedTypes()"><i class="fa fa-pencil"></i> &nbsp; Edit</button> &nbsp; &nbsp;
+          <button class="btn btn-sm btn-grey" ng-click="deleteMultipleRoomBedTypes()"><i class="fa fa-trash"></i> &nbsp; Delete</button>
+        </span>
+      </div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-2 pull-right">
+        <button class=" btn btn-sm btn-info pull-right" ng-click="$state.go('app.createRoomBedType')"><i class="fa fa-plus"></i> &nbsp; New Room Bed Type</button>
+      </div>
+    </div>
+    <div class="wrapper table-responsive" ng-show="errorData">
+      <div ng-repeat="error in errorData.errors" class="text-danger">
+        <i class="fa fa-warning"></i> {{error.longMessage}}
+      </div>
+    </div>
+    <div class="wrapper table-responsive" ng-show="!errorData">
+      <table ng-table="tableParams" class="table table-striped b-t b-light">
+        <tr ng-repeat="roomBedType in $data track by roomBedType.oid">
+          <td class="text-left" header="'ng-table/headers/checkbox.html'">
+            <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[roomBedType.oid]" /> <i></i> </label>
+          </td>
+          <td data-title="'Order Id'" class="text-left" sortable="'orderId'">
+            {{roomBedType.orderId}}
+          </td>
+          <td data-title="'BED No'" class="text-left" sortable="'bedNo'">
+            {{roomBedType.bedNo}}
+          </td>
+          <td data-title="'Status'" class="text-left" sortable="'status'">
+            <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="roomBedType.status"> <i></i> </label>
+          </td>
+          <td data-title="'Room Types'" class="text-left">
+            <div ng-repeat="roomType in roomTypesDetails">
+              <label class="i-checks "><input type="checkbox" disabled ng-checked="roomBedType.roomTypeOids.indexOf(roomType.value)>=0" name="status" /> <i></i> </label> {{roomType.label}}
+            </div>
+          </td>
+          <td class="text-right">
+            <a ui-sref="app.editRoomBedType({oid:roomBedType.oid})"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteRoomBedType(roomBedType.oid, roomBedType.name)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

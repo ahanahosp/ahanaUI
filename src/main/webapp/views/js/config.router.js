@@ -42,188 +42,6 @@ angular.module ('app')
             }]
         }
       })
-        .state ('app.dashboard-v2', {
-        url: '/dashboard-v2',
-        templateUrl: contextPath + 'views/tpl/app_dashboard_v2.html',
-        resolve: {
-          deps: ['$ocLazyLoad',
-            function ($ocLazyLoad){
-              return $ocLazyLoad.load (['views/js/controllers/chart.js']);
-            }]
-        }
-      })
-        .state ('app.ui', {
-        url: '/ui',
-        template: '<div ui-view class="fade-in-up"></div>'
-      })
-        .state ('app.ui.buttons', {
-        url: '/buttons',
-        templateUrl: contextPath + 'views/tpl/ui_buttons.html'
-      })
-        .state ('app.ui.icons', {
-        url: '/icons',
-        templateUrl: contextPath + 'views/tpl/ui_icons.html'
-      })
-        .state ('app.ui.grid', {
-        url: '/grid',
-        templateUrl: contextPath + 'views/tpl/ui_grid.html'
-      })
-        .state ('app.ui.widgets', {
-        url: '/widgets',
-        templateUrl: contextPath + 'views/tpl/ui_widgets.html'
-      })
-        .state ('app.ui.bootstrap', {
-        url: '/bootstrap',
-        templateUrl: contextPath + 'views/tpl/ui_bootstrap.html'
-      })
-        .state ('app.ui.sortable', {
-        url: '/sortable',
-        templateUrl: contextPath + 'views/tpl/ui_sortable.html'
-      })
-        .state ('app.ui.scroll', {
-        url: '/scroll',
-        templateUrl: contextPath + 'views/tpl/ui_scroll.html',
-        resolve: {
-          deps: ['uiLoad',
-            function (uiLoad){
-              return uiLoad.load (contextPath + 'views/js/controllers/scroll.js');
-            }]
-        }
-      })
-        .state ('app.ui.portlet', {
-        url: '/portlet',
-        templateUrl: contextPath + 'views/tpl/ui_portlet.html'
-      })
-        .state ('app.ui.timeline', {
-        url: '/timeline',
-        templateUrl: contextPath + 'views/tpl/ui_timeline.html'
-      })
-        .state ('app.ui.tree', {
-        url: '/tree',
-        templateUrl: contextPath + 'views/tpl/ui_tree.html',
-        resolve: {
-          deps: ['$ocLazyLoad',
-            function ($ocLazyLoad){
-              return $ocLazyLoad.load ('angularBootstrapNavTree').then (
-                function (){
-                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/tree.js');
-                }
-              );
-            }
-          ]
-        }
-      })
-        .state ('app.ui.toaster', {
-        url: '/toaster',
-        templateUrl: contextPath + 'views/tpl/ui_toaster.html',
-        resolve: {
-          deps: ['$ocLazyLoad',
-            function ($ocLazyLoad){
-              return $ocLazyLoad.load ('toaster').then (
-                function (){
-                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/toaster.js');
-                }
-              );
-            }]
-        }
-      })
-        .state ('app.ui.jvectormap', {
-        url: '/jvectormap',
-        templateUrl: contextPath + 'views/tpl/ui_jvectormap.html',
-        resolve: {
-          deps: ['$ocLazyLoad',
-            function ($ocLazyLoad){
-              return $ocLazyLoad.load (contextPath + 'views/js/controllers/vectormap.js');
-            }]
-        }
-      })
-        .state ('app.ui.googlemap', {
-        url: '/googlemap',
-        templateUrl: contextPath + 'views/tpl/ui_googlemap.html',
-        resolve: {
-          deps: ['uiLoad',
-            function (uiLoad){
-              return uiLoad.load ([
-                'views/js/app/map/load-google-maps.js',
-                'views/js/app/map/ui-map.js',
-                'views/js/app/map/map.js']).then (
-                function (){
-                  return loadGoogleMaps ();
-                }
-              );
-            }]
-        }
-      })
-        .state ('app.chart', {
-        url: '/chart',
-        templateUrl: contextPath + 'views/tpl/ui_chart.html',
-        resolve: {
-          deps: ['uiLoad',
-            function (uiLoad){
-              return uiLoad.load (contextPath + 'views/js/controllers/chart.js');
-            }]
-        }
-      })
-        // table
-        .state ('app.table', {
-        url: '/table',
-        template: '<div ui-view></div>'
-      })
-        .state ('app.table.static', {
-        url: '/static',
-        templateUrl: contextPath + 'views/tpl/table_static.html'
-      })
-        .state ('app.table.datatable', {
-        url: '/datatable',
-        templateUrl: contextPath + 'views/tpl/table_datatable.html'
-      })
-        .state ('app.table.footable', {
-        url: '/footable',
-        templateUrl: contextPath + 'views/tpl/table_footable.html'
-      })
-        .state ('app.table.grid', {
-        url: '/grid',
-        templateUrl: contextPath + 'views/tpl/table_grid.html',
-        resolve: {
-          deps: ['$ocLazyLoad',
-            function ($ocLazyLoad){
-              return $ocLazyLoad.load ('ngGrid').then (
-                function (){
-                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/grid.js');
-                }
-              );
-            }]
-        }
-      })
-        .state ('app.table.uigrid', {
-        url: '/uigrid',
-        templateUrl: contextPath + 'views/tpl/table_uigrid.html',
-        resolve: {
-          deps: ['$ocLazyLoad',
-            function ($ocLazyLoad){
-              return $ocLazyLoad.load ('ui.grid').then (
-                function (){
-                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/uigrid.js');
-                }
-              );
-            }]
-        }
-      })
-        .state ('app.table.editable', {
-        url: '/editable',
-        templateUrl: contextPath + 'views/tpl/table_editable.html',
-        controller: 'XeditableCtrl',
-        resolve: {
-          deps: ['$ocLazyLoad',
-            function ($ocLazyLoad){
-              return $ocLazyLoad.load ('xeditable').then (
-                function (){
-                  return $ocLazyLoad.load (contextPath + 'views/js/controllers/xeditable.js');
-                }
-              );
-            }]
-        }
-      })
         .state ('app.inpatient', {
         url: '/inpatient',
         templateUrl: contextPath + 'views/tpl/inpatient.html',
@@ -831,6 +649,38 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.createRoomBedType', {
+        url: '/createRole',
+        templateUrl: contextPath + 'views/tpl/create_room_bed_type.html',
+        resolve: {
+          deps: ['uiLoad',
+            function (uiLoad){
+              return uiLoad.load (contextPath + 'views/js/controllers/roomBedType.js');
+            }
+          ]
+        }
+      })
+        .state ('app.editRoomBedType', {
+        url: '/editRole/{oid}',
+        templateUrl: contextPath + 'views/tpl/edit_room_bed_type.html',
+        resolve: {
+          deps: ['uiLoad',
+            function (uiLoad){
+              return uiLoad.load (contextPath + 'views/js/controllers/roomBedType.js');
+            }
+          ]
+        }
+      }).state ('app.roomBedTypes', {
+        url: '/roomBedTypes',
+        templateUrl: contextPath + 'views/tpl/roomBedType.html',
+        resolve: {
+          deps: ['uiLoad',
+            function (uiLoad){
+              return uiLoad.load (contextPath + 'views/js/controllers/roomBedType.js');
+            }
+          ]
+        }
+      })
         .state ('app.createLogin', {
           url: '/createLogin',
           templateUrl: contextPath + 'views/tpl/create_login.html',
