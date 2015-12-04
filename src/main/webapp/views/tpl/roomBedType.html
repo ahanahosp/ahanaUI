@@ -38,8 +38,10 @@
             <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="roomBedType.status"> <i></i> </label>
           </td>
           <td data-title="'Room Types'" class="text-left">
-            <div ng-repeat="roomType in roomTypesDetails">
-              <label class="i-checks "><input type="checkbox" disabled ng-checked="roomType.value.indexOf(roomBedType.roomTypeOids)>=0" name="selectedRoomTypes" /> <i></i> </label> {{roomType.label}}
+            <div style="height: 52px; overflow: auto; ">
+              <div ng-repeat="roomType in roomBedType.roomTypes">
+                <label class="i-checks "><input type="checkbox" disabled checked name="selectedRoomTypes" /> <i></i> </label> {{roomType.roomName}}
+            </div>
             </div>
           </td>
           <td class="text-right">
