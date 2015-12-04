@@ -156,7 +156,15 @@ app.controller ('RoomBedTypesController', ['$scope', '$http', 'NgTableParams', '
       }).then (
         function (response){
           if (response.data.Status === 'Ok'){
-            $scope.data = response.data.roomBedTypes;
+            $scope.data = response.data.roomAndBedType;
+            var savedRoomTypes = response.data.roomAndBedType.savedRoomTyes;
+            angular.forEach ($scope.roomTypesDetails, function (value, key){
+              for (var i = 0; i < savedRoomTypes.length; i++){
+                if (value.value === savedRoomTypes[i]){
+                  $scope.selectedRoomTypes.push ($scope.roomTypesDetails[key]);
+                }
+              }
+            });
           }
           else{
             $scope.errorData = response.data;

@@ -39,7 +39,7 @@
           </td>
           <td data-title="'Room Types'" class="text-left">
             <div ng-repeat="roomType in roomTypesDetails">
-              <label class="i-checks "><input type="checkbox" disabled ng-checked="roomBedType.roomTypeOids.indexOf(roomType.value)>=0" name="status" /> <i></i> </label> {{roomType.label}}
+              <label class="i-checks "><input type="checkbox" disabled ng-checked="roomType.value.indexOf(roomBedType.roomTypeOids)>=0" name="selectedRoomTypes" /> <i></i> </label> {{roomType.label}}
             </div>
           </td>
           <td class="text-right">

@@ -650,7 +650,7 @@ angular.module ('app')
           }
         })
         .state ('app.createRoomBedType', {
-        url: '/createRole',
+        url: '/createRoomBedType',
         templateUrl: contextPath + 'views/tpl/create_room_bed_type.html',
         resolve: {
           deps: ['uiLoad',
@@ -661,7 +661,7 @@ angular.module ('app')
         }
       })
         .state ('app.editRoomBedType', {
-        url: '/editRole/{oid}',
+        url: '/editRoomBedType/{oid}',
         templateUrl: contextPath + 'views/tpl/edit_room_bed_type.html',
         resolve: {
           deps: ['uiLoad',
