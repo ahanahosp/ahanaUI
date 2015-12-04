@@ -44,7 +44,7 @@ app.controller ('RoomBedTypesController', ['$scope', '$http', 'NgTableParams', '
           'roomTypeOids': selectedRoomTypes.join (",")
         };
         $http ({
-          url: path + "rest/secure/common/createRoomBedType",
+          url: path + "rest/secure/config/createRoomAndBedType",
           method: "POST",
           data: data
         }).then (
@@ -78,13 +78,13 @@ app.controller ('RoomBedTypesController', ['$scope', '$http', 'NgTableParams', '
     $scope.loadRoomBedTypesList = function (){
       $scope.errorData = "";
       $http ({
-        url: path + "rest/secure/common/getActiveRoomBedTypes",
+        url: path + "rest/secure/config/getAllActiveRoomAndBedType",
         method: "GET"
       }).then (
         function (response){
           var data;
           if (response.data.Status === 'Ok'){
-            data = response.data.roomBedTypeDetails;
+            data = response.data.roomAndBedTypeDetails;
           }
           else{
             data = [];
@@ -151,7 +151,7 @@ app.controller ('RoomBedTypesController', ['$scope', '$http', 'NgTableParams', '
     $scope.loadRoomBedTypeDetails = function (){
       $scope.errorData = "";
       $http ({
-        url: path + "rest/secure/common/getRoomBedTypeByOid?oid=" + $state.params.oid,
+        url: path + "rest/secure/config/getRoomAndBedTypeByOid?oid=" + $state.params.oid,
         method: "GET"
       }).then (
         function (response){
@@ -218,7 +218,7 @@ app.controller ('RoomBedTypesController', ['$scope', '$http', 'NgTableParams', '
       };
       modalService.showModal ({}, modalOptions).then (function (result){
         $http ({
-          url: path + "rest/secure/common/deleteRoomBedType",
+          url: path + "rest/secure/config/deleteRoomAndBedType",
           method: "POST",
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           transformRequest: function (obj){

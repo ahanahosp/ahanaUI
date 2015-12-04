@@ -20,25 +20,22 @@
             <div class="panel-body">
               <div class="form-group">
                 <label class="col-sm-3 control-label">Doctor * </label>
-                <div class="col-lg-9">
-                  <select class="form-control" ng-model="data.doctorOid" ng-options="doctor.value as doctor.label for doctor in doctorDetails | orderBy: label" ng-change="getSavedDoctorSchedule()">
+                <div class="col-lg-7">
+                  <select class="form-control" ng-model="data.doctorOid" ng-options="doctor.value as doctor.label for doctor in doctorDetails | orderBy: label">
                     <option value="">Select Doctor</option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-3 control-label">Select Day * </label>
-                <div class="col-lg-9">
+                <div class="col-lg-2">
                   <select class="form-control" ng-model="data.visitingDay" ng-options="day.value as day.label for day in days | orderBy: label"/>
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg "></div>
               <div class="form-group">
-                <label class="col-sm-3 control-label">Roles *</label>
-                <div class="col-sm-9">
-                  <div ng-repeat="roles in roleDetails track by roles.oid">
-                    <label class="i-checks "><input type="checkbox" ng-checked="selectedRoles.containsObjectWithProperty('oid', roles.oid)" name="status" ng-click="toggleSelection(roles)" /> <i></i> </label> {{roles.roleName}}
-                  </div>
+                <label class="col-sm-3 control-label">Timing *</label>
+                <div class="col-sm-2">
                 </div>
               </div>
               <footer class="panel-footer text-right bg-light lter">
