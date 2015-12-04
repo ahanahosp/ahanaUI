@@ -11,15 +11,6 @@
 		<param-value>/WEB-INF/classes/config/spring/applicationContext.xml</param-value>
 	</context-param>
 	
-	<!-- <filter>
-    	<filter-name>SessionFilter</filter-name>
-	    <filter-class>com.ahana.web.SessionTracker</filter-class>
-	</filter>
-	<filter-mapping>
-    	<filter-name>SessionFilter</filter-name>
-    	<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
-	
 	<filter>
     	<filter-name>springSecurityFilterChain</filter-name>
     	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
