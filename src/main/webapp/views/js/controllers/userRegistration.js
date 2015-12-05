@@ -26,7 +26,7 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
         }
       }
     )
-  }
+  };
   $scope.updateCity = function (mode){
     $http.get (path + "rest/secure/lookup/populateCity?stateId=" + $scope.data.state).then (
       function (response){
