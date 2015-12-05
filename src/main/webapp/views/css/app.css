@@ -2108,9 +2108,9 @@ fieldset[disabled] .btn-danger.active {
 }
 
 .btn-dark {
-    color: #ffffff !important;
+    /*color: #ffffff !important;
     background-color: #3a3f51;
-    border-color: #3a3f51;
+    border-color: #3a3f51;*/
 }
 
 .btn-dark:hover,

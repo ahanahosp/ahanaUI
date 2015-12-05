@@ -104,6 +104,8 @@ app.controller ('UserRegistrationController', ['$scope', '$http', 'NgTableParams
               orderedData;
             params.total (orderedData.length); // set total for recalc pagination
             $defer.resolve ($scope.users = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+            $scope.checkboxes = {'checked': false, items: {}};
+            $scope.userSelectedItems = [];
           }
         });
       }

@@ -31,6 +31,8 @@ app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$fi
               orderedData;
             params.total (orderedData.length); // set total for recalc pagination
             $defer.resolve ($scope.modules = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+            $scope.checkboxes = {'checked': false, items: {}};
+            $scope.moduleSelectedItems = [];
           }
         });
       }
@@ -71,6 +73,31 @@ app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$fi
     // grayed checkbox
     // angular.element(document.getElementById("select_all")).prop("indeterminate", (checked != 0 && unchecked != 0));
   }, true);
+  $scope.updateSingleModuleStatus = function (model, status){
+    $scope.errorData = "";
+    $http ({
+      url: path + "rest/secure/common/deactivateOrganizationModule",
+      method: "POST",
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      transformRequest: function (obj){
+        var str = [];
+        for (var p in obj)
+          str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
+        return str.join ("&");
+      },
+      data: {"oids": model.oid}
+    }).then (
+      function (response){
+        if (response.data.Status === 'Ok'){
+          $scope.loadOrgModuleList ();
+        }
+        else{
+          $scope.errorData = response.data;
+        }
+      }
+    );
+  };
+
 
   $scope.updateModuleStatus = function (model, deactivate){
     $scope.errorData = "";
