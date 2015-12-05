@@ -43,9 +43,10 @@
           <input type="text" ng-model="roomChargeItem.description" name="description" class="form-control" placeholder="Description">
         </td>
         <td class="text-left">
-	        <select class="form-control" ng-model="roomChargeItem.categoryOid" ng-options="category.value as category.label for category in categories | orderBy: label">
-	          <option value="">Select Category</option>
-	        </select>
+	        <select class="form-control" name="categoryOid" ng-model="roomChargeItem.categoryOid">
+            	<option value="">Select Caregory</option>
+            	<option ng-repeat="category in modalOptions.categories | orderBy: category.label" ng-selected="category.value === roomChargeItem.categoryOid" value="{{category.value}}">{{category.label}}</option>
+          	</select>
 	    </td>    
         <td class="text-left">
           <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="roomChargeItem.status"> <i></i> </label>

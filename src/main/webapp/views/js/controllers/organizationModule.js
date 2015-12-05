@@ -68,8 +68,6 @@ app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$fi
       $scope.checkboxes.checked = (checked == total);
     }
     $scope.moduleSelected = checked;
-    // grayed checkbox
-    // angular.element(document.getElementById("select_all")).prop("indeterminate", (checked != 0 && unchecked != 0));
   }, true);
 
   $scope.updateModuleStatus = function (model, deactivate){
