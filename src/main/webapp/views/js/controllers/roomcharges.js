@@ -135,45 +135,59 @@ app.controller ('RoomChargesController', ['$scope', '$http', 'NgTableParams', '$
       }
     )
   };
+  
   $scope.deleteMultipleRoomCharges = function (){
   };
+  
   $scope.editMultipleRoomCharges = function (){
-    $scope.errorData = "";
-    var modalDefaults = {
-      templateUrl: contextPath + 'views/tpl/edit_multiple_room_charge.html'
-    };
-    var modalOptions = {
-      closeButtonText: 'Cancel',
-      actionButtonText: 'Update',
-      headerText: 'Edit Multiple Room Charges',
-      roomChargeSelectedItems: $scope.roomChargeSelectedItems,
-      roomTypes: $scope.roomTypes,
-      roomChargeItems: $scope.roomChargeItems
-    };
-    modalService.showModal (modalDefaults, modalOptions).then (function (result){
-      $http ({
-        url: path + "rest/secure/user/deleteRoomCharge",
-        method: "POST",
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        transformRequest: function (obj){
-          var str = [];
-          for (var p in obj)
-            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
-          return str.join ("&");
-        },
-        data: {oid: oid}
-      }).then (
-        function (response){
-          if (response.data.Status === 'Ok'){
-            $scope.loadroomChargesList ();
-          }
-          else{
-            $scope.errorData = response.data;
-          }
-        }
-      )
-    });
+	  $scope.errorData = "";
+	  $scope.modalSuccessMessage = "";
+	  var modalDefaults = {
+	  templateUrl: contextPath + 'views/tpl/edit_multiple_room_charge.html',
+	  controller: function ($scope, $modalInstance, $state){
+		  $scope.modalOptions = modalOptions;
+	      $scope.saveMultipleRoomCharges = function (){
+	    	  var roomChargeSelectedItems = $scope.modalOptions.roomChargeSelectedItems;
+	          angular.forEach (roomChargeSelectedItems, function (value, key){
+	        	  delete value.item;
+	        	  delete value.roomName;
+	          });
+	    	  $scope.modalSuccessMessage = "";
+	          $scope.modalErrorData = "";
+	          $http ({
+	            url: path + "rest/secure/config/createOrUpdateMultipleConfig",
+	            method: "POST",
+	            data: {"roomCharges": $scope.modalOptions.roomChargeSelectedItems,"source":"roomCharges"}
+	          }).then (
+	          function (response){
+	        	  if (response.data.Status === 'Ok'){
+	        		  $scope.modalSuccessMessage = "Room Charges Item updated successfully";
+	        		  $timeout (function (){
+	        			  $modalInstance.close (response);
+	        			  $state.go ('app.roomCharges', {}, {reload: true});
+	        		  }, 1000);
+	              }else{
+	            	  $scope.modalErrorData = response.data;
+	              }
+	          }
+	          )
+	      };
+	      $scope.close = function (result){
+	    	  $modalInstance.dismiss ('cancel');
+	      };
+	  }
+	  };
+	  var modalOptions = {
+			  closeButtonText: 'Cancel',
+			  actionButtonText: 'Update',
+			  headerText: 'Edit Multiple Room Charges Item',
+			  roomChargeSelectedItems: $scope.roomChargeSelectedItems,
+			  roomChargeItems: $scope.roomChargeItems,
+			  roomTypes: $scope.roomTypes
+	  };
+	  modalService.showModal (modalDefaults, modalOptions);
   };
+  
   $scope.deleteRoomCharges = function (oid){
     $scope.errorData = "";
     var modalOptions = {
