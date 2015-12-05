@@ -126,10 +126,40 @@ app.controller ('PatientCategoryController', ['$scope', '$http', 'NgTableParams'
   };
   $scope.deleteMultiplePatientCategory = function (){
   };
+
   $scope.editMultiplePatientCategory = function (){
     $scope.errorData = "";
+    $scope.modalSuccessMessage = "";
     var modalDefaults = {
-      templateUrl: contextPath + 'views/tpl/edit_multiple_patientcategory.html'
+      templateUrl: contextPath + 'views/tpl/edit_multiple_patientcategory.html',
+      controller: function ($scope, $modalInstance, $state){
+        $scope.modalOptions = modalOptions;
+        $scope.saveMultiplePatientCategory = function (){
+          $scope.modalSuccessMessage = "";
+          $scope.modalErrorData = "";
+          $http ({
+            url: path + "rest/secure/config/createOrUpdateMultipleConfig",
+            method: "POST",
+            data: {"patientCategories": $scope.modalOptions.patientCategorySelectedItems,"source":"patientCategories"}
+          }).then (
+            function (response){
+              if (response.data.Status === 'Ok'){
+                $scope.modalSuccessMessage = "Patient Category updated successfully";
+                $timeout (function (){
+                  $modalInstance.close (response);
+                  $state.go ('app.patientCategory', {}, {reload: true});
+                }, 1000);
+              }
+              else{
+                $scope.modalErrorData = response.data;
+              }
+            }
+          )
+        };
+        $scope.close = function (result){
+          $modalInstance.dismiss ('cancel');
+        };
+      }
     };
     var modalOptions = {
       closeButtonText: 'Cancel',
@@ -137,30 +167,9 @@ app.controller ('PatientCategoryController', ['$scope', '$http', 'NgTableParams'
       headerText: 'Edit Multiple Patient Category',
       patientCategorySelectedItems: $scope.patientCategorySelectedItems
     };
-    modalService.showModal (modalDefaults, modalOptions).then (function (result){
-      $http ({
-        url: path + "rest/secure/config/deletePatientCategory",
-        method: "POST",
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        transformRequest: function (obj){
-          var str = [];
-          for (var p in obj)
-            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
-          return str.join ("&");
-        },
-        data: {oid: oid}
-      }).then (
-        function (response){
-          if (response.data.Status === 'Ok'){
-            $scope.loadPatientCategoryList ();
-          }
-          else{
-            $scope.errorData = response.data;
-          }
-        }
-      )
-    });
+    modalService.showModal (modalDefaults, modalOptions);
   };
+  
   $scope.deletePatientCategory = function (oid, name){
     $scope.errorData = "";
     var modalOptions = {
