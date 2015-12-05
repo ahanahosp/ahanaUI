@@ -67,6 +67,8 @@ app.controller ('SpecialityController', ['$scope', '$http', 'NgTableParams', '$f
               orderedData;
             params.total (orderedData.length); // set total for recalc pagination
             $defer.resolve ($scope.speciality = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+            $scope.checkboxes = {'checked': false, items: {}};
+            $scope.specialitySelectedItems = [];
           }
         });
       }
