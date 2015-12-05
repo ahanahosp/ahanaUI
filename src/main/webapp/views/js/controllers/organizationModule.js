@@ -70,7 +70,7 @@ app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$fi
     $scope.moduleSelected = checked;
   }, true);
 
-  $scope.updateModuleStatus = function (model, deactivate){
+  $scope.updateModuleStatus = function (model, flag){
     $scope.errorData = "";
     var selectedModules = $scope.moduleSelectedItems.join (",");
     $http ({
@@ -83,7 +83,7 @@ app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$fi
           str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
         return str.join ("&");
       },
-      data: {"oids": selectedModules}
+      data: {"oids": selectedModules,"type":flag}
     }).then (
       function (response){
         if (response.data.Status === 'Ok'){
