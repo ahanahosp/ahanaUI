@@ -2,9 +2,19 @@
 /* Controllers */
 app.controller ('PatientCategoryController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout',
   function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
+	$scope.formats = ['yyyy-MM-dd HH:mm:ss', 'yyyy-MM-dd', 'MM/dd/yyyy'];
   $scope.savePatientCategory = function (mode){
     $scope.errorData = "";
     $scope.successMessage = "";
+    var activationDate = new Date ();
+    activationDate.setDate (activationDate.getDate () + 1);
+    $scope.activationMinDate = $filter ('date') (activationDate, $scope.formats[2]);
+    $scope.data.activationDate = $filter ('date') (activationDate, $scope.formats[1]);
+    $scope.dateOptions = {
+    		formatYear: 'yy',
+    		startingDay: 1,
+    		class: 'datepicker'
+    };
     if ($scope.patientCategoryForm.$valid){
       $http ({
         url: path + "rest/secure/config/createPatientCategory",
