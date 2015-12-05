@@ -1,5 +1,4 @@
 'use strict';
-/* Controllers */
 app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout', function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
   $scope.loadOrgModuleList = function (){
     $http ({
