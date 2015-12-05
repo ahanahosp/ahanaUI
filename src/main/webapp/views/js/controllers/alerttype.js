@@ -127,41 +127,50 @@ app.controller ('AlertTypeController', ['$scope', '$http', 'NgTableParams', '$fi
   };
   $scope.deleteMultipleAlertType = function (){
   };
+  
   $scope.editMultipleAlertType = function (){
     $scope.errorData = "";
+    $scope.modalSuccessMessage = "";
     var modalDefaults = {
-      templateUrl: contextPath + 'views/tpl/edit_multiple_alerttype.html'
+      templateUrl: contextPath + 'views/tpl/edit_multiple_alerttype.html',
+      controller: function ($scope, $modalInstance, $state){
+        $scope.modalOptions = modalOptions;
+        $scope.saveMultipleAlertType = function (){
+          $scope.modalSuccessMessage = "";
+          $scope.modalErrorData = "";
+          $http ({
+            url: path + "rest/secure/config/createOrUpdateMultipleConfig",
+            method: "POST",
+            data: {"alertTypes": $scope.modalOptions.alertTypeSelectedItems,"source":"alertTypes"}
+          }).then (
+            function (response){
+              if (response.data.Status === 'Ok'){
+                $scope.modalSuccessMessage = "Alert Types updated successfully";
+                $timeout (function (){
+                  $modalInstance.close (response);
+                  $state.go ('app.alertType', {}, {reload: true});
+                }, 1000);
+              }
+              else{
+                $scope.modalErrorData = response.data;
+              }
+            }
+          )
+        };
+        $scope.close = function (result){
+          $modalInstance.dismiss ('cancel');
+        };
+      }
     };
     var modalOptions = {
       closeButtonText: 'Cancel',
       actionButtonText: 'Update',
-      headerText: 'Edit Multiple AlertType',
+      headerText: 'Edit Multiple Alert Types',
       alertTypeSelectedItems: $scope.alertTypeSelectedItems
     };
-    modalService.showModal (modalDefaults, modalOptions).then (function (result){
-      $http ({
-        url: path + "rest/secure/config/deleteAlertType",
-        method: "POST",
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        transformRequest: function (obj){
-          var str = [];
-          for (var p in obj)
-            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
-          return str.join ("&");
-        },
-        data: {oid: oid}
-      }).then (
-        function (response){
-          if (response.data.Status === 'Ok'){
-            $scope.loadAlertTypeList ();
-          }
-          else{
-            $scope.errorData = response.data;
-          }
-        }
-      )
-    });
+    modalService.showModal (modalDefaults, modalOptions);
   };
+	  
   $scope.deleteAlertType = function (oid, name){
     $scope.errorData = "";
     var modalOptions = {

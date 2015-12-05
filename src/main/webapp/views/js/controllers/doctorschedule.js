@@ -32,7 +32,7 @@ Array.prototype.containsObjectWithProperty = function (propertyName, propertyVal
 'use strict';
 /* Controllers */
 app
-  .controller ('DoctorScheduleController', ['$scope', '$http', 'NgTableParams', '$state', '$timeout', function ($scope, $http, NgTableParams, $state, $timeout){
+  .controller ('DoctorScheduleController', ['$scope', '$http', 'NgTableParams','$filter', '$state', '$timeout', function ($scope, $http, NgTableParams,$filter, $state, $timeout){
   $http.get (path + "rest/secure/config/getDoctorDetails").then (
     function (response){
       $scope.doctorDetails = response.data.doctorDetails;
@@ -51,49 +51,44 @@ app
       $scope.roleDetails = response.data.roleDetails;
     }
   )
-  $scope.getSavedRoles = function (){
-    $scope.errorData = "";
-    $scope.successMessage = "";
-    $http.get (path + "rest/secure/user/getSavedRolesByUserOid?userOid=" + $scope.data.userOid).then (
-      function (response){
-        if (response.data.Status === 'Ok'){
-          $scope.selectedRoles = response.data.doctorScheduleDetails;
-        }
-        else{
-          $scope.selectedRoles = [];
-        }
-      }
-    )
-  };
-  $scope.selectedRoles = [];
-  $scope.toggleSelection = function toggleSelection (role){
-    var index = $scope.selectedRoles.indexOfObjectWithProperty ('oid', role.oid);
-    if (index > -1){
-      // Is currently selected, so remove it
-      $scope.selectedRoles.splice (index, 1);
-    }
-    else{
-      // Is currently unselected, so add it
-      $scope.selectedRoles.push (role);
-    }
-  };
 
-  $scope.loadOrganizationDetails = function (){
-    $scope.errorData = "";
-    $http ({
-      url: path + "rest/secure/common/getDefaultOrganization",
-      method: "GET"
-    }).then (
-      function (response){
-        if (response.data.Status === 'Ok'){
-          $scope.data = response.data.organizationDetails;
-        }
-        else{
-          $scope.errorData = response.data;
-        }
+  $scope.loadDoctorScheduleList = function (){
+	  $scope.errorData = "";
+	  $http ({
+		  url: path + "rest/secure/config/getAllDoctorDetails",
+	      method: "GET"
+	  }).then (
+		  function (response){
+			  var data;
+			  if (response.data.Status === 'Ok'){
+				  data = response.data.doctorDetails;
+			  } else{
+				  data = [];
+				  $scope.errorData = response.data;
+			  }
+        $scope.tableParams = new NgTableParams ({
+        	page: 1,            // show first page
+        	count: 25,           // count per page
+        	counts: [10, 25, 50, 100]
+        }, {
+        	total: data.length, // length of data
+        	getData: function ($defer, params){
+            // use build-in angular filter
+            var orderedData = params.sorting () ?
+            	$filter ('orderBy') (data, params.orderBy ()) :
+            	data;
+            orderedData = params.filter () ?
+              $filter ('filter') (orderedData, params.filter ()) :
+              orderedData;
+            params.total (orderedData.length); // set total for recalc pagination
+            $defer.resolve ($scope.roles = orderedData.slice ((params.page () - 1) * params.count (), params.page () * params.count ()));
+          }
+        });
       }
     )
   };
+  
+
   $scope.saveDoctorSchedule = function (){
     $scope.errorData = "";
     $scope.successMessage = "";

@@ -69,8 +69,6 @@ app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$fi
       $scope.checkboxes.checked = (checked == total);
     }
     $scope.moduleSelected = checked;
-    // grayed checkbox
-    // angular.element(document.getElementById("select_all")).prop("indeterminate", (checked != 0 && unchecked != 0));
   }, true);
   $scope.updateSingleModuleStatus = function (model, status){
     $scope.errorData = "";
@@ -98,7 +96,7 @@ app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$fi
   };
 
 
-  $scope.updateModuleStatus = function (model, deactivate){
+  $scope.updateModuleStatus = function (model, flag){
     $scope.errorData = "";
     var selectedModules = $scope.moduleSelectedItems.join (",");
     $http ({
@@ -111,7 +109,7 @@ app.controller ('OrgModuleController', ['$scope', '$http', 'NgTableParams', '$fi
           str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
         return str.join ("&");
       },
-      data: {"oids": selectedModules}
+      data: {"oids": selectedModules,"type":flag}
     }).then (
       function (response){
         if (response.data.Status === 'Ok'){

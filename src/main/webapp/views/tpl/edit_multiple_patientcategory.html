@@ -2,14 +2,21 @@
   <h3>{{modalOptions.headerText}}</h3>
 </div>
 <div class="modal-body">
+	<div class="wrapper table-responsive" ng-show="modalSuccessMessage">
+	    <div class="text-success">
+	      <i class="fa fa-info-circle"></i> {{modalSuccessMessage}}
+	    </div>
+	</div>
+	<div class="wrapper table-responsive" ng-show="modalErrorData">
+	    <div ng-repeat="error in modalErrorData.errors" class="text-danger">
+	      <i class="fa fa-warning"></i> {{error.longMessage}}
+	    </div>
+	</div>
   <div class="wrapper table-responsive">
     <table class="table table-striped b-t b-light">
       <thead>
       <td class="text-left">
         Category Name
-      </td>
-      <td class="text-left">
-        Colour Picker
       </td>
       <td class="text-left">
         Activation Date
@@ -24,10 +31,12 @@
           <input type="text" ng-model="patientCategory.categoryName" name="categoryName" class="form-control" placeholder="Category Name">
         </td>
         <td class="text-left">
-          <input type="text" ng-model="patientCategory.colourPicker" name="colourPicker" class="form-control" placeholder="Colour Picker">
-        </td>
-        <td class="text-left">
-          <input type="text" ng-model="patientCategory.activationDate" name="activationDate" class="form-control" placeholder="Activation Date">
+	        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.activationDate" min-date="activationMinDate" is-open="openedActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+	        <span class="input-group-btn">
+	          <button type="button" class="btn btn-default" ng-click="openActivationDate($event)">
+	            <i class="glyphicon glyphicon-calendar"></i>
+	          </button>
+	        </span>
         </td>
         <td class="text-left">
           <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="patientCategory.status"> <i></i> </label>
@@ -38,6 +47,6 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn" data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
-  <button class="btn btn-primary" data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+  <button type="button" class="btn" data-ng-click="close()">{{modalOptions.closeButtonText}}</button>
+  <button class="btn btn-primary" data-ng-click="saveMultiplePatientCategory()">{{modalOptions.actionButtonText}}</button>
 </div>

@@ -126,10 +126,40 @@ app.controller ('AlliedChargesController', ['$scope', '$http', 'NgTableParams', 
   };
   $scope.deleteMultipleAlliedCharges = function (){
   };
+  
   $scope.editMultipleAlliedCharges = function (){
     $scope.errorData = "";
+    $scope.modalSuccessMessage = "";
     var modalDefaults = {
-      templateUrl: contextPath + 'views/tpl/edit_multiple_alliedcharges.html'
+      templateUrl: contextPath + 'views/tpl/edit_multiple_alliedcharges.html',
+      controller: function ($scope, $modalInstance, $state){
+        $scope.modalOptions = modalOptions;
+        $scope.saveMultipleAlliedCharges = function (){
+          $scope.modalSuccessMessage = "";
+          $scope.modalErrorData = "";
+          $http ({
+            url: path + "rest/secure/config/createOrUpdateMultipleConfig",
+            method: "POST",
+            data: {"alliedCharges": $scope.modalOptions.alliedChargesSelectedItems,"source":"alliedCharges"}
+          }).then (
+            function (response){
+              if (response.data.Status === 'Ok'){
+                $scope.modalSuccessMessage = "Allied Charges updated successfully";
+                $timeout (function (){
+                  $modalInstance.close (response);
+                  $state.go ('app.alliedCharges', {}, {reload: true});
+                }, 1000);
+              }
+              else{
+                $scope.modalErrorData = response.data;
+              }
+            }
+          )
+        };
+        $scope.close = function (result){
+          $modalInstance.dismiss ('cancel');
+        };
+      }
     };
     var modalOptions = {
       closeButtonText: 'Cancel',
@@ -137,30 +167,9 @@ app.controller ('AlliedChargesController', ['$scope', '$http', 'NgTableParams', 
       headerText: 'Edit Multiple Allied Charges',
       alliedChargesSelectedItems: $scope.alliedChargesSelectedItems
     };
-    modalService.showModal (modalDefaults, modalOptions).then (function (result){
-      $http ({
-        url: path + "rest/secure/config/deleteAlliedCharges",
-        method: "POST",
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        transformRequest: function (obj){
-          var str = [];
-          for (var p in obj)
-            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
-          return str.join ("&");
-        },
-        data: {oid: oid}
-      }).then (
-        function (response){
-          if (response.data.Status === 'Ok'){
-            $scope.loadAlliedChargesList ();
-          }
-          else{
-            $scope.errorData = response.data;
-          }
-        }
-      )
-    });
+    modalService.showModal (modalDefaults, modalOptions);
   };
+  
   $scope.deleteAlliedCharges = function (oid, name){
     $scope.errorData = "";
     var modalOptions = {

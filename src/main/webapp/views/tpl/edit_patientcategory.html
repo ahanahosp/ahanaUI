@@ -24,22 +24,23 @@
 			                  <input type="text" ng-model="data.categoryName" maxlength="50" name="categoryName" class="form-control" placeholder="Category Name">
 			                </div>
 			              </div>
+			              <div class="line line-dashed b-b line-lg "></div>
 			              <div class="form-group">
-			                <label class="col-sm-3 control-label">Colour Picker * </label>
-			                <div class="col-sm-9">
-			                  <input type="text" ng-model="data.colourPicker" maxlength="50" name="colourPicker" class="form-control" placeholder="Colour Picker">
-			                </div>
-			              </div>
-			              <div class="form-group">
-			                <label class="col-sm-3 control-label">Activation Date * </label>
-			                <div class="col-sm-9">
-			                  <input type="text" ng-model="data.activationDate" maxlength="50" name="activationDate" class="form-control" placeholder="Activation Date">
+			                <label class="col-sm-3 control-label">Activation Date *</label>
+			                <div class="col-sm-4">
+			                  <div class="input-group">
+			                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.activationDate" min-date="activationMinDate" is-open="openedActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+			                    <span class="input-group-btn">
+			                      <button type="button" class="btn btn-default" ng-click="openActivationDate($event)">
+			                        <i class="glyphicon glyphicon-calendar"></i>
+			                      </button>
+			                    </span>
+			                  </div>
 			                </div>
 			              </div>
 			              <div class="line line-dashed b-b line-lg "></div>
 			              <div class="form-group">
 			                <label class="col-sm-3 control-label">Status</label>
-			
 			                <div class="col-sm-9">
 			                  <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="data.status"> <i></i> </label> &nbsp; &nbsp;
 			                </div>
