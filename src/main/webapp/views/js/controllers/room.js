@@ -159,7 +159,7 @@ app.controller ('RoomController',
           $http ({
             url: path + "rest/secure/config/createOrUpdateMultipleConfig",
             method: "POST",
-            data: {"rooms": $scope.modalOptions.roomSelectedItems,"source":"roomTypes"}
+            data: {"rooms": $scope.modalOptions.roomSelectedItems,"source":"rooms"}
           }).then (
             function (response){
               if (response.data.Status === 'Ok'){

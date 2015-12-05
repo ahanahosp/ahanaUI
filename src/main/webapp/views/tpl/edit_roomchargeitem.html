@@ -20,32 +20,28 @@
             <div class="panel-body">
               <div class="form-group">
                 <label class="col-sm-3 control-label">Item * </label>
-
-                <div class="col-sm-9">
+                <div class="col-sm-4">
                   <input type="text" ng-model="data.item" maxlength="100" name="item" class="form-control" placeholder="Item">
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg "></div>
               <div class="form-group">
                 <label class="col-sm-3 control-label">Code * </label>
-
-                <div class="col-sm-9">
+                <div class="col-sm-3">
                   <input type="text" ng-model="data.code" maxlength="10" name="code" class="form-control" placeholder="Code">
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg "></div>
               <div class="form-group">
                 <label class="col-sm-3 control-label">Description </label>
-
-                <div class="col-sm-9">
+                <div class="col-sm-5">
                   <input type="text" ng-model="data.description" maxlength="100" name="description" class="form-control" placeholder="Description">
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg "></div>
               <div class="form-group">
                 <label class="col-lg-3 control-label">Category *</label>
-
-                <div class="col-lg-9">
+                <div class="col-lg-4">
                   <select class="form-control" ng-model="data.categoryOid" ng-options="category.value as category.label for category in categories | orderBy: label">
                     <option value="">Select Category</option>
                   </select>
@@ -54,8 +50,7 @@
               <div class="line line-dashed b-b line-lg "></div>
               <div class="form-group">
                 <label class="col-sm-3 control-label">Status</label>
-
-                <div class="col-sm-9">
+                <div class="col-sm-4">
                   <label class="i-checks "> <input type="checkbox" checked="" ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="data.status"> <i></i> </label> &nbsp; &nbsp;
                 </div>
               </div>
@@ -71,4 +66,4 @@
       </div>
     </div>
   </div>
-</div></div>
+</div>
