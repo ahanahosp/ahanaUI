@@ -43,7 +43,7 @@
                 </div>
               </div>
               <footer class="panel-footer text-right bg-light lter">
-              	<div class="col-sm-8 m-b-xs">
+              	<div class="col-sm-2 m-b-xs">
 	        		<button class="btn btn-sm btn-grey" ng-click="loadDoctorScheduleList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>&nbsp; &nbsp;
       			</div>
                 <button class="btn m-b-xs  btn-success " ng-click="saveUserRole()">Assign</button>
@@ -59,8 +59,8 @@
     <div class="wrapper table-responsive" ng-show="!errorData">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
         <tr ng-repeat="doctorSchedule in $data track by doctorSchedule.oid">
-          <td data-title="'Doctor Name'" class="text-left" sortable="'doctorName'">
-            {{doctorSchedule.doctorName}}
+          <td data-title="'Doctor Name'" class="text-left" sortable="'fullName'">
+            {{doctorSchedule.fullName}}
           </td>
           <td data-title="'Speciality'" class="text-left" sortable="'speciality'">
             {{doctorSchedule.speciality}}
@@ -75,11 +75,11 @@
             {{doctorSchedule.endTime}}
           </td>
           <td data-title="'Status'" class="text-left" sortable="'status'">
-            <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="doctorSchedule.status"> <i></i> </label>
+            <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'INACT'" name="doctorStatus" ng-model="doctorSchedule.doctorStatus"> <i></i> </label>
           </td>
           <td class="text-right">
             <a ui-sref="app.editDoctorSchedule({oid:doctorSchedule.oid})">
-              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteDoctorSchedule(doctorSchedule.oid, doctorSchedule.doctorName)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteDoctorSchedule(doctorSchedule.oid, doctorSchedule.fullName)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
           </td>
         </tr>
       </table>

@@ -32,7 +32,7 @@ Array.prototype.containsObjectWithProperty = function (propertyName, propertyVal
 'use strict';
 /* Controllers */
 app
-  .controller ('DoctorScheduleController', ['$scope', '$http', 'NgTableParams','$filter', '$state', '$timeout', function ($scope, $http, NgTableParams, $state, $timeout){
+  .controller ('DoctorScheduleController', ['$scope', '$http', 'NgTableParams','$filter', '$state', '$timeout', function ($scope, $http, NgTableParams,$filter, $state, $timeout){
   $http.get (path + "rest/secure/config/getDoctorDetails").then (
     function (response){
       $scope.doctorDetails = response.data.doctorDetails;
