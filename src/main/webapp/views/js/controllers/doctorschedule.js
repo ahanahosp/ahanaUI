@@ -115,8 +115,8 @@ app
     $scope.successMessage = "";
     var data = {
       doctorOid: $scope.data.doctorOid,
-      startTime: $filter ("date") ($scope.data.startTime, "yyyy-MM-dd HH:mm"),
-      endTime: $filter ("date") ($scope.data.endTime, "yyyy-MM-dd HH:mm"),
+      startTime: $filter ("date") ($scope.data.startTime, "hh:mm a"),
+      endTime: $filter ("date") ($scope.data.endTime, "hh:mm a"),
       visitingDay: $scope.data.visitingDay
     }
 
