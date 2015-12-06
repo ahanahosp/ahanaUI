@@ -137,6 +137,41 @@ app.controller ('RoomChargesController', ['$scope', '$http', 'NgTableParams', '$
   };
   
   $scope.deleteMultipleRoomCharges = function (){
+	  var selectedRoomChargesOids = [];
+	    angular.forEach ($scope.roomChargeSelectedItems, function (value, key){
+	    	selectedRoomChargesOids.push (value.oid);
+	      }
+	    );
+	    $scope.errorData = "";
+	    var modalOptions = {
+	      closeButtonText: 'Cancel',
+	      actionButtonText: 'Delete',
+	      headerText: 'Delete Multiple Room Charges(s)?',
+	      bodyText: 'Are you sure you want to delete selected room charges ?'
+	    };
+	    modalService.showModal ({}, modalOptions).then (function (result){
+	      $http ({
+	        url: path + "rest/secure/config/deleteMultipleObject",
+	        method: "POST",
+	        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+	        transformRequest: function (obj){
+	          var str = [];
+	          for (var p in obj)
+	            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
+	          return str.join ("&");
+	        },
+	        data: {"oids": selectedRoomChargesOids,"source":"RoomCharges"}
+	      }).then (
+	        function (response){
+	          if (response.data.Status === 'Ok'){
+	            $scope.loadRoomChargesList ();
+	          }
+	          else{
+	            $scope.errorData = response.data;
+	          }
+	        }
+	      )
+	    });
   };
   
   $scope.editMultipleRoomCharges = function (){

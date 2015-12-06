@@ -126,6 +126,41 @@ app.controller ('AlertTypeController', ['$scope', '$http', 'NgTableParams', '$fi
     )
   };
   $scope.deleteMultipleAlertType = function (){
+	  var selectedAlertTypeOids = [];
+	    angular.forEach ($scope.alertTypeSelectedItems, function (value, key){
+	        selectedAlertTypeOids.push (value.oid);
+	      }
+	    );
+	    $scope.errorData = "";
+	    var modalOptions = {
+	      closeButtonText: 'Cancel',
+	      actionButtonText: 'Delete',
+	      headerText: 'Delete Multiple Alert Type(s)?',
+	      bodyText: 'Are you sure you want to delete selected alert type ?'
+	    };
+	    modalService.showModal ({}, modalOptions).then (function (result){
+	      $http ({
+	        url: path + "rest/secure/config/deleteMultipleObject",
+	        method: "POST",
+	        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+	        transformRequest: function (obj){
+	          var str = [];
+	          for (var p in obj)
+	            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
+	          return str.join ("&");
+	        },
+	        data: {"oids": selectedAlertTypeOids,"source":"AlertType"}
+	      }).then (
+	        function (response){
+	          if (response.data.Status === 'Ok'){
+	            $scope.loadAlertTypeList ();
+	          }
+	          else{
+	            $scope.errorData = response.data;
+	          }
+	        }
+	      )
+	    });
   };
   
   $scope.editMultipleAlertType = function (){

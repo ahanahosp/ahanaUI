@@ -125,7 +125,43 @@ app.controller ('SpecialityController', ['$scope', '$http', 'NgTableParams', '$f
       }
     )
   };
+  
   $scope.deleteMultipleSpeciality = function (){
+	  var selectedSpecialityOids = [];
+	    angular.forEach ($scope.specialitySelectedItems, function (value, key){
+	    	selectedSpecialityOids.push (value.oid);
+	      }
+	    );
+	    $scope.errorData = "";
+	    var modalOptions = {
+	      closeButtonText: 'Cancel',
+	      actionButtonText: 'Delete',
+	      headerText: 'Delete Multiple Speciality(s)?',
+	      bodyText: 'Are you sure you want to delete selected speciality ?'
+	    };
+	    modalService.showModal ({}, modalOptions).then (function (result){
+	      $http ({
+	        url: path + "rest/secure/config/deleteMultipleObject",
+	        method: "POST",
+	        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+	        transformRequest: function (obj){
+	          var str = [];
+	          for (var p in obj)
+	            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
+	          return str.join ("&");
+	        },
+	        data: {"oids": selectedSpecialityOids,"source":"SpecialityDetails"}
+	      }).then (
+	        function (response){
+	          if (response.data.Status === 'Ok'){
+	            $scope.loadSpecialityList ();
+	          }
+	          else{
+	            $scope.errorData = response.data;
+	          }
+	        }
+	      )
+	    });
   };
   
   $scope.editMultipleSpeciality = function (){

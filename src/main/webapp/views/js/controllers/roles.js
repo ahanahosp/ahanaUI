@@ -127,6 +127,41 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
     )
   };
   $scope.deleteMultipleRoles = function (){
+	  var selectedRoleOids = [];
+	  angular.forEach ($scope.roleSelectedItems, function (value, key){
+		  selectedRoleOids.push (value.oid);
+	  }
+	  );
+	  $scope.errorData = "";
+	  var modalOptions = {
+			  closeButtonText: 'Cancel',
+			  actionButtonText: 'Delete',
+			  headerText: 'Delete Multiple Roles(s)?',
+			  bodyText: 'Are you sure you want to delete selected roles ?'
+	  };
+	  modalService.showModal ({}, modalOptions).then (function (result){
+	  $http ({
+	        url: path + "rest/secure/config/deleteMultipleObject",
+	        method: "POST",
+	        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+	        transformRequest: function (obj){
+	          var str = [];
+	          for (var p in obj)
+	            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
+	          return str.join ("&");
+	        },
+	        data: {"oids": selectedRoleOids,"source":"Roles"}
+	      }).then (
+	        function (response){
+	          if (response.data.Status === 'Ok'){
+	            $scope.loadRolesList ();
+	          }
+	          else{
+	            $scope.errorData = response.data;
+	          }
+	        }
+	      )
+	    });
   };
   $scope.editMultipleRoles = function (){
     $scope.modalErrorData = "";

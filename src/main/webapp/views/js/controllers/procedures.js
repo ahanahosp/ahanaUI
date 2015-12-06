@@ -128,6 +128,41 @@ app.controller ('ProceduresController',
     )
   };
   $scope.deleteMultipleProcedures = function (){
+	  var selectedProceduresOids = [];
+	    angular.forEach ($scope.procedureSelectedItems, function (value, key){
+	        selectedProceduresOids.push (value.oid);
+	      }
+	    );
+	    $scope.errorData = "";
+	    var modalOptions = {
+	      closeButtonText: 'Cancel',
+	      actionButtonText: 'Delete',
+	      headerText: 'Delete Multiple Procedures(s)?',
+	      bodyText: 'Are you sure you want to delete selected procedures ?'
+	    };
+	    modalService.showModal ({}, modalOptions).then (function (result){
+	      $http ({
+	        url: path + "rest/secure/config/deleteMultipleObject",
+	        method: "POST",
+	        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+	        transformRequest: function (obj){
+	          var str = [];
+	          for (var p in obj)
+	            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
+	          return str.join ("&");
+	        },
+	        data: {"oids": selectedProceduresOids,"source":"Procedures"}
+	      }).then (
+	        function (response){
+	          if (response.data.Status === 'Ok'){
+	            $scope.loadProceduresList ();
+	          }
+	          else{
+	            $scope.errorData = response.data;
+	          }
+	        }
+	      )
+	    });
   };
   
   $scope.editMultipleProcedures = function (){

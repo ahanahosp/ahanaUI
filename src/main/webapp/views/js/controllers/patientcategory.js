@@ -143,6 +143,41 @@ app.controller ('PatientCategoryController', ['$scope', '$http', 'NgTableParams'
     )
   };
   $scope.deleteMultiplePatientCategory = function (){
+	  var selectedPatientCategoryOids = [];
+	    angular.forEach ($scope.patientCategorySelectedItems, function (value, key){
+	        selectedPatientCategoryOids.push (value.oid);
+	      }
+	    );
+	    $scope.errorData = "";
+	    var modalOptions = {
+	      closeButtonText: 'Cancel',
+	      actionButtonText: 'Delete',
+	      headerText: 'Delete Multiple Patient Category(s)?',
+	      bodyText: 'Are you sure you want to delete selected patient category ?'
+	    };
+	    modalService.showModal ({}, modalOptions).then (function (result){
+	      $http ({
+	        url: path + "rest/secure/config/deleteMultipleObject",
+	        method: "POST",
+	        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+	        transformRequest: function (obj){
+	          var str = [];
+	          for (var p in obj)
+	            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
+	          return str.join ("&");
+	        },
+	        data: {"oids": selectedPatientCategoryOids,"source":"PatientCategory"}
+	      }).then (
+	        function (response){
+	          if (response.data.Status === 'Ok'){
+	            $scope.loadPatientCategoryList ();
+	          }
+	          else{
+	            $scope.errorData = response.data;
+	          }
+	        }
+	      )
+	    });
   };
 
   $scope.editMultiplePatientCategory = function (){
