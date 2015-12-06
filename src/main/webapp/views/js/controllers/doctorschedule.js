@@ -87,42 +87,41 @@ app
       }
     )
   };
-  
 
-  $scope.saveDoctorSchedule = function (){
+  $scope.saveDoctorSchedule = function (mode){
     $scope.errorData = "";
     $scope.successMessage = "";
-    var selectedUserRoles = [];
-    angular.forEach ($scope.selectedRoles, function (value, key){
-        selectedUserRoles.push (value.oid);
-      }
-    );
-    var data = {
-      'userOid': $scope.data.userOid,
-      'roleOids': selectedUserRoles.join (",")
-    };
     if ($scope.doctorScheduleForm.$valid){
-        $http ({
-          url: path + "rest/secure/user/createUserRole",
-          method: "POST",
-          data: data
-        }).then (
-          function (response){
-            if (response.data.Status === 'Ok'){
-              $scope.successMessage = "User roles saved successfully";
-              $scope.selectedRoles = [];
-              $scope.data = {};
+      $http ({
+        url: path + "rest/secure/config/createDoctorSchedule",
+        method: "POST",
+        data: $scope.data
+      }).then (
+        function (response){
+          if (response.data.Status === 'Ok'){
+            if (mode === 'edit'){
+              $scope.successMessage = "Doctor Schedule updated successfully";
+              $timeout (function (){
+                $state.go ('app.doctorSchedule');
+              }, 1000);
             }
             else{
-              $scope.errorData = response.data;
+              $scope.successMessage = "Doctor Schedule saved successfully";
+              $scope.data = {};
+              $timeout (function (){
+                $state.go ('app.doctorSchedule');
+              }, 1000);
             }
           }
-        )
+          else{
+            $scope.errorData = response.data;
+          }
+        }
+      )
     }
   };
   $scope.reset = function (){
     $scope.errorData = "";
-    $scope.selectedRoles = [];
     $scope.data = {};
   }
 }]);
