@@ -86,7 +86,7 @@
               <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'INACT'" name="doctorStatus" ng-model="doctorSchedule.doctorStatus"> <i></i> </label>
             </td>
             <td class="text-right">
-              <a data-ng-click="loadDoctorsSchedule(doctorSchedule)"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteDoctorSchedule(doctorSchedule.oid, doctorSchedule.fullName)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+              <a href="#" data-ng-click="loadDoctorSchedule(doctorSchedule)"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteDoctorSchedule(doctorSchedule.oid, doctorSchedule.fullName)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
             </td>
           </tr>
         </table>

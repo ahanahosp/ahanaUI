@@ -27,7 +27,8 @@
               <div class="line line-dashed b-b line-lg "></div>
               <div class="form-group">
                 <label class="col-sm-3 control-label">Activation Date *</label>
-                <div class="col-sm-4">
+
+                <div class="col-sm-4">{{data}}
                   <div class="input-group">
                     <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.activationDate" min-date="activationMinDate" is-open="openedActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                     <span class="input-group-btn">
