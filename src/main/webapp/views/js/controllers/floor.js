@@ -128,6 +128,41 @@ app.controller ('FloorController',
     )
   };
   $scope.deleteMultipleFloors = function (){
+    var selectedFloorOids = [];
+    angular.forEach ($scope.floorSelectedItems, function (value, key){
+        selectedFloorOids.push (value.oid);
+      }
+    );
+    $scope.errorData = "";
+    var modalOptions = {
+      closeButtonText: 'Cancel',
+      actionButtonText: 'Delete',
+      headerText: 'Delete Multiple Floor(s)?',
+      bodyText: 'Are you sure you want to delete selected floors ?'
+    };
+    modalService.showModal ({}, modalOptions).then (function (result){
+      $http ({
+        url: path + "rest/secure/common/deleteFloor",
+        method: "POST",
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        transformRequest: function (obj){
+          var str = [];
+          for (var p in obj)
+            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
+          return str.join ("&");
+        },
+        data: {"oids": selectedFloorOids}
+      }).then (
+        function (response){
+          if (response.data.Status === 'Ok'){
+            $scope.loadFloorList ();
+          }
+          else{
+            $scope.errorData = response.data;
+          }
+        }
+      )
+    });
   };
   $scope.editMultipleFloors = function (){
     $scope.errorData = "";
