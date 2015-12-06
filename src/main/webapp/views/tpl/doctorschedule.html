@@ -2,87 +2,95 @@
   <h1 class="m-n h3">DOCTOR SCHEDULE</h1>
 </div>
 <div class="wrapper-md" ng-controller="DoctorScheduleController" ng-init="loadDoctorScheduleList()">
-   <div class="panel panel-default">
-    <div class="wrapper table-responsive" ng-show="successMessage">
-      <div class="text-success">
-        <i class="fa fa-info-circle"></i> {{successMessage}}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="wrapper table-responsive" ng-show="successMessage">
+        <div class="text-success">
+          <i class="fa fa-info-circle"></i> {{successMessage}}
+        </div>
       </div>
-    </div>
-    <div class="wrapper table-responsive" ng-show="errorData">
-      <div ng-repeat="error in errorData.errors" class="text-danger">
-        <i class="fa fa-warning"></i> {{error.longMessage}}
+      <div class="wrapper table-responsive" ng-show="errorData">
+        <div ng-repeat="error in errorData.errors" class="text-danger">
+          <i class="fa fa-warning"></i> {{error.longMessage}}
+        </div>
       </div>
-    </div>
-    <div class="row clearfix">
-      <div class="col-sm-12">
-        <form name="doctorScheduleForm" class="form-horizontal form-validation">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Doctor * </label>
-                <div class="col-lg-6">
-                  <select class="form-control" ng-model="data.doctorOid" ng-options="doctor.value as doctor.label for doctor in doctorDetails | orderBy: label">
-                    <option value="">Select Doctor</option>
-                  </select>
-                </div>
+      <div class="row clearfix">
+        <div class="col-sm-12">
+          <form name="doctorScheduleForm" class="form-horizontal form-validation">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Doctor * </label>
+
+              <div class="col-lg-10">
+                <select class="form-control" ng-model="data.doctorOid" ng-options="doctor.value as doctor.label for doctor in doctorDetails | orderBy: label">
+                  <option value="">Select Doctor</option>
+                </select>
               </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Select Day * </label>
-                <div class="col-lg-2">
-                  <select class="form-control" ng-model="data.visitingDay" ng-options="day.value as day.label for day in days | orderBy: label"/>
-                </div>
-              </div>
-              <div class="line line-dashed b-b line-lg "></div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Timing * </label>
-                <div class="col-sm-2">
-                  <input type="text" ng-model="data.startTime" maxlength="10" class="form-control" placeholder="From">
-                </div>
-                <div class="col-sm-2">
-                  <input type="text" ng-model="data.endTime" maxlength="10" class="form-control" placeholder="To">
-                </div>
-              </div>
-              <footer class="panel-footer text-right bg-light lter">
-              	<div class="col-sm-2 m-b-xs">
-	        		<button class="btn btn-sm btn-grey" ng-click="loadDoctorScheduleList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>&nbsp; &nbsp;
-      			</div>
-                <button class="btn m-b-xs  btn-success " ng-click="saveDoctorSchedule()">Assign</button>
-                &nbsp;
-                <button class="btn m-b-xs  btn-dark" ng-click="reset()"><i class="fa fa-times"></i> Cancel</button>
-                &nbsp;
-              </footer>
             </div>
-          </div>
-        </form>
+            <div class="line line-dashed b-b line-lg "></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Select Day * </label>
+
+              <div class="col-lg-2">
+                <select class="form-control" ng-model="data.visitingDay" ng-options="day.value as day.label for day in days | orderBy: label" />
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg "></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Timing * </label>
+
+              <div class="col-sm-2">
+                <datetimepicker min-date="minDate" hour-step="hourStep" minute-step="minuteStep" ng-model="data.startTime" show-meridian="showMeridian" date-format="yyyy-MM-dd" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-date="false" hidden-time="false" hidden-date="true" show-spinners="true" readonly-time="false"></datetimepicker>
+              </div>
+              <div class="col-sm-2">
+                <datetimepicker min-date="minDate" hour-step="hourStep" minute-step="minuteStep" ng-model="data.endTime" show-meridian="showMeridian" date-format="yyyy-MM-dd" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-date="false" hidden-time="false" hidden-date="true" show-spinners="true" readonly-time="false"></datetimepicker>
+              </div>
+            </div>
+            <footer class="panel-footer text-right bg-light lter">
+              <button class="btn m-b-xs  btn-success " ng-click="saveDoctorSchedule()">Assign</button>
+              &nbsp;
+              <button class="btn m-b-xs  btn-dark" ng-click="reset()"><i class="fa fa-times"></i> Cancel</button>
+              &nbsp;
+            </footer>
+          </form>
+        </div>
       </div>
     </div>
-    <div class="wrapper table-responsive" ng-show="!errorData">
-      <table ng-table="tableParams" class="table table-striped b-t b-light">
-        <tr ng-repeat="doctorSchedule in $data track by doctorSchedule.oid">
-          <td data-title="'Doctor Name'" class="text-left" sortable="'fullName'">
-            {{doctorSchedule.fullName}}
-          </td>
-          <td data-title="'Speciality'" class="text-left" sortable="'speciality'">
-            {{doctorSchedule.speciality}}
-          </td>
-          <td data-title="'Visiting Day'" class="text-left" sortable="'visitingDay'">
-            {{doctorSchedule.visitingDay}}
-          </td>
-          <td data-title="'Start Time'" class="text-left">
-            {{doctorSchedule.startTime}}
-          </td>
-          <td data-title="'End Time'" class="text-left">
-            {{doctorSchedule.endTime}}
-          </td>
-          <td data-title="'Status'" class="text-left" sortable="'status'">
-            <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'INACT'" name="doctorStatus" ng-model="doctorSchedule.doctorStatus"> <i></i> </label>
-          </td>
-          <td class="text-right">
-            <a ui-sref="app.editDoctorSchedule({oid:doctorSchedule.oid})">
-              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteDoctorSchedule(doctorSchedule.oid, doctorSchedule.fullName)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
-          </td>
-        </tr>
-      </table>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row wrapper">
+        <div class="col-sm-8 m-b-xs">
+          <button class="btn btn-sm btn-grey" ng-click="loadDoctorScheduleList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
+          &nbsp; &nbsp;
+        </div>
+      </div>
+      <div class="wrapper table-responsive" ng-show="!errorData">
+        <table ng-table="tableParams" class="table table-striped b-t b-light">
+          <tr ng-repeat="doctorSchedule in $data track by doctorSchedule.oid">
+            <td data-title="'Doctor Name'" class="text-left" sortable="'fullName'">
+              {{doctorSchedule.fullName}}
+            </td>
+            <td data-title="'Speciality'" class="text-left" sortable="'speciality'">
+              {{doctorSchedule.speciality}}
+            </td>
+            <td data-title="'Visiting Day'" class="text-left" sortable="'visitingDay'">
+              {{doctorSchedule.visitingDay}}
+            </td>
+            <td data-title="'Start Time'" class="text-left">
+              {{doctorSchedule.startTime}}
+            </td>
+            <td data-title="'End Time'" class="text-left">
+              {{doctorSchedule.endTime}}
+            </td>
+            <td data-title="'Status'" class="text-left" sortable="'status'">
+              <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'INACT'" name="doctorStatus" ng-model="doctorSchedule.doctorStatus"> <i></i> </label>
+            </td>
+            <td class="text-right">
+              <a data-ng-click="loadDoctorsSchedule(doctorSchedule)"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteDoctorSchedule(doctorSchedule.oid, doctorSchedule.fullName)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>

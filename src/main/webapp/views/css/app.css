@@ -5438,3 +5438,18 @@ a.text-#000000:hover {
 .input-sm {
     font-size: 14px;
 }
+
+.datetimepicker-wrapper {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.datetimepicker-wrapper > input {
+    margin-bottom: 0 !important;
+    width: 130px;
+}
+
+.datetimepicker-wrapper [ng-model=hours],
+.datetimepicker-wrapper [ng-model=minutes] {
+    width: 46px !important;
+}

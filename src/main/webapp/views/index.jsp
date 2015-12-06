@@ -94,6 +94,7 @@
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-ui-utils/ui-utils.min.js"></script>
 <!-- bootstrap -->
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
 <!-- lazyload -->
 <script src="<%=request.getContextPath()%>/views/bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
 <!-- translate -->
@@ -102,6 +103,8 @@
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
 <script src="<%=request.getContextPath()%>/views/bower_components/angular-translate-storage-local/angular-translate-storage-local.min.js"></script>
 <script src="<%=request.getContextPath()%>/views/bower_components/ng-table/ng-table.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/js/directives/datetimepicker.js"></script>
+
 <!-- App -->
 <script src="<%=request.getContextPath()%>/views/js/app.js"></script>
 <script src="<%=request.getContextPath()%>/views/js/config.js"></script>
@@ -121,6 +124,7 @@
 <script src="<%=request.getContextPath()%>/views/js/directives/ui-scroll.js"></script>
 <script src="<%=request.getContextPath()%>/views/js/directives/ui-shift.js"></script>
 <script src="<%=request.getContextPath()%>/views/js/directives/ui-toggleclass.js"></script>
+
 <script src="<%=request.getContextPath()%>/views/js/controllers/bootstrap.js"></script>
 <script src="<%=request.getContextPath()%>/views/js/custom.js"></script>
 <script src="<%=request.getContextPath()%>/views/js/slidebars.js"></script>
