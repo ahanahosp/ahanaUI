@@ -724,6 +724,17 @@ angular.module ('app')
             ]
           }
         })
+        .state ('app.configRoomCharges', {
+            url: '/configRoomCharges',
+            templateUrl: contextPath + 'views/tpl/configroomcharges.html',
+            resolve: {
+              deps: ['uiLoad',
+                function (uiLoad){
+                  return uiLoad.load (contextPath + 'views/js/controllers/configroomcharges.js');
+                }
+              ]
+            }
+        })
         .state ('app.table.smart', {
         url: '/smart',
         templateUrl: contextPath + 'views/tpl/table_smart.html',

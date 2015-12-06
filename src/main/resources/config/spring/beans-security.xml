@@ -94,8 +94,20 @@
        			<sec:intercept-url pattern="/services/rest/secure/**" access="isFullyAuthenticated()"/>
 				<sec:intercept-url pattern="/logout*" access="isFullyAuthenticated()"/>
 				<sec:intercept-url pattern="/views/index.jsp*" access="isFullyAuthenticated()"/>
-				<sec:intercept-url pattern="/views/tpl/inpatient-new.html*" access="isFullyAuthenticated()"/>
-				<sec:intercept-url pattern="/**"/>
+				<sec:intercept-url pattern="/**/*.html" access="isFullyAuthenticated()"/>
+				<sec:intercept-url pattern="j_security_check"/>
+				<sec:intercept-url pattern="/**/*.css"/>
+				<sec:intercept-url pattern="/**/*.xml"/>
+				<sec:intercept-url pattern="/**/*.png"/>
+				<sec:intercept-url pattern="/**/*.gif"/>
+				<sec:intercept-url pattern="/**/*.jpg"/>
+				<sec:intercept-url pattern="/**/*.js"/>
+				<sec:intercept-url pattern="/**/*.pdf"/>
+				<sec:intercept-url pattern="/**/*.js"/>
+				<sec:intercept-url pattern="/views/ahanaIndex.jsp*"/>
+				<sec:intercept-url pattern="/views/ahanaShowLoginPage.jsp*"/>
+				<sec:intercept-url pattern="/views/ahanaLogin.jsp*"/>
+				<sec:intercept-url pattern="/showLogin*"/>
     		</sec:filter-security-metadata-source>
   		</property>
 	</bean>
@@ -122,7 +134,7 @@
 	</bean>
 	
 	<bean id="authenticationEntryPoint"	class="com.ahana.commons.system.security.filters.AhanaAuthenticationEntryPoint">
-		<constructor-arg name="loginFormUrl" value="/views/ahanaShowLoginPage.jsp"/>
+		<constructor-arg name="loginFormUrl" value="/services/rest/local/showLogin"/>
 	</bean>
 	
 	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
