@@ -142,7 +142,7 @@ app.controller ('FloorController',
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({
-        url: path + "rest/secure/common/deleteFloor",
+        url: path + "rest/secure/config/deleteMultipleObject",
         method: "POST",
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         transformRequest: function (obj){
@@ -151,7 +151,7 @@ app.controller ('FloorController',
             str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
           return str.join ("&");
         },
-        data: {"oids": selectedFloorOids}
+        data: {"oids": selectedFloorOids,"source":"Floor"}
       }).then (
         function (response){
           if (response.data.Status === 'Ok'){
