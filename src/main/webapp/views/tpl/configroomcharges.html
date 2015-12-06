@@ -15,7 +15,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <form name="roleForm" class="form-horizontal form-validation">
+        <form name="configRoomChargesForm" class="form-horizontal form-validation">
             <div class="panel-body">
               <div class="form-group">
                 <label class="col-sm-2 control-label">Timing * </label>
@@ -39,10 +39,14 @@
               </div>
             </div>
             <footer class="panel-footer text-right bg-light lter">
-              <button class="btn m-b-xs  btn-success " ng-click="saveConfigRoomCharges()">Save</button>
-              &nbsp;
-              <button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.configRoomCharges')"><i class="fa fa-times"></i> Cancel</button>
-              &nbsp;
+            	<div class="col-sm-2 m-b-xs">
+			        <button class="btn btn-sm btn-grey" ng-click="loadConfigRoomChargesList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
+			        &nbsp; &nbsp;
+			    </div>
+              	<button class="btn m-b-xs  btn-success " ng-click="saveConfigRoomCharges()">Save</button>
+              	&nbsp;
+              	<button class="btn m-b-xs  btn-dark" ng-click="$state.go('app.configRoomCharges')"><i class="fa fa-times"></i> Cancel</button>
+              	&nbsp;
             </footer>
         </form>
       </div>
@@ -52,17 +56,6 @@
 
 <div class="wrapper-md" ng-controller="ConfigRoomChargesController" ng-init="loadConfigRoomChargesList()">
   <div class="panel panel-default">
-    <div class="row wrapper">
-      <div class="col-sm-8 m-b-xs">
-        <button class="btn btn-sm btn-grey" ng-click="loadConfigRoomChargesList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
-        &nbsp; &nbsp;
-      </div>
-      <div class="col-sm-2">
-      </div>
-      <div class="col-sm-2 pull-right">
-        <button class=" btn btn-sm btn-info pull-right" ng-click="$state.go('app.createConfigRoomCharges')"><i class="fa fa-plus"></i> &nbsp; New ConfigRoomCharges</button>
-      </div>
-    </div>
     <div class="wrapper table-responsive" ng-show="errorData">
       <div ng-repeat="error in errorData.errors" class="text-danger">
         <i class="fa fa-warning"></i> {{error.longMessage}}
