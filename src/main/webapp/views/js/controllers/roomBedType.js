@@ -37,12 +37,24 @@ app.controller ('RoomBedTypesController', ['$scope', '$http', 'NgTableParams', '
             selectedRoomTypes.push (value.value);
           }
         );
-        var data = {
-          'orderId': $scope.data.orderId,
-          'bedNo': $scope.data.bedNo,
-          'status': $scope.data.status,
-          'roomTypeOids': selectedRoomTypes.join (",")
-        };
+        var data = {};
+        if (angular.isDefined ($scope.data.oid)){
+          data = {
+            'orderId': $scope.data.orderId,
+            'bedNo': $scope.data.bedNo,
+            'status': $scope.data.status,
+            'roomTypeOids': selectedRoomTypes.join (","),
+            'oid': $scope.data.oid
+          };
+        }
+        else{
+          data = {
+            'orderId': $scope.data.orderId,
+            'bedNo': $scope.data.bedNo,
+            'status': $scope.data.status,
+            'roomTypeOids': selectedRoomTypes.join (",")
+          };
+        }
         $http ({
           url: path + "rest/secure/config/createRoomAndBedType",
           method: "POST",
