@@ -1,0 +1,61 @@
+<div class="modal-header">
+  <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body">
+  <div class="wrapper table-responsive" ng-show="modalSuccessMessage">
+    <div class="text-success">
+      <i class="fa fa-info-circle"></i> {{modalSuccessMessage}}
+    </div>
+  </div>
+  <div class="wrapper table-responsive" ng-show="modalErrorData">
+    <div ng-repeat="error in modalErrorData.errors" class="text-danger">
+      <i class="fa fa-warning"></i> {{error.longMessage}}
+    </div>
+  </div>
+  <div class="wrapper table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+      <td data-title="'Doctor Name'" class="text-left" sortable="'fullName'">
+        {{doctorSchedule.fullName}}
+      </td>
+      <td data-title="'Visiting Day'" class="text-left" sortable="'visitingDay'">
+        {{doctorSchedule.visitingDay}}
+      </td>
+      <td data-title="'Start Time'" class="text-left">
+        {{doctorSchedule.startTime}}
+      </td>
+      <td data-title="'End Time'" class="text-left">
+        {{doctorSchedule.endTime}}
+      </td>
+      <td class="text-left">
+        Status
+      </td>
+      </thead>
+      <tbody>
+      <tr ng-repeat="doctorSchedule in modalOptions.doctorScheduleSelectedItems track by $index">
+        <td class="text-left">
+          <select class="form-control" ng-model="doctorSchedule.doctorOid" ng-options="doctor.value as doctor.label for doctor in doctorDetails | orderBy: label">
+            <option value="">Select Doctor</option>
+          </select>
+        </td>
+        <td>
+          <select class="form-control" ng-model="doctorSchedule.visitingDay" ng-options="day.value as day.label for day in days | orderBy: label" />
+        </td>
+        <td>
+          <datetimepicker min-date="minDate" hour-step="hourStep" minute-step="minuteStep" ng-model="doctorSchedule.startTime" show-meridian="showMeridian" date-format="yyyy-MM-dd" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-date="false" hidden-time="false" hidden-date="true" show-spinners="false" readonly-time="false"></datetimepicker>
+        </td>
+        <td>
+          <datetimepicker min-date="minDate" hour-step="hourStep" minute-step="minuteStep" ng-model="doctorSchedule.endTime" show-meridian="showMeridian" date-format="yyyy-MM-dd" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-date="false" hidden-time="false" hidden-date="true" show-spinners="false" readonly-time="false"></datetimepicker>
+        </td>
+        <td class="text-left">
+          <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="doctorSchedule.status"> <i></i> </label>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn" data-ng-click="close()">{{modalOptions.closeButtonText}}</button>
+  <button class="btn btn-primary" data-ng-click="saveMultipleDoctorSchedules();">{{modalOptions.actionButtonText}}</button>
+</div>

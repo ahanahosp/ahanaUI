@@ -62,11 +62,18 @@
         <div class="col-sm-8 m-b-xs">
           <button class="btn btn-sm btn-grey" ng-click="loadDoctorScheduleList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
           &nbsp; &nbsp;
+          <span ng-show="doctorScheduleSelected > 0">
+          <button class="btn btn-sm btn-grey" ng-click="editMultipleDoctorSchedules()"><i class="fa fa-pencil"></i> &nbsp; Edit</button> &nbsp; &nbsp;
+          <button class="btn btn-sm btn-grey" ng-click="deleteMultipleDoctorSchedules()"><i class="fa fa-trash"></i> &nbsp; Delete</button>
+        </span>
         </div>
       </div>
       <div class="wrapper table-responsive" ng-show="!errorData">
         <table ng-table="tableParams" class="table table-striped b-t b-light">
           <tr ng-repeat="doctorSchedule in $data track by $index">
+            <td class="text-left" header="'ng-table/headers/checkbox.html'">
+              <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[doctorSchedule.oid]" /> <i></i> </label>
+            </td>
             <td data-title="'Doctor Name'" class="text-left" sortable="'fullName'">
               {{doctorSchedule.fullName}}
             </td>
