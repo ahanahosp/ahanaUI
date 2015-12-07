@@ -32,8 +32,8 @@
           <td data-title="'Category Name'" class="text-left" sortable="'categoryName'">
             {{patientCategory.categoryName}}
           </td>
-          <td data-title="'ActivationDate'" class="text-left" sortable="'activationDate'">
-            {{patientCategory.activationDate}}
+          <td data-title="'Activation Date'" class="text-left" sortable="'activationDate'">
+            {{patientCategory.activationDate | date : 'yyyy-MM-dd'}}
           </td>
           <td data-title="'Status'" class="text-left" sortable="'status'">
             <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="patientCategory.status"> <i></i> </label>
