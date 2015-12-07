@@ -131,14 +131,14 @@ app
             if (mode === 'edit'){
               $scope.successMessage = "Doctor Schedule updated successfully";
               $timeout (function (){
-                $state.go ('app.doctorSchedule');
+                $state.go ('app.doctorSchedule', {}, {reload: true});
               }, 1000);
             }
             else{
               $scope.successMessage = "Doctor Schedule saved successfully";
               $scope.data = {};
               $timeout (function (){
-                $state.go ('app.doctorSchedule');
+                $state.go ('app.doctorSchedule', {}, {reload: true});
               }, 1000);
             }
           }
@@ -172,4 +172,37 @@ app
       }
     )
   };
+  $scope.deleteDoctorSchedule = function (oid, name){
+    $scope.errorData = "";
+    var modalOptions = {
+      closeButtonText: 'Cancel',
+      actionButtonText: 'Delete',
+      headerText: 'Delete Config Room Charges?',
+      bodyText: 'Are you sure you want to delete this doctor schedule ?'
+    };
+    modalService.showModal ({}, modalOptions).then (function (result){
+      $http ({
+        url: path + "rest/secure/user/deleteDoctorsSchedule",
+        method: "POST",
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        transformRequest: function (obj){
+          var str = [];
+          for (var p in obj)
+            str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
+          return str.join ("&");
+        },
+        data: {oid: oid}
+      }).then (
+        function (response){
+          if (response.data.Status === 'Ok'){
+            $scope.loadDoctorScheduleList ();
+          }
+          else{
+            $scope.errorData = response.data;
+          }
+        }
+      )
+    });
+  };
+
 }]);
