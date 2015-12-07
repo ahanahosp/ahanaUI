@@ -185,6 +185,22 @@ app.controller ('PatientCategoryController', ['$scope', '$http', 'NgTableParams'
       var modalDefaults = {
         templateUrl: contextPath + 'views/tpl/edit_multiple_patientcategory.html',
         controller: function ($scope, $modalInstance, $state){
+          $scope.formats = ['yyyy-MM-dd HH:mm:ss', 'yyyy-MM-dd', 'MM/dd/yyyy'];
+          $scope.openActivationDate = function ($event){
+            $event.preventDefault ();
+            $event.stopPropagation ();
+            $scope.openedActivationDate = true;
+          };
+          var activationDate = new Date ();
+          activationDate.setDate (activationDate.getDate () + 1);
+          $scope.activationMinDate = $filter ('date') (activationDate, $scope.formats[2]);
+          //$scope.data.activationDate = $filter ('date') (activationDate, $scope.formats[1]);
+          $scope.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1,
+            class: 'datepicker'
+          };
+
           $scope.modalOptions = modalOptions;
           $scope.saveMultiplePatientCategory = function (){
             $scope.modalSuccessMessage = "";

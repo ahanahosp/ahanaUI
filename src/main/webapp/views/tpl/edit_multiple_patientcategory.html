@@ -2,16 +2,16 @@
   <h3>{{modalOptions.headerText}}</h3>
 </div>
 <div class="modal-body">
-	<div class="wrapper table-responsive" ng-show="modalSuccessMessage">
-	    <div class="text-success">
-	      <i class="fa fa-info-circle"></i> {{modalSuccessMessage}}
-	    </div>
-	</div>
-	<div class="wrapper table-responsive" ng-show="modalErrorData">
-	    <div ng-repeat="error in modalErrorData.errors" class="text-danger">
-	      <i class="fa fa-warning"></i> {{error.longMessage}}
-	    </div>
-	</div>
+  <div class="wrapper table-responsive" ng-show="modalSuccessMessage">
+    <div class="text-success">
+      <i class="fa fa-info-circle"></i> {{modalSuccessMessage}}
+    </div>
+  </div>
+  <div class="wrapper table-responsive" ng-show="modalErrorData">
+    <div ng-repeat="error in modalErrorData.errors" class="text-danger">
+      <i class="fa fa-warning"></i> {{error.longMessage}}
+    </div>
+  </div>
   <div class="wrapper table-responsive">
     <table class="table table-striped b-t b-light">
       <thead>
@@ -26,17 +26,19 @@
       </td>
       </thead>
       <tbody>
-      <tr ng-repeat="patientCategory in modalOptions.patientCategorySelectedItems track by patientCategory.oid">
+      <tr ng-repeat="patientCategory in modalOptions.patientCategorySelectedItems track by $index">
         <td class="text-left">
           <input type="text" ng-model="patientCategory.categoryName" name="categoryName" class="form-control" placeholder="Category Name">
         </td>
         <td class="text-left">
-	        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="data.activationDate" min-date="activationMinDate" is-open="openedActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-	        <span class="input-group-btn">
-	          <button type="button" class="btn btn-default" ng-click="openActivationDate($event)">
-	            <i class="glyphicon glyphicon-calendar"></i>
-	          </button>
-	        </span>
+          <div class="input-group">
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="patientCategory.activationDate" min-date="activationMinDate" is-open="openedActivationDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="openActivationDate($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+              </span>
+          </div>
         </td>
         <td class="text-left">
           <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="patientCategory.status"> <i></i> </label>
