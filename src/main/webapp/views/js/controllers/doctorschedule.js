@@ -267,7 +267,9 @@ app
         actionButtonText: 'Update',
         headerText: 'Edit Multiple Doctor Schedules',
         doctorScheduleSelectedItems: $scope.doctorScheduleSelectedItems,
-        loadDoctorSchedulesList: $scope.loadDoctorSchedulesList
+        loadDoctorSchedulesList: $scope.loadDoctorSchedulesList,
+        doctorDetails: $scope.doctorDetails,
+        days: $scope.days
       };
       var modalDefaults = {
         templateUrl: contextPath + 'views/tpl/edit_multiple_doctorSchedule.html',
