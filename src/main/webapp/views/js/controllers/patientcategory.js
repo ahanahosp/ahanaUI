@@ -14,7 +14,7 @@ app.controller ('PatientCategoryController', ['$scope', '$http', 'NgTableParams'
     if (angular.isUndefined ($scope.data)){
       $scope.data = {};
     }
-    $scope.data.activationDate = $filter ('date') (activationDate, $scope.formats[1]);
+    //$scope.data.activationDate = $filter ('date') (activationDate, $scope.formats[1]);
     $scope.dateOptions = {
       formatYear: 'yy',
       startingDay: 1,
