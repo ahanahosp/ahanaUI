@@ -23,11 +23,6 @@ app
         $scope.days = response.data.lookupValues.daysDetails;
       }
     )
-    $http.get (path + "rest/secure/config/getSavedSchedule").then (
-      function (response){
-        $scope.doctorScheduleDetails = response.data.doctorScheduleDetails;
-      }
-    )
     $scope.loadDoctorScheduleList = function (){
       $scope.errorData = "";
       $http ({
@@ -246,7 +241,7 @@ app
               str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
             return str.join ("&");
           },
-          data: {"oids": selectedDoctorScheduleOids, "source": "DoctorSchedules"}
+          data: {"oids": selectedDoctorScheduleOids, "source": "DoctorSchedule"}
         }).then (
           function (response){
             if (response.data.Status === 'Ok'){

@@ -31,7 +31,7 @@
       <tbody>
       <tr ng-repeat="doctorSchedule in modalOptions.doctorScheduleSelectedItems track by $index">
         <td class="text-left">
-          <select class="form-control" ng-model="doctorSchedule.doctorOid" ng-options="doctor.value as doctor.label for doctor in modalOptions.doctorDetails | orderBy: label">
+          <select class="form-control" ng-model="doctorSchedule.doctorOid" ng-options="doctor.value as doctor.label for doctor in modalOptions.doctorDetails | orderBy: label" ng-selected="doctor.value === doctorSchedule.doctorOid">
             <option value="">Select Doctor</option>
           </select>
         </td>
