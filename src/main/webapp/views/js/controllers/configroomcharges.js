@@ -29,15 +29,21 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
               if (mode === 'edit'){
                 $scope.successMessage = "Config Room Charges updated successfully";
                 $timeout (function (){
-                  $scope.data = {};
-                  $scope.loadConfigRoomChargesList ();
+                  $state.transitionTo ($state.current, {}, {
+                    reload: true,
+                    inherit: false,
+                    notify: true
+                  });
                 }, 1000);
               }
               else{
                 $scope.successMessage = "Config Room Charges saved successfully";
                 $timeout (function (){
-                  $scope.data = {};
-                  $scope.loadConfigRoomChargesList ();
+                  $state.transitionTo ($state.current, {}, {
+                    reload: true,
+                    inherit: false,
+                    notify: true
+                  });
                 }, 1000);
               }
             }
@@ -143,7 +149,11 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
         }).then (
           function (response){
             if (response.data.Status === 'Ok'){
-              $scope.loadConfigRoomChargesList ();
+              $state.transitionTo ($state.current, {}, {
+                reload: true,
+                inherit: false,
+                notify: true
+              });
             }
             else{
               $scope.errorData = response.data;

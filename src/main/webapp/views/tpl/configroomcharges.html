@@ -70,11 +70,7 @@
           &nbsp; &nbsp;
         </div>
       </div>
-      <div class="wrapper table-responsive" ng-show="errorData">
-        <div ng-repeat="error in errorData.errors" class="text-danger">
-          <i class="fa fa-warning"></i> {{error.longMessage}}
-        </div>
-      </div>
+
       <div class="wrapper table-responsive" ng-show="!errorData">
         <table ng-table="tableParams" class="table table-striped b-t b-light">
           <tr ng-repeat="configRoomCharges in $data track by configRoomCharges.oid">
