@@ -138,7 +138,7 @@ app.controller ('ProceduresController',
 	      closeButtonText: 'Cancel',
 	      actionButtonText: 'Delete',
 	      headerText: 'Delete Multiple Procedures(s)?',
-	      bodyText: 'Are you sure you want to delete selected procedures ?'
+        bodyText: 'Are you sure you want to delete selected procedures ?'
 	    };
 	    modalService.showModal ({}, modalOptions).then (function (result){
 	      $http ({

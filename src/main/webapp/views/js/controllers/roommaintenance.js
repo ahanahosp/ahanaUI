@@ -136,7 +136,7 @@ app.controller ('RoomMaintenanceController', ['$scope', '$http', 'NgTableParams'
 	      closeButtonText: 'Cancel',
 	      actionButtonText: 'Delete',
 	      headerText: 'Delete Multiple Maintenance Detail(s)?',
-	      bodyText: 'Are you sure you want to delete selected maintenance details ?'
+        bodyText: 'Are you sure you want to delete selected maintenance details ?'
 	    };
 	    modalService.showModal ({}, modalOptions).then (function (result){
 	      $http ({

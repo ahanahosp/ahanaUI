@@ -134,7 +134,7 @@ app.controller ('AccountHeadController', ['$scope', '$http', 'NgTableParams', '$
 	      closeButtonText: 'Cancel',
 	      actionButtonText: 'Delete',
 	      headerText: 'Delete Multiple Account Heas(s)?',
-	      bodyText: 'Are you sure you want to delete selected account heads ?'
+        bodyText: 'Are you sure you want to delete selected account heads ?'
 	    };
 	    modalService.showModal ({}, modalOptions).then (function (result){
 	      $http ({

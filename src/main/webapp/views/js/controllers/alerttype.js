@@ -136,7 +136,7 @@ app.controller ('AlertTypeController', ['$scope', '$http', 'NgTableParams', '$fi
 	      closeButtonText: 'Cancel',
 	      actionButtonText: 'Delete',
 	      headerText: 'Delete Multiple Alert Type(s)?',
-	      bodyText: 'Are you sure you want to delete selected alert type ?'
+        bodyText: 'Are you sure you want to delete selected alert type ?'
 	    };
 	    modalService.showModal ({}, modalOptions).then (function (result){
 	      $http ({
