@@ -213,7 +213,7 @@ app.controller ('RolesController', ['$scope', '$http', 'NgTableParams', '$filter
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
       headerText: 'Delete Role?',
-      bodyText: 'Are you sure you want to delete this role - ' + name + '?'
+      bodyText: 'Are you sure you want to delete this role?'
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({

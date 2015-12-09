@@ -221,7 +221,7 @@ app.controller ('WardController', ['$scope', '$http', 'NgTableParams', '$filter'
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
       headerText: 'Delete Ward?',
-      bodyText: 'Are you sure you want to delete this ward - ' + name + '?'
+      bodyText: 'Are you sure you want to delete this ward?'
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({

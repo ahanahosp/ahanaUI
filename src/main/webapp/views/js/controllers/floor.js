@@ -212,7 +212,7 @@ app.controller ('FloorController',
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
       headerText: 'Delete Floor?',
-      bodyText: 'Are you sure you want to delete this floor - ' + name + '?'
+      bodyText: 'Are you sure you want to delete this floor?'
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({

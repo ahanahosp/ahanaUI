@@ -125,7 +125,7 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
         closeButtonText: 'Cancel',
         actionButtonText: 'Delete',
         headerText: 'Delete Config Room Charges?',
-        bodyText: 'Are you sure you want to delete this config room charges ?'
+        bodyText: 'Are you sure you want to delete this config room charges?'
       };
       modalService.showModal ({}, modalOptions).then (function (result){
         $http ({

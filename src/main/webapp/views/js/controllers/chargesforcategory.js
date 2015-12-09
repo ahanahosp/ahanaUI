@@ -182,7 +182,7 @@ app.controller ('ChargesForCategoryController', ['$scope', '$http', 'NgTablePara
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
       headerText: 'Delete Charges For Category?',
-      bodyText: 'Are you sure you want to delete this chargesForCategory - ' + name + '?'
+      bodyText: 'Are you sure you want to delete this charges for category?'
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({

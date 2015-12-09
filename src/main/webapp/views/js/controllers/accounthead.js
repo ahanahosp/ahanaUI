@@ -210,7 +210,7 @@ app.controller ('AccountHeadController', ['$scope', '$http', 'NgTableParams', '$
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
       headerText: 'Delete category item for charge?',
-      bodyText: 'Are you sure you want to delete this account head - ' + name + '?'
+      bodyText: 'Are you sure you want to delete this account head?'
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({

@@ -214,7 +214,7 @@ app.controller ('ProceduresController',
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
       headerText: 'Delete Procedure?',
-      bodyText: 'Are you sure you want to delete this procedure - ' + name + '?'
+      bodyText: 'Are you sure you want to delete this procedure?'
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({

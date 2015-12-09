@@ -246,7 +246,7 @@ app.controller ('PatientCategoryController', ['$scope', '$http', 'NgTableParams'
         closeButtonText: 'Cancel',
         actionButtonText: 'Delete',
         headerText: 'Delete Patient Category?',
-        bodyText: 'Are you sure you want to delete this patientCategory - ' + name + '?'
+        bodyText: 'Are you sure you want to delete this patient category?'
       };
       modalService.showModal ({}, modalOptions).then (function (result){
         $http ({

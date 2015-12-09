@@ -208,7 +208,7 @@ app.controller ('RoomTypeController', ['$scope', '$http', 'NgTableParams', '$fil
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
       headerText: 'Delete RoomType?',
-      bodyText: 'Are you sure you want to delete this Room Type - ' + name + '?'
+      bodyText: 'Are you sure you want to delete this room type?'
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({

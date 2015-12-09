@@ -205,7 +205,7 @@ app
         closeButtonText: 'Cancel',
         actionButtonText: 'Delete',
         headerText: 'Delete Doctor Schedule?',
-        bodyText: 'Are you sure you want to delete this doctor schedule ?'
+        bodyText: 'Are you sure you want to delete this doctor schedule?'
       };
       modalService.showModal ({}, modalOptions).then (function (result){
         $http ({

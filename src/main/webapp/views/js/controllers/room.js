@@ -231,7 +231,7 @@ app.controller ('RoomController',
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
       headerText: 'Delete Room?',
-      bodyText: 'Are you sure you want to delete this Room?'
+      bodyText: 'Are you sure you want to delete this room?'
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({

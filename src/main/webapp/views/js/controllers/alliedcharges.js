@@ -212,7 +212,7 @@ app.controller ('AlliedChargesController', ['$scope', '$http', 'NgTableParams', 
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
       headerText: 'Delete Allied Charges?',
-      bodyText: 'Are you sure you want to delete this alliedCharges - ' + name + '?'
+      bodyText: 'Are you sure you want to delete this allied charges?'
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({

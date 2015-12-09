@@ -214,7 +214,7 @@ app.controller ('SpecialityController', ['$scope', '$http', 'NgTableParams', '$f
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
       headerText: 'Delete Speciality?',
-      bodyText: 'Are you sure you want to delete this speciality - ' + name + '?'
+      bodyText: 'Are you sure you want to delete this speciality?'
     };
     modalService.showModal ({}, modalOptions).then (function (result){
       $http ({
