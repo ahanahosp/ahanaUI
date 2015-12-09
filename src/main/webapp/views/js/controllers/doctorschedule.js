@@ -19,10 +19,26 @@ app
     )
     $http.get (path + "rest/secure/lookup/loadLookupByName?lookupNames=days").then (
       function (response){
-        $scope.countries = response.data.lookupValues.countryDetails;
-        $scope.days = response.data.lookupValues.daysDetails;
+        $scope.daysDetails = response.data.lookupValues.daysDetails;
       }
     )
+    $http.get (path + "rest/secure/lookup/loadLookupByName?lookupNames=TIMES").then (
+      function (response){
+        $scope.timesDetails = response.data.lookupValues.TIMESDetails;
+      }
+    )
+    $scope.updateSpeciality = function (){
+      if (angular.isDefined ($scope.data.doctorOid)){
+        angular.forEach ($scope.doctorDetails, function (value, key){
+          if (value.value === $scope.data.doctorOid){
+            $scope.data.speciality = value.speciality;
+          }
+        });
+      }
+      else{
+        $scope.speciality = "";
+      }
+    }
     $scope.loadDoctorScheduleList = function (){
       $scope.errorData = "";
       $http ({
@@ -99,38 +115,18 @@ app
     if (angular.isUndefined ($scope.data)){
       $scope.data = {};
     }
-    $scope.data.startTime = new Date ();
-    $scope.data.endTime = new Date ();
-    $scope.minDate = new Date ();
-    $scope.maxDate = new Date ();
-    $scope.dateOptions = {
-      startingDay: 1,
-      showWeeks: false
-    };
-    // Disable weekend selection
-    $scope.disabled = function (calendarDate, mode){
-      return mode === 'day' && ( calendarDate.getDay () === 0 || calendarDate.getDay () === 6 );
-    };
-    $scope.hourStep = 1;
-    $scope.minuteStep = 1;
-    $scope.timeOptions = {
-      hourStep: [1, 2, 3],
-      minuteStep: [1, 5, 10, 15, 25, 30]
-    };
-    $scope.showMeridian = true;
-    $scope.timeToggleMode = function (){
-      $scope.showMeridian = !$scope.showMeridian;
-    };
+
     $scope.saveDoctorSchedule = function (mode){
       $scope.errorData = "";
       $scope.successMessage = "";
-      var data = {
-        doctorOid: $scope.data.doctorOid,
-        startTime: $filter ("date") ($scope.data.startTime, "hh:mm a"),
-        endTime: $filter ("date") ($scope.data.endTime, "hh:mm a"),
-        visitingDay: $scope.data.visitingDay
-      }
       if ($scope.doctorScheduleForm.$valid){
+        var data = {
+          doctorOid: $scope.data.doctorOid,
+          visitingDay: $scope.data.visitingDay,
+          startTime: $scope.data.startTime,
+          endTime: $scope.data.endTime
+        }
+
         $http ({
           url: path + "rest/secure/config/createDoctorSchedule",
           method: "POST",
@@ -165,9 +161,6 @@ app
     $scope.data.visitingDay = 'All Days';
     $scope.reset = function (){
       $scope.errorData = "";
-      $scope.data = {};
-      $scope.data.startTime = new Date ();
-      $scope.data.endTime = new Date ();
     };
     $scope.loadDoctorSchedule = function (ds){
       $scope.errorData = "";
@@ -264,31 +257,12 @@ app
         doctorScheduleSelectedItems: $scope.doctorScheduleSelectedItems,
         loadDoctorSchedulesList: $scope.loadDoctorSchedulesList,
         doctorDetails: $scope.doctorDetails,
-        days: $scope.days
+        daysDetails: $scope.daysDetails,
+        timesDetails: $scope.timesDetails
       };
       var modalDefaults = {
         templateUrl: contextPath + 'views/tpl/edit_multiple_doctorSchedule.html',
         controller: function ($scope, $modalInstance, $state){
-          $scope.minDate = new Date ();
-          $scope.maxDate = new Date ();
-          $scope.dateOptions = {
-            startingDay: 1,
-            showWeeks: false
-          };
-          // Disable weekend selection
-          $scope.disabled = function (calendarDate, mode){
-            return mode === 'day' && ( calendarDate.getDay () === 0 || calendarDate.getDay () === 6 );
-          };
-          $scope.hourStep = 1;
-          $scope.minuteStep = 1;
-          $scope.timeOptions = {
-            hourStep: [1, 2, 3],
-            minuteStep: [1, 5, 10, 15, 25, 30]
-          };
-          $scope.showMeridian = true;
-          $scope.timeToggleMode = function (){
-            $scope.showMeridian = !$scope.showMeridian;
-          };
           $scope.modalOptions = modalOptions;
           $scope.saveMultipleDoctorSchedules = function (){
             $scope.modalSuccessMessage = "";

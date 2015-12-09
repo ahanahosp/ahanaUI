@@ -1,7 +1,7 @@
 <div class="bg-light lter b-b wrapper-md">
   <h1 class="m-n h3">DOCTOR SCHEDULE</h1>
 </div>
-<div class="wrapper-md" ng-controller="DoctorScheduleController" ng-init="loadDoctorScheduleList()">
+<div class="wrapper-md" ng-controller="DoctorScheduleController">
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="wrapper table-responsive" ng-show="successMessage">
@@ -21,9 +21,18 @@
               <label class="col-sm-2 control-label">Doctor * </label>
 
               <div class="col-lg-10">
-                <select class="form-control" ng-model="data.doctorOid" ng-options="doctor.value as doctor.label for doctor in doctorDetails | orderBy: label">
+                <select class="form-control" ng-model="data.doctorOid" ng-change="updateSpeciality()">
                   <option value="">Select Doctor</option>
+                  <option ng-repeat="doctor in doctorDetails | orderBy: doctor.label" ng-selected="doctor.value === data.doctorOid" value="{{doctor.value}}">{{doctor.label}}</option>
                 </select>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg "></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Speciality * </label>
+
+              <div class="col-lg-10">
+                <input type="text" ng-model="data.speciality" readonly maxlength="50" name="speciality" class="form-control" placeholder="Speciality">
               </div>
             </div>
             <div class="line line-dashed b-b line-lg "></div>
@@ -31,7 +40,10 @@
               <label class="col-sm-2 control-label">Select Day * </label>
 
               <div class="col-lg-2">
-                <select class="form-control" ng-model="data.visitingDay" ng-options="day.value as day.label for day in days | orderBy: label" />
+                <select class="form-control" name="visitingDay" ng-model="data.visitingDay">
+                  <option value="">Select Day</option>
+                  <option ng-repeat="dayDetail in daysDetails | orderBy: dayDetail.label" ng-selected="dayDetail.value === data.visitingDay" value="{{dayDetail.value}}">{{dayDetail.label}}</option>
+                </select>
               </div>
             </div>
             <div class="line line-dashed b-b line-lg "></div>
@@ -39,10 +51,16 @@
               <label class="col-sm-2 control-label">Timing * </label>
 
               <div class="col-sm-2">
-                <datetimepicker min-date="minDate" hour-step="hourStep" minute-step="minuteStep" ng-model="data.startTime" show-meridian="showMeridian" date-format="yyyy-MM-dd" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-date="false" hidden-time="false" hidden-date="true" show-spinners="false" readonly-time="false"></datetimepicker>
+                <select class="form-control" name="startTime" ng-model="data.startTime">
+                  <option value="">Select From</option>
+                  <option ng-repeat="time in timesDetails | orderBy: time.label" ng-selected="time.value === data.startTime" value="{{time.value}}">{{time.label}}</option>
+                </select>
               </div>
               <div class="col-sm-2">
-                <datetimepicker min-date="minDate" hour-step="hourStep" minute-step="minuteStep" ng-model="data.endTime" show-meridian="showMeridian" date-format="yyyy-MM-dd" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-date="false" hidden-time="false" hidden-date="true" show-spinners="false" readonly-time="false"></datetimepicker>
+                <select class="form-control" name="endTime" ng-model="data.endTime">
+                  <option value="">Select To</option>
+                  <option ng-repeat="time in timesDetails | orderBy: time.label" ng-selected="time.value === data.endTime" value="{{time.value}}">{{time.label}}</option>
+                </select>
               </div>
             </div>
             <footer class="panel-footer text-right bg-light lter">
@@ -56,7 +74,7 @@
       </div>
     </div>
   </div>
-  <div class="panel panel-default">
+  <div class="panel panel-default" ng-init="loadDoctorScheduleList();">
     <div class="panel-body">
       <div class="row wrapper">
         <div class="col-sm-8 m-b-xs">

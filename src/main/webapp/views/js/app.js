@@ -9,7 +9,7 @@ angular.module('app', [
     'ngTouch',
     'ngStorage',
     'ui.router',
-    'ui.bootstrap', 'ui.bootstrap.datetimepicker',
+    'ui.bootstrap',
     'ui.utils',
     'ui.load',
     'ui.jq',
