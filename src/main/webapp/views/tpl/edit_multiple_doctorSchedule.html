@@ -33,7 +33,7 @@
         <td class="text-left">
           <select class="form-control" name="doctorOid" ng-model="doctorSchedule.doctorOid">
             <option value="">Select Doctor</option>
-            <option ng-repeat="doctor in modalOptions.doctorDetails | orderBy: doctor.label" ng-selected="doctor.value === doctorSchedule.doctorOid" value="{{doctor.value}}">{{doctor.label}}</option>
+            <option ng-repeat="doctor in modalOptions.doctorDetails | orderBy: doctor.label" ng-selected="doctor.value === doctorSchedule.doctorOid" value="{{doctor.value}}">{{doctor.label}} &nbsp; ( {{doctor.speciality }} )</option>
           </select>
         </td>
         <td>
@@ -45,13 +45,13 @@
         <td>
           <select class="form-control" name="endTime" ng-model="doctorSchedule.startTime">
             <option value="">Select From</option>
-            <option ng-repeat="time in modalOptions.timesDetails | orderBy: time.label" ng-selected="time.value === data.startTime" value="{{time.value}}">{{time.label}}</option>
+            <option ng-repeat="time in modalOptions.timesDetails | orderBy: time.label" ng-selected="time.value === doctorSchedule.startTime" value="{{time.value}}">{{time.label}}</option>
           </select>
         </td>
         <td>
           <select class="form-control" name="endTime" ng-model="doctorSchedule.endTime">
             <option value="">Select To</option>
-            <option ng-repeat="time in modalOptions.timesDetails | orderBy: time.label" ng-selected="time.value === data.endTime" value="{{time.value}}">{{time.label}}</option>
+            <option ng-repeat="time in modalOptions.timesDetails | orderBy: time.label" ng-selected="time.value === doctorSchedule.endTime" value="{{time.value}}">{{time.label}}</option>
           </select>
         </td>
       </tr>
