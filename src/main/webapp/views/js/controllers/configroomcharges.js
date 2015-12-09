@@ -2,42 +2,22 @@
 /* Controllers */
 app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParams', '$filter', '$state', 'modalService', '$rootScope', '$timeout',
   function ($scope, $http, NgTableParams, $filter, $state, modalService, $rootScope, $timeout){
-    if (angular.isUndefined ($scope.data)){
-      $scope.data = {};
-    }
-    $scope.data.startTime = new Date ();
-    $scope.data.endTime = new Date ();
-    $scope.minDate = new Date ();
-    $scope.maxDate = new Date ();
-    $scope.dateOptions = {
-      startingDay: 1,
-      showWeeks: false
-    };
-    // Disable weekend selection
-    $scope.disabled = function (calendarDate, mode){
-      return mode === 'day' && ( calendarDate.getDay () === 0 || calendarDate.getDay () === 6 );
-    };
-    $scope.hourStep = 1;
-    $scope.minuteStep = 1;
-    $scope.timeOptions = {
-      hourStep: [1, 2, 3],
-      minuteStep: [1, 5, 10, 15, 25, 30]
-    };
-    $scope.showMeridian = true;
-    $scope.timeToggleMode = function (){
-      $scope.showMeridian = !$scope.showMeridian;
-    };
+    $http.get (path + "rest/secure/lookup/loadLookupByName?lookupNames=TIMES").then (
+      function (response){
+        $scope.timesDetails = response.data.lookupValues.TIMESDetails;
+      }
+    )
     $scope.saveConfigRoomCharges = function (mode){
       $scope.errorData = "";
       $scope.successMessage = "";
-      var data = {};
-      var data = {
-        discount: $scope.data.discount,
-        startTime: $filter ("date") ($scope.data.startTime, "hh:mm a"),
-        endTime: $filter ("date") ($scope.data.endTime, "hh:mm a"),
-        format: $scope.showMeridian ? '12' : '24'
-      }
+
       if ($scope.configRoomChargesForm.$valid){
+        var data = {
+          discount: $scope.data.discount,
+          startTime: $scope.data.startTime,
+          endTime: $scope.data.endTime,
+          format: $scope.data.format
+        }
         $http ({
           url: path + "rest/secure/config/createConfigRoomCharges",
           method: "POST",

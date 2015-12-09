@@ -23,10 +23,16 @@
                   <label class="col-sm-2 control-label">Timing * </label>
 
                   <div class="col-sm-2">
-                    <datetimepicker min-date="minDate" hour-step="hourStep" minute-step="minuteStep" ng-model="data.startTime" show-meridian="showMeridian" date-format="yyyy-MM-dd" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-date="false" hidden-time="false" hidden-date="true" show-spinners="false" readonly-time="false"></datetimepicker>
+                    <select class="form-control" name="startTime" ng-model="data.startTime">
+                      <option value="">Select From</option>
+                      <option ng-repeat="time in timesDetails | orderBy: time.label" ng-selected="time.value === data.startTime" value="{{time.value}}">{{time.label}}</option>
+                    </select>
                   </div>
                   <div class="col-sm-2">
-                    <datetimepicker min-date="minDate" hour-step="hourStep" minute-step="minuteStep" ng-model="data.endTime" show-meridian="showMeridian" date-format="yyyy-MM-dd" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-date="false" hidden-time="false" hidden-date="true" show-spinners="false" readonly-time="false"></datetimepicker>
+                    <select class="form-control" name="endTime" ng-model="data.endTime">
+                      <option value="">Select To</option>
+                      <option ng-repeat="time in timesDetails | orderBy: time.label" ng-selected="time.value === data.endTime" value="{{time.value}}">{{time.label}}</option>
+                    </select>
                   </div>
                 </div>
                 <div class="line line-dashed b-b line-lg "></div>
@@ -38,8 +44,8 @@
                   </div>
                   <label class="col-sm-2 control-label">Time Format</label>
 
-                  <div class="col-sm-2">
-                    <button class="btn btn-default btn-sm" ng-click="timeToggleMode()">12H / 24H</button>
+                  <div class="col-sm-4">
+                    <label class="i-checks "> <input type="radio" value="12" name="format" ng-model="data.format"> <i></i> </label>12 Hrs <label class="i-checks "> <input type="radio" value="24" name="format" ng-model="data.format"> <i></i> </label>24 Hrs <label class="i-checks "> <input type="radio" value="Custom" name="format" ng-model="data.format"><i></i> </label>Custom
                   </div>
                 </div>
               </div>
