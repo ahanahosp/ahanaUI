@@ -27,6 +27,22 @@ app
         $scope.timesDetails = response.data.lookupValues.TIMESDetails;
       }
     )
+    
+    $scope.getScheduledDoctorDetailsByOid = function (){
+        $scope.errorData = "";
+        $scope.successMessage = "";
+        $http.get (path + "rest/secure/config/getScheduledDoctorDetailsByOid?doctorOid=" + $scope.data.doctorOid).then (
+          function (response){
+            if (response.data.Status === 'Ok'){
+              $scope.data = response.data.scheduledDoctorDetails;
+            }
+            else{
+            	$scope.data = {};
+            }
+          }
+        )
+      };
+    
     $scope.updateSpeciality = function (){
       if (angular.isDefined ($scope.data.doctorOid)){
         angular.forEach ($scope.doctorDetails, function (value, key){

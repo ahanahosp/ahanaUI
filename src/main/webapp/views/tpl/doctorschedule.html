@@ -21,7 +21,7 @@
               <label class="col-sm-2 control-label">Doctor * </label>
 
               <div class="col-lg-10">
-                <select class="form-control" ng-model="data.doctorOid" ng-change="updateSpeciality()">
+                <select class="form-control" ng-model="data.doctorOid" ng-change="getScheduledDoctorDetailsByOid()">
                   <option value="">Select Doctor</option>
                   <option ng-repeat="doctor in doctorDetails | orderBy: doctor.label" ng-selected="doctor.value === data.doctorOid" value="{{doctor.value}}">{{doctor.label}}</option>
                 </select>
