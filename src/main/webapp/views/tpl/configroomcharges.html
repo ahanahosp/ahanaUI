@@ -91,7 +91,7 @@
               {{configRoomCharges.format}}
             </td>
             <td class="text-right">
-              <a ui-sref="app.editConfigRoomCharges({oid:configRoomCharges.oid})"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteConfigRoomCharges(configRoomCharges.oid, configRoomCharges.name)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+              <a href="#" data-ng-click="loadConfigRoomChargesDetails(configRoomCharges.oid)"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteConfigRoomCharges(configRoomCharges.oid, configRoomCharges.name)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
             </td>
           </tr>
         </table>

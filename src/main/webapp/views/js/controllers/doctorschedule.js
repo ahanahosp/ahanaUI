@@ -286,19 +286,34 @@ app
         controller: function ($scope, $modalInstance, $state){
           $scope.modalOptions = modalOptions;
           $scope.saveMultipleDoctorSchedules = function (){
+            var updatedDoctorScheduleData = [];
+            angular.forEach ($scope.modalOptions.doctorScheduleSelectedItems, function (value, key){
+              updatedDoctorScheduleData.push ({
+                oid: value.oid,
+                doctorOid: value.doctorOid,
+                visitingDay: value.visitingDay,
+                startTime: value.startTime,
+                endTime: value.endTime
+              });
+            });
+
             $scope.modalSuccessMessage = "";
             $scope.modalErrorData = "";
             $http ({
               url: path + "rest/secure/config/createOrUpdateMultipleConfig",
               method: "POST",
-              data: {"doctorSchedules": $scope.modalOptions.doctorScheduleSelectedItems, "source": "doctorSchedules"}
+              data: {"doctorSchedules": updatedDoctorScheduleData, "source": "doctorSchedules"}
             }).then (
               function (response){
                 if (response.data.Status === 'Ok'){
                   $scope.modalSuccessMessage = "Doctor Schedules updated successfully";
                   $timeout (function (){
                     $modalInstance.close (response);
-                    $state.go ('app.doctorSchedule', {}, {reload: true});
+                    $state.transitionTo ($state.current, {}, {
+                      reload: true,
+                      inherit: false,
+                      notify: true
+                    });
                   }, 1000);
                 }
                 else{

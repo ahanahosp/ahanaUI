@@ -13,6 +13,7 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
 
       if ($scope.configRoomChargesForm.$valid){
         var data = {
+          oid: $scope.data.oid,
           discount: $scope.data.discount,
           startTime: $scope.data.startTime,
           endTime: $scope.data.endTime,
@@ -28,14 +29,15 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
               if (mode === 'edit'){
                 $scope.successMessage = "Config Room Charges updated successfully";
                 $timeout (function (){
-                  $state.go ('app.configRoomCharges', {}, {reload: true});
+                  $scope.data = {};
+                  $scope.loadConfigRoomChargesList ();
                 }, 1000);
               }
               else{
                 $scope.successMessage = "Config Room Charges saved successfully";
-                $scope.data = {};
                 $timeout (function (){
-                  $state.go ('app.configRoomCharges', {}, {reload: true});
+                  $scope.data = {};
+                  $scope.loadConfigRoomChargesList ();
                 }, 1000);
               }
             }
@@ -49,8 +51,7 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
     $scope.reset = function (){
       $scope.errorData = "";
       $scope.data = {};
-      $scope.data.startTime = new Date ();
-      $scope.data.endTime = new Date ();
+
     };
     $scope.loadConfigRoomChargesList = function (){
       $scope.errorData = "";
@@ -103,10 +104,10 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
         }
       });
     });
-    $scope.loadConfigRoomChargesDetails = function (){
+    $scope.loadConfigRoomChargesDetails = function (oid){
       $scope.errorData = "";
       $http ({
-        url: path + "rest/secure/user/getConfigRoomChargesByOid?oid=" + $state.params.oid,
+        url: path + "rest/secure/config/getConfigRoomChargesByOid?oid=" + oid,
         method: "GET"
       }).then (
         function (response){
@@ -129,7 +130,7 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
       };
       modalService.showModal ({}, modalOptions).then (function (result){
         $http ({
-          url: path + "rest/secure/user/deleteConfigRoomCharges",
+          url: path + "rest/secure/config/deleteConfigRoomCharges",
           method: "POST",
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           transformRequest: function (obj){
