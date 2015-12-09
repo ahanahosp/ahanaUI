@@ -34,10 +34,10 @@ app
         $http.get (path + "rest/secure/config/getScheduledDoctorDetailsByOid?doctorOid=" + $scope.data.doctorOid).then (
           function (response){
             if (response.data.Status === 'Ok'){
-              $scope.data = response.data.scheduledDoctorDetails;
-            }
-            else{
-            	$scope.data = {};
+              $scope.data.visitingDay = response.data.scheduledDoctorDetails.visitingDay;
+              $scope.data.startTime = response.data.scheduledDoctorDetails.startTime;
+              $scope.data.endTime = response.data.scheduledDoctorDetails.endTime;
+              $scope.data.oid = response.data.scheduledDoctorDetails.oid;
             }
           }
         )
@@ -140,7 +140,8 @@ app
           doctorOid: $scope.data.doctorOid,
           visitingDay: $scope.data.visitingDay,
           startTime: $scope.data.startTime,
-          endTime: $scope.data.endTime
+          endTime: $scope.data.endTime,
+          oid: $scope.data.oid
         }
 
         $http ({
@@ -153,14 +154,18 @@ app
               if (mode === 'edit'){
                 $scope.successMessage = "Doctor Schedule updated successfully";
                 $timeout (function (){
-                  $state.go ('app.doctorSchedule', {}, {reload: true});
+                  $scope.successMessage = "";
+                  $scope.loadDoctorScheduleList ();
+                  $scope.data = {};
                 }, 1000);
               }
               else{
                 $scope.successMessage = "Doctor Schedule saved successfully";
                 $scope.data = {};
                 $timeout (function (){
-                  $state.go ('app.doctorSchedule', {}, {reload: true});
+                  $scope.successMessage = "";
+                  $scope.loadDoctorScheduleList ();
+                  $scope.data = {};
                 }, 1000);
               }
             }

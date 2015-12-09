@@ -23,18 +23,11 @@
               <div class="col-lg-10">
                 <select class="form-control" ng-model="data.doctorOid" ng-change="getScheduledDoctorDetailsByOid()">
                   <option value="">Select Doctor</option>
-                  <option ng-repeat="doctor in doctorDetails | orderBy: doctor.label" ng-selected="doctor.value === data.doctorOid" value="{{doctor.value}}">{{doctor.label}}</option>
+                  <option ng-repeat="doctor in doctorDetails | orderBy: doctor.label" ng-selected="doctor.value === data.doctorOid" value="{{doctor.value}}">{{doctor.label}} &nbsp; ( {{doctor.speciality }} )</option>
                 </select>
               </div>
             </div>
-            <div class="line line-dashed b-b line-lg "></div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Speciality * </label>
 
-              <div class="col-lg-10">
-                <input type="text" ng-model="data.speciality" readonly maxlength="50" name="speciality" class="form-control" placeholder="Speciality">
-              </div>
-            </div>
             <div class="line line-dashed b-b line-lg "></div>
             <div class="form-group">
               <label class="col-sm-2 control-label">Select Day * </label>
