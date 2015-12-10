@@ -17,7 +17,8 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
           discount: $scope.data.discount,
           startTime: $scope.data.startTime,
           endTime: $scope.data.endTime,
-          format: $scope.data.format
+          format: $scope.data.format,
+          status: $scope.data.status
         }
         $http ({
           url: path + "rest/secure/config/createConfigRoomCharges",
@@ -60,7 +61,7 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
 
     };
     $scope.loadConfigRoomChargesList = function (){
-      $scope.errorData = "";
+      $scope.listErrorData = "";
       $http ({
         url: path + "rest/secure/config/getAllConfigRoomCharges",
         method: "GET"
@@ -72,7 +73,7 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
           }
           else{
             data = [];
-            $scope.errorData = response.data;
+            $scope.listErrorData = response.data;
           }
           $scope.tableParams = new NgTableParams ({
             page: 1,            // show first page
@@ -127,7 +128,7 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
       )
     };
     $scope.deleteConfigRoomCharges = function (oid, name){
-      $scope.errorData = "";
+      $scope.listErrorData = "";
       var modalOptions = {
         closeButtonText: 'Cancel',
         actionButtonText: 'Delete',
@@ -156,7 +157,7 @@ app.controller ('ConfigRoomChargesController', ['$scope', '$http', 'NgTableParam
               });
             }
             else{
-              $scope.errorData = response.data;
+              $scope.listErrorData = response.data;
             }
           }
         )
