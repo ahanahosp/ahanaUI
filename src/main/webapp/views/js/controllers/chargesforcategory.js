@@ -50,6 +50,7 @@ app.controller ('ChargesForCategoryController', ['$scope', '$http', 'NgTablePara
     }
   };
   $scope.reset = function (){
+    $scope.errorData = "";
     $scope.data = {};
   };
   $scope.loadChargesForCategoryList = function (){
