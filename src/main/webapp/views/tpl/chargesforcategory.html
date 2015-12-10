@@ -23,7 +23,13 @@
     </div>
     <div class="wrapper table-responsive" ng-show="!errorData">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
-        <tr ng-repeat="chargesForCategory in $data track by $index">
+        <tbody ng-repeat="group in $groups">
+        <tr class="ng-table-group">
+          <td colspan="{{$columns.length}}">
+            <a href="" ng-click="group.$hideRows = !group.$hideRows"> <span class="glyphicon" ng-class="{ 'glyphicon-chevron-right': group.$hideRows, 'glyphicon-chevron-down': !group.$hideRows }"></span> <strong>{{ group.value }}</strong> </a>
+          </td>
+        </tr>
+        <tr ng-hide="group.$hideRows" ng-repeat="chargesForCategory in group.data">
           <!--<td class="text-left" header="'ng-table/headers/checkbox.html'">
             <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[chargesForCategory.oid]" /> <i></i> </label>
           </td>-->
@@ -40,10 +46,10 @@
             {{chargesForCategory.type}}
           </td>
           <td class="text-right">
-            <a ui-sref="app.editChargesForCategory({oid:chargesForCategory.oid})">
-              <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteChargesForCategory(chargesForCategory.oid, chargesForCategory.name)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+            <a ui-sref="app.editChargesForCategory({oid:chargesForCategory.oid})"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteChargesForCategory(chargesForCategory.oid, chargesForCategory.name)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
           </td>
         </tr>
+        </tbody>
       </table>
     </div>
   </div>

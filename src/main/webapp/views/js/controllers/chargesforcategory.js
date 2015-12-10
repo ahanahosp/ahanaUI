@@ -73,9 +73,7 @@ app.controller ('ChargesForCategoryController', ['$scope', '$http', 'NgTablePara
           count: 25,           // count per page
           counts: [10, 25, 50, 100]
         }, {
-          groupBy: function (item){
-            return 'Category "' + item.category[0] + '"';
-          },
+          groupBy: 'category',
           total: data.length, // length of data
           getData: function ($defer, params){
             // use build-in angular filter
