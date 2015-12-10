@@ -186,7 +186,7 @@ app
     $scope.loadDoctorSchedule = function (ds){
       $scope.errorData = "";
       $http ({
-        url: path + "secure/config/getDoctorScheduleByOid?oid=" + ds.oid,
+        url: path + "rest/secure/config/getDoctorScheduleByOid?oid=" + ds.oid,
         method: "GET"
       }).then (
         function (response){
