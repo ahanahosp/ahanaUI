@@ -178,6 +178,7 @@ app.controller ('ChargesForCategoryController', ['$scope', '$http', 'NgTablePara
       )
     });
   };
+
   $scope.deleteChargesForCategory = function (oid, name){
     $scope.errorData = "";
     var modalOptions = {
@@ -210,4 +211,49 @@ app.controller ('ChargesForCategoryController', ['$scope', '$http', 'NgTablePara
       )
     });
   };
+    $scope.loadEditChargesForCategory = function (chargesForCategory){
+      $scope.errorData = "";
+      var modalDefaults = {
+        templateUrl: contextPath + 'views/tpl/edit_charges_for_category.html',
+        controller: function ($scope, $modalInstance, $state){
+          $scope.modalOptions = modalOptions;
+          $scope.updateChargesForCategory = function (){
+            $scope.modalSuccessMessage = "";
+            $scope.modalErrorData = "";
+            $http ({
+              url: path + "rest/secure/config/updateChangesForCategory",
+              method: "POST",
+              data: {
+                oid: $scope.modalOptions.chargesForCategory.oid,
+                fieldName: $scope.modalOptions.chargesForCategory.type,
+                fieldValue: $scope.modalOptions.chargesForCategory.amount
+              }
+            }).then (
+              function (response){
+                if (response.data.Status === 'Ok'){
+                  $scope.modalSuccessMessage = "Charges for category updated successfully";
+                  $timeout (function (){
+                    $modalInstance.close (response);
+                    $state.go ('app.chargesForCategory', {}, {reload: true});
+                  }, 1000);
+                }
+                else{
+                  $scope.modalErrorData = response.data;
+                }
+              }
+            )
+          };
+          $scope.close = function (result){
+            $modalInstance.dismiss ('cancel');
+          };
+        }
+      };
+      var modalOptions = {
+        closeButtonText: 'Cancel',
+        actionButtonText: 'Update',
+        headerText: 'Edit Charges For Category',
+        chargesForCategory: chargesForCategory
+      };
+      modalService.showModal (modalDefaults, modalOptions);
+    };
 }]);

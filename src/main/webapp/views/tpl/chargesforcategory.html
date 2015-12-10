@@ -46,7 +46,7 @@
             {{chargesForCategory.type}}
           </td>
           <td class="text-right">
-            <a ui-sref="app.editChargesForCategory({oid:chargesForCategory.oid})"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteChargesForCategory(chargesForCategory.oid, chargesForCategory.name)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
+            <a ng-click="loadEditChargesForCategory(chargesForCategory)"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteChargesForCategory(chargesForCategory.oid, chargesForCategory.name)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
           </td>
         </tr>
         </tbody>

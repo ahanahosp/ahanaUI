@@ -1,0 +1,60 @@
+<div class="modal-header">
+  <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body">
+  <div class="wrapper table-responsive" ng-show="modalSuccessMessage">
+    <div class="text-success">
+      <i class="fa fa-info-circle"></i> {{modalSuccessMessage}}
+    </div>
+  </div>
+  <div class="wrapper table-responsive" ng-show="modalErrorData">
+    <div ng-repeat="error in modalErrorData.errors" class="text-danger">
+      <i class="fa fa-warning"></i> {{error.longMessage}}
+    </div>
+  </div>
+  <div class="row">
+    <form name="chargesForCategoryEditForm" class="form-horizontal form-validation">
+      <div class="panel-body">
+        <div class="form-group">
+          <label class="col-lg-4 control-label">Category *</label>
+
+          <div class="col-lg-8">
+            <input type="text" ng-model="modalOptions.chargesForCategory.category" readonly maxlength="50" class="form-control" placeholder="Default">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">Sub Category *</label>
+
+          <div class="col-lg-8">
+            <input type="text" ng-model="modalOptions.chargesForCategory.subCategory" readonly maxlength="50" class="form-control" placeholder="Default">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">OP / IP *</label>
+
+          <div class="col-lg-8">
+            <input type="text" ng-model="modalOptions.chargesForCategory.opOrIp" readonly maxlength="50" class="form-control" placeholder="Default">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">BED Type *</label>
+
+          <div class="col-lg-8">
+            <input type="text" ng-model="modalOptions.chargesForCategory.type" readonly maxlength="50" class="form-control" placeholder="Default">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">Amount *</label>
+
+          <div class="col-lg-8">
+            <input type="text" ng-model="modalOptions.chargesForCategory.amount" maxlength="50" class="form-control" placeholder="Default">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn" data-ng-click="close()">{{modalOptions.closeButtonText}}</button>
+  <button class="btn btn-primary" data-ng-click="updateChargesForCategory()">{{modalOptions.actionButtonText}}</button>
+</div>
