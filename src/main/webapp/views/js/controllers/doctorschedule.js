@@ -186,6 +186,9 @@ app
       $scope.data.visitingDay = 'All Days';
     };
     $scope.loadDoctorSchedule = function (ds){
+      if (ds.oid === null || ds.oid === 'null'){
+        return;
+      }
       $scope.errorData = "";
       $http ({
         url: path + "rest/secure/config/getDoctorScheduleByOid?oid=" + ds.oid,
@@ -202,6 +205,9 @@ app
       )
     };
     $scope.deleteDoctorSchedule = function (oid, name){
+      if (oid === null || oid === 'null'){
+        return;
+      }
       $scope.listErrorData = "";
       var modalOptions = {
         closeButtonText: 'Cancel',
