@@ -24,9 +24,9 @@
     <div class="wrapper table-responsive" ng-show="!errorData">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
         <tr ng-repeat="chargesForCategory in $data track by $index">
-          <td class="text-left" header="'ng-table/headers/checkbox.html'">
+          <!--<td class="text-left" header="'ng-table/headers/checkbox.html'">
             <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[chargesForCategory.oid]" /> <i></i> </label>
-          </td>
+          </td>-->
           <td data-title="'Sub Category Name'" class="text-left" sortable="'subCategory'">
             {{chargesForCategory.subCategory}}
           </td>
