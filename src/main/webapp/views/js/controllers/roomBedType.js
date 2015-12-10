@@ -229,8 +229,7 @@ app.controller ('RoomBedTypesController', ['$scope', '$http', 'NgTableParams', '
         actionButtonText: 'Update',
         headerText: 'Edit Multiple Room Bed Types',
         roomBedTypeSelectedItems: $scope.roomBedTypeSelectedItems,
-        roomTypesDetails: $scope.roomTypesDetails,
-        selectedRoomTypes: $scope.selectedRoomTypes
+        roomTypesDetails: $scope.roomTypesDetails
       };
       var modalDefaults = {
         templateUrl: contextPath + 'views/tpl/edit_multiple_roomBedType.html',
