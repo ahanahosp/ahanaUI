@@ -217,7 +217,7 @@ app
       };
       modalService.showModal ({}, modalOptions).then (function (result){
         $http ({
-          url: path + "rest/secure/config/deleteDoctorsSchedule",
+          url: path + "rest/secure/config/deleteDoctorSchedule",
           method: "POST",
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           transformRequest: function (obj){
