@@ -61,7 +61,7 @@ app.controller ('ChargesForCategoryController', ['$scope', '$http', 'NgTablePara
       function (response){
         var data;
         if (response.data.Status === 'Ok'){
-          data = response.data.chargesForCategoryDetails;
+          data = response.data.chargesForCategory;
         }
         else{
           data = [];
