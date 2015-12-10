@@ -308,13 +308,16 @@ app
                 if (response.data.Status === 'Ok'){
                   $scope.modalSuccessMessage = "Doctor Schedules updated successfully";
                   $timeout (function (){
+
                     $modalInstance.close (response);
-                    $state.transitionTo ($state.current, {}, {
+                      $state.transitionTo ($state.current,
+                        {}, {
                       reload: true,
                       inherit: false,
                       notify: true
                     });
-                  }, 1000);
+                    },
+                    1000);
                 }
                 else{
                   $scope.modalErrorData = response.data;
