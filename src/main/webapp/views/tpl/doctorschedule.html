@@ -68,6 +68,11 @@
     </div>
   </div>
   <div class="panel panel-default" ng-init="loadDoctorScheduleList();">
+    <div class="wrapper table-responsive" ng-show="listErrorData">
+      <div ng-repeat="error in listErrorData.errors" class="text-danger">
+        <i class="fa fa-warning"></i> {{error.longMessage}}
+      </div>
+    </div>
     <div class="panel-body">
       <div class="row wrapper">
         <div class="col-sm-8 m-b-xs">
@@ -79,7 +84,7 @@
         </span>
         </div>
       </div>
-      <div class="wrapper table-responsive" ng-show="!errorData">
+      <div class="wrapper table-responsive" ng-show="!listErrorData">
         <table ng-table="tableParams" class="table table-striped b-t b-light">
           <tr ng-repeat="doctorSchedule in $data track by $index">
             <td class="text-left" header="'ng-table/headers/checkbox.html'">

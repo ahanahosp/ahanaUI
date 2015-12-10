@@ -200,7 +200,7 @@ app
       )
     };
     $scope.deleteDoctorSchedule = function (oid, name){
-      $scope.errorData = "";
+      $scope.listErrorData = "";
       var modalOptions = {
         closeButtonText: 'Cancel',
         actionButtonText: 'Delete',
@@ -225,7 +225,7 @@ app
               $scope.loadDoctorScheduleList ();
             }
             else{
-              $scope.errorData = response.data;
+              $scope.listErrorData = response.data;
             }
           }
         )
@@ -237,7 +237,7 @@ app
           selectedDoctorScheduleOids.push (value.oid);
         }
       );
-      $scope.errorData = "";
+      $scope.listErrorData = "";
       var modalOptions = {
         closeButtonText: 'Cancel',
         actionButtonText: 'Delete',
@@ -245,6 +245,7 @@ app
         bodyText: 'Are you sure you want to delete selected doctor schedules ?'
       };
       modalService.showModal ({}, modalOptions).then (function (result){
+        $scope.listErrorData = "";
         $http ({
           url: path + "rest/secure/config/deleteMultipleObject",
           method: "POST",
@@ -262,7 +263,7 @@ app
               $scope.loadDoctorSchedulesList ();
             }
             else{
-              $scope.errorData = response.data;
+              $scope.listErrorData = response.data;
             }
           }
         )
