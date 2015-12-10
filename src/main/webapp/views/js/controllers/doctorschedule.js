@@ -191,7 +191,7 @@ app
       }).then (
         function (response){
           if (response.data.Status === 'Ok'){
-            $scope.data = response.data.doctorSchedule;
+            $scope.data = response.data.doctorSchdule;
           }
           else{
             $scope.errorData = response.data;
