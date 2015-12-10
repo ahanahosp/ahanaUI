@@ -27,6 +27,9 @@
       <td class="text-left">
         End Time
       </td>
+      <td class="text-left">
+        Status
+      </td>
       </thead>
       <tbody>
       <tr ng-repeat="doctorSchedule in modalOptions.doctorScheduleSelectedItems track by $index">
@@ -53,6 +56,9 @@
             <option value="">Select To</option>
             <option ng-repeat="time in modalOptions.timesDetails | orderBy: time.label" ng-selected="time.value === doctorSchedule.endTime" value="{{time.value}}">{{time.label}}</option>
           </select>
+        </td>
+        <td class="text-left">
+        	<label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="doctorSchedule.status"> <i></i> </label>
         </td>
       </tr>
       </tbody>

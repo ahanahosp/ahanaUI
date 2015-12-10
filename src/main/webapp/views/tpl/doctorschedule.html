@@ -55,6 +55,12 @@
                   <option ng-repeat="time in timesDetails | orderBy: time.label" ng-selected="time.value === data.endTime" value="{{time.value}}">{{time.label}}</option>
                 </select>
               </div>
+              <div class="col-sm-2">
+                  <label class="col-sm-2 control-label">Status</label>
+                  <div class="col-sm-9">
+                    <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="data.status"> <i></i> </label> &nbsp; &nbsp;
+                  </div>
+              </div>
             </div>
             <footer class="panel-footer text-right bg-light lter">
               <button class="btn m-b-xs  btn-success " ng-click="saveDoctorSchedule()">Assign</button>
@@ -106,7 +112,7 @@
               {{doctorSchedule.endTime}}
             </td>
             <td data-title="'Status'" class="text-left" sortable="'status'">
-              <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'INACT'" name="doctorStatus" ng-model="doctorSchedule.doctorStatus"> <i></i> </label>
+              <label class="i-checks "> <input type="checkbox" disabled ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="doctorSchedule.status"> <i></i> </label>
             </td>
             <td class="text-right">
               <a href="#" ng-click="loadDoctorSchedule(doctorSchedule)"> <i tooltip="Modify" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-pencil"></i> </a>&nbsp;&nbsp;&nbsp; <a ng-click="deleteDoctorSchedule(doctorSchedule.oid, doctorSchedule.fullName)"> <i tooltip="Delete" tooltip-trigger tooltip-animation="false" tooltip-placement="bottom" class="fa fa-trash"></i> </a>
