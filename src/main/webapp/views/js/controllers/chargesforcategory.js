@@ -223,6 +223,13 @@ app.controller ('ChargesForCategoryController', ['$scope', '$http', 'NgTablePara
             $http ({
               url: path + "rest/secure/config/updateChangesForCategory",
               method: "POST",
+              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+              transformRequest: function (obj){
+                var str = [];
+                for (var p in obj)
+                  str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
+                return str.join ("&");
+              },
               data: {
                 oid: $scope.modalOptions.chargesForCategory.oid,
                 fieldName: $scope.modalOptions.chargesForCategory.type,
