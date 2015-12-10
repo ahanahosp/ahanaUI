@@ -182,7 +182,8 @@ app
     $scope.data.visitingDay = 'All Days';
     $scope.reset = function (){
       $scope.errorData = "";
-      $scope.data = {};
+      $scope.data = "";
+      $scope.data.visitingDay = 'All Days';
     };
     $scope.loadDoctorSchedule = function (ds){
       $scope.errorData = "";
