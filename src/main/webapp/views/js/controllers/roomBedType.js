@@ -185,6 +185,41 @@ app.controller ('RoomBedTypesController', ['$scope', '$http', 'NgTableParams', '
       )
     };
     $scope.deleteMultipleRoomBedTypes = function (){
+      var selectedRoomBedTypeOids = [];
+      angular.forEach ($scope.roomBedTypeSelectedItems, function (value, key){
+          selectedRoomBedTypeOids.push (value.oid);
+        }
+      );
+      $scope.errorData = "";
+      var modalOptions = {
+        closeButtonText: 'Cancel',
+        actionButtonText: 'Delete',
+        headerText: 'Delete Multiple Room and Bed Type(s)?',
+        bodyText: 'Are you sure you want to delete selected room and bed types?'
+      };
+      modalService.showModal ({}, modalOptions).then (function (result){
+        $http ({
+          url: path + "rest/secure/config/deleteMultipleObject",
+          method: "POST",
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          transformRequest: function (obj){
+            var str = [];
+            for (var p in obj)
+              str.push (encodeURIComponent (p) + "=" + encodeURIComponent (obj[p]));
+            return str.join ("&");
+          },
+          data: {"oids": selectedRoomBedTypeOids, "source": "RoomAndBedType"}
+        }).then (
+          function (response){
+            if (response.data.Status === 'Ok'){
+              $scope.loadRoomBedTypesList ();
+            }
+            else{
+              $scope.errorData = response.data;
+            }
+          }
+        )
+      });
     };
     $scope.editMultipleRoomBedTypes = function (){
       $scope.modalErrorData = "";
@@ -193,7 +228,9 @@ app.controller ('RoomBedTypesController', ['$scope', '$http', 'NgTableParams', '
         closeButtonText: 'Cancel',
         actionButtonText: 'Update',
         headerText: 'Edit Multiple Room Bed Types',
-        roomBedTypeSelectedItems: $scope.roomBedTypeSelectedItems
+        roomBedTypeSelectedItems: $scope.roomBedTypeSelectedItems,
+        roomTypesDetails: $scope.roomTypesDetails,
+        selectedRoomTypes: $scope.selectedRoomTypes
       };
       var modalDefaults = {
         templateUrl: contextPath + 'views/tpl/edit_multiple_roomBedType.html',

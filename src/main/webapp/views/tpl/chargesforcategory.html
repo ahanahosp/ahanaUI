@@ -4,7 +4,13 @@
 <div class="wrapper-md" ng-controller="ChargesForCategoryController" ng-init="loadChargesForCategoryList()">
   <div class="panel panel-default">
     <div class="row wrapper">
-      <div class="col-sm-2">
+      <div class="col-sm-8 m-b-xs">
+        <button class="btn btn-sm btn-grey" ng-click="loadChargesForCategoryList()"> &nbsp; &nbsp; <i class="fa fa-repeat"></i> &nbsp; &nbsp; </button>
+        &nbsp; &nbsp;
+        <span ng-show="chargesForCategorySelected > 0">
+          <button class="btn btn-sm btn-grey" ng-click="editMultipleChargesForCategory()"><i class="fa fa-pencil"></i> &nbsp; Edit</button> &nbsp; &nbsp;
+          <button class="btn btn-sm btn-grey" ng-click="deleteChargesForCategory()"><i class="fa fa-trash"></i> &nbsp; Delete</button>
+        </span>
       </div>
       <div class="col-sm-2 pull-right">
         <button class=" btn btn-sm btn-info pull-right" ng-click="$state.go('app.createChargesForCategory')"><i class="fa fa-plus"></i> &nbsp; New Charges For Category</button>
@@ -17,7 +23,7 @@
     </div>
     <div class="wrapper table-responsive" ng-show="!errorData">
       <table ng-table="tableParams" class="table table-striped b-t b-light">
-        <tr ng-repeat="chargesForCategory in $data track by chargesForCategory.oid">
+        <tr ng-repeat="chargesForCategory in $data track by $index">
           <td class="text-left" header="'ng-table/headers/checkbox.html'">
             <label class="i-checks "> <input type="checkbox" ng-model="checkboxes.items[chargesForCategory.oid]" /> <i></i> </label>
           </td>
@@ -27,10 +33,10 @@
           <td data-title="'Amount'" class="text-right">
             {{chargesForCategory.amount}}
           </td>
-          <td data-title="'OP/IP'" class="text-right" class="text-left">
+          <td data-title="'OP/IP'" class="text-left">
             {{chargesForCategory.opOrIp}}
           </td>
-          <td data-title="'Type'" class="text-right" class="text-left">
+          <td data-title="'Type'" class="text-left">
             {{chargesForCategory.type}}
           </td>
           <td class="text-right">

@@ -1,0 +1,55 @@
+<div class="modal-header">
+  <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body">
+  <div class="wrapper table-responsive" ng-show="modalSuccessMessage">
+    <div class="text-success">
+      <i class="fa fa-info-circle"></i> {{modalSuccessMessage}}
+    </div>
+  </div>
+  <div class="wrapper table-responsive" ng-show="modalErrorData">
+    <div ng-repeat="error in modalErrorData.errors" class="text-danger">
+      <i class="fa fa-warning"></i> {{error.longMessage}}
+    </div>
+  </div>
+  <div class="wrapper table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+      <td class="text-left">
+        Order Id
+      </td>
+      <td class="text-left">
+        BED No
+      </td>
+      <td class="text-left">
+        Status
+      </td>
+      <td class="text-left">
+        Room Types
+      </td>
+      </thead>
+      <tbody>
+      <tr ng-repeat="roomBedType in modalOptions.roomBedTypeSelectedItems track by role.oid">
+        <td class="text-left">
+          <input type="text" ng-model="roomBedType.orderId" maxlength="50" name="orderId" class="form-control" placeholder="Order Id">
+        </td>
+        <td class="text-left">
+          <input type="text" ng-model="roomBedType.bedNo" maxlength="10" name="bedNo" class="form-control" placeholder="BED No">
+        </td>
+        <td class="text-left">
+          <label class="i-checks "> <input type="checkbox" ng-true-value="'ACT'" ng-false-value="'INACT'" name="status" ng-model="roomBedType.status"> <i></i> </label>
+        </td>
+        <td class="text-left">
+          <div ng-repeat="roomType in modalOptions.roomTypesDetails | orderBy: roomType.label">
+            <label class="i-checks "><input type="checkbox" ng-checked="modalOptions.selectedRoomTypes.containsObjectWithProperty('value', roomType.value)" name="roomType" ng-click="toggleSelection(roomType)" /> <i></i> </label> {{roomType.label}}
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn" data-ng-click="close()">{{modalOptions.closeButtonText}}</button>
+  <button class="btn btn-primary" data-ng-click="saveMultipleRoomBedTypes();">{{modalOptions.actionButtonText}}</button>
+</div>
